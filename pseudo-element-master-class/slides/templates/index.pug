@@ -1,0 +1,650 @@
+//- Use the presentation layout so we can keep this clean
+extends layouts/presentation
+
+block append config
+  -
+    config.theme = 'lengstorf';
+    config.title = 'CSS Pseudo-Element Master Class';
+    config.description = 'Advanced CSS Techniques for Clean Markup and Sexy Layouts';
+    config.slidesLink = 'https://code.lengstorf.com/presentation/pseudo-element-master-class/slides/';
+    config.author.name = 'Jason Lengstorf';
+    config.author.email = 'jason@lengstorf.com';
+    config.author.link = 'https://code.lengstorf.com/';
+    config.author.twitter = 'jlengstorf';
+    config.author.github = 'jlengstorf';
+
+    config.conference = {
+      hashtag: false,
+      twitter: false,
+    };
+  -
+
+//- Add your slides here. See templates/includes/_mixins.pug for information
+//- on how `+slide` works.
+block slides
+  +slide
+    h1.wider= config.title
+    h3= config.description
+
+    p by 
+      a(href= config.author.link)= config.author.name
+      br
+      small
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        |  | 
+        a(href= `mailto:${config.author.email}`)= config.author.email
+
+  +slide.u--align-left.u--text-light.u--text-shadow(
+    data-background="url(./images/jason-lengstorf-slide-bg@2x.jpg)"
+  )
+    h2 A Little Background
+
+    li.fragment I’m the founder of Copter Labs
+    li.fragment I’ve been pixel pushing since 2003
+    li.fragment I’ve written 3 books on web development
+
+  +slide
+    h1 Pseudo-Elements?
+
+  +slide
+    h4 Pseudo-Elements Make the Web Sexier
+    .beckham
+      img(
+        src="images/pseudo-element-master-class/beckham.jpg"
+      )
+    button#sexytime Make It Sexier!
+    script.
+      const button = document.getElementById('sexytime');
+      button.addEventListener('click', event => {
+          const photo = document.querySelector('.beckham');
+
+          if (photo.classList.contains('sexier')) {
+              photo.classList.remove('sexier');
+              event.target.textContent = 'Make It Sexier!';
+          } else {
+              photo.classList.add('sexier');
+              event.target.textContent = 'Too Much Sexy!';
+          }
+      });
+//-
+
+          <section>
+              <h3>Pseudo-Elements Make the Web Sexier</h3>
+              <div class="beckham">
+                  <img src="img/beckham.jpg" alt="Beckham">
+              </div>
+              <button id="sexytime">Make It Sexier!</button>
+              <script>
+                  var button = document.getElementById('sexytime');
+                  button.addEventListener('click', function(){
+                      var photo = document.querySelectorAll('.beckham')[0],
+                          currentClasses = photo.className;
+                      if (currentClasses.match('sexier')) {
+                          photo.className = photo.className.replace('sexier', '');
+                          this.innerHTML = 'Make It Sexier!';
+                      } else {
+                          photo.className = photo.className + ' sexier';
+                          this.innerHTML = 'Too Much Sexy!';
+                      }
+                  });
+              </script>
+          </section>
+
+          <section>
+              <h2>Hint: You&rsquo;re Already Using Them</h2>
+          </section>
+          <section>
+              <h2>A Simple Example: The Clearfix</h2>
+              <pre><code data-trim>
+  &lt;div class=&quot;wrapper&quot;&gt;
+      &lt;div class=&quot;left&quot;&gt;
+          &lt;p&gt;I'm on the left!&lt;/p&gt;
+          &lt;p&gt;Let's get weird!&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;right&quot;&gt;
+          &lt;p&gt;I'm on the right?&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+              </code></pre>
+          </section>
+          <section>
+              <h2>This Looks Wrong</h2>
+              <div class="code">
+                  <pre><code data-trim>
+  .wrapper {
+      display: block;
+      width: 100%;
+      background: red;
+  }
+  .left,.right { background: #bcf; }
+  .left        { float: left; }
+  .right       { float: right; }
+                  </code></pre>
+              </div>
+              <div class="example">
+                  <div class="wrapper01">
+                      <div class="left">
+                          <p>I'm on the left!</p>
+                          <p>Let's get weird!</p>
+                      </div>
+                      <div class="right">
+                          <p>I'm on the right?</p>
+                      </div>
+                  </div>
+                  <p>I'll have no part in this.</p>
+              </div>
+          </section>
+          <section>
+              <h2>Much Better</h2>
+              <div class="code">
+                  <pre><code data-trim>
+  .wrapper {
+      display: block;
+      width: 100%;
+      background: red;
+  }
+  .wrapper:after {
+      content: ' ';
+      display: block;
+      clear: both;
+  }
+  .left,.right { background: #bcf; }
+  .left        { float: left; }
+  .right       { float: right; }
+                  </code></pre>
+              </div>
+              <div class="example">
+                  <div class="wrapper02">
+                      <div class="left">
+                          <p>I&rsquo;m on the left!</p>
+                          <p>Let&rsquo;s get weird!</p>
+                      </div>
+                      <div class="right">
+                          <p>I&rsquo;m on the right?</p>
+                      </div>
+                  </div>
+                  <p>I&rsquo;ll have no part in this.</p>
+              </div>
+              <p>Look familiar? <code>:after</code> is a pseudo-element.</p>
+          </section>
+
+          <section data-markdown>
+              <script type="text/template">
+                  ## Available Pseudo-Elements
+
+                  * `::after`
+                  * `::before`
+                  * `::first-letter`
+                  * `::first-line`
+                  * `::selection`
+              </script>
+          </section>
+
+          <section data-markdown>
+              <script type="text/template">
+                  ## Heads Up
+                  ### Pseudo-Elements ≠ Pseudo-Classes
+
+                  Pseudo-elements create "elements" that can be styled as if they were standalone elements. <!-- .element: class="left" -->
+
+                  Pseudo-classes allow us to select elements by characteristics, such as hover state. <!-- .element: class="right" -->
+
+                  <small>More info: [https://developer.mozilla.org/en-US/docs/Web/CSS/pseudo-classes]()</small>
+              </script>
+          </section>
+
+          <section data-markdown>
+              <script type="text/template">
+                  ## Double vs. Single Colon
+
+                  Officially, it&rsquo;s `::`.
+
+                  [Browser support](http://cptr.me/1io6xPb) is unanimous for `:`. So use that. (For now.)
+
+                      div:after {
+                          /* IE8+, Firefox (Gecko) 1.0+, Opera 4+ */
+                      }
+
+                      div::after {
+                          /* IE9+, Firefox (Gecko) 1.5+, Opera 7+ */
+                      }
+
+                  <small>**GOTCHA** — `::selection` does **not** work with a single colon.</small>
+              </script>
+          </section>
+
+          <section data-markdown>
+              <script type="text/template">
+                  ## Some Elements Won&rsquo;t Work
+
+                  Pseudo-elements will not work with elements that don&rsquo;t have content:
+
+                  * `<img>`
+                  * `<input>`
+                  * `<br>`
+              </script>
+          </section>
+
+          <section data-markdown>
+              <script type="text/template">
+                  ## How Does This Work?
+
+                  * For every element on the page, there are three stylable elements available
+              </script>
+          </section>
+
+          <section>
+              <h2>Simple (Sexy) Example</h2>
+
+              <div class="code">
+                  <pre><code data-trim>
+  .sexy:before {
+      content: 'Sexy Download! ';
+  }
+  .sexy:after {
+      content: ' (NSFW)';
+  }
+                  </code></pre>
+                  <pre><code data-trim>
+  &lt;p&gt;
+      Mystery:
+      &lt;a href=&quot;download/sexytime.zip&quot;&gt;
+          Jason&rsquo;s Pics
+      &lt;/a&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+      Clear:
+      &lt;a href=&quot;download/sexytime.zip&quot;
+         class=&quot;sexy&quot;&gt;
+          Jason&rsquo;s Pics
+      &lt;/a&gt;
+  &lt;/p&gt;
+                  </code></pre>
+              </div>
+              <div class="example">
+                  <p class="smaller-text">
+                      Mystery:
+                      <a href="download/sexytime.zip">
+                          Jason&rsquo;s Pics
+                      </a>
+                  </p>
+                  <p class="smaller-text">
+                      Clear:
+                      <a href="download/sexytime.zip"
+                         class="sexy">
+                          Jason&rsquo;s Pics
+                      </a>
+                  </p>
+              </div>
+          </section>
+
+          <section>
+              <h2>Something Less Awkward: Icons</h2>
+              <div class="code">
+                  <pre><code data-trim>
+  h2:before {
+      position: relative;
+      display: inline-block;
+  }
+  h2:nth-of-type(1):before {
+    content: ''; top: -10px;
+    width: 3px; height: 3px;
+    margin: 0 20px 0 10px;
+    background: black;
+    font-size: 3px;
+    box-shadow: 0 0 0 1em #000000,
+      /* ... */ 2em 4em 0 0 #000000;
+  }
+  h2:nth-of-type(2):before {
+    content: '\F085';
+    font-family: 'FontAwesome';
+  }
+                  </code></pre>
+                  <pre><code data-trim>
+  &lt;h1&gt;Menu&lt;/h1&gt;
+  &lt;h2&gt;Games&lt;/h2&gt;
+  &lt;h2&gt;Settings&lt;/h2&gt;
+                  </code></pre>
+              </div>
+              <div class="example">
+                  <div class="icon-example">
+                      <h1>Menu</h1>
+                      <h2>Games</h2>
+                      <h2>Settings</h2>
+                  </div>
+              </div>
+          </section>
+
+          <section>
+              <h2>Advanced Icons</h2>
+
+              <div class="code">
+                  <pre><code data-trim>
+  a[href$=".zip"]:before {
+    content: '\e197';
+  }
+  a[href$=".zip"]:after {
+    content: ' [ZIP, ' attr(data-size) ']';
+  }
+  a[href*="maps.google"]:before,
+  a[href*="goo.gl/maps"]:before {
+    content: '\e062';
+  }
+  a[href*="maps.google"]:after,
+  a[href*="goo.gl/maps"]:after {
+    content: ' (map)';
+  }
+                  </code></pre>
+                  <pre><code data-trim>
+  &lt;a href=&quot;download/files.zip&quot;
+    data-size=&quot;1MB&quot;&gt;
+      Ice Cream Data&lt;/a&gt;
+  &lt;a href=&quot;http://goo.gl/maps/Re2AZ&quot;&gt;
+      Cheese Report&lt;/a&gt;
+                  </code></pre>
+              </div>
+              <div class="example">
+                  <ul class="link-styles-example">
+                    <li>
+                      <a href="download/files.zip"
+                         data-size="1MB">Milk Data</a>
+                    </li>
+                    <li>
+                      <a href="http://goo.gl/maps/Re2AZ">Cheese Factory</a>
+                    </li>
+                  </ul>
+              </div>
+          </section>
+
+          <section>
+              <h2>Drop Caps with :first-letter</h2>
+              <div class="code">
+                  <pre><code data-trim>
+  p:first-of-type:first-letter {
+    float: left;
+    margin: 57px 8px 8px 0;
+    font-family: 'Cheshire Initials';
+    font-size: 4em;
+  }
+                  </code></pre>
+                  <pre><code data-trim>
+  &lt;p&gt;Michael was having brunch with Sally Sitwell at a restaurant called Skip Church's Bistro. In addition to brunch, the restaurant was known for an item on the menu called the &quot;Skip's Scramble&quot;, an omelet that contained everything on the menu.&lt;/p&gt;
+  &lt;p&gt;Do not order the Skip's Scramble.&lt;/p&gt;
+                  </code></pre>
+              </div>
+              <div class="example">
+                  <div class="drop-cap-example">
+                      <p>Michael was having brunch with Sally Sitwell at a restaurant called Skip Church's Bistro. In addition to brunch, the restaurant was known for an item on the menu called the "Skip's Scramble", an omelet that contained everything on the menu.</p>
+                      <p>Do not order the Skip's Scramble.</p>
+                  </div>
+              </div>
+          </section>
+
+          <section>
+              <h2>Animation + Hover Effects (1/4)</h2>
+              <div class="code">
+                  <pre><code data-trim>
+  .narwhal {
+    position: relative;
+    display: block;
+    width: 300px;
+    margin: 20px auto 10px;
+  }
+  .narwhal img {
+    position: relative;
+    max-width: 100%;
+    border-radius: 150px;
+    border: 1px solid #fff;
+    z-index: 10;
+  }
+                  </code></pre>
+                  <pre><code data-trim>
+  &lt;a href=&quot;#&quot; class=&quot;narwhal&quot;&gt;
+      &lt;img src=&quot;img/narwhal.jpg&quot;
+           alt=&quot;Narwhal!&quot;&gt;
+  &lt;/a&gt;
+                  </code></pre>
+              </div>
+              <div class="example step01">
+                  <a href="#" class="narwhal">
+                      <img src="img/narwhal.jpg"
+                           alt="Narwhal!">
+                  </a>
+              </div>
+              <p>
+                  <small>View this example on Codepen:
+                  <a href="http://cdpn.io/FvblG">http://cdpn.io/FvblG</a></small>
+              </p>
+          </section>
+
+          <section>
+              <h2>Animation + Hover Effects (2/4)</h2>
+              <div class="code">
+                  <pre><code data-trim>
+  .narwhal:before {
+    content: '';
+    position: absolute;
+    top: 7%; left: 7%;
+    width: 44%; height: 42%;
+    background: rgba(60,165,255,.6);
+    border-radius: 53%;
+    transition: all 0.25s ease-out;
+    transform-origin: 100% 102%;
+    animation: spin 5.5s linear
+      reverse infinite;
+    z-index: 5;
+  }
+  @keyframes spin {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+  }
+                  </code></pre>
+              </div>
+              <div class="example step02">
+                  <a href="#" class="narwhal">
+                      <img src="img/narwhal.jpg"
+                           alt="Narwhal!">
+                  </a>
+              </div>
+              <p>
+                  <small>View this example on Codepen:
+                  <a href="http://cdpn.io/FvblG">http://cdpn.io/FvblG</a></small>
+              </p>
+          </section>
+
+          <section>
+              <h2>Animation + Hover Effects (3/4)</h2>
+              <div class="code">
+                  <pre><code data-trim>
+  .narwhal:after {
+    content: '';
+    position: absolute;
+    top: 4%;
+    left: 6%;
+    width: 48%;
+    height: 46%;
+    background: rgba(240,105,130,.6);
+    border-radius: 55%;
+    transition: all 0.25s ease-out;
+    transform-origin: 97% 99%;
+    animation: spin 15s
+      linear infinite;
+    z-index: 8;
+  }
+                  </code></pre>
+              </div>
+              <div class="example step03">
+                  <a href="#" class="narwhal">
+                      <img src="img/narwhal.jpg"
+                           alt="Narwhal!">
+                  </a>
+              </div>
+              <p>
+                  <small>View this example on Codepen:
+                  <a href="http://cdpn.io/FvblG">http://cdpn.io/FvblG</a></small>
+              </p>
+          </section>
+
+          <section>
+              <h2>Animation + Hover Effects (4/4)</h2>
+              <div class="code">
+                  <pre><code data-trim>
+  .narwhal:hover:before,
+  .narwhal:hover:after {
+    top: -4%;
+    left: -4%;
+    border-radius: 55%;
+    transform-origin: 50% 50%;
+  }
+  .narwhal:hover:before {
+    width: 109%;
+    height: 104%;
+  }
+  .narwhal:hover:after {
+    width: 110%;
+    height: 104%;
+  }
+                  </code></pre>
+              </div>
+              <div class="example step04">
+                  <a href="#" class="narwhal">
+                      <img src="img/narwhal.jpg"
+                           alt="Narwhal!">
+                  </a>
+              </div>
+              <p>
+                  <small>View this example on Codepen:
+                  <a href="http://cdpn.io/FvblG">http://cdpn.io/FvblG</a></small>
+              </p>
+          </section>
+
+          <section>
+              <h2>Detect Screen Size</h2>
+              <pre><code data-trim>
+  body:after {
+      content: 'desktop';
+      visibility: hidden;
+      position: absolute;
+      top: 0; left: 0;
+      width: 0; height: 0;
+      z-index: -1;
+      pointer-events: none;
+
+      @media (max-width: 1024px) {
+          content: 'tablet';
+      }
+
+      @media (max-width: 600px) {
+          content: 'mobile';
+      }
+  }
+              </code></pre>
+              <pre><code data-trim>
+  var style = window.getComputedStyle(document.body, ':after')
+                  .getPropertyValue('content').replace(/\W/g, '');
+              </code></pre>
+              <p><small>More info on how this works: <a href="http://adactio.com/journal/5429/">adactio.com/journal/5429/</a></small></p>
+          </section>
+
+          <section data-markdown>
+              <script type="text/template">
+                  # When Should I Use This?
+              </script>
+          </section>
+
+          <section data-markdown>
+              <script type="text/template">
+                  ## Use Pseudo-Elements When:
+
+                  1. The stuff you&rsquo;re adding is decorative <!-- .element: class="fragment" -->
+                  1. The page still makes sense without them <!-- .element: class="fragment" -->
+                  1. You&rsquo;re providing hints or clarification <!-- .element: class="fragment" -->
+              </script>
+          </section>
+
+          <section data-markdown>
+              <script type="text/template">
+                  ## Other Cool Things You Can Do
+
+                  * Multiple background images with just one element
+                  * [Pure CSS shapes](http://css-tricks.com/examples/ShapesOfCSS/) like starbursts and speech bubbles
+                  * Full-on [custom icon sets](http://nicolasgallagher.com/pure-css-gui-icons/)
+              </script>
+          </section>
+
+          <section data-markdown>
+              <script type="text/template">
+                  # Questions?
+
+                  Note: Don&rsquo;t stick on this slide. Go to the next one.
+              </script>
+          </section>
+
+          <section data-markdown>
+              <script type="text/template">
+                  # CSS Pseudo-Element Master Class
+                  ### Advanced CSS Techniques for Clean Markup and Sexy Layouts
+
+                  <small>Presented by [Jason Lengstorf](http://lengstorf.com) of [Copter Labs](http://www.copterlabs.com)</small>
+
+                  <small>Twitter: [@jlengstorf](https://twitter.com/jlengstorf) | Email: [jason@copterlabs.com](mailto:jason@copterlabs.com)
+              </script>
+          </section>
+
+
+block styles
+  link(rel="stylesheet" href="css/examples.css")
+  link(
+    rel="stylesheet"
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  )
+  script.
+    (function(d) {
+      var config = {
+        kitId: 'fnr1orp',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+
+block extras
+  -
+    const relatedAccounts = [config.author.twitter];
+
+    if (config.conference.twitter) {
+      relatedAccounts.push(config.conference.twitter);
+    }
+
+    // See https://dev.twitter.com/web/tweet-button/web-intent for parameters.
+    const tweetObj = {
+      text: `${config.title} by @${config.author.twitter}`,
+      hashtags: config.conference.hashtag || '',
+      related: relatedAccounts.join(','),
+      url: config.slidesLink,
+    };
+
+    //
+    const e = encodeURIComponent;
+    const args = Object.keys(tweetObj).map(key => `${key}=${e(tweetObj[key])}`);
+    const tweetUrl = `https://twitter.com/intent/tweet?${args.join('&')}`;
+  -
+  .hashtag
+    p
+      | Tweet: 
+      a(
+        href=tweetUrl
+        target="_blank"
+      ) @#{config.author.twitter} 
+        | #{config.conference.hashtag ? `#${config.conference.hashtag}` : ''}
+  footer
+    ul.inline
+      li
+        | “#{config.title}” by 
+        a(href= config.author.link)= config.author.name
+      li
+        a(href="https://twitter.com/"+config.author.twitter).
+          @#{config.author.twitter}
+      li
+        a(href="https://github.com/"+config.author.github).
+          github.com/#{config.author.github}

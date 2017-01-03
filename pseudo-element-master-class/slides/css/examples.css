@@ -1,0 +1,409 @@
+/* Wrapper classes added/changed to avoid improper targeting */
+.wrapper01 {
+  display: block;
+  width: 100%;
+  background: red;
+}
+
+.wrapper01 .left,
+.wrapper01 .right { background: #bcf; }
+.wrapper01 .left { float: left; }
+.wrapper01 .right { float: right; }
+
+.wrapper02 {
+  display: block;
+  width: 100%;
+  background: red;
+}
+
+.wrapper02::after {
+  content: ' ';
+  display: block;
+  clear: both;
+}
+
+.wrapper02 .left,
+.wrapper02 .right { background: #bcf; }
+.wrapper02 .left { float: left; }
+.wrapper02 .right { float: right; }
+
+p.smaller-text {
+  font-size: 20px;
+  color: #999;
+}
+
+.sexy::before {
+  content: 'Sexy Download! ';
+}
+
+.sexy::after {
+  content: ' (NSFW)';
+}
+
+section div.beckham {
+  position: relative;
+  padding: 0;
+  z-index: 1;
+}
+
+section .beckham img {
+  width: 100%;
+  margin: 0;
+  border: 0;
+}
+
+.beckham.sexier::before {
+  content: 'Sexy Time!!!1!';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 120px;
+  line-height: 150px;
+  font-family: impact;
+  text-transform: uppercase;
+  color: #fff;
+  -webkit-text-stroke: 3px black;
+  z-index: 10;
+}
+
+.beckham.sexier::after {
+  content: '';
+  background-image: url(../images/pseudo-element-master-class/but-sexier.png);
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#sexytime {
+  background-color: #382a2c;
+  border: 0;
+  color: #fffcff;
+  cursor: pointer;
+  font-family: mallory;
+  font-size: 85%;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+  padding: 0.375rem 0.5rem 0.125rem;
+}
+
+#sexytime:hover,
+#sexytime:active,
+#sexytime:focus {
+  background-color: #c700eb;
+  outline: none;
+}
+
+.icon-example h1 {
+  margin: 0 30px 10px;
+  font-family: sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: none;
+}
+
+.icon-example h2 {
+  margin: 0 40px 5px;
+  font-family: sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: none;
+}
+
+.icon-example h2:nth-of-type(1)::before {
+  content: '';
+  position: relative;
+  top: -10px;
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  margin: 0 20px 0 10px;
+  background: black;
+  font-size: 3px;
+  -webkit-box-shadow: 0 0 0 1em #000, 0 1em 0 1em #000, -2.5em 1.5em 0 0.5em #000, 2.5em 1.5em 0 0.5em #000, -3em -3em 0 0 #000, 3em -3em 0 0 #000, -2em -2em 0 0 #000, 2em -2em 0 0 #000, -3em -1em 0 0 #000, -2em -1em 0 0 #000, 2em -1em 0 0 #000, 3em -1em 0 0 #000, -4em 0 0 0 #000, -3em 0 0 0 #000, 3em 0 0 0 #000, 4em 0 0 0 #000, -5em 1em 0 0 #000, -4em 1em 0 0 #000, 4em 1em 0 0 #000, 5em 1em 0 0 #000, -5em 2em 0 0 #000, 5em 2em 0 0 #000, -5em 3em 0 0 #000, -3em 3em 0 0 #000, 3em 3em 0 0 #000, 5em 3em 0 0 #000, -2em 4em 0 0 #000, -1em 4em 0 0 #000, 1em 4em 0 0 #000, 2em 4em 0 0 #000;
+  box-shadow: 0 0 0 1em #000, 0 1em 0 1em #000, -2.5em 1.5em 0 0.5em #000, 2.5em 1.5em 0 0.5em #000, -3em -3em 0 0 #000, 3em -3em 0 0 #000, -2em -2em 0 0 #000, 2em -2em 0 0 #000, -3em -1em 0 0 #000, -2em -1em 0 0 #000, 2em -1em 0 0 #000, 3em -1em 0 0 #000, -4em 0 0 0 #000, -3em 0 0 0 #000, 3em 0 0 0 #000, 4em 0 0 0 #000, -5em 1em 0 0 #000, -4em 1em 0 0 #000, 4em 1em 0 0 #000, 5em 1em 0 0 #000, -5em 2em 0 0 #000, 5em 2em 0 0 #000, -5em 3em 0 0 #000, -3em 3em 0 0 #000, 3em 3em 0 0 #000, 5em 3em 0 0 #000, -2em 4em 0 0 #000, -1em 4em 0 0 #000, 1em 4em 0 0 #000, 2em 4em 0 0 #000;
+}
+
+.icon-example h2:nth-of-type(2)::before {
+  content: '\F085';
+  position: relative;
+  top: -2px;
+  margin-right: 8px;
+  font-family: 'FontAwesome';
+  font-size: 23px;
+}
+
+.icon-example h2::after {
+  color: #999;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.icon-example h2:nth-of-type(1)::after {
+  content: ' (pure CSS)';
+}
+
+.icon-example h2:nth-of-type(2)::after {
+  content: ' (icon font)';
+}
+
+ul.link-styles-example {
+  margin: 0;
+}
+
+.link-styles-example li {
+  list-style: none;
+}
+
+.link-styles-example a::before {
+  font-family: 'Glyphicons Halflings';
+  font-size: 0.7em;
+  margin-right: 8px;
+}
+
+.link-styles-example a[href$=".zip"]::before {
+  content: '\e197';
+}
+
+.link-styles-example a[href$=".zip"]::after {
+  content: ' [ZIP, ' attr(data-size) ']';
+}
+
+.link-styles-example a[href*="maps.google"]::before,
+.link-styles-example a[href*="goo.gl/maps"]::before {
+  content: '\e062';
+}
+
+.link-styles-example a[href*="maps.google"]::after,
+.link-styles-example a[href*="goo.gl/maps"]::after {
+  content: ' (map)';
+}
+
+.drop-cap-example p {
+  text-align: left;
+  font-size: 30px;
+}
+
+.drop-cap-example p:first-of-type:first-letter {
+  float: left;
+  margin: 27px 8px 8px 0;
+  font-family: 'Cheshire Initials';
+  font-size: 2.5em;
+}
+
+.step01 .narwhal {
+  position: relative;
+  display: block;
+  width: 300px;
+  margin: 20px auto 10px !important;
+}
+
+.step01 .narwhal img {
+  position: relative;
+  max-width: 100%;
+  border-radius: 150px;
+  border: 1px solid #fff !important;
+  z-index: 10;
+}
+
+.step02 .narwhal {
+  position: relative;
+  display: block;
+  width: 300px;
+  margin: 20px auto 10px !important;
+}
+
+.step02 .narwhal img {
+  position: relative;
+  max-width: 100%;
+  border-radius: 150px;
+  border: 1px solid #fff !important;
+  z-index: 10;
+}
+
+.step02 .narwhal::before,
+.step02 .narwhal::after {
+  content: '';
+  position: absolute;
+  -webkit-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+}
+
+.step02 .narwhal::before {
+  top: 7%;
+  left: 7%;
+  width: 44%;
+  height: 42%;
+  background-color: rgba(60, 165, 255, 0.6);
+  border-radius: 53%;
+  -webkit-transform-origin: 100% 102%;
+  -ms-transform-origin: 100% 102%;
+  transform-origin: 100% 102%;
+  -webkit-animation: spin 5.5s linear reverse infinite;
+  animation: spin 5.5s linear reverse infinite;
+  z-index: 5;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+/* Uses the animation defined in step 02 */
+.step03 .narwhal {
+  position: relative;
+  display: block;
+  width: 300px;
+  margin: 20px auto 10px !important;
+}
+
+.step03 .narwhal img {
+  position: relative;
+  max-width: 100%;
+  border-radius: 150px;
+  border: 1px solid #fff !important;
+  z-index: 10;
+}
+
+.step03 .narwhal::before,
+.step03 .narwhal::after {
+  content: '';
+  position: absolute;
+  -webkit-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+}
+
+.step03 .narwhal::before {
+  top: 7%;
+  left: 7%;
+  width: 44%;
+  height: 42%;
+  background-color: rgba(60, 165, 255, 0.6);
+  border-radius: 53%;
+  -webkit-transform-origin: 100% 102%;
+  -ms-transform-origin: 100% 102%;
+  transform-origin: 100% 102%;
+  -webkit-animation: spin 5.5s linear reverse infinite;
+  animation: spin 5.5s linear reverse infinite;
+  z-index: 5;
+}
+
+.step03 .narwhal::after {
+  top: 4%;
+  left: 6%;
+  width: 48%;
+  height: 46%;
+  background-color: rgba(240, 105, 130, 0.6);
+  border-radius: 55%;
+  -webkit-transform-origin: 97% 99%;
+  -ms-transform-origin: 97% 99%;
+  transform-origin: 97% 99%;
+  -webkit-animation: spin 15s linear infinite;
+  animation: spin 15s linear infinite;
+  z-index: 8;
+}
+
+/* Uses the animation defined in step 02 */
+.step04 .narwhal {
+  position: relative;
+  display: block;
+  width: 300px;
+  margin: 20px auto 10px !important;
+}
+
+.step04 .narwhal img {
+  position: relative;
+  max-width: 100%;
+  border-radius: 150px;
+  border: 1px solid #fff !important;
+  z-index: 10;
+}
+
+.step04 .narwhal::before,
+.step04 .narwhal::after {
+  content: '';
+  position: absolute;
+  -webkit-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+}
+
+.step04 .narwhal::before {
+  top: 7%;
+  left: 7%;
+  width: 44%;
+  height: 42%;
+  background-color: rgba(60, 165, 255, 0.6);
+  border-radius: 53%;
+  -webkit-transform-origin: 100% 102%;
+  -ms-transform-origin: 100% 102%;
+  transform-origin: 100% 102%;
+  -webkit-animation: spin 5.5s linear reverse infinite;
+  animation: spin 5.5s linear reverse infinite;
+  z-index: 5;
+}
+
+.step04 .narwhal::after {
+  top: 4%;
+  left: 6%;
+  width: 48%;
+  height: 46%;
+  background-color: rgba(240, 105, 130, 0.6);
+  border-radius: 55%;
+  -webkit-transform-origin: 97% 99%;
+  -ms-transform-origin: 97% 99%;
+  transform-origin: 97% 99%;
+  -webkit-animation: spin 15s linear infinite;
+  animation: spin 15s linear infinite;
+  z-index: 8;
+}
+
+.step04 .narwhal:hover::before,
+.step04 .narwhal:focus::before,
+.step04 .narwhal:hover::after,
+.step04 .narwhal:focus::after {
+  top: -4%;
+  left: -4%;
+  border-radius: 55%;
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+}
+
+.step04 .narwhal:hover::before,
+.step04 .narwhal:focus::before {
+  width: 109%;
+  height: 104%;
+}
+
+.step04 .narwhal:hover::after,
+.step04 .narwhal:focus::after {
+  width: 110%;
+  height: 104%;
+}
