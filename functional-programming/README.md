@@ -8,7 +8,7 @@
 
 ### tl;dr
 
-Used properly, functional programming means cleaner code, easier maintenance, and simpler testing. But most of us will never use it. Why? Because it's usually explained with jargon, complex math, and some nonsense about monads or whatever. And math is hard, so most of us run away screaming. This talk explains how we can get the benefits of functional programming today — with no math required.
+Used properly, functional programming means cleaner code, easier maintenance, and simpler testing. But most of us will never use it. Why? Because **functional programming is usually explained with jargon**, complex math, and some nonsense about monads or whatever. And math is hard, so most of us run away screaming. **But here's the thing: functional programming doesn't actually require math.** This talk explains how we can get the benefits of functional programming today — with _no math required_.
 
 ### Longer Description
 
