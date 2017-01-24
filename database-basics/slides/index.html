@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Databases: The Basics</title>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link id="theme" rel="stylesheet" href="css/theme/lengstorf.css">
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script>
+      (function(d) {
+        var config = {
+          kitId: 'fnr1orp',
+          scriptTimeout: 3000,
+          async: true
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+      
+    </script>
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+      
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>Databases: <em>The Basics</em></h1>
+          <p>by <a href="https://code.lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a> | <a href="mailto:jason.lengstorf@ibm.com">jason.lengstorf@ibm.com</a></small></p>
+        </section>
+        <section>
+          <h1>Databases Are <em>Easy</em></h1>
+        </section>
+        <section>
+          <h3>I just dump a bunch of data somewhere, right?</h3>
+        </section>
+        <section>
+          <h1>Databases Are <strong>Hard</strong></h1>
+        </section>
+        <section>
+          <h3>
+            How do I get it back? What if I only need part of it? How can I update it?
+            How should I format it? Where is it stored? Do I need a server? What if I
+            don’t have an internet connection?
+            
+          </h3>
+        </section>
+        <section><img src="img/dont-get-it.gif">
+        </section>
+        <section>
+          <h3>How can we make databases</h3>
+          <h1><em class="hugify alright-calm-down-a-little">Simple?</em></h1>
+        </section>
+        <section>
+          <h2>What we’re going to cover:</h2>
+          <ul>
+            <li class="fragment">How databases work <span class="fragment">(at a very high level)</span></li>
+            <li class="fragment">The four main database actions</li>
+            <li class="fragment">Where the data in our database lives</li>
+            <li class="fragment">How we can use databases to make our apps <em>less</em> painful for us...</li>
+            <li class="fragment">...and the people who use them.</li>
+          </ul>
+        </section>
+        <section>
+          <h1>How Do Databases Even Work, Anyways?</h1>
+          <h3>The Short Version</h3>
+        </section>
+        <section>
+          <h3>Databases at a Glance</h3>
+          <ul>
+            <li class="fragment">A database is a collection of stuff (“documents”)</li>
+            <li class="fragment">Credentials are created with varying permissions</li>
+            <li class="fragment">App(s) will connect to the database as a user</li>
+            <li class="fragment">The app can store, ask for (“query”), and delete stuff...</li>
+            <li class="fragment">...if its credentials have the right permissions</li>
+          </ul>
+        </section>
+        <section>
+          <h3>The Benefits of Databases</h3>
+          <ul>
+            <li class="fragment"><strong>Databases are persistent.</strong> Data isn’t lost if the app restarts or the page is reloaded.</li>
+            <li class="fragment"><strong>Databases are shared.</strong> Data changed by one user can be accessed by other users.</li>
+            <li class="fragment"><strong>Databases are on-demand.</strong> Data is loaded as-needed, instead of needing everything in memory.</li>
+          </ul>
+        </section>
+        <section>
+          <h1>The Big 4</h1>
+          <h3>How We (Usually) Work With Databases</h3>
+        </section>
+        <section>
+          <h3>There are <em>4 primary</em> database interactions:</h3>
+          <ul>
+            <li class="fragment"><strong>Create.</strong> Adding a new document to the database. Often called an “insert”.</li>
+            <li class="fragment"><strong>Read.</strong> Retrieving an existing document or documents from the database.</li>
+            <li class="fragment"><strong>Update.</strong> Making changes to an existing document in the database.</li>
+            <li class="fragment"><strong>Delete.</strong> Remove a document from the database.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>You’ll hear these referred to as </h2>
+          <h1><em class="hugify">CRUD</em></h1>
+          <h2>operations</h2>
+        </section>
+        <section>
+          <h1>Okay, so... <strong>where</strong> is all this data?</h1>
+          <aside class="notes">
+            There’s nothing special about how databases are built. Typically, they’re
+            a collection of folders, and the database itself is a software program to 
+            dig through the folders for the thing you’re looking for.
+            
+            Think of it like a <em>really fast</em> librarian.
+            
+          </aside>
+        </section>
+        <section><img src="img/in-the-computer.gif">
+        </section>
+        <section>
+          <h3>There are 2 main flavors of databases</h3>
+          <ul>
+            <li class="fragment"><strong>Server-side:</strong> the app connects to a remote machine to perform CRUD operations</li>
+            <li class="fragment"><strong>Client-side:</strong> the database is on the same device as the app</li>
+          </ul>
+        </section>
+        <section>
+          <h3>The Low-Down on <br><em>Server-Side</em> Databases</h3>
+          <div class="two-columns">
+            <h4>The <em>Good</em></h4>
+            <ul>
+              <li class="fragment">Accessible to all connected instances</li>
+              <li class="fragment">Apps don’t need to load <em>all</em> data to run the app</li>
+            </ul>
+            <h4>The <strong>Bad</strong></h4>
+            <ul>
+              <li class="fragment">Can cause a noticeable slow-down in apps</li>
+              <li class="fragment">Apps require an internet connection</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <h3>The Low-Down on <br><em>Client-Side</em> Databases</h3>
+          <div class="two-columns">
+            <h4>The <em>Good</em></h4>
+            <ul>
+              <li class="fragment">Apps feel much faster because there’s no server request</li>
+              <li class="fragment">Even if there’s no internet connection, apps will still work</li>
+            </ul>
+            <h4>The <strong>Bad</strong></h4>
+            <ul>
+              <li class="fragment">Each app has its own instance of the database</li>
+              <li class="fragment"><em>All</em> of the app’s data needs to be downloaded</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <h1>What if I would like to <em>have</em> my cake but also to <strong>eat</strong> my cake?</h1>
+        </section>
+        <section>
+          <h1>Use ’Em <em class="hugify">Both</em></h1>
+          <h3 class="fragment">and sync that shit</h3>
+        </section>
+        <section>
+          <h1><em>CouchDB</em> + <strong>PouchDB</strong></h1>
+          <h3>With Replication</h3>
+        </section>
+        <section>
+          <h2>PouchDB gives us:</h2>
+          <ul>
+            <li class="fragment">Offline-first capabilities</li>
+            <li class="fragment">Near-instant updates and responses</li>
+            <li class="fragment">A simple JavaScript API for CRUD operations</li>
+          </ul>
+        </section>
+        <section>
+          <h2>CouchDB gives us:</h2>
+          <ul>
+            <li class="fragment">Data persistence across devices</li>
+            <li class="fragment">Support for collaborative editing</li>
+            <li class="fragment">A way to tie IBM products into the demo</li>
+          </ul>
+        </section>
+        <section><img src="./img/its-hard.gif">
+        </section>
+        <section>
+          <h1>It’s not hard</h1>
+          <h4 class="fragment">It’s pretty easy, actually.</h4>
+        </section>
+        <section>
+          <pre><code>// Keep the local (PouchDB) and the remote (CouchDB) databases in sync.
+PouchDB.sync('local_db', 'https://example.com/remote_db', {
+  live: true,
+  retry: true,
+});
+
+// Whenever there are changes on the remote database, we want to know.
+db.changes({
+  since: 'now',
+  live: true,
+}).on('change', handleDataChanges);</code></pre>
+          <h3 class="fragment">That’s it — <em>No joke</em></h3>
+        </section>
+        <section>
+          <h1>Demo?</h1>
+          <h4><a href="https://code.lengstorf.com/offline-first-db-example/">Meet the Thought Collector!</a></h4>
+        </section>
+        <section>
+          <h1>Questions?</h1>
+          <p>Jason Lengstorf<br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a> | <a href="mailto:jason.lengstorf@ibm.com">jason.lengstorf@ibm.com</a></small></p>
+        </section>
+      </div>
+    </div>
+    <!--.hashtag
+    p
+      | Tweet: 
+      a(
+        href=tweetUrl
+        target="_blank"
+      ) @jlengstorf 
+        | 
+    -->
+    <footer>
+      <ul class="inline">
+        <li>“Databases: The Basics” by <a href="https://code.lengstorf.com/">Jason Lengstorf</a></li>
+        <li><a href="https://twitter.com/jlengstorf">@jlengstorf</a></li>
+        <li><a href="https://github.ibm.com/jason-lengstorf">github.ibm.com/jason-lengstorf</a></li>
+      </ul>
+    </footer>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+      
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+      
+    </script>
+  </body>
+</html>

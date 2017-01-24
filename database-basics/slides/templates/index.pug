@@ -1,0 +1,290 @@
+//- Use the presentation layout so we can keep this clean
+extends layouts/presentation
+
+block append config
+  -
+    config.theme = 'lengstorf';
+    config.title = 'Databases: The Basics';
+    config.description = '';
+    config.slidesLink = 'https://code.lengstorf.com/presentations/database-basics/slides/';
+
+    config.author = {
+      name: 'Jason Lengstorf',
+      email: 'jason.lengstorf@ibm.com',
+      link: 'https://code.lengstorf.com/',
+      twitter: 'jlengstorf',
+      github: 'jason-lengstorf',
+    };
+
+    config.conference = {
+      hashtag: false,
+      twitter: false,
+    };
+  -
+
+//- Add your slides here. See templates/includes/_mixins.pug for information 
+//- on how `+slide` works.
+block slides
+  +slide
+    h1 Databases: #[em The Basics]
+    //-h3= config.description
+    
+    p by 
+      a(href= config.author.link)= config.author.name
+      br
+      small
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        |  | 
+        a(href= `mailto:${config.author.email}`)= config.author.email
+
+  +slide
+    h1 Databases Are #[em Easy]
+  
+  +slide
+    h3 I just dump a bunch of data somewhere, right?
+
+  +slide
+    h1 Databases Are #[strong Hard]
+
+  +slide
+    h3.
+      How do I get it back? What if I only need part of it? How can I update it?
+      How should I format it? Where is it stored? Do I need a server? What if I
+      don’t have an internet connection?
+
+  +slide
+    img(src="img/dont-get-it.gif")
+
+  +slide
+    h3 How can we make databases
+    h1 #[em.hugify.alright-calm-down-a-little Simple?]
+    
+  +slide
+    h2 What we’re going to cover:
+    ul
+      li.fragment How databases work 
+        span.fragment (at a very high level)
+      li.fragment The four main database actions
+      li.fragment Where the data in our database lives
+      li.fragment How we can use databases to make our apps #[em less] painful for us...
+      li.fragment ...and the people who use them.
+
+  +slide
+    h1 How Do Databases Even Work, Anyways?
+    h3 The Short Version
+
+  +slide
+    h3 Databases at a Glance
+    ul
+      li.fragment A database is a collection of stuff (“documents”)
+      li.fragment Credentials are created with varying permissions
+      li.fragment App(s) will connect to the database as a user
+      li.fragment The app can store, ask for (“query”), and delete stuff...
+      li.fragment ...if its credentials have the right permissions
+
+  +slide
+    h3 The Benefits of Databases
+    ul
+      li.fragment
+        strong Databases are persistent.
+        |  Data isn’t lost if the app restarts or the page is reloaded.
+      li.fragment
+        strong Databases are shared.
+        |  Data changed by one user can be accessed by other users.
+      li.fragment
+        strong Databases are on-demand.
+        |  Data is loaded as-needed, instead of needing everything in memory.
+
+  +slide
+    h1 The Big 4
+    h3 How We (Usually) Work With Databases
+
+  +slide
+    h3 There are #[em 4 primary] database interactions:
+    ul
+      li.fragment
+        strong Create.
+        |  Adding a new document to the database. Often called an “insert”.
+      li.fragment
+        strong Read.
+        |  Retrieving an existing document or documents from the database.
+      li.fragment
+        strong Update.
+        |  Making changes to an existing document in the database.
+      li.fragment
+        strong Delete.
+        |  Remove a document from the database.
+
+  +slide
+    h2 You’ll hear these referred to as 
+    h1 #[em.hugify CRUD]
+    h2 operations
+
+  +slide
+    h1 Okay, so... #[strong where] is all this data?
+
+    aside.notes.
+      There’s nothing special about how databases are built. Typically, they’re
+      a collection of folders, and the database itself is a software program to 
+      dig through the folders for the thing you’re looking for.
+      
+      Think of it like a #[em really fast] librarian.
+
+  +slide
+    img(src="img/in-the-computer.gif")
+
+  +slide
+    h3 There are 2 main flavors of databases
+    ul
+      li.fragment
+        strong Server-side:
+        |  the app connects to a remote machine to perform CRUD operations
+      li.fragment
+        strong Client-side:
+        |  the database is on the same device as the app
+
+  +slide
+    h3 The Low-Down on #[br]#[em Server-Side] Databases
+    .two-columns
+      h4 The #[em Good]
+      ul
+        li.fragment Accessible to all connected instances
+        li.fragment Apps don’t need to load #[em all] data to run the app
+      
+      h4 The #[strong Bad]
+      ul
+        li.fragment Can cause a noticeable slow-down in apps
+        li.fragment Apps require an internet connection
+
+  +slide
+    h3 The Low-Down on #[br]#[em Client-Side] Databases
+    .two-columns
+      h4 The #[em Good]
+      ul
+        li.fragment Apps feel much faster because there’s no server request
+        li.fragment Even if there’s no internet connection, apps will still work
+      
+      h4 The #[strong Bad]
+      ul
+        li.fragment Each app has its own instance of the database
+        li.fragment #[em All] of the app’s data needs to be downloaded
+
+  +slide
+    h1 What if I would like to #[em have] my cake but also to #[strong eat] my cake?
+    
+  +slide
+    h1 Use ’Em #[em.hugify Both]
+    h3.fragment and sync that shit
+
+  +slide
+    h1 #[em CouchDB] + #[strong PouchDB]
+    h3 With Replication
+
+  +slide
+    h2 PouchDB gives us:
+    ul
+      li.fragment Offline-first capabilities
+      li.fragment Near-instant updates and responses
+      li.fragment A simple JavaScript API for CRUD operations
+
+  +slide
+    h2 CouchDB gives us:
+    ul
+      li.fragment Data persistence across devices
+      li.fragment Support for collaborative editing
+      li.fragment A way to tie IBM products into the demo
+    
+  +slide
+    img(src="./img/its-hard.gif")
+
+  +slide
+    h1 It’s not hard
+    h4.fragment It’s pretty easy, actually.
+
+  +slide
+    pre
+      code.
+        // Keep the local (PouchDB) and the remote (CouchDB) databases in sync.
+        PouchDB.sync('local_db', 'https://example.com/remote_db', {
+          live: true,
+          retry: true,
+        });
+        
+        // Whenever there are changes on the remote database, we want to know.
+        db.changes({
+          since: 'now',
+          live: true,
+        }).on('change', handleDataChanges);
+    h3.fragment That’s it — #[em No joke]
+
+  +slide
+    h1 Demo?
+    h4
+      a(
+        href="https://code.lengstorf.com/offline-first-db-example/"
+      ) Meet the Thought Collector!
+
+  +slide
+    h1 Questions?
+    p= config.author.name
+      br
+      small
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        |  | 
+        a(href= `mailto:${config.author.email}`)= config.author.email
+
+block styles
+  link(
+    rel="stylesheet"
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  )
+  script.
+    (function(d) {
+      var config = {
+        kitId: 'fnr1orp',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+
+block extras
+  -
+    const relatedAccounts = [config.author.twitter];
+    
+    if (config.conference.twitter) {
+      relatedAccounts.push(config.conference.twitter);
+    }
+
+    // See https://dev.twitter.com/web/tweet-button/web-intent for parameters.
+    const tweetObj = {
+      text: `${config.title} by @${config.author.twitter}`,
+      hashtags: config.conference.hashtag || '',
+      related: relatedAccounts.join(','),
+      url: config.slidesLink,
+    };
+
+    // 
+    const e = encodeURIComponent;
+    const args = Object.keys(tweetObj).map(key => `${key}=${e(tweetObj[key])}`);
+    const tweetUrl = `https://twitter.com/intent/tweet?${args.join('&')}`;
+  -
+  //.hashtag
+    p
+      | Tweet: 
+      a(
+        href=tweetUrl
+        target="_blank"
+      ) @#{config.author.twitter} 
+        | #{config.conference.hashtag ? `#${config.conference.hashtag}` : ''}
+  footer
+    ul.inline
+      li
+        | “#{config.title}” by 
+        a(href= config.author.link)= config.author.name
+      li
+        a(href="https://twitter.com/"+config.author.twitter).
+          @#{config.author.twitter}
+      li
+        a(href="https://github.ibm.com/"+config.author.github).
+          github.ibm.com/#{config.author.github}
