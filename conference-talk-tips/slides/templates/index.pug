@@ -1,0 +1,156 @@
+//- Use the presentation layout so we can keep this clean
+extends layouts/presentation
+
+block append config
+  -
+    config.theme = 'lengstorf';
+    config.title = '#SpeakerTips';
+    config.description = 'Create Presentations That Aren’t Horrible & Boring';
+    config.slidesLink = 'https://code.lengstorf.com/presentations/database-basics/slides/';
+
+    config.author = {
+      name: 'Jason Lengstorf',
+      email: 'jason.lengstorf@ibm.com',
+      link: 'https://code.lengstorf.com/',
+      twitter: 'jlengstorf',
+      github: 'jason-lengstorf',
+    };
+
+    config.conference = {
+      hashtag: false,
+      twitter: false,
+    };
+  -
+
+block title
+  title= config.description
+  meta(name="description" content=config.description)
+  
+
+//- Add your slides here. See templates/includes/_mixins.pug for information 
+//- on how `+slide` works.
+block slides
+  +slide
+    h1= config.title
+    h3= config.description
+    
+    p by 
+      a(href= config.author.link)= config.author.name
+      br
+      small
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        |  | 
+        a(href= `mailto:${config.author.email}`)= config.author.email
+
+  +slide.u--align-left.u--text-light.u--text-shadow(
+    data-background="url(./images/bear-background@2x.jpg)"
+    data-transition="fade"
+  )
+    h2 Who I Am
+    ul
+      li.hide-me 
+      li.hide-me 
+      li.hide-me 
+      li.hide-me 
+      li.hide-me 
+      li.hide-me 
+
+  +slide.u--align-left.u--text-light.u--text-shadow(
+    data-background="url(./images/jason-lengstorf-slide-bg@2x.jpg)"
+    data-transition="fade"
+  )
+    h2 Who I Am
+    ul.full-width
+      li.fragment Building web shit since 2003
+      li.fragment #[em Huge] process &amp; efficiency nerd
+      li.fragment Work-life balance advocate / consultant
+      li.fragment Front-end developer at IBM
+      li.fragment Author of 3 books on development stuff
+      li.fragment Questing for the World’s Best Sandwich™
+
+  +slide
+    h1 TKTK
+
+  //-
+  
+    What makes a presentation great?
+    
+    1. A story.
+      - What makes a story?
+        - Heroes
+          - We need someone to rally behind
+        - Details
+          - Without details, most of our favorite stories are boring as hell:
+            - Finding Nemo: a fish gets caught so another fish goes looking for it. Later they find it.
+            - The Wizard of Oz: A group of strangers set out in a search for things they want. It turns out they they already have them.
+            - Everythnig by Bukowski: a grumpy alcoholic makes poor life choices.
+        - Pacing
+          - We need a story arc or we don’t feel any interest in the outcome.
+          - Introduce a problem
+          
+      - 
+
+  +slide
+    h1 Questions?
+    p= config.author.name
+      br
+      small
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        |  | 
+        a(href= `mailto:${config.author.email}`)= config.author.email
+
+block styles
+  link(
+    rel="stylesheet"
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  )
+  script.
+    (function(d) {
+      var config = {
+        kitId: 'fnr1orp',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+
+block extras
+  -
+    const relatedAccounts = [config.author.twitter];
+    
+    if (config.conference.twitter) {
+      relatedAccounts.push(config.conference.twitter);
+    }
+
+    // See https://dev.twitter.com/web/tweet-button/web-intent for parameters.
+    const tweetObj = {
+      text: `${config.title} by @${config.author.twitter}`,
+      hashtags: config.conference.hashtag || '',
+      related: relatedAccounts.join(','),
+      url: config.slidesLink,
+    };
+
+    // 
+    const e = encodeURIComponent;
+    const args = Object.keys(tweetObj).map(key => `${key}=${e(tweetObj[key])}`);
+    const tweetUrl = `https://twitter.com/intent/tweet?${args.join('&')}`;
+  -
+  //.hashtag
+    p
+      | Tweet: 
+      a(
+        href=tweetUrl
+        target="_blank"
+      ) @#{config.author.twitter} 
+        | #{config.conference.hashtag ? `#${config.conference.hashtag}` : ''}
+  footer
+    ul.inline
+      li
+        | “#{config.title}” by 
+        a(href= config.author.link)= config.author.name
+      li
+        a(href="https://twitter.com/"+config.author.twitter).
+          @#{config.author.twitter}
+      li
+        a(href="https://github.ibm.com/"+config.author.github).
+          github.ibm.com/#{config.author.github}
