@@ -20,15 +20,11 @@ The goal of this repo is to create a single location where presentations live, i
 
 (This is what I send to people as my bio.)
 
-> Jason Lengstorf is a developer, designer, author, and friendly bear. He's worked in nearly every role in an agency — and when he first started his company, he _was_ every role in the agency — and uses his 10+ years of experience to approach problems from a truly full-stack perspective, from marketing and sales all the way through architecture and DevOps.
+> Jason Lengstorf is a developer, designer, author, and friendly bear. He's worked in nearly every role in an agency and uses his 14+ years of experience to offer a unique, cross-functional approach to solving complex problems. He has written several books and dozens of tutorials about development, built and sold a successful web agency, and created award-winning web projects for companies including PlayStation, Intel, and Precision Nutrition.
 > 
-> In the course of his career, Jason **has written several books and dozens of tutorials about development, built and sold a successful web agency, and built award-winning projects for companies like PlayStation, Intel, and Precision Nutrition.**
+> Jason is passionate about building better careers by first focusing on building better lives. He focuses on work-life balance, efficiency, processes, and productivity to help people get more done in less time — so they can spend more time on the things that matter most. Jason recently joined [IBM Design](http://www.ibm.com/design/) as a senior front-end developer and mentor to new hires, where he hopes to scale this philosophy throughout one of the largest companies in the world.
 > 
-> After selling his agency, Jason **spent two years [traveling the world and working remotely](https://lengstorf.com/remote-work-travel/)** as a contractor.
-> 
-> Jason **recently joined [IBM Design](http://www.ibm.com/design/) as a senior front-end developer** to help redefine how IBM approaches front-end development, contribute to better development processes, improve tooling, and mentor IBM’s new hires.
-> 
-> He lives in Austin, TX, spends most of his disposable income on food and travel, and can often be spotted foraging for berries in the forest.
+> He lives in Austin, TX, spends most of his disposable income on food and travel, and can often be spotted in the forest foraging for nuts and berries.
 
 ### Videos of Previous Presentation
 
