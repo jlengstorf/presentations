@@ -1,0 +1,483 @@
+/**
+ * Custom Reveal.js themes for Jason Lengstorf
+ */
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+// Override theme settings (see ../template/settings.scss)
+$mainFont: mallory, sans-serif;//'Mercury Text G2 A', 'Mercury Text G2 B', 'Mercury Text G2', Georgia, "Times New Roman", Times, serif;
+$mainColor: #56453b;
+$headingFont: mallory, sans-serif;//'Knockout 67 A', 'Knockout 67 B', 'Knockout-HTF67-FullBantamwt', impact, sans-serif;;
+$headingColor: #382a2c;
+$headingLetterSpacing: auto;
+$headingTextShadow: none;
+$heading1TextShadow: none;
+$accentColor: #c700eb;
+$brandColor: #ff7800;
+$backgroundColor: #fffcff;
+$linkColor: darken(#ff7800, 7.5%);
+$linkColorHover: lighten($linkColor, 20%);
+$selectionBackgroundColor: $linkColor;
+
+@import "../template/utils";
+
+// Fix links so they are not cut off
+.reveal a:not(.image) {
+  line-height: 1.3em;
+}
+
+// Background generator
+@mixin bodyBackground() {
+  @include radial-gradient(darken($backgroundColor, 4%), $backgroundColor);
+  // @include radial-gradient( $backgroundColor, #fff );
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+html {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-top: 4px solid $accentColor;
+    border-bottom: 2px solid $backgroundColor;
+    z-index: 100;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparentize($mainColor, 1);
+    transition: background 150ms ease-in-out;
+  }
+
+  &.blackout::after,
+  &.dimmer::after {
+    background: transparentize($mainColor, 0.5);
+  }
+}
+
+.hide-me {
+  visibility: hidden;
+}
+
+.reveal {
+  font-family: $mainFont;
+  font-weight: 400;
+  line-height: 1.1;
+  text-rendering: optimizeLegibility;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 0.85;
+
+    strong {
+      color: $brandColor;
+      font-weight: 800;
+    }
+
+    em {
+      color: $accentColor;
+      font-style: normal;
+    }
+
+    .hugify {
+      display: block;
+      font-size: 190%;
+      font-weight: 800;
+      line-height: 0.8;
+
+      &.alright-calm-down-a-little {
+        font-size: 175%;
+      }
+
+      &.fader {
+        .fragment {
+          display: none;
+
+          &.current-fragment {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+
+  h1 {
+    font-weight: 800;
+    font-size: 120px;
+  }
+
+  h2 {
+    font-size: 80px;
+    font-weight: 800;
+  }
+
+  h3,
+  h4 { font-weight: 800; }
+
+  img {
+    width: 100%;
+  }
+
+  ul,
+  ol {
+    &.full-width {
+      width: 100%;
+    }
+
+    &.align-center {
+      margin-left: 0;
+
+      li {
+        list-style: none;
+        // padding: 0;
+        text-align: center;
+      }
+    }
+  }
+
+  small {
+    color: lighten($mainColor, 10%);
+    letter-spacing: 0.01em;
+    font-size: 22px;
+
+    > * {
+      line-height: inherit;
+      vertical-align: baseline;
+      font-size: inherit;
+    }
+
+    sup {
+      position: relative;
+      top: -0.75em;
+    }
+
+    a:link,
+    a:visited,
+    a:active,
+    a:hover,
+    a:focus {
+      color: inherit;
+
+      &::before {
+        display: inline-block;
+        margin-right: 4px;
+        color: inherit;
+        font-family: 'FontAwesome';
+        vertical-align: -5%;
+      }
+    }
+
+    a[href*="twitter.com"]::before {
+      content: '\F099';
+    }
+
+    a[href*="mailto"]::before {
+      position: relative;
+      top: -0.15em;
+      content: '\F0E0';
+      font-size: 0.8em;
+      padding-right: 0.2em;
+    }
+  }
+
+  .two-columns {
+    columns: 2;
+    column-gap: 1.5em;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      -webkit-column-break-before: always;
+      break-before: column;
+    }
+  }
+
+  .slides > section {
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &.push-right {
+      padding-left: 38% !important;
+      text-align: left;
+
+      h2 {
+        text-align: left;
+      }
+    }
+
+    .pushed-right {
+      max-width: 60%;
+    }
+
+    &.light-text {
+      &,
+      h1,
+      h2,
+      h3 {
+        color: $backgroundColor;
+        text-shadow: 2px 2px 0 $mainColor;
+      }
+    }
+
+    &.resourcetext {
+      ol {
+        columns: 2;
+        column-gap: 30px;
+        counter-reset: section;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        z-index: 1;
+      }
+
+      li {
+        position: relative;
+        padding: 0 0 5px 20px;
+        font-size: 22px;
+        line-height: 1.1;
+        break-inside: avoid;
+        z-index: 10;
+
+        &::before {
+          counter-increment: section;
+          content: counters(section, ".") ". ";
+          position: absolute;
+          left: 0;
+          top: 0.35em;
+          font-size: 0.75em;
+          font-weight: normal;
+        }
+
+        a::after {
+          content: "(" attr(href) ")";
+          display: block;
+          color: lighten($mainColor, 30%);
+          font-size: 62.5%;
+          font-weight: 400;
+          line-height: 1;
+        }
+      }
+    }
+
+    blockquote {
+      box-shadow: none;
+      color: lighten($mainColor, 15%);
+    }
+
+    a {
+      font-weight: 700;
+    }
+
+    sup {
+      padding: 0 0.2em;
+      font-weight: normal;
+      font-size: 0.6em;
+    }
+  }
+
+  .slide-background {
+    background-size: cover !important;
+    background-position: center !important;
+  }
+
+  .controls {
+    bottom: 40px;
+  }
+}
+
+section li {
+  margin-bottom: 4px !important;
+}
+
+section p > code,
+section li > code {
+  display: inline-block;
+  padding: 0 8px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 3px;
+  background: #eee;
+}
+
+section div.code,
+section div.example {
+  position: relative;
+  display: inline-block;
+  width: 48%;
+  vertical-align: top;
+  padding-top: 0;
+
+  &::before {
+    position: absolute;
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 15px;
+    font-family: monospace;
+  }
+}
+
+section div.code {
+  &::before {
+    content: 'Code';
+    top: -16px;
+    left: 22px;
+  }
+
+  & > pre:first-of-type {
+    margin-top: 0;
+  }
+}
+
+section div.example {
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 4px dashed $headingColor;
+  background-color: #fff;
+
+  &::before {
+    content: 'Output';
+    top: -20px;
+    left: -4px;
+  }
+
+  &::after {
+    content: ' ';
+    display: block;
+    clear: both;
+  }
+}
+
+section .left,
+section .right {
+  width: 45% !important;
+  margin: 0 2% 2%;
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+}
+
+.reveal section img {
+  min-width: 35%;
+}
+
+.reveal .image-credit {
+  display: inline-block;
+  margin: 90vh auto 0;
+  padding: 10px 20px;
+  background-color: transparentize($headingColor, 0.25);
+  border-radius: 15px;
+  color: $backgroundColor;
+  font-size: 18px;
+  z-index: 10;
+
+  &--with-text {
+    margin-top: 10vh;
+  }
+
+  &::before {
+    content: attr(data-credit-type) ": ";
+  }
+
+  &__link {
+    color: inherit;
+    font-weight: 700;
+  }
+}
+
+.hashtag {
+  position: absolute;
+  top: 6px;
+  right: 0;
+  z-index: 10;
+
+  p {
+    margin: 0;
+    padding: 10px 20px;
+    background-color: $headingColor;
+    border-radius: 0 0 0 15px;
+    color: $backgroundColor;
+    font-family: $mainFont;
+    font-size: 18px;
+    font-weight: 700;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}
+
+footer {
+  display: none;
+  position: absolute;
+  background: transparentize($backgroundColor, 0.25);
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+
+  @media screen and (min-width: 960px) {
+    display: block;
+  }
+
+  ul.inline {
+    width: 100%;
+    margin: 10px 0;
+    padding: 0;
+    text-align: center;
+    box-sizing: border-box;
+
+    li {
+      display: inline-block;
+      margin: 0 10px;
+      font-family: $mainFont;
+      font-size: 17px;
+      color: #666461;
+      text-shadow: 1px 1px 1px $backgroundColor;
+
+      a {
+        color: inherit;
+        text-decoration: none;
+
+        &::before {
+          display: inline-block;
+          margin-right: 4px;
+          font-family: 'FontAwesome';
+          vertical-align: -5%;
+        }
+
+        &[href*="twitter.com"]::before {
+          content: '\F099';
+        }
+
+        &[href*="facebook.com"]::before {
+          content: '\F09A';
+        }
+
+        &[href*="github.com"]::before {
+          content: '\F09B';
+        }
+      }
+    }
+  }
+}
