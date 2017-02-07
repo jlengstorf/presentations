@@ -1,14 +1,14 @@
-# The Most Productive Developer Ever
+# How I Cut My Working Hours in Half and Somehow Managed to Get More Done
 
 This is my take on The Ultimate Developer Productivity Plan™. In it, I break down my most effective strategies for knocking out projects quickly so I can do the things I care about most.
 
 ### tl;dr
 
-Three hours. In an average eight-hour work day, the average developer will get _maybe_ three hours of actual work done. Between distractions, interruptions, overloaded schedules, and tight deadlines, it can feel like we'll never get _anything_ done. In this talk, Jason Lengstorf shares his story of grinding out 70–90 hours a week, and the surprisingly simple changes he made to turbocharge his productivity, earn more money, and **work an average of 33 hours a week in 2016** — while also rediscovering life outside of work.
+Three hours. In an average eight-hour workday, the average developer will get _maybe_ three hours of actual work done. Between distractions, interruptions, overloaded schedules, and tight deadlines, it can feel like we'll never get _anything_ done. In this talk, Jason Lengstorf shares his story of grinding out 70–90 hours a week, and the surprisingly simple changes he made to turbocharge his productivity, earn more money, and **work an average of 33 hours a week in 2016** — while also rediscovering life outside of work.
 
 ### Full Abstract
 
-Three hours. In an average eight-hour work day, the average developer will get _maybe_ three hours of actual work done. Between distractions, interruptions, overloaded schedules, and tight deadlines, it can feel like we'll never get _anything_ done.
+Three hours. In an average eight-hour workday, the average developer will get _maybe_ three hours of actual work done. Between distractions, interruptions, overloaded schedules, and tight deadlines, it can feel like we'll never accomplish _anything_.
 
 In 2013, Jason Lengstorf was pulling 70–90-hour weeks and _still_ felt overwhelmed with work. His career hit a plateau; his health suffered; he had no time to spend with family or friends.
 
@@ -18,7 +18,7 @@ In this talk, Jason will provide concrete, tactical strategies to:
 
 - Eliminate distractions _without_ becoming unreachable
 - Reclaim 1.5–3 hours _per day_ that currently goes to waste
-- Dramatically increase brainpower for problem solving and creative thinking
+- Dramatically increase brainpower for problem-solving and creative thinking
 - Stop procrastination at the source
 - Complete 8 hours of work in 4.5 hours — _consistently_
 
