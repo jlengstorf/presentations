@@ -5,3 +5,11 @@ Step 1: Wrap up concepts like planning, time-boxing, down time, context, and all
 Step 2: ?????
 
 Step 3: PROFIT!
+
+### tl;dr
+
+TKTK
+
+### Full Abstract
+
+TKTK
