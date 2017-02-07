@@ -1,0 +1,76 @@
+# Content Outline
+
+- Let's Pretend:
+    - You've built something cool
+    - People should know about this
+    - You mention it to a client/coworker/conference
+    - They ask you to give a presentation about it
+    - ...now what?
+- Presentations suck
+    - 
+- But they don't have to
+    - TED
+- So what's the difference?
+    - Is it better design?
+    - Professional speakers?
+- Nope.
+- The actual difference:
+    - Focus on concepts and outcomes vs. details
+    - Minimal slides
+    - Practice
+    - The Ultimate Presenter's Tool (stay tuned to find out what it is!)
+- Good Presentations Focus on Concepts and Outcomes
+    - Carly story (story timer, dozens of irrelevant details, lost plot)
+    - The power of a concise story:
+        - "For sale: baby shoes, never worn." – Hemingway (apocryphal, but still fucking awesome)
+    - Questions to ask:
+        - What was the problem?
+        - Why was it a problem?
+        - How did solving it benefit people?
+        - What unexpected challenges came up while solving the problem?
+    - The details largely don't matter, and will (almost definitely) bore the audience to tears.
+- Good Presentations Don't Rely Too Much on Slides
+    - Data-heavy slides are distracting and boring (show example)
+    - Simple slides are intriguing and seamlessly fade behind your words (show example)
+    - No one wants to watch someone read slides for 45 minutes
+    - A good slide is a launchpad for a thought, not notes on what you want to say
+        - That's what speaker notes are for!
+- Good Presentations Are Practiced
+    - This _does not_ mean writing a script and memorizing it
+    - It _does_ mean running through the talk — out loud — beforehand to spot awkward transitions, useless slides, tangents, and areas where more info is needed
+    - Make sure to review the content and slides thoroughly within 12 hours of the presentation
+        - "'Defrosting' a talk can be harder than writing the thing in the first place." – Lorna Mitchell
+- The Ultimate Presenter's Tool: Stories
+    - A good story evokes an emotion
+    - "But what if my project is boring?"
+        - Does this sound interesting?
+            - A report on nominative determinism and its potential impact on socioeconomic status and mobility. (_Freakonomics_ — names and the potential impact on job prospects)
+            - The story of four strangers who take a road trip to ask a politician for things they already have. (_The Wizard of Oz_)
+            - A detailed account of a grumpy alcoholic's poor life choices. (everything by Bukowski)
+    - A good story follows an arc:
+        - Introduce someone relatable (the hero)
+        - Introduce a challenge (writing a presentation?)
+        - Follow along with preparation to create suspense (collecting tools)
+        - Build up to the moment of truth (giving the presentation)
+        - Share lessons learned and wrap it up (the moral of the story)
+    - Don't shy away from getting personal
+        - Vulnerability is an extremely powerful tool — don't by shy about adding your struggles, shortcomings, and embarrassing moments to the story
+            - This makes the story feel realistic and human
+            - This makes you relatable
+- Putting It Into Practice: Let's Get Meta
+    - What did we do in this presentation?
+        - Introduced a hero: me!
+        - Framed a challenge: present on boring content
+        - Gathered tools: outcomes-focused content, minimal slides, practice, and stories
+        - Faced the moment of truth: err, technically I'm still doing that part
+        - Shared lessons learned: see slide 1
+    - This was not an exciting topic
+    - But I _made_ it exciting.
+        - You laughed
+        - You cried
+        - You gasped
+        - You learned
+        - You grew as human beings
+        - And when it was all over, you showered me with roses and applause
+- [cue roses and applause]
+- Questions?
