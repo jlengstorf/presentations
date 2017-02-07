@@ -14,7 +14,7 @@ In 2013, Jason Lengstorf was pulling 70–90-hour weeks and _still_ felt overwhe
 
 But then he made a few strategic changes, and now he's the happiest, healthiest, and most productive he's ever been — and he's working an average of 33 hours a week.
 
-In this talk, Jason Lengstorf will provide concrete, tactical strategies to:
+In this talk, Jason will provide concrete, tactical strategies to:
 
 - Eliminate distractions _without_ becoming unreachable
 - Reclaim 1.5–3 hours _per day_ that currently goes to waste
