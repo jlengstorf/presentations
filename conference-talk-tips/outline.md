@@ -15,7 +15,8 @@
     - Professional speakers?
 - Nope.
 - The actual difference:
-    - Focus on concepts and outcomes vs. details
+    - Don't bury your audience in details
+    - Focus on the big ideas and benefits
     - Minimal slides
     - Practice
     - The Ultimate Presenter's Tool (stay tuned to find out what it is!)
