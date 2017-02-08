@@ -131,10 +131,6 @@ html {
   h3,
   h4 { font-weight: 800; }
 
-  img {
-    width: 100%;
-  }
-
   ul,
   ol {
     &.full-width {
@@ -303,6 +299,10 @@ html {
 
   .controls {
     bottom: 40px;
+  }
+
+  .progress {
+    display: none !important;
   }
 }
 

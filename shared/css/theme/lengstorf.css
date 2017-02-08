@@ -394,8 +394,6 @@ html.blackout::after, html.dimmer::after {
   .reveal h3,
   .reveal h4 {
     font-weight: 800; }
-  .reveal img {
-    width: 100%; }
   .reveal ul.full-width,
   .reveal ol.full-width {
     width: 100%; }
@@ -513,6 +511,8 @@ html.blackout::after, html.dimmer::after {
     background-position: center !important; }
   .reveal .controls {
     bottom: 40px; }
+  .reveal .progress {
+    display: none !important; }
 
 section li {
   margin-bottom: 4px !important; }
