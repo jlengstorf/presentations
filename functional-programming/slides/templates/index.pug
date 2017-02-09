@@ -39,6 +39,72 @@ block slides
 
   +slide Slide 2
 
+//-
+  - Functional Programming seems like turbonerd territory:
+    - math and computer science jargon is thick: referential transparency, 
+      composability, immutability, side-effects, currying, monads, category 
+      theory, tuples, arity, variadic functions...
+  - It's really hard to find an approachable explanation of functoinal programming
+    - Tutorials dive into complex theory
+    - Huge amounts of background knowledge are expected
+    - The examples are so simple they seem useless
+  - People see all this math and run away screaming
+  - But functional programming is more than math
+  - The benefits of functional programming are huge:
+    - Debugging gets way easier
+    - Code is cleaner
+    - Testing takes half the effort
+    - Maintenance cost and effort drops
+  - But... how?
+  - Functional programming _can_ be really complex
+  - But it can also be pretty simple
+  - The central tenets of functional programming aren't that hard:
+    - Functions are the primary building block (duh), and data comes later
+    - Replace logical loops with functions that do the same thing
+    - If you put the same information in, you get the same result. Every time. Period.
+    - Every function does _one_ thing
+    - The result of one function can be easily fed to the next function
+  - The theoretical examples make this look really hard (and fairly useless)
+    - Show Ramda docs
+  - Practically, it's actually pretty simple
+    - Show a real example
+  - Let's dig in:
+  - Functions first, data last
+    - Show an example
+    - This is like building a road before driving on it
+      - You can see where a car will go, even if there are no cars currently on the road
+  - Same arguments, same result
+    - Explain what this means for maintenance
+    - Show a few real-world examples of why this is important
+  - Every function does one thing
+    - Show a bad example and point out the problems
+    - Show how to solve it by breaking it into smaller functions
+    - Which leads into...
+  - Functions accepting the result of functions
+    - This is called "composability"
+      - Show an example
+    - It relies on "referential transparency"
+      - Show an example
+    - Functional programming uses this to build complex actions out of single-purpose functions
+      - Show an example
+  - Replace logical loops with functions
+    - Show real-world examples of map, filter, reduce
+  - Functions don't change anything except the result
+    - This is referred to as "purity"
+    - If a function makes changes outside the result, it's "impure"
+    - Changes outside the result are "side-effects"
+      - Console logging and changing the DOM are both side-effects
+    - Wait — so we can't change the DOM if we're using functional programming?
+      - Doesn't that make this entirely useless?
+    - Introduce the concept of separating functions with side-effects
+      - Introduce "impure" functions at the last minute so it's easier to debug
+  - You don't have to go deep to use functional programming
+    - You can mix functional and non-functional programming practices
+    - The goal is better code, not theoretical perfection
+  - Real application review: Instagram API wrapper
+    - Show the various steps and how we handle them functionally
+  - Q&A
+
 block styles
   link(
     rel="stylesheet"
