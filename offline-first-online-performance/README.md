@@ -1,4 +1,4 @@
-# They Came for the Offline-First, but They Stayed for the Performance
+# They Came for the Offline First, but They Stayed for the Performance
 
 ## tl;dr
 
@@ -6,15 +6,15 @@ TKTK
 
 ## Abstract
 
-There's a big push for offline-first development, with a new buzzword — "Progressive Web App", or PWA — making the rounds for the last year or two. But a lot of what's being said sounds like the coding equivalent of "eat your vegetables!"
+There's a big push for Offline First development, with a new buzzword — "Progressive Web App", or PWA — making the rounds for the last year or two. But a lot of what's being said sounds like the coding equivalent of "eat your vegetables!"
 
 What's in it for ME?
 
 Quite a bit, it turns out.
 
-In this talk, Jason Lengstorf will share the surprising ways that online apps will see huge benefits when they're built to support offline users. Learn how to ace the Lighthouse test with just a few simple changes, and how you can easily create offline-first apps with just a few lines of code.
+In this talk, Jason Lengstorf will share the surprising ways that online apps will see huge benefits when they're built to support offline users. Learn how to ace the Lighthouse test with just a few simple changes, and how you can easily create Offline First apps with just a few lines of code.
 
-Learn how going offline-first will improve the connected experience, including:
+Learn how going Offline First will improve the connected experience, including:
 
 - better performance
 - increased stability and reliability
