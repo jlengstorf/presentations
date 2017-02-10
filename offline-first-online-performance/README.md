@@ -12,7 +12,7 @@ What's in it for ME?
 
 Quite a bit, it turns out.
 
-In this talk, Jason Lengstorf will share the surprising ways that online apps will see huge benefits when they're built to support offline users. Learn how to ace the Lighthouse test with just a few simple changes, and how you can easily create Offline First apps with just a few lines of code.
+In this talk, Jason Lengstorf will share the surprising ways that online apps will see huge benefits when they're built to support offline users. Learn how to ace Google's progressive web app test, Lighthouse, with just a few simple changes, and how you can easily create Offline First apps with just a few lines of code.
 
 Learn how going Offline First will improve the connected experience, including:
 
