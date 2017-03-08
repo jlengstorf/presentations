@@ -15,6 +15,10 @@ block append config
       twitter: 'jlengstorf',
       github: 'jlengstorf',
     };
+    
+    config.slides = {
+      link: 'https://git.io/vyzvq',
+    };
 
     config.conference = {
       hashtag: 'oraclecode',
@@ -38,7 +42,7 @@ block slides
         a(href= `mailto:${config.author.email}`)= config.author.email
     
     p
-      small Slides: #[a(href="https://git.io/vyzvq") git.io/vyzvq]
+      small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
 
   //- Front-matter stuff
   +slide.u--align-left.u--text-light.u--text-shadow(data-background="url(./images/bear-background@2x.jpg)")
@@ -779,6 +783,9 @@ block extras
       li
         | “#{config.title}” by 
         a(href= config.author.link)= config.author.name
+        |  (slides: 
+        a(href= config.slides.link)= config.slides.link.replace('https://', '')
+        | )
       li
         a(href="https://twitter.com/"+config.author.twitter).
           @#{config.author.twitter}
