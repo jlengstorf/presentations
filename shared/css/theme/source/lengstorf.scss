@@ -212,6 +212,14 @@ html {
     background-size: cover;
     background-repeat: no-repeat;
 
+    .wider {
+      position: absolute;
+      left: 50%;
+      margin: 0;
+      width: 90vw;
+      transform: translateX(-50%);
+    }
+
     &.push-right {
       padding-left: 38% !important;
       text-align: left;
@@ -290,6 +298,37 @@ html {
       font-weight: normal;
       font-size: 0.6em;
     }
+
+    pre {
+      font-size: 68%;
+      line-height: 1.375;
+    }
+
+    code {
+      max-height: 450px;
+    }
+
+    figure {
+      color: lighten(desaturate($mainColor, 10%), 25%);
+      font-size: 40%;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      text-transform: uppercase;
+
+      img {
+        display: inline-block;
+        margin-bottom: 5px;
+      }
+    }
+
+    figcaption {
+      margin-top: 0;
+
+      a {
+        color: inherit;
+        font-weight: normal;
+      }
+    }
   }
 
   .slide-background {
@@ -345,6 +384,7 @@ section div.code {
 
   & > pre:first-of-type {
     margin-top: 0;
+    font-size: 0.55em;
   }
 }
 

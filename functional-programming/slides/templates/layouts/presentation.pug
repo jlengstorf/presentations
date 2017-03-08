@@ -41,7 +41,7 @@ html
       link#theme(rel="stylesheet" href= `css/theme/${config.theme}.css`)
 
     //- Syntax highlighting
-    link(rel="stylesheet" href="lib/css/zenburn.css")
+    link(rel="stylesheet" href="lib/css/github.css")
 
     //- Add extra styles using this block
     block styles
@@ -91,6 +91,8 @@ html
         // More info https://github.com/hakimel/reveal.js#configuration
         Reveal.initialize({
           history: true,
+          transition: 'none',
+          backgroundTransition: 'none',
 
           // More info https://github.com/hakimel/reveal.js#dependencies
           dependencies: [

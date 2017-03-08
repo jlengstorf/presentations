@@ -453,6 +453,12 @@ html.blackout::after, html.dimmer::after {
   .reveal .slides > section {
     background-size: cover;
     background-repeat: no-repeat; }
+    .reveal .slides > section .wider {
+      position: absolute;
+      left: 50%;
+      margin: 0;
+      width: 90vw;
+      transform: translateX(-50%); }
     .reveal .slides > section.push-right {
       padding-left: 38% !important;
       text-align: left; }
@@ -506,6 +512,25 @@ html.blackout::after, html.dimmer::after {
       padding: 0 0.2em;
       font-weight: normal;
       font-size: 0.6em; }
+    .reveal .slides > section pre {
+      font-size: 68%;
+      line-height: 1.375; }
+    .reveal .slides > section code {
+      max-height: 450px; }
+    .reveal .slides > section figure {
+      color: #92867e;
+      font-size: 40%;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      text-transform: uppercase; }
+      .reveal .slides > section figure img {
+        display: inline-block;
+        margin-bottom: 5px; }
+    .reveal .slides > section figcaption {
+      margin-top: 0; }
+      .reveal .slides > section figcaption a {
+        color: inherit;
+        font-weight: normal; }
   .reveal .slide-background {
     background-size: cover !important;
     background-position: center !important; }
@@ -546,7 +571,8 @@ section div.code::before {
   left: 22px; }
 
 section div.code > pre:first-of-type {
-  margin-top: 0; }
+  margin-top: 0;
+  font-size: 0.55em; }
 
 section div.example {
   box-sizing: border-box;

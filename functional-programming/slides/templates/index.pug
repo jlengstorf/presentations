@@ -4,7 +4,7 @@ extends layouts/presentation
 block append config
   -
     config.theme = 'lengstorf';
-    config.title = 'Who Gives a Fuck About a Monad?';
+    config.title = 'Do Monads Matter?';
     config.description = 'Functional programming for people who hate math.';
     config.slidesLink = 'https://code.lengstorf.com/presentation/functional-programming/slides/';
 
@@ -17,8 +17,8 @@ block append config
     };
 
     config.conference = {
-      hashtag: false,
-      twitter: false,
+      hashtag: 'oraclecode',
+      twitter: 'oracledevs',
     };
   -
 
@@ -37,14 +37,671 @@ block slides
         |  | 
         a(href= `mailto:${config.author.email}`)= config.author.email
 
-  +slide Slide 2
+  //- Front-matter stuff
+  +slide.u--align-left.u--text-light.u--text-shadow(data-background="url(./images/bear-background@2x.jpg)")
+    h2 Who I Am
+    ul
+      li.hide-me 
+      li.hide-me 
+      li.hide-me 
+      li.hide-me 
+      li.hide-me 
+      li.hide-me 
 
+    aside.notes.
+      This joke is so terrible. You should be ashamed of yourself.
+
+  +slide.u--align-left.u--text-light.u--text-shadow(data-background="url(./images/jason-lengstorf-slide-bg@2x.jpg)")
+    h2 Who I Am
+    ul.full-width
+      li.fragment Building web shit since 2003
+      li.fragment #[em Huge] process &amp; efficiency nerd
+      li.fragment Work-life balance advocate / consultant
+      li.fragment Senior developer at IBM
+      li.fragment Author of 3 books on development stuff
+      li.fragment World champion purveyor of bear hugs
+
+  //- Intro: functional programming is really confusing
+  +slide
+    h2 What is #[em functional programming]?
+  
+  +slide
+    h3 What does this mean?
+    pre
+      code.js.
+        (s → a) → ((a, s) → s) → Lens s a
+        Lens s a = Functor f => (a → f a) → s → f s
+    p
+      small.fragment.
+        (If you understand this, now would be a good time to fake an urgent
+        phone call — consider this your trigger warning.)
+
+    aside.notes.
+      This is the "signature" of the Lens function in Ramda. I have no idea
+      what this means.
+
+  +slide
+    h3 The examples #[strong don't] help:
+    pre
+      code.js.
+        var xLens = R.lens(R.prop('x'), R.assoc('x'));
+
+        R.view(xLens, {x: 1, y: 2});           //=> 1
+        R.set(xLens, 4, {x: 1, y: 2});         //=> {x: 4, y: 2}
+        R.over(xLens, R.negate, {x: 1, y: 2}); //=> {x: -1, y: 2}
+    
+    aside.notes.
+      This is the example code for the Lens function in Ramda. Before we can 
+      understand how it works, we need to look up six additional functions. I
+      now feel dumber about functional programming than I did before.
+
+  +slide
+    h3 And, of course: #[strong jargon]
+    h2.wider
+      span.fragment monads 
+      em.fragment composability 
+      span.fragment referential transparency 
+      em.fragment arity 
+      strong.fragment side-effects
+      br
+      span.fragment immutability 
+      em.fragment currying 
+      strong.fragment category theory 
+      span.fragment tuples 
+      span.fragment variadic functions
+    
+    aside.notes.
+      It seems like only a certain group of people know what functional 
+      programming is, and these are the kinds of people who talk about "maths" 
+      — as a plural. Articles on the subject open the floodgates of jargon, and 
+      it takes less than a sentence before you feel well and truly overwhelmed.
+
+  +slide
+    img(src="images/functional-programming/too-much-stahp.gif")
+      
+    aside.notes.
+      Before long, it's easy to just give up.
+
+  +slide
+    h1 This is nerd stuff for 
+      em.hugify Nerds
+    
+    aside.notes.
+      We assume functional programming is nerd stuff for nerds and move on.
+
+  +slide
+    h3 ...or is it?
+    
+  //- What is functional programming?
+  +slide
+    h2 What is functional programming?
+    h4 (Jargon-free version)
+    
+    aside.notes.
+      Before we get started, let me give a disclaimer: this is #[em not] going 
+      to be a talk about the academically "correct" version of functional 
+      programming — I don't know the theories, or the underlying math, or the 
+      preciser terminology for techniques. What I want to accomplish today is to
+      share what I've learned from digging through functional programming 
+      libraries, discussions, articles, and how-tos. This is a practical talk,
+      not a theoretical one, so let me apologize in advance if I call something
+      by the wrong name, or screw up the minutiae. Please grab me after this 
+      talk or drop me a line on Twitter if there's something I'm saying here 
+      that you disagree with or think I should further clarify.
+  
+  +slide
+    h3 Functional programming#[br]helps us write code that is:
+    ul(style="width: 80%")
+      li.fragment Easier to understand and debug
+      li.fragment Cheaper and easier to maintain
+      li.fragment More legible
+      li.fragment More reusable
+      li.fragment More testable
+      li.fragment Less error-prone
+
+  +slide
+    h3 To accomplish this, our code follows a few rules:
+    ol(style="width: 80%")
+      li.fragment Functions are better than loops
+      li.fragment Always return the same result given the same arguments
+      li.fragment Write functions that do one thing
+
+  +slide
+    h2 Let's #[em learn how]
+
+  //- Rule #1: Functions are better than loops
+  +slide
+    h3 Rule #1:
+    h2
+      em(style="display: block;font-size: 155%") Functions 
+      span Are Better Than
+    h1.hugify
+      strong.hugify Loops
+
+  +slide
+    h3 Scenario: This Beverage List
+    h2
+      span.hugify Is #[strong Broken]
+    pre
+      code.js.
+        const people = [
+          {
+            name: 'Marisa',
+            spirit_animal: 'koala',
+            beverages: [
+              'tea',
+              'vodka', // <-- WTF is this?!
+            ],
+          },
+          {
+            name: 'Jason',
+            spirit_animal: 'bear',
+            beverages: [
+              'coffee',
+              'whiskey',
+            ],
+          },
+        ];
+
+  //- Vocabulary: Imperative vs. Declarative
+  +slide
+    p
+      small First: a quick bit of #[del jargon] #[ins vocabulary].
+
+  +slide
+    h3 #[strong Imperative] Programming
+    p Code that explicitly describes #[strong how to do something].
+  
+  +slide
+    h4(style="margin-bottom: 0;") An #[strong Imperative] Approach to Eating:
+    p
+      img(
+        src="images/functional-programming/imperative-sally.jpg"
+        alt="When Harry Met Sally"
+        style="margin-top: 0;margin-bottom: 0;"
+      )
+      br
+      | "I'd like the pie heated and I don't want the ice cream on top, I want 
+      | it on the side, and I'd like strawberry instead of vanilla if you have 
+      | it. If not, then no ice cream, just whipped cream — but only if it's 
+      | real; if it's out of the can then nothing."
+  
+  +slide
+    h3 #[em Declarative] Programming
+    p Code that describes #[strong what the result should be].
+
+  +slide
+    h4(style="margin-bottom: 0;") A #[em Declarative] Approach to Eating:
+    p
+      img(
+        src="images/functional-programming/declarative-ron.jpg"
+        alt="Parks and Recreation"
+        style="margin-top: 0;margin-bottom: 0;"
+      )
+      br
+      | "Give me all the bacon and eggs you have."
+
+    aside.notes.
+      Tyler McGinnis has a couple great metaphors
+
+  +slide
+    h2 Got it?
+    p.fragment Let’s look at some code.
+
+  //- Examples for Rule #1
+  +slide
+    h3 An #[strong Imperative] Solution
+    pre
+      code.js.
+        let fixed = [];
+        for (let person of people) {
+          if (person.beverages) {
+            for (let beverage in person.beverages) {
+              if (person.beverages[beverage] === 'vodka') {
+                person.beverages[beverage] = 'whiskey (FTFY)';
+              }
+            }
+          }
+          fixed.push(person);
+        }
+    p Try this live: 
+      a(href="https://goo.gl/aobHwP") https://goo.gl/aobHwP
+
+  +slide
+    h2 Beware the #[strong Pyramid of Doom]!
+    figure
+      img(
+        src="./images/functional-programming/pyramid-of-doom.jpg"
+        alt="Pyramid of Doom by Contenebratio"
+      )
+      figcaption Credit: 
+        a(href="http://rdbl.co/2m8qRfP") Contenebratio
+
+  +slide
+    h3 A #[em Declarative] Solution
+    pre
+      code.js.
+        const fixBeverage = (str) => (
+          str.replace('vodka', 'whiskey (FTFY)')
+        );
+
+        const helpIfConfused = (person) => ({
+          ...person,
+          beverages: person.beverages.map(fixBeverage)
+        });
+
+        const fixed = people.map(helpIfConfused);
+    p Try this live: 
+      a(href="https://goo.gl/HO7tps") https://goo.gl/HO7tps
+
+  +slide
+    h3 The Result Is #[em Identical]
+    pre
+      code.json.
+        [
+          {
+            "name": "Marisa",
+            "spirit_animal": "koala",
+            "beverages": [
+              "tea",
+              "whiskey (FTFY)"
+            ]
+          },
+          {
+            "name": "Jason",
+            "spirit_animal": "bear",
+            "beverages": [
+              "coffee",
+              "whiskey"
+            ]
+          }
+        ]
+
+  //- Array.prototype.map()
+  +slide
+    h2 Okay but...
+    h2 What the eff's a
+    h1
+      span.hugify #[em map]?
+
+  +slide
+    h3(style="text-transform: none;")
+      code Array.prototype.map()
+    p Applies a function to each element of an array.
+
+  +slide
+    h3 Which means that #[strong this]...
+    pre
+      code.js.
+        const double = num => num * 2;
+        const numbers = [1, 2, 3];
+        const nextNumbers = [];
+        for (let x in numbers) {
+          nextNumbers[x] = double(numbers[x]);
+        }
+    p Try this live: 
+      a(href="https://goo.gl/30SfNQ") https://goo.gl/30SfNQ
+
+  +slide
+    h3 ...is the same as #[em this].
+    pre
+      code.js.
+        const double = num => num * 2;
+        const numbers = [1, 2, 3];
+        const nextNumbers = numbers.map(double);
+    p Try this live: 
+      a(href="https://goo.gl/7mYn2x") https://goo.gl/7mYn2x
+
+  //- Rule #2: Same Input, Same Output
+  +slide
+    h3 Rule #2:
+    h2 The Same Input
+      em.hugify(style="display: block; margin-top: 0.5rem;font-size: 215%;line-height:0.75;") Always
+      | Returns the
+      br
+      | Same Result
+
+  +slide
+    h3 "Wait. That's dumb. My code already does that."
+  
+  +slide
+    h2 Are you #[strong sure]?
+
+  //- Vocabulary: Pure vs. Impure
+  +slide
+    h3 The Jargon:
+    h1 #[em.hugify(style="font-size: 225%") Pure] vs. #[strong Impure]
+
+  +slide
+    h3 Scenario: Tell People About 
+      span.hugify Your #[em Favorite] Thing
+
+  +slide
+    h3 An #[strong Impure] Solution
+    pre
+      code.js.
+        let myFavoriteThing = 'whiskey';
+
+        function describeMyFavoriteThing() {
+          return `I prefer to drink quality ${myFavoriteThing}.`;
+        }
+    p Try this live: 
+      a(href="https://goo.gl/IQeD45") https://goo.gl/IQeD45
+
+  +slide
+    h3 Wait! New feature request:
+    pre
+      code.js.
+        function clarifyFavoriteThing() {
+          myFavoriteThing = 'aged ' + myFavoriteThing;
+        }
+    p Try this live: 
+      a(href="https://goo.gl/FEUtUZ") https://goo.gl/FEUtUZ
+
+  +slide
+    h3 Then Legal Gets Involved:
+    pre
+      code.js.
+        function undergoMajorLifeChanges() {
+          myFavoriteThing = 'scented bubble bath';
+        }
+    p Try this live: 
+      a(href="https://goo.gl/RcBsDc") https://goo.gl/RcBsDc
+
+  +slide
+    h3 Good Luck Debugging This:
+    pre
+      code.js.
+        let myFavoriteThing = 'whiskey';
+
+        clarifyFavoriteThing();
+        describeMyFavoriteThing();
+        //=>"I prefer to drink quality aged whiskey." (yay!)
+
+        // ...probably a bunch of additional code...
+        undergoMajorLifeChanges();
+        // ...probably more additional code...
+
+        describeMyFavoriteThing();
+        //=>"I prefer to drink quality scented bubble bath." (!)
+    p Try this live: 
+      a(href="https://goo.gl/AUVt8n") https://goo.gl/AUVt8n
+
+    aside.notes.
+      This is hard to debug and we #[em just wrote it]. Imagine coming back to
+      this in six months, or inheriting this code from a team member and having
+      no idea what each of these functions is supposed to be doing.
+
+  +slide
+    h3 A #[em Pure] Approach
+    pre
+      code.js.
+        function describeMyFavoriteThing(beverage) {
+          return `I prefer to drink quality ${beverage}.`;
+        }
+
+        function clarifyFavoriteThing(favoriteThing) {
+          return `aged ${favoriteThing}`;
+        }
+
+        function undergoMajorLifeChanges() {
+          return 'scented bubble bath';
+        }
+    p Try this live: 
+      a(href="https://goo.gl/zcxJVN") https://goo.gl/zcxJVN
+
+  +slide
+    h3 We can clearly follow what's happening:
+    pre
+      code.js.
+        const myFavoriteThing = 'whiskey';
+        const clarified = clarifyFavoriteThing(myFavoriteThing);
+        const newFavorite = undergoMajorLifeChanges();
+
+        describeMyFavoriteThing(myFavoriteThing);
+        //=>"I prefer to drink quality whiskey."
+
+        describeMyFavoriteThing(clarified);
+        //=>"I prefer to drink quality aged whiskey."
+
+        describeMyFavoriteThing(newFavorite);
+        //=>"I prefer to drink quality scented bubble bath."
+    p Try this live: 
+      a(href="https://goo.gl/zcxJVN") https://goo.gl/zcxJVN
+
+  +slide
+    h3 Debugging is #[em easy]:
+    pre
+      code.js.
+        // start debugging here: ↓ ↓ ↓ ↓ ↓
+        describeMyFavoriteThing(newFavorite);
+    p Try this live: 
+      a(href="https://goo.gl/zcxJVN") https://goo.gl/zcxJVN
+
+  +slide
+    h3 This Is Called 
+      em.hugify Referential Transparency
+    p.fragment.
+      This means the function call can always be replaced with its return value
+      without breaking the program.
+
+  +slide
+    h3 We can replace any pure function with its return value &amp; get the #[em same result]:
+    pre
+      code.js.
+        const chz = 'I love ' + clarifyFavoriteThing('cheddar');
+    p ...is the same as...
+    pre
+      code.js.
+        const chz = 'I love aged cheddar.';
+
+  +slide
+    h3 Testing's Never Been #[em Easier]:
+    pre
+      code.js.
+        expect(clarifyFavoriteThing('cheddar'))
+          .toEqual('aged cheddar');
+
+  //- Rule #3: Each Function Does One Thing
+  +slide
+    h3 Rule #3:
+    h2 Each Function Does
+      em.hugify(style="font-size: 200%") One Thing
+
+  +slide
+    h3 Scenario: Filter by Genre &amp;
+      span.hugify Sort by #[em Artist]
+    pre
+      code.js.
+        const albums = [
+          {
+            name: 'Middle Cyclone',
+            artist: 'Neko Case',
+            genre: 'indie',
+          },
+          {
+            name: 'Highly Refined Pirates',
+            artist: 'Minus The Bear',
+            genre: 'rock',
+          },
+          {
+            name: 'Rabbit Fur Coat',
+            artist: 'Jenny Lewis',
+            genre: 'indie',
+          },
+          {
+            name: 'Black on Both Sides',
+            artist: 'Mos Def',
+            genre: 'hip-hop',
+          },
+        ];
+
+  +slide
+    h3 An #[strong All-In-One] Solution
+    pre
+      code.js.
+        function getOnlyIndie(albums) {
+          let filtered = [];
+          for (let album of albums) {
+            if (album.genre === 'indie') {
+              filtered.push(album);
+            }
+          }
+          filtered.sort((album1, album2) => {
+            if (album1.artist === album2.artist) return 0;
+            return album1.artist > album2.artist ? 1 : -1;
+          });
+          return filtered;
+        }
+    p Try this live: 
+      a(href="https://goo.gl/lPK1CD") https://goo.gl/lPK1CD
+
+  +slide
+    h3 #[em One Function] Per Step
+    pre
+      code.js.
+        const byArtistAsc = (album1, album2) => {
+          if (album1.artist === album2.artist) {
+            return 0;
+          }
+          
+          return album1.artist > album2.artist ? 1 : -1;
+        };
+
+        const getOnlyIndie = (album) => {
+          return album.genre === 'indie';
+        };
+        
+        albums.filter(getOnlyIndie).sort(byArtistAsc);
+    p Try this live: 
+      a(href="https://goo.gl/VVjFSZ") https://goo.gl/VVjFSZ
+
+  +slide
+    h2 But Wait!
+    p.fragment We can do even better.
+
+  +slide
+    h3 This is #[em so freakin' reusable]!
+    pre
+      code.js.
+        const filterByGenre = R.curry((genre, album) => {
+          return album.genre === genre;
+        });
+
+        const onlyHipHop = filterByGenre('hip-hop');
+        const onlyIndie = filterByGenre('indie');
+        const onlyRock = filterByGenre('rock');
+    p Try this live: 
+      a(href="https://goo.gl/qPJhZW") https://goo.gl/qPJhZW
+
+  +slide
+    h3 What's That #[em Curry] Thing?
+    p.fragment ...besides delicious, that is.
+
+  +slide
+    h3(style="text-transform: none;")
+      code R.curry()
+    p Allows functions to be called in stages.
+
+    aside.notes.
+      We’re using Ramda for these examples, but currying is not a Ramda-only
+      feature: you can write your own currying function in any programming
+      language, and many libraries (such as lodash) offer a currying function.
+
+  +slide
+    h3 Which allows us to do this:
+    pre
+      code.js.
+        function addNumbers(num1, num2) {
+          return num1 + num2;
+        }
+        
+        const curriedAdd = R.curry(addNumbers);
+        const add4 = curriedAdd(4);
+        
+        add4(2); //=> 6
+        add4(7); //=> 11
+
+    p Try this live: 
+      a(href="https://goo.gl/jVjOW3") https://goo.gl/jVjOW3
+
+  +slide
+    h1 Let's #[em Recap]
+
+  +slide
+    h3 Functional programming#[br]helps us write code that is:
+    ul(style="width: 80%")
+      li.fragment Easier to understand and debug
+      li.fragment Cheaper and easier to maintain
+      li.fragment More legible
+      li.fragment More reusable
+      li.fragment More testable
+      li.fragment Less error-prone
+
+  +slide
+    h3 To accomplish this, our code follows a few rules:
+    ol(style="width: 80%")
+      li.fragment Functions are better than loops
+      li.fragment Always return the same result given the same arguments
+      li.fragment Write functions that do one thing
+
+  +slide
+    h3 You can go deeper...
+    p.fragment.
+      ...but just these three techniques will save you hours of headaches and 
+      make your code better and easier to deal with going forward.
+
+  +slide
+    h1 Questions?
+    p= config.author.name
+      br
+      small
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        |  | 
+        a(href= `mailto:${config.author.email}`)= config.author.email
+
+  //- Resources
+  +slide.resourcetext
+    h3 Resources
+    ol
+      li
+        a(
+          href="http://ramdajs.com/"
+        ) Ramda, a functional library for JS
+      li
+        a(
+          href="https://tylermcginnis.com/imperative-vs-declarative-programming/"
+        ) Imperative vs Declarative Programming
+      li
+        a(
+          href="http://fr.umio.us/favoring-curry/"
+        ) Favoring Curry
+      li
+        a(
+          href="http://blog.ricardofilipe.com/post/javascript-composition-for-dummies"
+        ) A Gentle Introduction to Composition in JavaScript
 //-
+
+  - Intro (2m): Functional programming seems extremely complex, but it doesn't have to be
+  - Point 1 (10m): Avoid the Pyramid of Doom
+    - Example: Looping through an object
+    - How to do it:
+      - Use map instead of looping
+  - Point 2 (10m): Functions do one thing
+    - Example: 
+  - Point 3 (10m): Functions give the same output for the same input
+    - Example: favorite thing (whiskey -> scented soap)
+    - Point: 
+    - What this means: composability
+      - We can plug our functions together, end-to-end, to build SUPERFUNCTIONS
+
+  ---
+
   - Functional Programming seems like turbonerd territory:
     - math and computer science jargon is thick: referential transparency, 
       composability, immutability, side-effects, currying, monads, category 
       theory, tuples, arity, variadic functions...
-  - It's really hard to find an approachable explanation of functoinal programming
+  - It's really hard to find an approachable explanation of functional programming
     - Tutorials dive into complex theory
     - Huge amounts of background knowledge are expected
     - The examples are so simple they seem useless
