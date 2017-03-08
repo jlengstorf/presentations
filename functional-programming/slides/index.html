@@ -36,6 +36,7 @@
           <h1>Do Monads Matter?</h1>
           <h3>Functional programming for people who hate math.</h3>
           <p>by <a href="https://code.lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a> | <a href="mailto:jason@lengstorf.com">jason@lengstorf.com</a></small></p>
+          <p><small>Slides: <a href="https://git.io/vyzvq">git.io/vyzvq</a></small></p>
         </section>
         <section class="u--align-left u--text-light u--text-shadow" data-background="url(./images/bear-background@2x.jpg)">
           <h2>Who I Am</h2>
@@ -70,9 +71,8 @@
           <h3>What does this mean?</h3>
           <pre><code class="js">(s → a) → ((a, s) → s) → Lens s a
 Lens s a = Functor f => (a → f a) → s → f s</code></pre>
-          <p><small class="fragment">
-              (If you understand this, now would be a good time to fake an urgent
-              phone call — consider this your trigger warning.)
+          <p><small class="fragment">(If you <em>do</em> understand this, now would be a good time to fake an urgent
+              phone call.)
               </small></p>
           <aside class="notes">
             This is the "signature" of the Lens function in Ramda. I have no idea
@@ -96,7 +96,7 @@ R.over(xLens, R.negate, {x: 1, y: 2}); //=> {x: -1, y: 2}
           </aside>
         </section>
         <section>
-          <h3>And, of course: <strong>jargon</strong></h3>
+          <h3>And, of course: the <strong>jargon</strong></h3>
           <h2 class="wider"><span class="fragment">monads </span><em class="fragment">composability </em><span class="fragment">referential transparency </span><em class="fragment">arity </em><strong class="fragment">side-effects</strong><br><span class="fragment">immutability </span><em class="fragment">currying </em><strong class="fragment">category theory </strong><span class="fragment">tuples </span><span class="fragment">variadic functions</span></h2>
           <aside class="notes">
             It seems like only a certain group of people know what functional 
@@ -124,7 +124,7 @@ R.over(xLens, R.negate, {x: 1, y: 2}); //=> {x: -1, y: 2}
         </section>
         <section>
           <h2>What is functional programming?</h2>
-          <h4>(Jargon-free version)</h4>
+          <h4>(The <em>jargon-free</em> version)</h4>
           <aside class="notes">Before we get started, let me give a disclaimer: this is <em>not</em> going 
             to be a talk about the academically "correct" version of functional 
             programming — I don't know the theories, or the underlying math, or the 
@@ -305,6 +305,15 @@ const nextNumbers = numbers.map(double);</code></pre>
           <p>Try this live: <a href="https://goo.gl/7mYn2x">https://goo.gl/7mYn2x</a></p>
         </section>
         <section>
+          <h3>Protip: get comfortable with <em>array methods</em></h3>
+          <ul>
+            <li class="fragment"><code>Array.prototype.filter()</code></li>
+            <li class="fragment"><code>Array.prototype.sort()</code></li>
+            <li class="fragment"><code>Array.prototype.every()</code></li>
+            <li class="fragment">...and <a href="https://mzl.la/2mlIQPH">many more</a>.</li>
+          </ul>
+        </section>
+        <section>
           <h3>Rule #2:</h3>
           <h2>The Same Input<em class="hugify" style="display: block; margin-top: 0.5rem;font-size: 215%;line-height:0.75">Always</em>Returns the<br>Same Result</h2>
         </section>
@@ -422,6 +431,28 @@ describeMyFavoriteThing(newFavorite);</code></pre>
           <pre><code class="js">expect(clarifyFavoriteThing('cheddar'))
   .toEqual('aged cheddar');
 </code></pre>
+        </section>
+        <section>
+          <h3>This enables a 
+            <del>magical</del> functional technique:<em class="hugify">Composition</em>
+          </h3>
+          <pre><code class="js">function describeMyFavoriteThing(beverage) {
+  return `I prefer to drink quality ${beverage}.`;
+}
+function clarifyFavoriteThing(favoriteThing) {
+  return `aged ${favoriteThing}`;
+}
+const showClarifiedFavorite = R.compose(
+  describeMyFavoriteThing,
+  clarifyFavoriteThing
+);
+const result = showClarifiedFavorite('whiskey');</code></pre>
+          <p>Try this live:<a href="https://goo.gl/wQFhZK">https://goo.gl/wQFhZK</a></p>
+        </section>
+        <section>
+          <h3>Using <em>Composition</em> is the same as calling this:</h3>
+          <pre><code class="js">describeMyFavoriteThing(clarifyFavoriteThing('whiskey'));</code></pre>
+          <p class="fragment">It just means we don't need the data up front.</p>
         </section>
         <section>
           <h3>Rule #3:</h3>
@@ -553,7 +584,7 @@ add4(7); //=> 11
           </ol>
         </section>
         <section>
-          <h3>You can go deeper...</h3>
+          <h3>You can <em>go deeper</em>...</h3>
           <p class="fragment">
             ...but just these three techniques will save you hours of headaches and 
             make your code better and easier to deal with going forward.
@@ -567,10 +598,11 @@ add4(7); //=> 11
         <section class="resourcetext">
           <h3>Resources</h3>
           <ol>
-            <li><a href="http://ramdajs.com/">Ramda, a functional library for JS</a></li>
-            <li><a href="https://tylermcginnis.com/imperative-vs-declarative-programming/">Imperative vs Declarative Programming</a></li>
             <li><a href="http://fr.umio.us/favoring-curry/">Favoring Curry</a></li>
-            <li><a href="http://blog.ricardofilipe.com/post/javascript-composition-for-dummies">A Gentle Introduction to Composition in JavaScript</a></li>
+            <li><a href="http://blog.ricardofilipe.com/post/javascript-composition-for-dummies">Introduction to Composition in JS</a></li>
+            <li><a href="http://ramdajs.com/">Ramda, a functional library for JS</a></li>
+            <li><a href="https://mzl.la/2mlIQPH">Array methods in JavaScript</a></li>
+            <li><a href="https://tylermcginnis.com/imperative-vs-declarative-programming/">Imperative vs Declarative Programming</a></li>
           </ol>
         </section>
       </div>

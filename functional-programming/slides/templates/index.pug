@@ -36,6 +36,9 @@ block slides
         a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
         |  | 
         a(href= `mailto:${config.author.email}`)= config.author.email
+    
+    p
+      small Slides: #[a(href="https://git.io/vyzvq") git.io/vyzvq]
 
   //- Front-matter stuff
   +slide.u--align-left.u--text-light.u--text-shadow(data-background="url(./images/bear-background@2x.jpg)")
@@ -73,8 +76,8 @@ block slides
         Lens s a = Functor f => (a → f a) → s → f s
     p
       small.fragment.
-        (If you understand this, now would be a good time to fake an urgent
-        phone call — consider this your trigger warning.)
+        (If you #[em do] understand this, now would be a good time to fake an urgent
+        phone call.)
 
     aside.notes.
       This is the "signature" of the Lens function in Ramda. I have no idea
@@ -96,7 +99,7 @@ block slides
       now feel dumber about functional programming than I did before.
 
   +slide
-    h3 And, of course: #[strong jargon]
+    h3 And, of course: the #[strong jargon]
     h2.wider
       span.fragment monads 
       em.fragment composability 
@@ -135,7 +138,7 @@ block slides
   //- What is functional programming?
   +slide
     h2 What is functional programming?
-    h4 (Jargon-free version)
+    h4 (The #[em jargon-free] version)
     
     aside.notes.
       Before we get started, let me give a disclaimer: this is #[em not] going 
@@ -352,6 +355,21 @@ block slides
     p Try this live: 
       a(href="https://goo.gl/7mYn2x") https://goo.gl/7mYn2x
 
+  +slide
+    h3 Protip: get comfortable with #[em array methods]
+    ul
+      li.fragment
+        code Array.prototype.filter()
+      li.fragment
+        code Array.prototype.sort()
+      li.fragment
+        code Array.prototype.every()
+      li.fragment ...and 
+        a(
+          href="https://mzl.la/2mlIQPH"
+        ) many more
+        | .
+
   //- Rule #2: Same Input, Same Output
   +slide
     h3 Rule #2:
@@ -502,6 +520,32 @@ block slides
         expect(clarifyFavoriteThing('cheddar'))
           .toEqual('aged cheddar');
 
+  +slide
+    h3 This enables a #[del magical] functional technique:
+      em.hugify Composition
+    pre
+      code.js.
+        function describeMyFavoriteThing(beverage) {
+          return `I prefer to drink quality ${beverage}.`;
+        }
+        function clarifyFavoriteThing(favoriteThing) {
+          return `aged ${favoriteThing}`;
+        }
+        const showClarifiedFavorite = R.compose(
+          describeMyFavoriteThing,
+          clarifyFavoriteThing
+        );
+        const result = showClarifiedFavorite('whiskey');
+    p Try this live:
+        a(href="https://goo.gl/wQFhZK") https://goo.gl/wQFhZK
+
+  +slide
+    h3 Using #[em Composition] is the same as calling this:
+    pre
+      code.js.
+        describeMyFavoriteThing(clarifyFavoriteThing('whiskey'));
+    p.fragment It just means we don't need the data up front.
+
   //- Rule #3: Each Function Does One Thing
   +slide
     h3 Rule #3:
@@ -646,7 +690,7 @@ block slides
       li.fragment Write functions that do one thing
 
   +slide
-    h3 You can go deeper...
+    h3 You can #[em go deeper]...
     p.fragment.
       ...but just these three techniques will save you hours of headaches and 
       make your code better and easier to deal with going forward.
@@ -666,101 +710,25 @@ block slides
     ol
       li
         a(
-          href="http://ramdajs.com/"
-        ) Ramda, a functional library for JS
-      li
-        a(
-          href="https://tylermcginnis.com/imperative-vs-declarative-programming/"
-        ) Imperative vs Declarative Programming
-      li
-        a(
           href="http://fr.umio.us/favoring-curry/"
         ) Favoring Curry
       li
         a(
           href="http://blog.ricardofilipe.com/post/javascript-composition-for-dummies"
-        ) A Gentle Introduction to Composition in JavaScript
-//-
+        ) Introduction to Composition in JS
+      li
+        a(
+          href="http://ramdajs.com/"
+        ) Ramda, a functional library for JS
+      li
+        a(
+          href="https://mzl.la/2mlIQPH"
+        ) Array methods in JavaScript
+      li
+        a(
+          href="https://tylermcginnis.com/imperative-vs-declarative-programming/"
+        ) Imperative vs Declarative Programming
 
-  - Intro (2m): Functional programming seems extremely complex, but it doesn't have to be
-  - Point 1 (10m): Avoid the Pyramid of Doom
-    - Example: Looping through an object
-    - How to do it:
-      - Use map instead of looping
-  - Point 2 (10m): Functions do one thing
-    - Example: 
-  - Point 3 (10m): Functions give the same output for the same input
-    - Example: favorite thing (whiskey -> scented soap)
-    - Point: 
-    - What this means: composability
-      - We can plug our functions together, end-to-end, to build SUPERFUNCTIONS
-
-  ---
-
-  - Functional Programming seems like turbonerd territory:
-    - math and computer science jargon is thick: referential transparency, 
-      composability, immutability, side-effects, currying, monads, category 
-      theory, tuples, arity, variadic functions...
-  - It's really hard to find an approachable explanation of functional programming
-    - Tutorials dive into complex theory
-    - Huge amounts of background knowledge are expected
-    - The examples are so simple they seem useless
-  - People see all this math and run away screaming
-  - But functional programming is more than math
-  - The benefits of functional programming are huge:
-    - Debugging gets way easier
-    - Code is cleaner
-    - Testing takes half the effort
-    - Maintenance cost and effort drops
-  - But... how?
-  - Functional programming _can_ be really complex
-  - But it can also be pretty simple
-  - The central tenets of functional programming aren't that hard:
-    - Functions are the primary building block (duh), and data comes later
-    - Replace logical loops with functions that do the same thing
-    - If you put the same information in, you get the same result. Every time. Period.
-    - Every function does _one_ thing
-    - The result of one function can be easily fed to the next function
-  - The theoretical examples make this look really hard (and fairly useless)
-    - Show Ramda docs
-  - Practically, it's actually pretty simple
-    - Show a real example
-  - Let's dig in:
-  - Functions first, data last
-    - Show an example
-    - This is like building a road before driving on it
-      - You can see where a car will go, even if there are no cars currently on the road
-  - Same arguments, same result
-    - Explain what this means for maintenance
-    - Show a few real-world examples of why this is important
-  - Every function does one thing
-    - Show a bad example and point out the problems
-    - Show how to solve it by breaking it into smaller functions
-    - Which leads into...
-  - Functions accepting the result of functions
-    - This is called "composability"
-      - Show an example
-    - It relies on "referential transparency"
-      - Show an example
-    - Functional programming uses this to build complex actions out of single-purpose functions
-      - Show an example
-  - Replace logical loops with functions
-    - Show real-world examples of map, filter, reduce
-  - Functions don't change anything except the result
-    - This is referred to as "purity"
-    - If a function makes changes outside the result, it's "impure"
-    - Changes outside the result are "side-effects"
-      - Console logging and changing the DOM are both side-effects
-    - Wait — so we can't change the DOM if we're using functional programming?
-      - Doesn't that make this entirely useless?
-    - Introduce the concept of separating functions with side-effects
-      - Introduce "impure" functions at the last minute so it's easier to debug
-  - You don't have to go deep to use functional programming
-    - You can mix functional and non-functional programming practices
-    - The goal is better code, not theoretical perfection
-  - Real application review: Instagram API wrapper
-    - Show the various steps and how we handle them functionally
-  - Q&A
 
 block styles
   link(
