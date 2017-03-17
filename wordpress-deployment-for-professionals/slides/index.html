@@ -36,7 +36,7 @@
           <h1>WordPress Deployment</h1>
           <h3>How to Manage Multiple WordPress Installs in 30 Minutes or Less</h3>
           <p>by <a href="https://code.lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a> | <a href="mailto:jason@lengstorf.com">jason@lengstorf.com</a></small></p>
-          <p><small>Slides: <a href="https://git.io/vyzvq">git.io/vyzvq</a></small></p>
+          <p><small>Slides: <a href="https://git.io/vy1GU">git.io/vy1GU</a></small></p>
         </section>
         <section class="u--align-left u--text-light u--text-shadow" data-background="url(./images/bear-background@2x.jpg)">
           <h2>Who I Am</h2>
@@ -65,7 +65,99 @@
           </ul>
         </section>
         <section>
-          <h1>TKTK</h1>
+          <h2>Straw Poll</h2><img class="fragment" src="./images/deploy-wordpress/live-dangerously.gif" alt="Austin Powers">
+          <aside class="notes">
+            <ul>
+              <li>Who here works at an agency or large company? And who’s a freelancer?</li>
+              <li>Who here develops locally before deploying? On a development server? In production?</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h2>How do you <strong>move</strong> a WordPress install?</h2>
+          <ul>
+            <li class="fragment">Continuous deployment/integration tool?</li>
+            <li class="fragment">Git?</li>
+            <li class="fragment">FTP and manual MySQL migration?</li>
+          </ul>
+        </section>
+        <section><img src="./images/deploy-wordpress/wp-migration.png">
+        </section>
+        <section>
+          <h3>Every manual step<br>in your dev process increases the risk of <strong style="display: block; font-size: 275%;">failure</strong></h3>
+          <p class="fragment"><small>(This is a good thing to tweet. #wcatl)</small></p>
+        </section>
+        <section>
+          <h3>Moving WordPress sites is<br><span style="font-size: 104%; opacity: 1;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.9;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.8;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.7;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.6;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.5;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.4;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.3;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.2;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.1;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.05;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.025;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.0125;">complicated &amp; repetitive</span></h3>
+        </section>
+        <section>
+          <h3>People are <strong>really bad</strong> at complicated &amp; repetitive</h3><img src="./images/deploy-wordpress/lucy-candy-factory-o.gif" alt="I Love Lucy">
+          <aside class="notes">
+            In fact, people tend to get worse over time at complicated &amp; repetitive tasks.
+            We settle in, get bored, and start taking shortcuts.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>But There's a <strong class="hugify">bigger risk</strong>with complex processes</h3>
+        </section>
+        <section>
+          <h2> <span class="hugify alright-calm-down-a-little">Nobody <em>Follows</em> Them</span></h2>
+        </section>
+        <section>
+          <h2>And you end up coding in production.</h2>
+        </section>
+        <section class="u--text-light u--text-shadow" data-background="url(./images/deploy-wordpress/coding-in-production.gif)">
+          <h3>#codinginproduction</h3>
+        </section>
+        <section>
+          <h3>I developed WordPress sites <strong class="hugify">the hard way</strong> for way, way, <em>way</em> too long</h3>
+        </section>
+        <section>
+          <h2>Then I accidentally the <strong>whole server</strong></h2>
+          <aside class="notes">
+            I was trying to develop a plugin that did something with images, and I 
+            wrote a cleanup function that was <em>really good</em> at cleaning up.
+            
+          </aside>
+        </section>
+        <section>
+          <h2>...and I was hosting 8 client sites on it...</h2>
+          <aside class="notes">
+            At the time, I was using a shared hosting plan, and I’d just create a new folder
+            and add a new site in cPanel and create a new database and let ’er rip.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>...and I didn't have backups</h3>
+        </section>
+        <section>
+          <h2>So I <em>evolved</em></h2><img src="./images/deploy-wordpress/evolve.gif" alt="Pokemon">
+        </section>
+        <section>
+          <h2>First there was<em class="hugify">WPEngine</em></h2>
+        </section>
+        <section>
+          <h3>WPEngine and its ilk offer:</h3>
+          <ul style="width: 85%;">
+            <li class="fragment">Git Deployment</li>
+            <li class="fragment">Automated Backups</li>
+            <li class="fragment">Update Management</li>
+            <li class="fragment">Staging Installs w/One-Click Migration</li>
+          </ul>
+          <aside class="notes"></aside>
+        </section>
+        <section>
+          <h3>...but they're <strong>'spensive</strong></h3><img src="./images/deploy-wordpress/spensive.gif" alt="'spensive">
+          <aside class="notes">
+            I tried to sell my clients on WPEngine, but many of them balked at $29/month. Plus,
+            that cut into my ability to charge for ongoing maintenance.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>Managed WordPress hosting doesn't solve the problem of <em>local development</em></h3>
         </section>
         <section>
           <h1>Questions?</h1>
@@ -85,7 +177,7 @@
     </div>
     <footer>
       <ul class="inline">
-        <li>“WordPress Deployment” by <a href="https://code.lengstorf.com/">Jason Lengstorf</a> (slides: <a href="https://git.io/vyzvq">git.io/vyzvq</a>)</li>
+        <li>“WordPress Deployment” by <a href="https://code.lengstorf.com/">Jason Lengstorf</a> (slides: <a href="https://git.io/vy1GU">git.io/vy1GU</a>)</li>
         <li><a href="https://twitter.com/jlengstorf">@jlengstorf</a></li>
         <li><a href="https://github.com/jlengstorf">github.com/jlengstorf</a></li>
       </ul>

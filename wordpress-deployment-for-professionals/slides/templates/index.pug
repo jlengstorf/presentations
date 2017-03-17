@@ -17,7 +17,7 @@ block append config
     };
     
     config.slides = {
-      link: 'https://git.io/vyzvq',
+      link: 'https://git.io/vy1GU',
     };
 
     config.conference = {
@@ -68,8 +68,178 @@ block slides
       li.fragment Author of 3 books on development stuff
       li.fragment World champion purveyor of bear hugs
 
+  //- Pt. I — WordPress development is complex
   +slide
-    h1 TKTK
+    h2 Straw Poll
+    img.fragment(
+      src="./images/deploy-wordpress/live-dangerously.gif"
+      alt="Austin Powers"
+    )
+
+    aside.notes
+      ul
+        li Who here works at an agency or large company? And who’s a freelancer?
+        li Who here develops locally before deploying? On a development server? In production?
+
+  +slide
+    h2 How do you #[strong move] a WordPress install?
+    ul
+      li.fragment Continuous deployment/integration tool?
+      li.fragment Git?
+      li.fragment FTP and manual MySQL migration?
+
+  +slide
+    img(
+      src="./images/deploy-wordpress/wp-migration.png"
+    )
+  
+  +slide
+    h3
+      | Every manual step#[br]in your dev process increases the risk of 
+      strong(style="display: block; font-size: 275%") failure
+    p.fragment
+      small (This is a good thing to tweet. ##{config.conference.hashtag})
+
+  +slide
+    h3 Moving WordPress sites is
+      br
+      span(
+        style="font-size: 104%; opacity: 1"
+      ) complicated &amp; repetitive
+      br
+      span(
+        style="font-size: 104%; opacity: 0.9"
+      ) complicated &amp; repetitive
+      br
+      span(
+        style="font-size: 104%; opacity: 0.8"
+      ) complicated &amp; repetitive
+      br
+      span(
+        style="font-size: 104%; opacity: 0.7"
+      ) complicated &amp; repetitive
+      br
+      span(
+        style="font-size: 104%; opacity: 0.6"
+      ) complicated &amp; repetitive
+      br
+      span(
+        style="font-size: 104%; opacity: 0.5"
+      ) complicated &amp; repetitive
+      br
+      span(
+        style="font-size: 104%; opacity: 0.4"
+      ) complicated &amp; repetitive
+      br
+      span(
+        style="font-size: 104%; opacity: 0.3"
+      ) complicated &amp; repetitive
+      br
+      span(
+        style="font-size: 104%; opacity: 0.2"
+      ) complicated &amp; repetitive
+      br
+      span(
+        style="font-size: 104%; opacity: 0.1"
+      ) complicated &amp; repetitive
+      br
+      span(
+        style="font-size: 104%; opacity: 0.05"
+      ) complicated &amp; repetitive
+      br
+      span(
+        style="font-size: 104%; opacity: 0.025"
+      ) complicated &amp; repetitive
+      br
+      span(
+        style="font-size: 104%; opacity: 0.0125"
+      ) complicated &amp; repetitive
+
+  +slide
+    h3 People are #[strong really bad] at complicated &amp; repetitive
+    img(
+      src="./images/deploy-wordpress/lucy-candy-factory-o.gif"
+      alt="I Love Lucy"
+    )
+
+    aside.notes.
+      In fact, people tend to get worse over time at complicated &amp; repetitive tasks.
+      We settle in, get bored, and start taking shortcuts.
+  
+  +slide
+    h3 But There's a 
+      strong.hugify bigger risk
+      | with complex processes
+
+  +slide
+    h2 
+      span.hugify.alright-calm-down-a-little Nobody #[em Follows] Them
+
+  +slide
+    h2 And you end up coding in production.
+  
+  +slide.u--text-light.u--text-shadow(
+    data-background="url(./images/deploy-wordpress/coding-in-production.gif)"
+  )
+    h3 #codinginproduction
+
+  +slide
+    h3 I developed WordPress sites 
+      strong.hugify the hard way
+      |  for way, way, #[em way] too long
+
+  +slide
+    h2 Then I accidentally the #[strong whole server]
+
+    aside.notes.
+      I was trying to develop a plugin that did something with images, and I 
+      wrote a cleanup function that was #[em really good] at cleaning up.
+
+  +slide
+    h2 ...and I was hosting 8 client sites on it...
+
+    aside.notes.
+      At the time, I was using a shared hosting plan, and I’d just create a new folder
+      and add a new site in cPanel and create a new database and let ’er rip.
+
+  +slide
+    h3 ...and I didn't have backups
+
+  +slide
+    h2 So I #[em evolved]
+    img(
+      src="./images/deploy-wordpress/evolve.gif"
+      alt="Pokemon"
+    )
+
+  +slide
+    h2 First there was
+      em.hugify WPEngine
+
+  +slide
+    h3 WPEngine and its ilk offer:
+    ul(style="width: 85%")
+      li.fragment Git Deployment
+      li.fragment Automated Backups
+      li.fragment Update Management
+      li.fragment Staging Installs w/One-Click Migration
+    
+    aside.notes.
+
+
+  +slide
+    h3 ...but they're #[strong 'spensive]
+    img(
+      src="./images/deploy-wordpress/spensive.gif"
+      alt="'spensive"
+    )
+
+    aside.notes.
+      I tried to sell my clients on WPEngine, but many of them balked at $29/month. Plus,
+      that cut into my ability to charge for ongoing maintenance.
+
+  +slide
+    h3 Managed WordPress hosting doesn't solve the problem of #[em local development]
 
   +slide
     h1 Questions?
