@@ -74,18 +74,41 @@
           </aside>
         </section>
         <section>
+          <h3>WordPress Workflow</h3>
+          <ol>
+            <li class="fragment">Install a local copy of WordPress</li>
+            <li class="fragment">Build the site</li>
+            <li class="fragment">Load content and media</li>
+            <li class="fragment">Move the local site to a staging server for review</li>
+            <li class="fragment">Make changes on local</li>
+            <li class="fragment">Move local changes to staging</li>
+            <li class="fragment">After approval, move staging to production</li>
+          </ol>
+          <aside class="notes">
+            This is a recommended workflow. Working locally is efficient and allows teams to 
+            work on the same site simultaneously. A staging server allows clients to review
+            changes before they go live. While you <em>can</em> get away without them, it’s 
+            generally a good idea to include these steps in your workflow.
+            
+          </aside>
+        </section>
+        <section>
           <h2>How do you <strong>move</strong> a WordPress install?</h2>
-          <ul>
-            <li class="fragment">Continuous deployment/integration tool?</li>
-            <li class="fragment">Git?</li>
-            <li class="fragment">FTP and manual MySQL migration?</li>
-          </ul>
+          <aside class="notes">
+            Continuous deployment/integration tool? Git? FTP and manual MySQL migration?
+            
+          </aside>
         </section>
         <section><img src="./images/deploy-wordpress/wp-migration.png">
+          <aside class="notes">
+            This is how the WordPress docs recommend migrating a site. This is a 
+            <em>lot of steps</em>. And they're all manual. Which is a problem, because...
+            
+          </aside>
         </section>
         <section>
           <h3>Every manual step<br>in your dev process increases the risk of <strong style="display: block; font-size: 275%;">failure</strong></h3>
-          <p class="fragment"><small>(This is a good thing to tweet. #wcatl)</small></p>
+          <p><small class="fragment">(Wow, what a great thing to tweet!)<br><strong class="fragment">#wcatl</strong></small></p>
         </section>
         <section>
           <h3>Moving WordPress sites is<br><span style="font-size: 104%; opacity: 1;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.9;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.8;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.7;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.6;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.5;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.4;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.3;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.2;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.1;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.05;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.025;">complicated &amp; repetitive</span><br><span style="font-size: 104%; opacity: 0.0125;">complicated &amp; repetitive</span></h3>
@@ -99,7 +122,7 @@
           </aside>
         </section>
         <section>
-          <h3>But There's a <strong class="hugify">bigger risk</strong>with complex processes</h3>
+          <h3>However, there's a<strong class="hugify">bigger risk</strong>with complex processes</h3>
         </section>
         <section>
           <h2> <span class="hugify alright-calm-down-a-little">Nobody <em>Follows</em> Them</span></h2>
@@ -133,23 +156,74 @@
           <h3>...and I didn't have backups</h3>
         </section>
         <section>
-          <h2>So I <em>evolved</em></h2><img src="./images/deploy-wordpress/evolve.gif" alt="Pokemon">
+          <h2>It was time to <em class="hugify">evolve</em></h2><img src="./images/deploy-wordpress/evolve.gif" alt="Pokemon">
+          <aside class="notes">
+            At this point I realized that I needed to start handling my development process
+            like a professional if I expected anyone to take me seriously as a developer. You
+            can bounce back from a catastrophe like this once — GitLab is a great example of 
+            a company facing the worst and handling it like pros — but your clients aren’t
+            going to stick around if this becomes a regular thing.
+            
+          </aside>
         </section>
         <section>
-          <h2>First there was<em class="hugify">WPEngine</em></h2>
+          <h3>I set out to automate <em class="hugify">everything</em></h3>
         </section>
         <section>
-          <h3>WPEngine and its ilk offer:</h3>
+          <h3>Robots are <strong>really good</strong> at complicated &amp; repetitive</h3><img src="./images/deploy-wordpress/robots.gif" alt="I Love Lucy">
+        </section>
+        <section>
+          <h3><span class="hugify" style="font-size: 270%;">The Goal</span><em>Automatically</em> handle:</h3>
+          <ol>
+            <li class="fragment">Moving theme and plugin files between servers</li>
+            <li class="fragment">Copying databases between servers</li>
+            <li class="fragment">Doing a WordPress-safe find-and-replace for URLs</li>
+            <li class="fragment">Moving uploaded media between servers</li>
+            <li class="fragment">Migrating plugin activation status</li>
+            <li class="fragment">Supports local development</li>
+          </ol>
+        </section>
+        <section>
+          <h3>Round 1:<span class="hugify"><em>Managed</em> WordPress</span></h3><small>WPEngine, Flywheel Sites, MediaTemple, etc.</small>
+        </section>
+        <section>
+          <h3>Managed WordPress hosting offers:</h3>
           <ul style="width: 85%;">
-            <li class="fragment">Git Deployment</li>
+            <li class="fragment">Git Deployment (sometimes)</li>
             <li class="fragment">Automated Backups</li>
-            <li class="fragment">Update Management</li>
+            <li class="fragment">Update Management and Security Audits</li>
             <li class="fragment">Staging Installs w/One-Click Migration</li>
           </ul>
-          <aside class="notes"></aside>
+          <aside class="notes">
+            The last time I checked, only WPEngine had a Git-based deployment. Automated 
+            backups usually cost extra, but they're <em>really</em> nice to have if something
+            goes wrong. Vulnerability alerts and automatic core updates are also pretty
+            fantastic. Plus — bonus — we now have painless staging sites. How does this
+            match up with our wishlist?
+            
+          </aside>
         </section>
         <section>
-          <h3>...but they're <strong>'spensive</strong></h3><img src="./images/deploy-wordpress/spensive.gif" alt="'spensive">
+          <h3>Managed WordPress:</h3>
+          <p><small>(Only on staging and production servers!)</small></p>
+          <ol>
+            <li class="fragment">Moving theme and plugin files between servers</li>
+            <li class="fragment">Copying databases between servers</li>
+            <li class="fragment">Doing a WordPress-safe find-and-replace for URLs</li>
+            <li class="fragment">Moving uploaded media between servers</li>
+            <li class="fragment">Migrating plugin activation status</li>
+            <li class="fragment" style="text-decoration: line-through;">Supports local development</li>
+          </ol>
+          <aside class="notes">
+            The benefits are only there if you do everything within the managed WordPress
+            ecosystem, too. You can’t have a staging server in one place and production in
+            another. That’s not typically a problem, but vendor lock-in is always worth 
+            mentioning as you consider options.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>...and they're <strong>'spensive</strong></h3><img src="./images/deploy-wordpress/spensive.gif" alt="'spensive">
           <aside class="notes">
             I tried to sell my clients on WPEngine, but many of them balked at $29/month. Plus,
             that cut into my ability to charge for ongoing maintenance.
@@ -157,7 +231,208 @@
           </aside>
         </section>
         <section>
-          <h3>Managed WordPress hosting doesn't solve the problem of <em>local development</em></h3>
+          <h3>How do we solve<br>the problem of<br><em>local development</em>?</h3>
+          <aside class="notes">
+            I have seen some options for developing locally while using managed WordPress.
+            Flywheel is a good example of this. I haven’t tried it, but it may be worth
+            checking out as an alternative to what I’m talking about here today. Again, though:
+            this means vendor lock-in.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>Round 2:<em class="hugify">Trellis</em></h3>
+        </section>
+        <section>
+          <h3>Trellis offers:</h3>
+          <ul style="width: 85%;">
+            <li class="fragment">Open source (free as in beer)</li>
+            <li class="fragment">5-minute local setup</li>
+            <li class="fragment">One-command deployment to staging and production</li>
+            <li class="fragment">Zero-effort SSL certificates</li>
+            <li class="fragment">Git-based workflow</li>
+          </ul>
+          <aside class="notes">
+            Trellis is a project from the Roots team, which is an open-source effort to 
+            make WordPress easier to work with. It’s an Ansible-based deployment 
+            configuration for WordPress that makes it extremely simple to manage your
+            theme, plugins, and various settings in a way that makes team development a 
+            breeze. The local environment is set up through Docker, and the staging and
+            production versions run on a VPS 
+            
+          </aside>
+        </section>
+        <section>
+          <h2>What is Trellis?</h2>
+          <ul>
+            <li class="fragment">Ansible-based deployment playbook for WordPress</li>
+            <li class="fragment">Creates a Docker container locally</li>
+            <li class="fragment">Configures a VPS (e.g. Digital Ocean) for staging and production</li>
+            <li class="fragment">Creates free SSL certificates through Let’s Encrypt</li>
+            <li class="fragment">Makes all configuration shareable
+              <ul>
+                <li class="fragment">This means developing on a team is <em>really</em> easy</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>Five steps to (local) glory:</h3>
+          <ol>
+            <li class="fragment">Install the dependencies</li>
+            <li class="fragment">Clone Trellis from GitHub</li>
+            <li class="fragment">Clone Bedrock from GitHub</li>
+            <li class="fragment">Configure Trellis</li>
+            <li class="fragment">Start the local site with one command</li>
+          </ol>
+        </section>
+        <section>
+          <h3>"Configure" sounds <strong>scary</strong></h3>
+        </section>
+        <section>
+          <h3>I promise it's not too bad</h3><img src="./images/deploy-wordpress/trellis-config-local.png">
+        </section>
+        <section>
+          <h3>One more change...</h3><img src="./images/deploy-wordpress/trellis-config-local-pt2.png">
+        </section>
+        <section>
+          <h3>Start the party</h3>
+          <pre><code class="bash">vagrant up
+</code></pre>
+        </section>
+        <section>
+          <h1><em>BAM!</em></h1><img src="./images/deploy-wordpress/local-dev-offline.png">
+        </section>
+        <section>
+          <h3>What about <em>going live</em>?</h3>
+        </section>
+        <section>
+          <h3>Seven steps to (live) glory:</h3>
+          <ol>
+            <li class="fragment">Create a virtual private server (VPS)</li>
+            <li class="fragment">Point your domain to the VPS</li>
+            <li class="fragment">Configure Trellis</li>
+            <li class="fragment">Encrypt sensitive stuff</li>
+            <li class="fragment">Put your site on GitHub</li>
+            <li class="fragment">Provision the server with one command</li>
+            <li class="fragment">Go live with one command</li>
+          </ol>
+        </section>
+        <section>
+          <h1>What the eff is a <em>VPS</em>?</h1>
+          <ul style="width: 90%;">
+            <li class="fragment">Private server that you have full control over</li>
+            <li class="fragment">Allows you to customize everything
+              <ul>
+                <li class="fragment">(but you don't have to)</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>How to <em>set up your VPS</em></h3>
+          <p><small>(I'm using DigitalOcean, but you can use any VPS you prefer.)</small></p>
+          <ul>
+            <li class="fragment"><strong>Distribution:</strong>  Ubuntu 16.04.2 x64</li>
+            <li class="fragment"><strong>Size:</strong> $5/month</li>
+            <li class="fragment"><strong>Region:</strong> Closest to your audience</li>
+            <li class="fragment"><strong>Options:</strong> Ideally, choose backups</li>
+            <li class="fragment"><strong>IMPORTANT:</strong> Add your SSH key</li>
+          </ul>
+          <aside class="notes">
+            Make sure to add your SSH key. If you’ve never done this, 
+            I have an article to walk you through it with links to
+            extra resources.
+            
+          </aside>
+        </section>
+        <section>
+          <h2>Point <em>your domain</em> to the VPS</h2>
+          <p>Check with your domain company for instructions.<br><small>(Create an A record pointing to your VPS's IP address)</small></p>
+          <aside class="notes">
+            This is required so someone visiting your domain (e.g. mysite.com)
+            will be directed to your new server.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>Configure <em>Trellis</em></h3><img src="./images/deploy-wordpress/trellis-config-live.png" alt="Trellis config">
+        </section>
+        <section>
+          <h3>Configure <em>Trellis</em></h3><img src="./images/deploy-wordpress/trellis-config-live-pt2.png" alt="Trellis config">
+        </section>
+        <section>
+          <h1><em>IMPORTANT</em></h1>
+          <h3>Encrypt passwords &amp; salts <strong>before</strong> you share them or commit them to GitHub</h3>
+          <p><a href="https://roots.io/trellis/docs/vault/">https://roots.io/trellis/docs/vault/</a></p>
+        </section>
+        <section>
+          <h3>Configure <em>Trellis</em></h3><img src="./images/deploy-wordpress/trellis-config-live-pt3.png" alt="Trellis config">
+        </section>
+        <section>
+          <h3>Put your site <em>on GitHub</em></h3><img src="./images/deploy-wordpress/github.png" alt="GitHub">
+          <aside class="notes">
+            Don't be intimidated by Git. It will save you SO much time
+            as your business grows.
+            
+          </aside>
+        </section>
+        <section>
+          <h3><em>Provision</em> the VPS</h3>
+          <pre><code class="js">ansible-playbook server.yml -e env=production</code></pre>
+          <p><small>Make sure you're in the /trellis directory to run this.</small></p>
+          <aside class="notes">
+            This takes a bit. Allow 5–10 minutes for the script to run.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>Go <em>live</em></h3>
+          <pre><code class="js">./deploy.sh production roots.code.lengstorf.com
+</code></pre>
+        </section>
+        <section>
+          <h3>Check the <em>live site</em> in a browser</h3><img src="./images/deploy-wordpress/trellis-live-site.jpg" alt="Trellis site live">
+        </section>
+        <section>
+          <h2><strong class="hugify">Wait</strong>Where's the database?</h2>
+        </section>
+        <section>
+          <h3>Add the <em>WP Sync DB</em> plugin</h3>
+        </section>
+        <section>
+          <h3>Configure the live site to <em>accept push</em> requests</h3><img src="./images/deploy-wordpress/wp-sync-db-live.jpg" alt="WP Sync DB">
+        </section>
+        <section>
+          <h3>Configure the local site to <em>push</em> to the live site</h3><img src="./images/deploy-wordpress/wp-sync-db-local.jpg" alt="WP Sync DB">
+        </section>
+        <section>
+          <h3><em>Start the push</em> on the local site</h3><img src="./images/deploy-wordpress/wp-sync-db-running.jpg" alt="WP Sync DB">
+        </section>
+        <section>
+          <h3>What just happened?</h3><img src="./images/deploy-wordpress/yayyayyay.gif" alt="so excite" style="margin: 0; max-width: 60%;">
+        </section>
+        <section>
+          <h3>What just happened?</h3>
+          <ol>
+            <li class="fragment">We configured a local development site</li>
+            <li class="fragment">We configured a live site</li>
+            <li class="fragment">We pushed the local site's changes to the live site</li>
+            <li class="fragment">We synced the database in one click</li>
+          </ol>
+        </section>
+        <section>
+          <h3>After it's set up, further syncs take <em>seconds</em></h3>
+        </section>
+        <section>
+          <h3>This will <em>save you days</em> as you continue building sites</h3>
+        </section>
+        <section>
+          <h3>Welcome to <em>elite-level efficiency</em></h3><img src="./images/deploy-wordpress/efficiency.gif" alt="efficiency">
+        </section>
+        <section>
+          <h3>I have a <em>video walkthrough</em> of the whole process at</h3>
+          <p> <a href="https://git.io/vyd2O">git.io/vyd2O</a></p>
         </section>
         <section>
           <h1>Questions?</h1>
@@ -166,6 +441,8 @@
         <section class="resourcetext">
           <h3>Resources</h3>
           <ol>
+            <li><a href="https://git.io/vyd2O">Video + Written Tutorial for Trellis</a></li>
+            <li><a href="https://m.do.co/c/9d561578e13a">DigitalOcean ($10 credit)</a></li>
             <li><a href="https://roots.io/trellis/">Trellis</a></li>
             <li><a href="https://deliciousbrains.com/wp-migrate-db-pro/">WP Migrate DB Pro</a></li>
           </ol>

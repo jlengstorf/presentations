@@ -82,23 +82,44 @@ block slides
         li Who here develops locally before deploying? On a development server? In production?
 
   +slide
+    h3 WordPress Workflow
+    ol
+      li.fragment Install a local copy of WordPress
+      li.fragment Build the site
+      li.fragment Load content and media
+      li.fragment Move the local site to a staging server for review
+      li.fragment Make changes on local
+      li.fragment Move local changes to staging
+      li.fragment After approval, move staging to production
+
+    aside.notes.
+      This is a recommended workflow. Working locally is efficient and allows teams to 
+      work on the same site simultaneously. A staging server allows clients to review
+      changes before they go live. While you #[em can] get away without them, it’s 
+      generally a good idea to include these steps in your workflow.
+
+  +slide
     h2 How do you #[strong move] a WordPress install?
-    ul
-      li.fragment Continuous deployment/integration tool?
-      li.fragment Git?
-      li.fragment FTP and manual MySQL migration?
+    aside.notes.
+      Continuous deployment/integration tool? Git? FTP and manual MySQL migration?
 
   +slide
     img(
       src="./images/deploy-wordpress/wp-migration.png"
     )
+
+    aside.notes.
+      This is how the WordPress docs recommend migrating a site. This is a 
+      #[em lot of steps]. And they're all manual. Which is a problem, because...
   
   +slide
     h3
       | Every manual step#[br]in your dev process increases the risk of 
       strong(style="display: block; font-size: 275%") failure
-    p.fragment
-      small (This is a good thing to tweet. ##{config.conference.hashtag})
+    p
+      small.fragment (Wow, what a great thing to tweet!)
+        br
+        strong.fragment ##{config.conference.hashtag}
 
   +slide
     h3 Moving WordPress sites is
@@ -167,7 +188,7 @@ block slides
       We settle in, get bored, and start taking shortcuts.
   
   +slide
-    h3 But There's a 
+    h3 However, there's a
       strong.hugify bigger risk
       | with complex processes
 
@@ -206,29 +227,84 @@ block slides
     h3 ...and I didn't have backups
 
   +slide
-    h2 So I #[em evolved]
+    h2 It was time to 
+      em.hugify evolve
     img(
       src="./images/deploy-wordpress/evolve.gif"
       alt="Pokemon"
     )
 
-  +slide
-    h2 First there was
-      em.hugify WPEngine
+    aside.notes.
+      At this point I realized that I needed to start handling my development process
+      like a professional if I expected anyone to take me seriously as a developer. You
+      can bounce back from a catastrophe like this once — GitLab is a great example of 
+      a company facing the worst and handling it like pros — but your clients aren’t
+      going to stick around if this becomes a regular thing.
 
   +slide
-    h3 WPEngine and its ilk offer:
+    h3 I set out to automate #[em.hugify everything]
+
+  +slide
+    h3 Robots are #[strong really good] at complicated &amp; repetitive
+    img(
+      src="./images/deploy-wordpress/robots.gif"
+      alt="I Love Lucy"
+    )
+  
+  +slide
+    h3
+      span.hugify(style="font-size: 270%") The Goal
+      em Automatically
+      |  handle:
+    ol
+      li.fragment Moving theme and plugin files between servers
+      li.fragment Copying databases between servers
+      li.fragment Doing a WordPress-safe find-and-replace for URLs
+      li.fragment Moving uploaded media between servers
+      li.fragment Migrating plugin activation status
+      li.fragment Supports local development
+
+  +slide
+    h3 Round 1:
+      span.hugify #[em Managed] WordPress
+    small WPEngine, Flywheel Sites, MediaTemple, etc.
+
+  +slide
+    h3 Managed WordPress hosting offers:
     ul(style="width: 85%")
-      li.fragment Git Deployment
+      li.fragment Git Deployment (sometimes)
       li.fragment Automated Backups
-      li.fragment Update Management
+      li.fragment Update Management and Security Audits
       li.fragment Staging Installs w/One-Click Migration
     
     aside.notes.
-
+      The last time I checked, only WPEngine had a Git-based deployment. Automated 
+      backups usually cost extra, but they're #[em really] nice to have if something
+      goes wrong. Vulnerability alerts and automatic core updates are also pretty
+      fantastic. Plus — bonus — we now have painless staging sites. How does this
+      match up with our wishlist?
+  
+  +slide
+    h3 Managed WordPress:
+    p
+      small (Only on staging and production servers!)
+    ol
+      li.fragment Moving theme and plugin files between servers
+      li.fragment Copying databases between servers
+      li.fragment Doing a WordPress-safe find-and-replace for URLs
+      li.fragment Moving uploaded media between servers
+      li.fragment Migrating plugin activation status
+      li.fragment(style="text-decoration: line-through;") Supports local development
+    
+    
+    aside.notes.
+      The benefits are only there if you do everything within the managed WordPress
+      ecosystem, too. You can’t have a staging server in one place and production in
+      another. That’s not typically a problem, but vendor lock-in is always worth 
+      mentioning as you consider options.
 
   +slide
-    h3 ...but they're #[strong 'spensive]
+    h3 ...and they're #[strong 'spensive]
     img(
       src="./images/deploy-wordpress/spensive.gif"
       alt="'spensive"
@@ -239,7 +315,255 @@ block slides
       that cut into my ability to charge for ongoing maintenance.
 
   +slide
-    h3 Managed WordPress hosting doesn't solve the problem of #[em local development]
+    h3 How do we solve#[br]the problem of#[br]#[em local development]?
+
+    aside.notes.
+      I have seen some options for developing locally while using managed WordPress.
+      Flywheel is a good example of this. I haven’t tried it, but it may be worth
+      checking out as an alternative to what I’m talking about here today. Again, though:
+      this means vendor lock-in.
+
+  +slide
+    h3 Round 2:
+      em.hugify Trellis
+
+  +slide
+    h3 Trellis offers:
+    ul(style="width: 85%")
+      li.fragment Open source (free as in beer)
+      li.fragment 5-minute local setup
+      li.fragment One-command deployment to staging and production
+      li.fragment Zero-effort SSL certificates
+      li.fragment Git-based workflow
+    
+    aside.notes.
+      Trellis is a project from the Roots team, which is an open-source effort to 
+      make WordPress easier to work with. It’s an Ansible-based deployment 
+      configuration for WordPress that makes it extremely simple to manage your
+      theme, plugins, and various settings in a way that makes team development a 
+      breeze. The local environment is set up through Docker, and the staging and
+      production versions run on a VPS 
+
+  +slide
+    h2 What is Trellis?
+    ul
+      li.fragment Ansible-based deployment playbook for WordPress
+      li.fragment Creates a Docker container locally
+      li.fragment Configures a VPS (e.g. Digital Ocean) for staging and production
+      li.fragment Creates free SSL certificates through Let’s Encrypt
+      li.fragment Makes all configuration shareable
+        ul
+          li.fragment This means developing on a team is #[em really] easy
+
+  +slide
+    h3 Five steps to (local) glory:
+    ol
+      li.fragment Install the dependencies
+      li.fragment Clone Trellis from GitHub
+      li.fragment Clone Bedrock from GitHub
+      li.fragment Configure Trellis
+      li.fragment Start the local site with one command
+
+  +slide
+    h3 "Configure" sounds #[strong scary]
+
+  +slide
+    h3 I promise it's not too bad
+    img(
+      src="./images/deploy-wordpress/trellis-config-local.png"
+    )
+
+  +slide
+    h3 One more change...
+    img(
+      src="./images/deploy-wordpress/trellis-config-local-pt2.png"
+    )
+
+  +slide
+    h3 Start the party
+    pre
+      code.bash.
+        vagrant up
+
+  +slide
+    h1
+      em BAM!
+    img(
+      src="./images/deploy-wordpress/local-dev-offline.png"
+    )
+
+  +slide
+    h3 What about #[em going live]?
+  
+  +slide
+    h3 Seven steps to (live) glory:
+    ol
+      li.fragment Create a virtual private server (VPS)
+      li.fragment Point your domain to the VPS
+      li.fragment Configure Trellis
+      li.fragment Encrypt sensitive stuff
+      li.fragment Put your site on GitHub
+      li.fragment Provision the server with one command
+      li.fragment Go live with one command
+
+  +slide
+    h1 What the eff is a #[em VPS]?
+    ul(style="width: 90%")
+      li.fragment Private server that you have full control over
+      li.fragment Allows you to customize everything
+        ul
+          li.fragment (but you don't have to)
+
+  +slide
+    h3 How to #[em set up your VPS]
+    p
+      small (I'm using DigitalOcean, but you can use any VPS you prefer.)
+    ul
+      li.fragment #[strong Distribution:]  Ubuntu 16.04.2 x64
+      li.fragment #[strong Size:] $5/month
+      li.fragment #[strong Region:] Closest to your audience
+      li.fragment #[strong Options:] Ideally, choose backups
+      li.fragment #[strong IMPORTANT:] Add your SSH key
+    
+    aside.notes.
+      Make sure to add your SSH key. If you’ve never done this, 
+      I have an article to walk you through it with links to
+      extra resources.
+
+  +slide
+    h2 Point #[em your domain] to the VPS
+    p Check with your domain company for instructions.
+      br
+      small (Create an A record pointing to your VPS's IP address)
+
+    aside.notes.
+      This is required so someone visiting your domain (e.g. mysite.com)
+      will be directed to your new server.
+
+  +slide
+    h3 Configure #[em Trellis]
+    img(
+      src="./images/deploy-wordpress/trellis-config-live.png"
+      alt="Trellis config"
+    )
+
+  +slide
+    h3 Configure #[em Trellis]
+    img(
+      src="./images/deploy-wordpress/trellis-config-live-pt2.png"
+      alt="Trellis config"
+    )
+  
+  +slide
+    h1 #[em IMPORTANT]
+    h3 Encrypt passwords &amp; salts #[strong before] you share them or commit them to GitHub
+    p
+      a(href="https://roots.io/trellis/docs/vault/") https://roots.io/trellis/docs/vault/
+
+  +slide
+    h3 Configure #[em Trellis]
+    img(
+      src="./images/deploy-wordpress/trellis-config-live-pt3.png"
+      alt="Trellis config"
+    )
+
+  +slide
+    h3 Put your site #[em on GitHub]
+    img(
+      src="./images/deploy-wordpress/github.png"
+      alt="GitHub"
+    )
+
+    aside.notes.
+      Don't be intimidated by Git. It will save you SO much time
+      as your business grows.
+
+  +slide
+    h3 #[em Provision] the VPS
+    pre
+      code.js.
+        ansible-playbook server.yml -e env=production
+    p
+      small Make sure you're in the /trellis directory to run this.
+
+    aside.notes.
+      This takes a bit. Allow 5–10 minutes for the script to run.
+
+  +slide
+    h3 Go #[em live]
+    pre
+      code.js.
+        ./deploy.sh production roots.code.lengstorf.com
+
+  +slide
+    h3 Check the #[em live site] in a browser
+    img(
+      src="./images/deploy-wordpress/trellis-live-site.jpg"
+      alt="Trellis site live"
+    )
+
+  +slide
+    h2
+      strong.hugify Wait
+      | Where's the database?
+
+  +slide
+    h3 Add the #[em WP Sync DB] plugin
+
+  +slide
+    h3 Configure the live site to #[em accept push] requests
+    img(
+      src="./images/deploy-wordpress/wp-sync-db-live.jpg"
+      alt="WP Sync DB"
+    )
+
+  +slide
+    h3 Configure the local site to #[em push] to the live site
+    img(
+      src="./images/deploy-wordpress/wp-sync-db-local.jpg"
+      alt="WP Sync DB"
+    )
+
+  +slide
+    h3 #[em Start the push] on the local site
+    img(
+      src="./images/deploy-wordpress/wp-sync-db-running.jpg"
+      alt="WP Sync DB"
+    )
+
+  +slide
+    h3 What just happened?
+    img(
+      src="./images/deploy-wordpress/yayyayyay.gif"
+      alt="so excite"
+      style="margin: 0; max-width: 60%"
+    )
+
+  +slide
+    h3 What just happened?
+    ol
+      li.fragment We configured a local development site
+      li.fragment We configured a live site
+      li.fragment We pushed the local site's changes to the live site
+      li.fragment We synced the database in one click
+  
+  +slide
+    h3 After it's set up, further syncs take #[em seconds]
+  
+  +slide
+    h3 This will #[em save you days] as you continue building sites
+
+  +slide
+    h3 Welcome to #[em elite-level efficiency]
+    img(
+      src="./images/deploy-wordpress/efficiency.gif"
+      alt="efficiency"
+    )
+
+  +slide
+    h3 I have a #[em video walkthrough] of the whole process at
+    p 
+      a(href="https://git.io/vyd2O") git.io/vyd2O
 
   +slide
     h1 Questions?
@@ -254,6 +578,14 @@ block slides
   +slide.resourcetext
     h3 Resources
     ol
+      li
+        a(
+          href="https://git.io/vyd2O"
+        ) Video + Written Tutorial for Trellis
+      li
+        a(
+          href="https://m.do.co/c/9d561578e13a"
+        ) DigitalOcean ($10 credit)
       li
         a(
           href="https://roots.io/trellis/"
