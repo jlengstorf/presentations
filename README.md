@@ -28,6 +28,8 @@ The goal of this repo is to create a single location where presentations live, i
 
 ### Videos of Previous Presentation
 
+- [WordPress Deployment for Professionals – How to Solve the Problem of Multiple WordPress Installs in 30 Minutes or Less](http://wordpress.tv/2017/03/29/jason-lengstorf-wordpress-deployment-for-professionals-how-to-solve-the-problem-of-multiple-wordpress-installs-in-30-minutes-or-less/) — WordCamp Atlanta 2017
+
 - [Happy People Do It Better](https://www.youtube.com/watch?v=AjUwPmFcwJ8) — given via web conference
 
 These ones are behind the Treehouse paywall, but you can watch a short sample.
