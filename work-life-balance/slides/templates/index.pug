@@ -1,0 +1,540 @@
+//- Use the presentation layout so we can keep this clean
+extends layouts/presentation
+
+block append config
+  -
+    config.theme = 'lengstorf';
+    config.title = 'How I Cut My Hours in Half';
+    config.description = 'And somehow managed to get more done.';
+    config.slidesLink = 'https://code.lengstorf.com/presentation/progressive-web-apps/slides/';
+
+    config.author = {
+      name: 'Jason Lengstorf',
+      email: 'jason@lengstorf.com',
+      link: 'https://code.lengstorf.com/',
+      twitter: 'jlengstorf',
+      github: 'jlengstorf',
+    };
+    
+    config.slides = {
+      link: 'https://git.io/vy1GU',
+    };
+
+    config.conference = {
+      hashtag: false,
+      twitter: false,
+    };
+  -
+
+//- Add your slides here. See templates/includes/_mixins.pug for information 
+//- on how `+slide` works.
+block slides
+  +slide
+    h1(style="font-size: 110px")= config.title
+    h3 And somehow managed#[br]to get more done.
+    
+    p by 
+      a(href= config.author.link)= config.author.name
+      br
+      small
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        |  | 
+        a(href= `mailto:${config.author.email}`)= config.author.email
+    
+    p
+      small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
+
+  //- Front-matter stuff
+    +slide.u--align-left.u--text-light.u--text-shadow(data-background="url(./images/bear-background@2x.jpg)")
+      h2 Who I Am
+      ul
+        li.hide-me 
+        li.hide-me 
+        li.hide-me 
+        li.hide-me 
+        li.hide-me 
+        li.hide-me 
+
+      aside.notes.
+        This joke is so terrible. You should be ashamed of yourself.
+
+    +slide.u--align-left.u--text-light.u--text-shadow(data-background="url(./images/jason-lengstorf-slide-bg@2x.jpg)")
+      h2 Who I Am
+      ul.full-width
+        li.fragment Building web things since 2003
+        li.fragment #[em Huge] process &amp; efficiency nerd
+        li.fragment Work-life balance advocate / consultant
+        li.fragment Senior developer at IBM
+        li.fragment Author of 3 books on development stuff
+        li.fragment World champion purveyor of bear hugs
+
+  //- INTRO
+  +slide.u--align-left.u--text-light.u--text-shadow(
+    data-background="url(./images/jason-lengstorf-slide-bg@2x.jpg)"
+  )
+    h2 This beard is 
+      em.hugify glorious
+
+  +slide
+    h3 And I nearly robbed the world of its #[em majesty]
+
+  +slide.u--text-light.u--text-shadow(
+    data-background="url(./images/work-life-balance/mustache.jpg)"
+  )
+    h1.fragment.dim-the-lights This was not a choice
+
+  +slide
+    h2 I was a 
+      strong workaholic
+
+  +slide
+    h2 In 2012 I averaged 
+      strong.hugify 70 hours per week
+      |  on the computer
+    p.fragment And it wasn’t unusual to pass 90.
+
+    aside.notes.
+      I woke up checking email. I worked through all of my meals. I ordered in 
+      the vast majority of my lunches and dinners. I rarely hung out with 
+      friends, and when I did, I’d often end up ducking out to take a phone call
+      or deal with some issue.
+
+  +slide
+    h3 Then it all fell apart:
+    h1
+      span.hugify Black Friday
+
+  +slide
+    h2 I landed a #[em huge] contract
+    ul
+      li.fragment Fortune 500 company
+      li.fragment High profile project
+      li.fragment Charging agency rates
+      li.fragment ...and rush fees
+
+  +slide
+    h3 We planned it all out...
+    img.no-border(
+      src="images/work-life-balance/project-plan.svg"
+      alt="project plan"
+    )
+
+  +slide
+    h3 ...then reality happened
+    img.no-border(
+      src="images/work-life-balance/project-reality.svg"
+      alt="project plan"
+    )
+
+  +slide
+    h2 But I’m not a
+      strong.hugify quitter
+
+  +slide
+    h2 I worked over #[strong.hugify 100 hours] that week
+
+  +slide
+    h2 The Business Result:
+    ul
+      li.fragment The client loved it
+      li.fragment The project made the client a bunch of money
+      li.fragment I got paid a bunch of money
+      li.fragment The project won an Addy Award
+
+  +slide
+    h2 The Personal Cost:
+    ul
+      li.fragment I missed Thanksgiving with my family
+      li.fragment I slept less than 4 hours a night
+      li.fragment I ate fast food delivery for every. single. meal.
+      li.fragment MY FUCKING BEARD FELL OUT
+
+  +slide.u--text-light.u--text-shadow(
+    data-background="url(./images/work-life-balance/patchy-beard.jpg)"
+  )
+    aside.notes.
+      I believe I had something called #[em alopecia barbae], which causes
+      unexplained loss of whiskers in beards. There’s no proven cause, but some
+      research suggests stress can create symptoms. I’m an n=1 study, but I am
+      now extremely convinced that this is true.
+
+  +slide
+    h3 I was already burning out.
+    h3 Losing my beard was the 
+      strong.hugify final straw
+
+  +slide
+    h3 My decision:
+    h2 Poor &amp; #[em healthy]#[br]is better than successful &amp; #[strong sick]
+
+  +slide
+    h3 I cut back on everything:
+    ul
+      li.fragment I only accepted calls during business hours
+      li.fragment I turned off all notifications on my phone and computer
+      li.fragment I turned on Do Not Disturb mode from 6pm to 8am
+      li.fragment I only checked email twice a day
+      li.fragment I set up activities with my friends...
+      li.fragment ...and left my phone in the car while I was there
+
+  +slide
+    h3 I was ready to 
+      strong.hugify lose business
+      | if it meant I could 
+      br
+      em have my life back
+
+  +slide
+    h2 But that’s #[em not] what happened
+
+  +slide
+    h2 What I expected:
+    ul
+      li.fragment my clients would leave because I wasn’t available at all hours of the day
+      li.fragment I’d miss big opportunities by turning off notifications
+      li.fragment I’d accomplish less by “wasting time” on non-business activities like hobbies and friendship
+
+  +slide
+    h2 What happened:
+    ul
+      li.fragment my clients didn’t notice because I still got back to them within 24 hours
+      li.fragment no opportunities were lost
+      li.fragment I was getting #[em significantly more] work done
+
+  +slide
+    h3 “How is it possible that you got #[em more] done by working #[strong fewer] hours?”
+
+  +slide
+    h2 First: the science
+    ul
+      li.fragment Working 60+ hours per week makes us #[em less] productive than working 40 hours#[sup 1]
+      li.fragment Long hours destroy passion and engagement#[sup 2]
+      li.fragment Overworking increases employee turnover#[sup 3]
+      li.fragment Creativity suffers if we don’t go outside sometimes#[sup 4]
+      li.fragment Lack of downtime hurts productivity and creativity#[sup 5]
+      li.fragment We lose 20% of our time #[em per task] while multitasking#[sup 6]
+      li.fragment Sleeping less than 7 hours impairs us as much as being too drunk to drive#[sup 7]
+
+  //- STRATEGIES
+  +slide
+    h3 “You haven’t answered the question, nerd.”
+
+  +slide
+    h2(style="width: 110%; margin-left: -5%;") 5 Strategies to#[br]Boost Productivity
+    ol
+      li.fragment Passive time tracking
+      li.fragment Time-boxing tasks
+      li.fragment Front-loading demanding work
+      li.fragment Aggressive prioritization
+      li.fragment NO multitasking
+
+  +slide
+    h2 #1: Passive Time Tracking
+    p.
+      The simple act of #[em acknowledging] how we spend our time encourages us
+      to use it more wisely.
+
+  +slide
+    h3 If I have a #[strong long] day...
+    img(
+      src="images/work-life-balance/rescuetime-long-day.png"
+      alt="a long day in RescueTime"
+    )
+
+  +slide
+    h3 ...I know to #[em take a day off]
+    img(
+      src="images/work-life-balance/rescuetime-day-off.png"
+      alt="a day off in RescueTime"
+    )
+
+  +slide
+    h2 #2: Time-Box Tasks
+    p.
+      You’re never more productive than when you’re on deadline with 13% battery
+      left.
+  
+  +slide
+    h3 Find your rhythm.
+    ul
+      li.fragment Experiment with different lengths of time: 25 minutes (Pomodoro), 60, or 90 to start
+      li.fragment Set a timer
+      li.fragment Close and turn off #[em everything] that isn’t required for the task
+      li.fragment Start the timer
+      li.fragment Kick much ass
+      li.fragment When the timer goes off, take a break
+
+  +slide
+    h3 Why This Works
+    ul
+      li.fragment Without distractions, we get into a state of “flow”
+      li.fragment The world will not implode if we’re not paying attention for 90 minutes
+        ul
+          li.fragment If things break down because you’re unavailable for 90 minutes, something is #[em very] wrong
+      li.fragment Taking breaks is good for productivity and creativity (and health, if you’re into that)
+      li.fragment Chat and email checks happen at regular intervals without taking over the day
+
+  +slide
+    h3 Also: science
+    p.
+      There’s something called an “ultradian rhythm”, which is roughly 90 
+      minutes and regulates our energy.#[sup 8]
+
+  +slide
+    h2 #3: Front-Load Demanding Work
+    p.
+      Motivation and self-control are resources that deplete as the day goes on.
+      Don’t waste them on bullshit.
+
+  +slide
+    h3 We’re the best versions of ourselves early in our day
+    ul
+      li.fragment energy is higher
+      li.fragment focus is improved
+      li.fragment self-control is at its peak
+    
+    aside.notes.
+      This is NOT me saying you should wake up early. Wake up whenever you want;
+      just do the important shit before you do anything else.
+
+  +slide
+    h3 Morning Me
+    img(
+      src="images/work-life-balance/motivation-early.gif"
+      alt="gym win"
+      style="width: 100%;"
+    )
+
+  +slide
+    h3 Evening Me
+    img(
+      src="images/work-life-balance/motivation-late.gif"
+      alt="so lazy"
+      style="width: 100%;"
+    )
+
+  +slide
+    h2 #4: Prioritize Aggressively
+    p.
+      If everything is The Most Important Thing™, nothing is.
+
+  +slide
+    h3 Use the Highlander Technique
+    img(
+      src="images/work-life-balance/highlander.jpg"
+      alt="highlander"
+    )
+
+  +slide
+    h3 Put tasks into a tournament bracket...
+    img.no-border(
+      src="images/work-life-balance/bracket.png"
+      alt="highlander"
+      style="max-height: 400px;"
+    )
+    p(style="margin: 0") ...and then start choosing.
+
+  +slide
+    h2 #5: DO NOT Multitask
+    p.
+      Ever. Just stop it.
+
+  +slide
+    h3 Context Switching is #[strong fatal] to productivity
+    img(
+      src="images/work-life-balance/context-switching-costs.png"
+      alt="context switching penalty"
+      style="margin: 0;"
+    )
+    p(style="margin: 0;")
+      small Source: #[a(href="https://blog.codinghorror.com/the-multi-tasking-myth/") Coding Horror]
+
+  +slide
+    h3 Multitasking makes us#[br]#[strong feel] productive.
+    h3 Single-tasking makes us #[em actually] productive.
+
+  //- PROOF
+  +slide
+    h1 Prove It
+
+  +slide
+    h3 My 2016 RescueTime report
+    img(
+      src="images/work-life-balance/2016-hours.png"
+      alt="1922.8 hours worked in 2016"
+      style="margin: 0;"
+    )
+    p(style="margin: 0") Average: #[strong 37 hours per week]
+
+  +slide
+    h3 My 2017 RescueTime report
+    img(
+      src="images/work-life-balance/2017-hours.png"
+      alt="618.8 hours worked in 2017 as of April 24"
+      style="margin: 0;"
+    )
+    p(style="margin: 0") Average: #[strong 38 hours per week]
+
+  +slide
+    h3 I’ve been able to manage:
+    ul
+      li.fragment My IBM workload
+      li.fragment My personal blog
+      li.fragment My code blog / side projects
+      li.fragment Multiple conference sessions
+      li.fragment A reasonably full social calendar
+      li.fragment 3&times; weekly workouts
+      li.fragment 8 hours average sleep
+
+  +slide
+    p Caveat: I don’t have kids.
+
+  //- RECAP
+  +slide
+    h1 Let’s Recap
+  
+  +slide
+    h3 If we work too much, we’re:
+    ul
+      li.fragment worse at our jobs
+      li.fragment more likely to burn out
+      li.fragment less likely to feel satisfied at our job
+      li.fragment less able to enjoy our lives
+
+  +slide
+    h3 If we work a reasonable schedule, we’re:
+    ul
+      li.fragment more creative
+      li.fragment more productive
+      li.fragment happier (both in and out of work)
+      li.fragment healthier
+
+  +slide
+    h3 We can be more productive in less time by:
+    ol(style="width: 110%;margin-left: -5%;")
+      li.fragment paying attention to how we spend our time
+      li.fragment time-boxing tasks to create urgency &amp; limit distractions
+      li.fragment front-loading demanding tasks while our energy is high
+      li.fragment aggressively prioritizing work to enable better focus
+      li.fragment never, ever, #[em ever] multitasking again
+
+  //- 
+    TOC:
+    - Start with the mustache story
+      - I was overworking for years.
+      - Then I got sick.
+      - How I decided to burn it down
+      - ...but then it got better
+    - What happened, pt I: science
+      - sleep
+      - single-tasking
+      - time constraints
+      - varied input
+      - exercise
+    - What happened, pt II: habits
+      - passive tracking (RescueTime, Timing)
+      - time boxing
+      - front-loading
+      - Highlander Technique
+    - 
+
+  //- Q&A
+  +slide
+    h1 Questions?
+    p= config.author.name
+      br
+      small
+        | Follow me on Twitter: 
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        |  | 
+        a(href= `mailto:${config.author.email}`)= config.author.email
+
+  //- Resources
+  +slide.resourcetext
+    h3 Resources
+    ol
+      li
+        a(href="http://www.enginesofmischief.com/makers/evan/pubs/crunch.html").
+          Why Crunch Mode Doesn’t Work: 6 Lessons
+      li
+        a(href="http://www.employment-studies.co.uk/report-summary-working-long-hours-review-evidence-volume-1-%E2%80%93-main-report").
+          Working Long Hours: a Review of the Evidence
+      li
+        a(href="http://www.nytimes.com/2014/06/01/opinion/sunday/why-you-hate-work.html?_r=0").
+          Why You Hate Work
+      li
+        a(href="http://archive.news.ku.edu/2012/april/23/outdoors.shtml").
+          Researchers find time in wild boosts creativity, insight and problem solving
+      li
+        a(href="https://hbr.org/2012/12/the-upside-of-downtime").
+          The Upside of Downtime
+      li
+        a(href="https://blog.codinghorror.com/the-multi-tasking-myth/")
+          The Multitasking Myth
+      li
+        a(href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1739867/pdf/v057p00649.pdf").
+          Moderate sleep deprivation produces impairments in cognitive and motor performance equivalent to legally prescribed levels of alcohol intoxication
+      li
+        a(href="http://blog.idonethis.com/science-of-better-energy-management/").
+          The Science Behind Why Better Energy Management is the Key to Peak Productivity
+      
+
+
+block styles
+  link(
+    rel="stylesheet"
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  )
+  script.
+    (function(d) {
+      var config = {
+        kitId: 'fnr1orp',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+
+block extras
+  -
+    const relatedAccounts = [config.author.twitter];
+    
+    if (config.conference.twitter) {
+      relatedAccounts.push(config.conference.twitter);
+    }
+
+    // See https://dev.twitter.com/web/tweet-button/web-intent for parameters.
+    const tweetObj = {
+      text: `${config.title} by @${config.author.twitter}`,
+      hashtags: config.conference.hashtag || '',
+      related: relatedAccounts.join(','),
+      url: config.slidesLink,
+    };
+
+    // 
+    const e = encodeURIComponent;
+    const args = Object.keys(tweetObj).map(key => `${key}=${e(tweetObj[key])}`);
+    const tweetUrl = `https://twitter.com/intent/tweet?${args.join('&')}`;
+  -
+  .hashtag
+    p
+      | Tweet: 
+      a(
+        href=tweetUrl
+        target="_blank"
+      ) @#{config.author.twitter} 
+        | #{config.conference.hashtag ? `#${config.conference.hashtag}` : ''}
+  footer
+    ul.inline
+      li
+        | “#{config.title}” by 
+        a(href= config.author.link)= config.author.name
+        |  (slides: 
+        a(href= config.slides.link)= config.slides.link.replace('https://', '')
+        | )
+      li
+        a(href="https://twitter.com/"+config.author.twitter).
+          @#{config.author.twitter}
+      li
+        a(href="https://github.com/"+config.author.github).
+          github.com/#{config.author.github}

@@ -64,7 +64,7 @@ html {
 
   &.blackout::after,
   &.dimmer::after {
-    background: transparentize($mainColor, 0.5);
+    background: transparentize($headingColor, 0.5);
   }
 }
 
@@ -145,6 +145,13 @@ html {
         // padding: 0;
         text-align: center;
       }
+    }
+  }
+
+  img {
+    &.no-border {
+      border: none;
+      box-shadow: none;
     }
   }
 

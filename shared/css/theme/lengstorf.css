@@ -321,7 +321,7 @@ html::after {
   transition: background 150ms ease-in-out; }
 
 html.blackout::after, html.dimmer::after {
-  background: rgba(86, 69, 59, 0.5); }
+  background: rgba(56, 42, 44, 0.5); }
 
 .hide-me {
   visibility: hidden; }
@@ -404,6 +404,9 @@ html.blackout::after, html.dimmer::after {
     .reveal ol.align-center li {
       list-style: none;
       text-align: center; }
+  .reveal img.no-border {
+    border: none;
+    box-shadow: none; }
   .reveal small {
     color: #745d50;
     letter-spacing: 0.01em;
