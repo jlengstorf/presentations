@@ -1,0 +1,7 @@
+:root {
+  --color-darkest: #333234;
+  --color-lightest: #fff;
+  --color-medium: #555457;
+
+  --color-text: var(--color-medium);
+}

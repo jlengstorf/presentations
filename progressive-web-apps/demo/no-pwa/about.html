@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Site Without PWA</title>
+    <link rel="stylesheet" href="../css/main.css">
+  </head>
+  <body>
+    <main class="site">
+      <header class="site__header header">
+        <h1 class="header__heading">
+          Bears. Beets. <del>Battlestar Galactica.</del> <ins>Bourbon.</ins>
+        </h1>
+        <nav class="header__nav">
+          <a href="./" class="header__nav-item">Home</a>
+          <a href="./about.html" class="header__nav-item header__nav-item--selected">About</a>
+        </nav>
+      </header>
+      <section class="site__main main">
+        <h2 class="main__heading">
+          What is this site?
+        </h2>
+        <div class="main__description">
+          <p>
+            This site was created by
+            <a href="https://lengstorf.com/">Jason Lengstorf</a> to demonstrate
+            various techniques associated with Progressive Web Apps in a way
+            that shows the side-by-side benefits of using those techniques.
+          </p>
+          <p>
+            For more information, visit the links in the sidebar or reach out to
+            <a href="https://twitter.com/jlengstorf">Jason on Twitter</a>.
+          </p>
+        </div>
+      </section>
+      <aside class="site__sidebar sidebar">
+        <p class="sidebar__description">
+          This is a sample app to demonstrate the performance gains available to
+          apps that use Progressive Web App techniques. <strong>This is the slow
+          version of the app.</strong>
+        </p>
+        <ul class="sidebar__links">
+          <li class="sidebar__item">
+            <a href="./pwa.html" class="sidebar__link">
+              See this page as a Progressive Web App
+            </a>
+          </li>
+          <li class="sidebar__item">
+            <a href="https://code.lengstorf.com/presentations/progressive-web-apps/slides/"
+               class="sidebar__link">
+              See the presentation about this
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <footer class="site__footer footer">
+        <p class="footer__credits">
+          © Jason Lengstorf
+        </p>
+      </footer>
+    </main>
+    <div class="lightbox lightbox--disabled">
+      <div class="lightbox__image-wrap">
+        <img class="lightbox__image" src="" alt="">
+      </div>
+      <a class="lightbox__close-btn" href="#close">close</a>
+    </div>
+
+    <script src="../js/main.min.js"></script>
+  </body>
+</html>
