@@ -36,7 +36,7 @@
           <h1>Progressive Web Apps</h1>
           <h3>Looks Like Vegetables; Tastes Like Bacon</h3>
           <p>by <a href="https://code.lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a> | <a href="mailto:jason@lengstorf.com">jason@lengstorf.com</a></small></p>
-          <p><small>Slides: <a href="https://git.io/vy1GU">git.io/vy1GU</a></small></p>
+          <p><small>Slides: <a href="https://git.io/v9tEr">git.io/v9tEr</a></small></p>
         </section>
         <section class="u--align-left u--text-light u--text-shadow" data-background="url(./images/bear-background@2x.jpg)">
           <h2>Who I Am</h2>
@@ -65,7 +65,286 @@
           </ul>
         </section>
         <section>
-          <h2>TKTK</h2>
+          <h2>What the heck is a <span class="hugify"><em>PWA</em>?</span></h2>
+        </section>
+        <section>
+          <h3>A Progressive Web App:</h3>
+          <ul>
+            <li class="fragment">Supports offline/crappy connections (e.g. 3G phones)</li>
+            <li class="fragment">Works without JavaScript</li>
+            <li class="fragment">Follows security best practices</li>
+            <li class="fragment">Enables “Add to Homescreen” for mobile users</li>
+            <li class="fragment">Renders well on smaller devices</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Booooooooooooooring!</h3>
+        </section>
+        <section>
+          <h4>“My connection is hella fast, bro.<br>Who needs this junk?”</h4>
+        </section>
+        <section><img src="images/progressive-web-apps/eat-your-veggies.gif" alt="eat your veggies">
+          <h3>At a glance, adding PWA features to an app might sound like being told to<br><strong>eat your vegetables</strong></h3>
+        </section>
+        <section>
+          <h3>The focus is usually on foreign markets with <strong>flaky internet</strong>.</h3>
+        </section>
+        <section>
+          <h2>What if that’s <strong>not</strong> your audience?</h2>
+        </section>
+        <section>
+          <h2>...should you just <strong>ignore</strong> PWAs?</h2>
+        </section>
+        <section>
+          <h1>Nope</h1>
+        </section>
+        <section>
+          <h2>Here’s why:</h2>
+          <ul>
+            <li class="fragment">PWAs decrease load times on <strong>all</strong> connections</li>
+            <li class="fragment">Perceived load times improve</li>
+            <li class="fragment">Stability improves for mobile users everywhere</li>
+            <li class="fragment">User experience is better all around</li>
+          </ul>
+        </section>
+        <section><img src="images/progressive-web-apps/bacon.gif" alt="bacon">
+          <h3>That sounds <em>significantly more awesome</em> than eating vegetables.</h3>
+        </section>
+        <section>
+          <h3>Okay, okay — I believe you.</h3>
+          <h2>But how much work is involved?</h2>
+        </section>
+        <section>
+          <h4>Let’s turn this app into a PWA:</h4><img src="images/progressive-web-apps/bear-app.png" alt="bear app" style="width: 75%; margin: 0;">
+          <p style="margin: 0;"><small><a href="https://code.lengstorf.com/presentations/progressive-web-apps/demo/no-pwa/">
+                code.lengstorf.com/presentations/progressive-web-apps/demo/no-pwa/
+                </a></small></p>
+        </section>
+        <section>
+          <h4>Right now, it doesn’t score very well:</h4><img src="images/progressive-web-apps/lighthouse-no-pwa.png" alt="Lighthouse score for non-PWA" style="width: 75%; margin: 0;">
+          <p style="margin: 0;"><small>Lighthouse is Google’s plugin to audit apps for PWA features.</small></p>
+        </section>
+        <section>
+          <h3>To build PWA we need to:</h3>
+          <ul>
+            <li class="fragment">Register a Service Worker to manage caching and offline access</li>
+            <li class="fragment">Create an app manifest to describe the app</li>
+            <li class="fragment">Let the Service Worker know about required assets</li>
+            <li class="fragment">Define caching rules for other assets</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Bonus points for:</h3>
+          <ul>
+            <li class="fragment">Lazy loading resources to improve perceived performance</li>
+            <li class="fragment">Enabling offline support for user interactions</li>
+          </ul>
+        </section>
+        <section>
+          <h4>...that sounds like a lot of work.</h4>
+        </section>
+        <section>
+          <h1>It’s not</h1>
+          <h3>Most of the process is <em>already done</em> for you</h3>
+        </section>
+        <section>
+          <h3>Step 1: Install <code>sw-precache</code></h3>
+          <ul>
+            <li class="fragment">Creates the Service Worker</li>
+            <li class="fragment">Accepts a list of files or folders and generates required asset list</li>
+            <li class="fragment">Accepts a list of URL patterns to manage caching of other assets</li>
+            <li class="fragment">Enables offline access</li>
+          </ul>
+        </section>
+        <section>
+          <h4>Configuring <code>sw-precache-webpack-plugin</code>:</h4>
+          <pre><code class="js">plugins: [
+  new SWPrecacheWebpackPlugin(
+    {
+      filepath: './public/service-worker.js',
+      runtimeCaching: [{
+        urlPattern: /[.]jpg$/,
+        handler: 'cacheFirst'
+      }],
+      staticFileGlobs: ['public/**.*'],
+      stripPrefix: 'public/',
+    }
+  ),
+],</code></pre>
+          <p><small><a href="https://github.com/goldhand/sw-precache-webpack-plugin">
+                github.com/goldhand/sw-precache-webpack-plugin
+                </a></small></p>
+        </section>
+        <section>
+          <h3>Step 2: Register the Service Worker in your app</h3>
+          <pre><code class="js" style="font-size: 87.5%;">&lt;script>
+  (function() {
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./service-worker.js');
+    }
+  })();
+&lt;/script>
+</code></pre>
+        </section>
+        <section>
+          <h3>Step 3: Generate a manifest</h3>
+          <ol>
+            <li class="fragment">Go to <a href="http://realfavicongenerator.net/">realfavicongenerator.net</a></li>
+            <li class="fragment">Follow the instructions</li>
+            <li class="fragment">Done!</li>
+          </ol>
+          <p class="fragment"><small>NOTE: You can automate this with an NPM package.</small></p>
+        </section>
+        <section>
+          <h3>Step 4: ...</h3>
+          <p>Technically, you’re all done at this point.</p>
+        </section>
+        <section>
+          <h3>Bonus: Add lazy loading</h3>
+          <ul>
+            <li class="fragment">Only load images that are visible</li>
+            <li class="fragment">Libraries exist to handle this for you, such as <a href="https://github.com/jlengstorf/responsive-lazyload.js">
+                responsive-lazyload.js
+                </a></li>
+          </ul>
+        </section>
+        <section>
+          <h4>Lazy-loading with <code>responsive-lazyload.js</code>:</h4>
+          <pre><code class="js">&lt;a href="img/bacon.jpg"
+   class="gallery__link js--lazyload">
+  &lt;img class="gallery__image"
+       src="img/thumbs/bacon.jpg"
+       srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+       data-lazyload="img/thumbs/bacon.jpg 1x,
+                      img/thumbs/bacon@2x.jpg 2x"
+       alt="image">
+&lt;/a></code></pre>
+          <p><small><a href="https://github.com/jlengstorf/responsive-lazyload.js">
+                github.com/jlengstorf/responsive-lazyload.js
+                </a></small></p>
+        </section>
+        <section>
+          <h3>This score is <em>much better</em>:</h3><img src="images/progressive-web-apps/lighthouse-pwa.png" alt="Lighthouse PWA score" style="width: 75%; margin: 0;">
+        </section>
+        <section>
+          <h2>But what if we need a database?</h2>
+        </section>
+        <section>
+          <h3>There are 2 main flavors of databases</h3>
+          <ul>
+            <li class="fragment"><strong>Server-side:</strong> the app connects to a remote machine to perform CRUD operations</li>
+            <li class="fragment"><strong>Client-side:</strong> the database is on the same device as the app</li>
+          </ul>
+        </section>
+        <section>
+          <h3>The Low-Down on <br><em>Server-Side</em> Databases</h3>
+          <div class="two-columns">
+            <h4>The <em>Good</em></h4>
+            <ul>
+              <li class="fragment">Accessible to all connected instances</li>
+              <li class="fragment">Apps don’t need to load <em>all</em> data to run the app</li>
+            </ul>
+            <h4>The <strong>Bad</strong></h4>
+            <ul>
+              <li class="fragment">Can cause a noticeable slow-down in apps</li>
+              <li class="fragment">Apps require an internet connection</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <h3>The Low-Down on <br><em>Client-Side</em> Databases</h3>
+          <div class="two-columns">
+            <h4>The <em>Good</em></h4>
+            <ul>
+              <li class="fragment">Apps feel much faster because there’s no server request</li>
+              <li class="fragment">Even if there’s no internet connection, apps will still work</li>
+            </ul>
+            <h4>The <strong>Bad</strong></h4>
+            <ul>
+              <li class="fragment">Each app has its own instance of the database</li>
+              <li class="fragment"><em>All</em> of the app’s data needs to be downloaded</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <h2>What if I would like to <em>have</em> my cake but also to <strong>eat</strong> my cake?</h2>
+        </section>
+        <section>
+          <h1>Use ’Em <em class="hugify">Both</em></h1>
+          <h3 class="fragment">and sync that shit</h3>
+        </section>
+        <section>
+          <h1><em>CouchDB</em> + <strong>PouchDB</strong></h1>
+          <h3>With Replication</h3>
+        </section>
+        <section>
+          <h2>PouchDB gives us:</h2>
+          <ul>
+            <li class="fragment">Offline-first capabilities</li>
+            <li class="fragment">Near-instant updates and responses</li>
+            <li class="fragment">A simple JavaScript API for CRUD operations</li>
+          </ul>
+        </section>
+        <section>
+          <h2>CouchDB gives us:</h2>
+          <ul>
+            <li class="fragment">Data persistence across devices</li>
+            <li class="fragment">Support for collaborative editing</li>
+            <li class="fragment">A way to tie IBM products into the demo</li>
+          </ul>
+        </section>
+        <section><img src="./images/progressive-web-apps/its-hard.gif">
+        </section>
+        <section>
+          <h1>It’s not hard</h1>
+          <h4 class="fragment">It’s pretty easy, actually.</h4>
+        </section>
+        <section>
+          <pre><code style="font-size: 80%;">// Keep the local (PouchDB) and the remote (CouchDB) databases in sync.
+PouchDB.sync('local_db', 'https://example.com/remote_db', {
+  live: true,
+  retry: true,
+});
+
+// Whenever there are changes on the remote database, we want to know.
+db.changes({
+  since: 'now',
+  live: true,
+}).on('change', handleDataChanges);</code></pre>
+          <h3 class="fragment">That’s it — <em>No joke</em></h3>
+        </section>
+        <section>
+          <h1>Demo?</h1>
+          <h4><a href="https://code.lengstorf.com/offline-first-db-example/">Meet the Thought Collector!</a></h4>
+        </section>
+        <section>
+          <h1>Let’s Recap</h1>
+        </section>
+        <section>
+          <h3>Progressive Web Apps:</h3>
+          <ul>
+            <li class="fragment">Make our apps faster</li>
+            <li class="fragment">Improve the user experience on all devices</li>
+            <li class="fragment">Increase the reliability of our app</li>
+            <li class="fragment">Allow our users to “install” our app on their home screen</li>
+          </ul>
+          <p class="fragment">All with a few minutes of effort.</p>
+        </section>
+        <section>
+          <h3>And with just a bit of extra work, we can:</h3>
+          <ul>
+            <li class="fragment">Lazy load resources to further improve load times</li>
+            <li class="fragment">Enable offline data access for truly offline-capable apps</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Progressive Web Apps are <em>Awesome</em></h2>
+        </section>
+        <section>
+          <h3>With very little effort, we can build web apps that feel just as snappy as <em class="hugify">native apps</em></h3>
+        </section>
+        <section>
+          <h1>🥓    </h1>
         </section>
         <section>
           <h1>Questions?</h1>
@@ -74,7 +353,12 @@
         <section class="resourcetext">
           <h3>Resources</h3>
           <ol>
-            <li><a href="https://google.com">link</a></li>
+            <li><a href="https://developers.google.com/web/tools/lighthouse/">Lighthouse</a></li>
+            <li><a href="https://github.com/GoogleChrome/sw-precache">sw-precache</a></li>
+            <li><a href="https://github.com/goldhand/sw-precache-webpack-plugin">sw-precache-webpack-plugin</a></li>
+            <li><a href="http://realfavicongenerator.net/">Favicon Generator (for manifest.json)</a></li>
+            <li><a href="https://github.com/jlengstorf/responsive-lazyload.js">responsive-lazyload.js</a></li>
+            <li><a href="https://pouchdb.com/">PouchDB</a></li>
           </ol>
         </section>
       </div>
@@ -84,7 +368,7 @@
     </div>
     <footer>
       <ul class="inline">
-        <li>“Progressive Web Apps” by <a href="https://code.lengstorf.com/">Jason Lengstorf</a> (slides: <a href="https://git.io/vy1GU">git.io/vy1GU</a>)</li>
+        <li>“Progressive Web Apps” by <a href="https://code.lengstorf.com/">Jason Lengstorf</a> (slides: <a href="https://git.io/v9tEr">git.io/v9tEr</a>)</li>
         <li><a href="https://twitter.com/jlengstorf">@jlengstorf</a></li>
         <li><a href="https://github.com/jlengstorf">github.com/jlengstorf</a></li>
       </ul>

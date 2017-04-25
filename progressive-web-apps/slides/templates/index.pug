@@ -17,7 +17,7 @@ block append config
     };
     
     config.slides = {
-      link: 'https://git.io/vy1GU',
+      link: 'https://git.io/v9tEr',
     };
 
     config.conference = {
@@ -70,15 +70,317 @@ block slides
 
   //- INTRO
   +slide
-    h2 TKTK
+    h2 What the heck is a 
+      span.hugify #[em PWA]?
+  +slide
+    h3 A Progressive Web App:
+    ul
+      li.fragment Supports offline/crappy connections (e.g. 3G phones)
+      li.fragment Works without JavaScript
+      li.fragment Follows security best practices
+      li.fragment Enables “Add to Homescreen” for mobile users
+      li.fragment Renders well on smaller devices
 
-  //- 
-    TOC:
-    - What are Progressive Web Apps?
-      - feature list
-    - Ugh. That sounds lame.
-      - like ordering salad in a steakhouse
-    - 
+  +slide
+    h3 Booooooooooooooring!
+
+  +slide
+    h4 “My connection is hella fast, bro.#[br]Who needs this junk?”
+
+  +slide
+    img(
+      src="images/progressive-web-apps/eat-your-veggies.gif"
+      alt="eat your veggies"
+    )
+    h3 At a glance, adding PWA features to an app might sound like being told to#[br]#[strong eat your vegetables]
+
+  +slide
+    h3 The focus is usually on foreign markets with #[strong flaky internet].
+
+  +slide
+    h2 What if that’s #[strong not] your audience?
+
+  +slide
+    h2 ...should you just #[strong ignore] PWAs?
+
+  +slide
+    h1 Nope
+
+  +slide
+    h2 Here’s why:
+    ul
+      li.fragment PWAs decrease load times on #[strong all] connections
+      li.fragment Perceived load times improve
+      li.fragment Stability improves for mobile users everywhere
+      li.fragment User experience is better all around
+
+  +slide
+    img(
+      src="images/progressive-web-apps/bacon.gif"
+      alt="bacon"
+    )
+    h3 That sounds #[em significantly more awesome] than eating vegetables.
+
+  +slide
+    h3 Okay, okay — I believe you.
+    h2 But how much work is involved?
+
+  +slide
+    h4 Let’s turn this app into a PWA:
+    img(
+      src="images/progressive-web-apps/bear-app.png"
+      alt="bear app"
+      style="width: 75%; margin: 0;"
+    )
+    p(style="margin: 0;")
+      small
+        a(href="https://code.lengstorf.com/presentations/progressive-web-apps/demo/no-pwa/").
+          code.lengstorf.com/presentations/progressive-web-apps/demo/no-pwa/
+
+  +slide
+    h4 Right now, it doesn’t score very well:
+    img(
+      src="images/progressive-web-apps/lighthouse-no-pwa.png"
+      alt="Lighthouse score for non-PWA"
+      style="width: 75%; margin: 0;"
+    )
+    p(style="margin: 0")
+      small Lighthouse is Google’s plugin to audit apps for PWA features.
+
+  +slide
+    h3 To build PWA we need to:
+    ul
+      li.fragment Register a Service Worker to manage caching and offline access
+      li.fragment Create an app manifest to describe the app
+      li.fragment Let the Service Worker know about required assets
+      li.fragment Define caching rules for other assets
+
+  +slide
+    h3 Bonus points for:
+    ul
+      li.fragment Lazy loading resources to improve perceived performance
+      li.fragment Enabling offline support for user interactions
+
+  +slide
+    h4 ...that sounds like a lot of work.
+
+  +slide
+    h1 It’s not
+    h3 Most of the process is #[em already done] for you
+
+  +slide
+    h3 Step 1: Install 
+      code sw-precache
+    ul
+      li.fragment Creates the Service Worker
+      li.fragment Accepts a list of files or folders and generates required asset list
+      li.fragment Accepts a list of URL patterns to manage caching of other assets
+      li.fragment Enables offline access
+
+  +slide
+    h4 Configuring #[code sw-precache-webpack-plugin]:
+    pre
+      code.js.
+          plugins: [
+            new SWPrecacheWebpackPlugin(
+              {
+                filepath: './public/service-worker.js',
+                runtimeCaching: [{
+                  urlPattern: /[.]jpg$/,
+                  handler: 'cacheFirst'
+                }],
+                staticFileGlobs: ['public/**.*'],
+                stripPrefix: 'public/',
+              }
+            ),
+          ],
+    p
+      small
+        a(href="https://github.com/goldhand/sw-precache-webpack-plugin").
+          github.com/goldhand/sw-precache-webpack-plugin
+
+  +slide
+    h3 Step 2: Register the Service Worker in your app
+    pre
+      code(style="font-size: 87.5%").js.
+        &lt;script>
+          (function() {
+            if('serviceWorker' in navigator) {
+              navigator.serviceWorker.register('./service-worker.js');
+            }
+          })();
+        &lt;/script>
+
+  +slide
+    h3 Step 3: Generate a manifest
+    ol
+      li.fragment Go to 
+        a(href="http://realfavicongenerator.net/").
+          realfavicongenerator.net
+      li.fragment Follow the instructions
+      li.fragment Done!
+    p.fragment
+      small NOTE: You can automate this with an NPM package.
+
+  +slide
+    h3 Step 4: ...
+    p Technically, you’re all done at this point.
+
+  +slide
+    h3 Bonus: Add lazy loading
+    ul
+      li.fragment Only load images that are visible
+      li.fragment Libraries exist to handle this for you, such as 
+        a(href="https://github.com/jlengstorf/responsive-lazyload.js").
+          responsive-lazyload.js
+
+  +slide
+    h4 Lazy-loading with #[code responsive-lazyload.js]:
+    pre
+      code.js.
+        &lt;a href="img/bacon.jpg"
+           class="gallery__link js--lazyload">
+          &lt;img class="gallery__image"
+               src="img/thumbs/bacon.jpg"
+               srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+               data-lazyload="img/thumbs/bacon.jpg 1x,
+                              img/thumbs/bacon@2x.jpg 2x"
+               alt="image">
+        &lt;/a>
+    p
+      small
+        a(href="https://github.com/jlengstorf/responsive-lazyload.js").
+          github.com/jlengstorf/responsive-lazyload.js
+
+  +slide
+    h3 This score is #[em much better]:
+    img(
+      src="images/progressive-web-apps/lighthouse-pwa.png"
+      alt="Lighthouse PWA score"
+      style="width: 75%; margin: 0;"
+    )
+
+  +slide
+    h2 But what if we need a database?
+
+  +slide
+    h3 There are 2 main flavors of databases
+    ul
+      li.fragment
+        strong Server-side:
+        |  the app connects to a remote machine to perform CRUD operations
+      li.fragment
+        strong Client-side:
+        |  the database is on the same device as the app
+
+  +slide
+    h3 The Low-Down on #[br]#[em Server-Side] Databases
+    .two-columns
+      h4 The #[em Good]
+      ul
+        li.fragment Accessible to all connected instances
+        li.fragment Apps don’t need to load #[em all] data to run the app
+      
+      h4 The #[strong Bad]
+      ul
+        li.fragment Can cause a noticeable slow-down in apps
+        li.fragment Apps require an internet connection
+
+  +slide
+    h3 The Low-Down on #[br]#[em Client-Side] Databases
+    .two-columns
+      h4 The #[em Good]
+      ul
+        li.fragment Apps feel much faster because there’s no server request
+        li.fragment Even if there’s no internet connection, apps will still work
+      
+      h4 The #[strong Bad]
+      ul
+        li.fragment Each app has its own instance of the database
+        li.fragment #[em All] of the app’s data needs to be downloaded
+
+  +slide
+    h2 What if I would like to #[em have] my cake but also to #[strong eat] my cake?
+    
+  +slide
+    h1 Use ’Em #[em.hugify Both]
+    h3.fragment and sync that shit
+
+  +slide
+    h1 #[em CouchDB] + #[strong PouchDB]
+    h3 With Replication
+
+  +slide
+    h2 PouchDB gives us:
+    ul
+      li.fragment Offline-first capabilities
+      li.fragment Near-instant updates and responses
+      li.fragment A simple JavaScript API for CRUD operations
+
+  +slide
+    h2 CouchDB gives us:
+    ul
+      li.fragment Data persistence across devices
+      li.fragment Support for collaborative editing
+      li.fragment A way to tie IBM products into the demo
+    
+  +slide
+    img(src="./images/progressive-web-apps/its-hard.gif")
+
+  +slide
+    h1 It’s not hard
+    h4.fragment It’s pretty easy, actually.
+
+  +slide
+    pre
+      code(style="font-size: 80%").
+        // Keep the local (PouchDB) and the remote (CouchDB) databases in sync.
+        PouchDB.sync('local_db', 'https://example.com/remote_db', {
+          live: true,
+          retry: true,
+        });
+        
+        // Whenever there are changes on the remote database, we want to know.
+        db.changes({
+          since: 'now',
+          live: true,
+        }).on('change', handleDataChanges);
+    h3.fragment That’s it — #[em No joke]
+
+  +slide
+    h1 Demo?
+    h4
+      a(
+        href="https://code.lengstorf.com/offline-first-db-example/"
+      ) Meet the Thought Collector!
+
+  +slide
+    h1 Let’s Recap
+
+  +slide
+    h3 Progressive Web Apps:
+    ul
+      li.fragment Make our apps faster
+      li.fragment Improve the user experience on all devices
+      li.fragment Increase the reliability of our app
+      li.fragment Allow our users to “install” our app on their home screen
+    p.fragment All with a few minutes of effort.
+
+  +slide
+    h3 And with just a bit of extra work, we can:
+    ul
+      li.fragment Lazy load resources to further improve load times
+      li.fragment Enable offline data access for truly offline-capable apps
+  
+  +slide
+    h2 Progressive Web Apps are #[em Awesome]
+
+  +slide
+    h3 With very little effort, we can build web apps that feel just as snappy as 
+      em.hugify native apps
+
+  +slide
+    h1 🥓    
 
   //- Q&A
   +slide
@@ -97,8 +399,28 @@ block slides
     ol
       li
         a(
-          href="https://google.com"
-        ) link
+          href="https://developers.google.com/web/tools/lighthouse/"
+        ) Lighthouse
+      li
+        a(
+          href="https://github.com/GoogleChrome/sw-precache"
+        ) sw-precache
+      li
+        a(
+          href="https://github.com/goldhand/sw-precache-webpack-plugin"
+        ) sw-precache-webpack-plugin
+      li
+        a(
+          href="http://realfavicongenerator.net/"
+        ) Favicon Generator (for manifest.json)
+      li
+        a(
+          href="https://github.com/jlengstorf/responsive-lazyload.js"
+        ) responsive-lazyload.js
+      li
+        a(
+          href="https://pouchdb.com/"
+        ) PouchDB
 
 
 block styles

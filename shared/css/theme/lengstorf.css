@@ -354,6 +354,13 @@ html.blackout::after, html.dimmer::after {
     .reveal h6 em {
       color: #c700eb;
       font-style: normal; }
+    .reveal h1 code,
+    .reveal h2 code,
+    .reveal h3 code,
+    .reveal h4 code,
+    .reveal h5 code,
+    .reveal h6 code {
+      text-transform: none; }
     .reveal h1 .hugify,
     .reveal h2 .hugify,
     .reveal h3 .hugify,
