@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Do Monads Matter?</title>
+    <title>Who Gives a Fuck About A Monad?</title>
     <meta name="description" content="Functional programming for people who hate math.">
     <link rel="stylesheet" href="css/reveal.css">
     <link id="theme" rel="stylesheet" href="css/theme/lengstorf.css">
@@ -33,7 +33,7 @@
     <div class="reveal">
       <div class="slides">
         <section>
-          <h1>Do Monads Matter?</h1>
+          <h1 style="font-size: 250%">Who Gives a Fuck About A Monad?</h1>
           <h3>Functional programming for people who hate math.</h3>
           <p>by <a href="https://code.lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a> | <a href="mailto:jason@lengstorf.com">jason@lengstorf.com</a></small></p>
           <p><small>Slides: <a href="https://git.io/vyzvq">git.io/vyzvq</a></small></p>
@@ -63,6 +63,37 @@
             <li class="fragment">Author of 3 books on development stuff</li>
             <li class="fragment">World champion purveyor of bear hugs</li>
           </ul>
+        </section>
+        <section>
+          <h3>Before we start:</h3>
+          <h1>What I’m <em>Not</em> Here to Do</h1>
+        </section>
+        <section>
+          <h3 class="wider">I’m not here to <strong>“convert”</strong> you.</h3>
+        </section>
+        <section>
+          <h3>I’m not trying to convince you to write <strong>all of your code</strong> a certain way.</h3>
+        </section>
+        <section>
+          <h3>As web developers, <span style="display: block; font-size: 325%">dogma</span>can get us <strong>left behind</strong>.</h3>
+          <aside class="notes">
+            I tend to avoid developers who say things like, “Well, that’s the way 
+            we’ve always done it.”
+            
+          </aside>
+        </section>
+        <section>
+          <h1>What I <em>Am</em> Here to Do</h1>
+        </section>
+        <section>
+          <h3>Learn techniques to improve code quality in <em>many</em> situations...</h3>
+          <h3 class="fragment">...but not <em>all</em> of them.</h3>
+        </section>
+        <section>
+          <h1>Cool?</h1>
+        </section>
+        <section>
+          <h1>Cool.</h1>
         </section>
         <section>
           <h2>What is <em>functional programming</em>?</h2>
@@ -128,7 +159,7 @@ R.over(xLens, R.negate, {x: 1, y: 2}); //=> {x: -1, y: 2}
           <aside class="notes">Before we get started, let me give a disclaimer: this is <em>not</em> going 
             to be a talk about the academically "correct" version of functional 
             programming — I don't know the theories, or the underlying math, or the 
-            preciser terminology for techniques. What I want to accomplish today is to
+            precise terminology for techniques. What I want to accomplish today is to
             share what I've learned from digging through functional programming 
             libraries, discussions, articles, and how-tos. This is a practical talk,
             not a theoretical one, so let me apologize in advance if I call something
@@ -152,7 +183,7 @@ R.over(xLens, R.negate, {x: 1, y: 2}); //=> {x: -1, y: 2}
         <section>
           <h3>To accomplish this, our code follows a few rules:</h3>
           <ol style="width: 80%">
-            <li class="fragment">Functions are better than loops</li>
+            <li class="fragment">Use functions over loops whenever possible</li>
             <li class="fragment">Always return the same result given the same arguments</li>
             <li class="fragment">Write functions that do one thing</li>
           </ol>
@@ -219,7 +250,7 @@ R.over(xLens, R.negate, {x: 1, y: 2}); //=> {x: -1, y: 2}
         </section>
         <section>
           <h2>Got it?</h2>
-          <p class="fragment">Let’s look at some code.</p>
+          <p class="fragment">Let’s look at some code to fix that beverage list.</p>
         </section>
         <section>
           <h3>An <strong>Imperative</strong> Solution</h3>
@@ -348,10 +379,10 @@ function describeMyFavoriteThing() {
         </section>
         <section>
           <h3>Then Legal Gets Involved:</h3>
-          <pre><code class="js">function undergoMajorLifeChanges() {
+          <pre><code class="js">function makeFamilyFriendly() {
   myFavoriteThing = 'scented bubble bath';
 }</code></pre>
-          <p>Try this live: <a href="https://goo.gl/RcBsDc">https://goo.gl/RcBsDc</a></p>
+          <p>Try this live: <a href="https://goo.gl/zgRpEm">https://goo.gl/zgRpEm</a></p>
         </section>
         <section>
           <h3>Good Luck Debugging This:</h3>
@@ -362,12 +393,12 @@ describeMyFavoriteThing();
 //=>"I prefer to drink quality aged whiskey." (yay!)
 
 // ...probably a bunch of additional code...
-undergoMajorLifeChanges();
+makeFamilyFriendly();
 // ...probably more additional code...
 
 describeMyFavoriteThing();
 //=>"I prefer to drink quality scented bubble bath." (!)</code></pre>
-          <p>Try this live: <a href="https://goo.gl/AUVt8n">https://goo.gl/AUVt8n</a></p>
+          <p>Try this live: <a href="https://goo.gl/xFPtJF">https://goo.gl/xFPtJF</a></p>
           <aside class="notes">This is hard to debug and we <em>just wrote it</em>. Imagine coming back to
             this in six months, or inheriting this code from a team member and having
             no idea what each of these functions is supposed to be doing.
@@ -384,16 +415,16 @@ function clarifyFavoriteThing(favoriteThing) {
   return `aged ${favoriteThing}`;
 }
 
-function undergoMajorLifeChanges() {
+function makeFamilyFriendly() {
   return 'scented bubble bath';
 }</code></pre>
-          <p>Try this live: <a href="https://goo.gl/zcxJVN">https://goo.gl/zcxJVN</a></p>
+          <p>Try this live: <a href="https://goo.gl/qDtJeu">https://goo.gl/qDtJeu</a></p>
         </section>
         <section>
           <h3>We can clearly follow what's happening:</h3>
           <pre><code class="js">const myFavoriteThing = 'whiskey';
 const clarified = clarifyFavoriteThing(myFavoriteThing);
-const newFavorite = undergoMajorLifeChanges();
+const newFavorite = makeFamilyFriendly();
 
 describeMyFavoriteThing(myFavoriteThing);
 //=>"I prefer to drink quality whiskey."
@@ -403,13 +434,13 @@ describeMyFavoriteThing(clarified);
 
 describeMyFavoriteThing(newFavorite);
 //=>"I prefer to drink quality scented bubble bath."</code></pre>
-          <p>Try this live: <a href="https://goo.gl/zcxJVN">https://goo.gl/zcxJVN</a></p>
+          <p>Try this live: <a href="https://goo.gl/qDtJeu">https://goo.gl/qDtJeu</a></p>
         </section>
         <section>
           <h3>Debugging is <em>easy</em>:</h3>
           <pre><code class="js">// start debugging here: ↓ ↓ ↓ ↓ ↓
 describeMyFavoriteThing(newFavorite);</code></pre>
-          <p>Try this live: <a href="https://goo.gl/zcxJVN">https://goo.gl/zcxJVN</a></p>
+          <p>Try this live: <a href="https://goo.gl/qDtJeu">https://goo.gl/qDtJeu</a></p>
         </section>
         <section>
           <h3>This Is Called <em class="hugify">Referential Transparency</em></h3>
@@ -421,7 +452,7 @@ describeMyFavoriteThing(newFavorite);</code></pre>
         </section>
         <section>
           <h3>We can replace any pure function with its return value &amp; get the <em>same result</em>:</h3>
-          <pre><code class="js">const chz = 'I love ' + clarifyFavoriteThing('cheddar');</code></pre>
+          <pre><code class="js">const chz = `I love ${clarifyFavoriteThing('cheddar')}`;</code></pre>
           <p>...is the same as...</p>
           <pre><code class="js">const chz = 'I love aged cheddar.';
 </code></pre>
@@ -511,12 +542,10 @@ const result = showClarifiedFavorite('whiskey');</code></pre>
   return album1.artist > album2.artist ? 1 : -1;
 };
 
-const getOnlyIndie = (album) => {
-  return album.genre === 'indie';
-};
+const getOnlyIndie = album => album.genre === 'indie';
 
 albums.filter(getOnlyIndie).sort(byArtistAsc);</code></pre>
-          <p>Try this live: <a href="https://goo.gl/VVjFSZ">https://goo.gl/VVjFSZ</a></p>
+          <p>Try this live: <a href="https://goo.gl/HXscSK">https://goo.gl/HXscSK</a></p>
         </section>
         <section>
           <h2>But Wait!</h2>
@@ -528,14 +557,22 @@ albums.filter(getOnlyIndie).sort(byArtistAsc);</code></pre>
   return album.genre === genre;
 });
 
+// Create similar functions without duplicate code
 const onlyHipHop = filterByGenre('hip-hop');
 const onlyIndie = filterByGenre('indie');
-const onlyRock = filterByGenre('rock');</code></pre>
+const onlyRock = filterByGenre('rock');
+
+const hipHop = albums.filter(onlyHipHop);</code></pre>
           <p>Try this live: <a href="https://goo.gl/qPJhZW">https://goo.gl/qPJhZW</a></p>
         </section>
         <section>
           <h3>What's That <em>Curry</em> Thing?</h3>
-          <p class="fragment">...besides delicious, that is.</p>
+        </section>
+        <section>
+          <h4>Not this curry:</h4><img src="images/functional-programming/curry.jpg" alt="curry">
+        </section>
+        <section>
+          <h4>This Curry:</h4><img src="images/functional-programming/haskell-curry.jpg" alt="curry">
         </section>
         <section>
           <h3 style="text-transform: none"><code>R.curry()</code></h3>
@@ -584,7 +621,7 @@ add4(7); //=> 11
           </ol>
         </section>
         <section>
-          <h3>You can <em>go deeper</em>...</h3>
+          <h3>You can go <em>waaay deeper</em>...</h3>
           <p class="fragment">
             ...but just these three techniques will save you hours of headaches and 
             make your code better and easier to deal with going forward.
@@ -608,11 +645,11 @@ add4(7); //=> 11
       </div>
     </div>
     <div class="hashtag">
-      <p>Tweet: <a href="https://twitter.com/intent/tweet?text=Do%20Monads%20Matter%3F%20by%20%40jlengstorf&amp;hashtags=oraclecode&amp;related=jlengstorf%2Coracledevs&amp;url=https%3A%2F%2Fcode.lengstorf.com%2Fpresentation%2Ffunctional-programming%2Fslides%2F" target="_blank">@jlengstorf #oraclecode</a></p>
+      <p>Tweet: <a href="https://twitter.com/intent/tweet?text=Who%20Gives%20a%20Fuck%20About%20A%20Monad%3F%20by%20%40jlengstorf&amp;hashtags=webrebels&amp;related=jlengstorf%2Cweb_rebels&amp;url=https%3A%2F%2Fcode.lengstorf.com%2Fpresentation%2Ffunctional-programming%2Fslides%2F" target="_blank">@jlengstorf #webrebels</a></p>
     </div>
     <footer>
       <ul class="inline">
-        <li>“Do Monads Matter?” by <a href="https://code.lengstorf.com/">Jason Lengstorf</a> (slides: <a href="https://git.io/vyzvq">git.io/vyzvq</a>)</li>
+        <li>“Who Gives a Fuck About A Monad?” by <a href="https://code.lengstorf.com/">Jason Lengstorf</a> (slides: <a href="https://git.io/vyzvq">git.io/vyzvq</a>)</li>
         <li><a href="https://twitter.com/jlengstorf">@jlengstorf</a></li>
         <li><a href="https://github.com/jlengstorf">github.com/jlengstorf</a></li>
       </ul>

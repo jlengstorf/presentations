@@ -4,7 +4,7 @@ extends layouts/presentation
 block append config
   -
     config.theme = 'lengstorf';
-    config.title = 'Do Monads Matter?';
+    config.title = 'Who Gives a Fuck About A Monad?';
     config.description = 'Functional programming for people who hate math.';
     config.slidesLink = 'https://code.lengstorf.com/presentation/functional-programming/slides/';
 
@@ -21,8 +21,8 @@ block append config
     };
 
     config.conference = {
-      hashtag: 'oraclecode',
-      twitter: 'oracledevs',
+      hashtag: 'webrebels',
+      twitter: 'web_rebels',
     };
   -
 
@@ -30,7 +30,7 @@ block append config
 //- on how `+slide` works.
 block slides
   +slide
-    h1= config.title
+    h1(style="font-size: 250%")= config.title
     h3= config.description
     
     p by 
@@ -67,6 +67,38 @@ block slides
       li.fragment Senior developer at IBM
       li.fragment Author of 3 books on development stuff
       li.fragment World champion purveyor of bear hugs
+
+  +slide
+    h3 Before we start:
+    h1 What I’m #[em Not] Here to Do
+
+  +slide
+    h3.wider I’m not here to #[strong “convert”] you.
+
+  +slide
+    h3 I’m not trying to convince you to write #[strong all of your code] a certain way.
+
+  +slide
+    h3 As web developers, 
+      span(style="display: block; font-size: 325%;") dogma
+      | can get us #[strong left behind].
+
+    aside.notes.
+      I tend to avoid developers who say things like, “Well, that’s the way 
+      we’ve always done it.”
+
+  +slide
+    h1 What I #[em Am] Here to Do
+
+  +slide
+    h3 Learn techniques to improve code quality in #[em many] situations...
+    h3.fragment ...but not #[em all] of them.
+
+  +slide
+    h1 Cool?
+
+  +slide
+    h1 Cool.
 
   //- Intro: functional programming is really confusing
   +slide
@@ -148,7 +180,7 @@ block slides
       Before we get started, let me give a disclaimer: this is #[em not] going 
       to be a talk about the academically "correct" version of functional 
       programming — I don't know the theories, or the underlying math, or the 
-      preciser terminology for techniques. What I want to accomplish today is to
+      precise terminology for techniques. What I want to accomplish today is to
       share what I've learned from digging through functional programming 
       libraries, discussions, articles, and how-tos. This is a practical talk,
       not a theoretical one, so let me apologize in advance if I call something
@@ -169,7 +201,7 @@ block slides
   +slide
     h3 To accomplish this, our code follows a few rules:
     ol(style="width: 80%")
-      li.fragment Functions are better than loops
+      li.fragment Use functions over loops whenever possible
       li.fragment Always return the same result given the same arguments
       li.fragment Write functions that do one thing
 
@@ -253,7 +285,7 @@ block slides
 
   +slide
     h2 Got it?
-    p.fragment Let’s look at some code.
+    p.fragment Let’s look at some code to fix that beverage list.
 
   //- Examples for Rule #1
   +slide
@@ -424,11 +456,11 @@ block slides
     h3 Then Legal Gets Involved:
     pre
       code.js.
-        function undergoMajorLifeChanges() {
+        function makeFamilyFriendly() {
           myFavoriteThing = 'scented bubble bath';
         }
     p Try this live: 
-      a(href="https://goo.gl/RcBsDc") https://goo.gl/RcBsDc
+      a(href="https://goo.gl/zgRpEm") https://goo.gl/zgRpEm
 
   +slide
     h3 Good Luck Debugging This:
@@ -441,13 +473,13 @@ block slides
         //=>"I prefer to drink quality aged whiskey." (yay!)
 
         // ...probably a bunch of additional code...
-        undergoMajorLifeChanges();
+        makeFamilyFriendly();
         // ...probably more additional code...
 
         describeMyFavoriteThing();
         //=>"I prefer to drink quality scented bubble bath." (!)
     p Try this live: 
-      a(href="https://goo.gl/AUVt8n") https://goo.gl/AUVt8n
+      a(href="https://goo.gl/xFPtJF") https://goo.gl/xFPtJF
 
     aside.notes.
       This is hard to debug and we #[em just wrote it]. Imagine coming back to
@@ -466,11 +498,11 @@ block slides
           return `aged ${favoriteThing}`;
         }
 
-        function undergoMajorLifeChanges() {
+        function makeFamilyFriendly() {
           return 'scented bubble bath';
         }
     p Try this live: 
-      a(href="https://goo.gl/zcxJVN") https://goo.gl/zcxJVN
+      a(href="https://goo.gl/qDtJeu") https://goo.gl/qDtJeu
 
   +slide
     h3 We can clearly follow what's happening:
@@ -478,7 +510,7 @@ block slides
       code.js.
         const myFavoriteThing = 'whiskey';
         const clarified = clarifyFavoriteThing(myFavoriteThing);
-        const newFavorite = undergoMajorLifeChanges();
+        const newFavorite = makeFamilyFriendly();
 
         describeMyFavoriteThing(myFavoriteThing);
         //=>"I prefer to drink quality whiskey."
@@ -489,7 +521,7 @@ block slides
         describeMyFavoriteThing(newFavorite);
         //=>"I prefer to drink quality scented bubble bath."
     p Try this live: 
-      a(href="https://goo.gl/zcxJVN") https://goo.gl/zcxJVN
+      a(href="https://goo.gl/qDtJeu") https://goo.gl/qDtJeu
 
   +slide
     h3 Debugging is #[em easy]:
@@ -498,7 +530,7 @@ block slides
         // start debugging here: ↓ ↓ ↓ ↓ ↓
         describeMyFavoriteThing(newFavorite);
     p Try this live: 
-      a(href="https://goo.gl/zcxJVN") https://goo.gl/zcxJVN
+      a(href="https://goo.gl/qDtJeu") https://goo.gl/qDtJeu
 
   +slide
     h3 This Is Called 
@@ -511,7 +543,7 @@ block slides
     h3 We can replace any pure function with its return value &amp; get the #[em same result]:
     pre
       code.js.
-        const chz = 'I love ' + clarifyFavoriteThing('cheddar');
+        const chz = `I love ${clarifyFavoriteThing('cheddar')}`;
     p ...is the same as...
     pre
       code.js.
@@ -616,13 +648,11 @@ block slides
           return album1.artist > album2.artist ? 1 : -1;
         };
 
-        const getOnlyIndie = (album) => {
-          return album.genre === 'indie';
-        };
-        
+        const getOnlyIndie = album => album.genre === 'indie';
+
         albums.filter(getOnlyIndie).sort(byArtistAsc);
     p Try this live: 
-      a(href="https://goo.gl/VVjFSZ") https://goo.gl/VVjFSZ
+      a(href="https://goo.gl/HXscSK") https://goo.gl/HXscSK
 
   +slide
     h2 But Wait!
@@ -636,15 +666,31 @@ block slides
           return album.genre === genre;
         });
 
+        // Create similar functions without duplicate code
         const onlyHipHop = filterByGenre('hip-hop');
         const onlyIndie = filterByGenre('indie');
         const onlyRock = filterByGenre('rock');
+
+        const hipHop = albums.filter(onlyHipHop);
     p Try this live: 
       a(href="https://goo.gl/qPJhZW") https://goo.gl/qPJhZW
 
   +slide
     h3 What's That #[em Curry] Thing?
-    p.fragment ...besides delicious, that is.
+
+  +slide
+    h4 Not this curry:
+    img(
+      src="images/functional-programming/curry.jpg"
+      alt="curry"
+    )
+
+  +slide
+    h4 This Curry:
+    img(
+      src="images/functional-programming/haskell-curry.jpg"
+      alt="curry"
+    )
 
   +slide
     h3(style="text-transform: none;")
@@ -694,7 +740,7 @@ block slides
       li.fragment Write functions that do one thing
 
   +slide
-    h3 You can #[em go deeper]...
+    h3 You can go #[em waaay deeper]...
     p.fragment.
       ...but just these three techniques will save you hours of headaches and 
       make your code better and easier to deal with going forward.
