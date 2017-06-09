@@ -204,6 +204,15 @@ html {
     }
   }
 
+  .no-margin {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .twitter-tweet {
+    margin: 0 auto;
+  }
+
   .two-columns {
     columns: 2;
     column-gap: 1.5em;

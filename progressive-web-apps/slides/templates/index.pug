@@ -5,7 +5,7 @@ block append config
   -
     config.theme = 'lengstorf';
     config.title = 'Progressive Web Apps';
-    config.description = 'Looks Like Vegetables; Tastes Like Bacon';
+    config.description = 'Looks Like Vegetables; Tastes Like Victory';
     config.slidesLink = 'https://code.lengstorf.com/presentation/progressive-web-apps/slides/';
 
     config.author = {
@@ -45,7 +45,7 @@ block slides
       small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
 
   //- Front-matter stuff
-  +slide.u--align-left.u--text-light.u--text-shadow(data-background="url(./images/bear-background@2x.jpg)")
+  //- +slide.u--align-left.u--text-light.u--text-shadow(data-background="url(./images/bear-background@2x.jpg)")
     h2 Who I Am
     ul
       li.hide-me 
@@ -58,7 +58,7 @@ block slides
     aside.notes.
       This joke is so terrible. You should be ashamed of yourself.
 
-  +slide.u--align-left.u--text-light.u--text-shadow(data-background="url(./images/jason-lengstorf-slide-bg@2x.jpg)")
+  //- +slide.u--align-left.u--text-light.u--text-shadow(data-background="url(./images/jason-lengstorf-slide-bg@2x.jpg)")
     h2 Who I Am
     ul.full-width
       li.fragment Building web things since 2003
@@ -68,40 +68,142 @@ block slides
       li.fragment Author of 3 books on development stuff
       li.fragment World champion purveyor of bear hugs
 
+
+  
+  
   //- INTRO
   +slide
-    h2 What the heck is a 
-      span.hugify #[em PWA]?
+    h2 How much does your website
+      span.hugify(style="font-size: 280%") #[strong cost]?
+  
   +slide
-    h3 A Progressive Web App:
-    ul
-      li.fragment Supports offline/crappy connections (e.g. 3G phones)
-      li.fragment Works without JavaScript
-      li.fragment Follows security best practices
-      li.fragment Enables “Add to Homescreen” for mobile users
-      li.fragment Renders well on smaller devices
+    h3 We measure cost in seconds:
+    img.no-margin(
+      src="images/progressive-web-apps/load-cost-seconds.svg"
+      alt="seconds to load popular websites"
+    )
+    p.no-margin
+      small Source: Time To Interactive from Lighthouse. I ran the test twice and took the faster time.
 
   +slide
+    h3 Time isn’t the only cost
+    blockquote.twitter-tweet(data-lang="en")
+      p(lang="en" dir="ltr")
+        a(href="https://twitter.com/Una") @Una
+        | Yes. On a recent trip to the US I spent $7 to load the conference homepage on my iPhone.
+      | &mdash; Roy Tomeij (@roy) 
+      a(href="https://twitter.com/roy/status/861563195424681985") May 8, 2017
+    script(async src="//platform.twitter.com/widgets.js" charset="utf-8")
+
+  +slide
+    h2 Mobile Data Can Be #[strong.hugify Expensive]
+  
+  +slide
+    h1(style="font-size: 420%") $2.05/MB
+    p
+      small Price in USD for a #[a(href="https://www.att.com/offers/international-plans/compare-options.html") US-based AT&amp;T customer traveling internationally].
+    
+    aside.notes.
+      Roy Tomeij
+      #[a(href="https://twitter.com/roy/status/861589144123920384") pays USD $2.74 per MB] 
+      on his Netherlands-based plan while traveling abroad.
+
+  +slide
+    h3 Websites are getting larger
+    img.no-margin(
+      src="images/progressive-web-apps/page-size-trend.svg"
+      alt="website size from 2012 to 2017"
+    )
+    p.no-margin
+      small Source: 
+        a(
+          href="http://httparchive.org/trends.php?s=All&minlabel=Mar+15+2012&maxlabel=Apr+15+2017#bytesTotal&reqTotal"
+        ) HTTP Archive
+
+  +slide
+    h3 Would you #[strong pay $10]#[br]to load this website?
+    img.no-margin(
+      src="images/progressive-web-apps/new-yorker.png"
+      alt="cost in USD to load popular websites"
+    )
+
+    aside.notes
+      ul
+        li Twitter: $0.21 (0.1 MB)
+        li Google: $0.61 (0.3 MB)
+        li Facebook: $1.23 (0.6 MB)
+        li Smashing Conf: $1.23 (0.6 MB)
+        li OSCON: $12.01 (5.9 MB)
+        li CSS Dev Conf: $30.14 (14.7 MB)
+
+  +slide
+    h2 Also: loading huge sites on mobile just 
+      strong(style="font-size: 345%;") sucks
+    
+    aside.notes.
+      They’re slow, they jump all over, and if you’re on a train or in an 
+      elevator, they fail and give errors if the connection stutters.
+  
+  +slide
+    img(
+      src="images/progressive-web-apps/no-connection.png"
+      alt="Chrome’s no connection screen"
+      style="width: 80%;"
+    )
+    p.no-margin ...and what if the connection is flaky?
+
+    aside.notes.
+      On less reliable connections, the site might not load at all, or it’ll time
+      out and end up on the “no connection” screen.
+
+  +slide
+    h1 We Can Fix It!
+    p
+      small.fragment (And it doesn’t mean starting from scratch.)
+  
+  +slide
+    h3 The Solution:
+    h1
+      em Progressive Web Apps
+
+  +slide
+    h3 With Progressive Web Apps (PWAs), we can:
+    ol
+      li.fragment Significantly decrease the amount of data transferred on each page load
+      li.fragment Improve the experience for users on unreliable connections
+
+  +slide
+    img(
+      src="images/progressive-web-apps/boooooring.gif"
+      alt="boooooring"
+      style="width: 100%;"
+    )
     h3 Booooooooooooooring!
-
+  
   +slide
-    h4 “My connection is hella fast, bro.#[br]Who needs this junk?”
+    h4 “That’s not my target market.”
+
+    aside.notes.
+      PWAs seem like a lot of work to help users that may not be in your 
+      demographic. And a lot of the language around PWAs mentions international
+      markets with flaky internet and poor infrastructure, so that’s not really
+      an unfair thing to believe.
 
   +slide
     img(
       src="images/progressive-web-apps/eat-your-veggies.gif"
       alt="eat your veggies"
+      style="width: 100%;"
     )
-    h3 At a glance, adding PWA features to an app might sound like being told to#[br]#[strong eat your vegetables]
+    
+    aside.notes.
+      The checklist to meet “Progressive Web App” standards isn’t
+      short, and a lot of the items on the list seem pretty complicated to 
+      implement. Adding PWA features to an app might sound an awful lot like 
+      being told to eat your vegetables.
 
   +slide
-    h3 The focus is usually on foreign markets with #[strong flaky internet].
-
-  +slide
-    h2 What if that’s #[strong not] your audience?
-
-  +slide
-    h2 ...should you just #[strong ignore] PWAs?
+    h3 Can’t we just #[strong ignore] PWAs?
 
   +slide
     h1 Nope
@@ -113,6 +215,12 @@ block slides
       li.fragment Perceived load times improve
       li.fragment Stability improves for mobile users everywhere
       li.fragment User experience is better all around
+    
+    aside.notes.
+      By caching resources, repeat visists and navigating to new pages is 
+      lightweight — and it’s #[em fast]. It eliminates HTTP requests, so 
+      stability improves. And with all that combined, the user experience gets
+      better — even for users on high-speed connections.
 
   +slide
     img(
@@ -122,8 +230,10 @@ block slides
     h3 That sounds #[em significantly more awesome] than eating vegetables.
 
   +slide
-    h3 Okay, okay — I believe you.
-    h2 But how much work is involved?
+    h4 “Okay, okay — I believe you, but#[br]#[strong I don’t have time] to rewrite my app!”
+
+  +slide
+    h3 We #[em don’t] have to#[br]start from scratch.
 
   +slide
     h4 Let’s turn this app into a PWA:
@@ -132,10 +242,22 @@ block slides
       alt="bear app"
       style="width: 75%; margin: 0;"
     )
-    p(style="margin: 0;")
-      small
-        a(href="https://code.lengstorf.com/presentations/progressive-web-apps/demo/no-pwa/").
-          code.lengstorf.com/presentations/progressive-web-apps/demo/no-pwa/
+  
+  +slide
+    h3 Download the source:
+    pre.sh
+      code.
+        # clone the source repo
+        git clone git@github.com:jlengstorf/pwa-workshop-starter.git
+
+        # move into the app directory
+        cd pwa-workshop-starter
+
+        # install dependencies with yarn
+        yarn install
+
+        # (or with NPM, if you prefer)
+        # npm install
 
   +slide
     h4 Right now, it doesn’t score very well:
@@ -170,8 +292,10 @@ block slides
 
   +slide
     h3 Step 1: Install 
-      code sw-precache
+      br
+      code sw-precache-webpack-plugin
     ul
+      li.fragment Uses the excellent #[code sw-precache] tool from the Google Chrome team
       li.fragment Creates the Service Worker
       li.fragment Accepts a list of files or folders and generates required asset list
       li.fragment Accepts a list of URL patterns to manage caching of other assets
@@ -220,11 +344,11 @@ block slides
       li.fragment Follow the instructions
       li.fragment Done!
     p.fragment
-      small NOTE: You can automate this with an NPM package.
+      small NOTE: We can automate this with an NPM package.
 
   +slide
     h3 Step 4: ...
-    p Technically, you’re all done at this point.
+    p Technically, we’re all done at this point.
 
   +slide
     h3 Bonus: Add lazy loading
@@ -300,7 +424,8 @@ block slides
         li.fragment #[em All] of the app’s data needs to be downloaded
 
   +slide
-    h2 What if I would like to #[em have] my cake but also to #[strong eat] my cake?
+    //- h2 What if I would like to #[em have] my cake but also to #[strong eat] my cake?
+    h2 What if I want the #[em best of both] databases?
     
   +slide
     h1 Use ’Em #[em.hugify Both]
@@ -322,10 +447,13 @@ block slides
     ul
       li.fragment Data persistence across devices
       li.fragment Support for collaborative editing
-      li.fragment A way to tie IBM products into the demo
     
   +slide
-    img(src="./images/progressive-web-apps/its-hard.gif")
+    img(
+      src="./images/progressive-web-apps/its-hard.gif"
+      alt="it’s hard"
+      style="width: 100%;"
+    )
 
   +slide
     h1 It’s not hard

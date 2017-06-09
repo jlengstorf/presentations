@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Progressive Web Apps</title>
-    <meta name="description" content="Looks Like Vegetables; Tastes Like Bacon">
+    <meta name="description" content="Looks Like Vegetables; Tastes Like Victory">
     <link rel="stylesheet" href="css/reveal.css">
     <link id="theme" rel="stylesheet" href="css/theme/lengstorf.css">
     <link rel="stylesheet" href="lib/css/github.css">
@@ -34,66 +34,109 @@
       <div class="slides">
         <section>
           <h1>Progressive Web Apps</h1>
-          <h3>Looks Like Vegetables; Tastes Like Bacon</h3>
+          <h3>Looks Like Vegetables; Tastes Like Victory</h3>
           <p>by <a href="https://code.lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a> | <a href="mailto:jason@lengstorf.com">jason@lengstorf.com</a></small></p>
           <p><small>Slides: <a href="https://git.io/v9tEr">git.io/v9tEr</a></small></p>
         </section>
-        <section class="u--align-left u--text-light u--text-shadow" data-background="url(./images/bear-background@2x.jpg)">
-          <h2>Who I Am</h2>
-          <ul>
-            <li class="hide-me"> </li>
-            <li class="hide-me"> </li>
-            <li class="hide-me"> </li>
-            <li class="hide-me"> </li>
-            <li class="hide-me"> </li>
-            <li class="hide-me"> </li>
-          </ul>
+        <section>
+          <h2>How much does your website<span class="hugify" style="font-size: 280%;"><strong>cost</strong>?</span></h2>
+        </section>
+        <section>
+          <h3>We measure cost in seconds:</h3><img class="no-margin" src="images/progressive-web-apps/load-cost-seconds.svg" alt="seconds to load popular websites">
+          <p class="no-margin"><small>Source: Time To Interactive from Lighthouse. I ran the test twice and took the faster time.</small></p>
+        </section>
+        <section>
+          <h3>Time isn’t the only cost</h3>
+          <blockquote class="twitter-tweet" data-lang="en">
+            <p lang="en" dir="ltr"><a href="https://twitter.com/Una">@Una</a>Yes. On a recent trip to the US I spent $7 to load the conference homepage on my iPhone.</p>&mdash; Roy Tomeij (@roy) <a href="https://twitter.com/roy/status/861563195424681985">May 8, 2017</a>
+          </blockquote>
+          <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </section>
+        <section>
+          <h2>Mobile Data Can Be <strong class="hugify">Expensive</strong></h2>
+        </section>
+        <section>
+          <h1 style="font-size: 420%;">$2.05/MB</h1>
+          <p><small>Price in USD for a <a href="https://www.att.com/offers/international-plans/compare-options.html">US-based AT&amp;T customer traveling internationally</a>.</small></p>
           <aside class="notes">
-            This joke is so terrible. You should be ashamed of yourself.
+            Roy Tomeij
+            <a href="https://twitter.com/roy/status/861589144123920384">pays USD $2.74 per MB</a> 
+            on his Netherlands-based plan while traveling abroad.
             
           </aside>
         </section>
-        <section class="u--align-left u--text-light u--text-shadow" data-background="url(./images/jason-lengstorf-slide-bg@2x.jpg)">
-          <h2>Who I Am</h2>
-          <ul class="full-width">
-            <li class="fragment">Building web things since 2003</li>
-            <li class="fragment"><em>Huge</em> process &amp; efficiency nerd</li>
-            <li class="fragment">Work-life balance advocate / consultant</li>
-            <li class="fragment">Senior developer at IBM</li>
-            <li class="fragment">Author of 3 books on development stuff</li>
-            <li class="fragment">World champion purveyor of bear hugs</li>
-          </ul>
+        <section>
+          <h3>Websites are getting larger</h3><img class="no-margin" src="images/progressive-web-apps/page-size-trend.svg" alt="website size from 2012 to 2017">
+          <p class="no-margin"><small>Source: <a href="http://httparchive.org/trends.php?s=All&amp;minlabel=Mar+15+2012&amp;maxlabel=Apr+15+2017#bytesTotal&amp;reqTotal">HTTP Archive</a></small></p>
         </section>
         <section>
-          <h2>What the heck is a <span class="hugify"><em>PWA</em>?</span></h2>
+          <h3>Would you <strong>pay $10</strong><br>to load this website?</h3><img class="no-margin" src="images/progressive-web-apps/new-yorker.png" alt="cost in USD to load popular websites">
+          <aside class="notes">
+            <ul>
+              <li>Twitter: $0.21 (0.1 MB)</li>
+              <li>Google: $0.61 (0.3 MB)</li>
+              <li>Facebook: $1.23 (0.6 MB)</li>
+              <li>Smashing Conf: $1.23 (0.6 MB)</li>
+              <li>OSCON: $12.01 (5.9 MB)</li>
+              <li>CSS Dev Conf: $30.14 (14.7 MB)</li>
+            </ul>
+          </aside>
         </section>
         <section>
-          <h3>A Progressive Web App:</h3>
-          <ul>
-            <li class="fragment">Supports offline/crappy connections (e.g. 3G phones)</li>
-            <li class="fragment">Works without JavaScript</li>
-            <li class="fragment">Follows security best practices</li>
-            <li class="fragment">Enables “Add to Homescreen” for mobile users</li>
-            <li class="fragment">Renders well on smaller devices</li>
-          </ul>
+          <h2>Also: loading huge sites on mobile just <strong style="font-size: 345%;">sucks</strong></h2>
+          <aside class="notes">
+            They’re slow, they jump all over, and if you’re on a train or in an 
+            elevator, they fail and give errors if the connection stutters.
+            
+          </aside>
+        </section>
+        <section><img src="images/progressive-web-apps/no-connection.png" alt="Chrome’s no connection screen" style="width: 80%;">
+          <p class="no-margin">...and what if the connection is flaky?</p>
+          <aside class="notes">
+            On less reliable connections, the site might not load at all, or it’ll time
+            out and end up on the “no connection” screen.
+            
+          </aside>
         </section>
         <section>
+          <h1>We Can Fix It!</h1>
+          <p><small class="fragment">(And it doesn’t mean starting from scratch.)</small></p>
+        </section>
+        <section>
+          <h3>The Solution:</h3>
+          <h1><em>Progressive Web Apps</em></h1>
+        </section>
+        <section>
+          <h3>With Progressive Web Apps (PWAs), we can:</h3>
+          <ol>
+            <li class="fragment">Significantly decrease the amount of data transferred on each page load</li>
+            <li class="fragment">Improve the experience for users on unreliable connections</li>
+          </ol>
+        </section>
+        <section><img src="images/progressive-web-apps/boooooring.gif" alt="boooooring" style="width: 100%;">
           <h3>Booooooooooooooring!</h3>
         </section>
         <section>
-          <h4>“My connection is hella fast, bro.<br>Who needs this junk?”</h4>
+          <h4>“That’s not my target market.”</h4>
+          <aside class="notes">
+            PWAs seem like a lot of work to help users that may not be in your 
+            demographic. And a lot of the language around PWAs mentions international
+            markets with flaky internet and poor infrastructure, so that’s not really
+            an unfair thing to believe.
+            
+          </aside>
         </section>
-        <section><img src="images/progressive-web-apps/eat-your-veggies.gif" alt="eat your veggies">
-          <h3>At a glance, adding PWA features to an app might sound like being told to<br><strong>eat your vegetables</strong></h3>
+        <section><img src="images/progressive-web-apps/eat-your-veggies.gif" alt="eat your veggies" style="width: 100%;">
+          <aside class="notes">
+            The checklist to meet “Progressive Web App” standards isn’t
+            short, and a lot of the items on the list seem pretty complicated to 
+            implement. Adding PWA features to an app might sound an awful lot like 
+            being told to eat your vegetables.
+            
+          </aside>
         </section>
         <section>
-          <h3>The focus is usually on foreign markets with <strong>flaky internet</strong>.</h3>
-        </section>
-        <section>
-          <h2>What if that’s <strong>not</strong> your audience?</h2>
-        </section>
-        <section>
-          <h2>...should you just <strong>ignore</strong> PWAs?</h2>
+          <h3>Can’t we just <strong>ignore</strong> PWAs?</h3>
         </section>
         <section>
           <h1>Nope</h1>
@@ -106,19 +149,40 @@
             <li class="fragment">Stability improves for mobile users everywhere</li>
             <li class="fragment">User experience is better all around</li>
           </ul>
+          <aside class="notes">
+            By caching resources, repeat visists and navigating to new pages is 
+            lightweight — and it’s <em>fast</em>. It eliminates HTTP requests, so 
+            stability improves. And with all that combined, the user experience gets
+            better — even for users on high-speed connections.
+            
+          </aside>
         </section>
         <section><img src="images/progressive-web-apps/bacon.gif" alt="bacon">
           <h3>That sounds <em>significantly more awesome</em> than eating vegetables.</h3>
         </section>
         <section>
-          <h3>Okay, okay — I believe you.</h3>
-          <h2>But how much work is involved?</h2>
+          <h4>“Okay, okay — I believe you, but<br><strong>I don’t have time</strong> to rewrite my app!”</h4>
+        </section>
+        <section>
+          <h3>We <em>don’t</em> have to<br>start from scratch.</h3>
         </section>
         <section>
           <h4>Let’s turn this app into a PWA:</h4><img src="images/progressive-web-apps/bear-app.png" alt="bear app" style="width: 75%; margin: 0;">
-          <p style="margin: 0;"><small><a href="https://code.lengstorf.com/presentations/progressive-web-apps/demo/no-pwa/">
-                code.lengstorf.com/presentations/progressive-web-apps/demo/no-pwa/
-                </a></small></p>
+        </section>
+        <section>
+          <h3>Download the source:</h3>
+          <pre class="sh"><code># clone the source repo
+git clone git@github.com:jlengstorf/pwa-workshop-starter.git
+
+# move into the app directory
+cd pwa-workshop-starter
+
+# install dependencies with yarn
+yarn install
+
+# (or with NPM, if you prefer)
+# npm install
+</code></pre>
         </section>
         <section>
           <h4>Right now, it doesn’t score very well:</h4><img src="images/progressive-web-apps/lighthouse-no-pwa.png" alt="Lighthouse score for non-PWA" style="width: 75%; margin: 0;">
@@ -148,8 +212,9 @@
           <h3>Most of the process is <em>already done</em> for you</h3>
         </section>
         <section>
-          <h3>Step 1: Install <code>sw-precache</code></h3>
+          <h3>Step 1: Install <br><code>sw-precache-webpack-plugin</code></h3>
           <ul>
+            <li class="fragment">Uses the excellent <code>sw-precache</code> tool from the Google Chrome team</li>
             <li class="fragment">Creates the Service Worker</li>
             <li class="fragment">Accepts a list of files or folders and generates required asset list</li>
             <li class="fragment">Accepts a list of URL patterns to manage caching of other assets</li>
@@ -193,11 +258,11 @@
             <li class="fragment">Follow the instructions</li>
             <li class="fragment">Done!</li>
           </ol>
-          <p class="fragment"><small>NOTE: You can automate this with an NPM package.</small></p>
+          <p class="fragment"><small>NOTE: We can automate this with an NPM package.</small></p>
         </section>
         <section>
           <h3>Step 4: ...</h3>
-          <p>Technically, you’re all done at this point.</p>
+          <p>Technically, we’re all done at this point.</p>
         </section>
         <section>
           <h3>Bonus: Add lazy loading</h3>
@@ -267,7 +332,7 @@
           </div>
         </section>
         <section>
-          <h2>What if I would like to <em>have</em> my cake but also to <strong>eat</strong> my cake?</h2>
+          <h2>What if I want the <em>best of both</em> databases?</h2>
         </section>
         <section>
           <h1>Use ’Em <em class="hugify">Both</em></h1>
@@ -290,10 +355,9 @@
           <ul>
             <li class="fragment">Data persistence across devices</li>
             <li class="fragment">Support for collaborative editing</li>
-            <li class="fragment">A way to tie IBM products into the demo</li>
           </ul>
         </section>
-        <section><img src="./images/progressive-web-apps/its-hard.gif">
+        <section><img src="./images/progressive-web-apps/its-hard.gif" alt="it’s hard" style="width: 100%;">
         </section>
         <section>
           <h1>It’s not hard</h1>

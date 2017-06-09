@@ -11,6 +11,12 @@ The goal of this repo is to create a single location where presentations live, i
 - [Slides](./functional-programming/slides/)
 - [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/functional-programming)
 
+### Progressive Web Apps: Looks like vegetables; tastes like victory.
+
+- [Slides](./progressive-web-apps/slides/)
+- [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/progressive-web-apps)
+- Demo: [without PWA features](https://code.lengstorf.com/presentations/progressive-web-apps/demo/no-pwa/) · [with PWA features](https://code.lengstorf.com/presentations/progressive-web-apps/demo/pwa/)
+
 ### How to give presentations that aren't horrible and boring.
 
 - [Slides](./conference-talk-tips/slides/)
@@ -20,13 +26,16 @@ The goal of this repo is to create a single location where presentations live, i
 
 (This is what I send to people as my bio.)
 
-> Jason Lengstorf is a developer, designer, author, and friendly bear. He's worked in nearly every role in an agency and uses his 14+ years of experience to offer a unique, cross-functional approach to solving complex problems. He has written several books and dozens of tutorials about development, built and sold a successful web agency, and created award-winning web projects for companies including PlayStation, Intel, and Precision Nutrition.
-> 
-> Jason is passionate about building better careers by first focusing on building better lives. He focuses on work-life balance, efficiency, processes, and productivity to help people get more done in less time — so they can spend more time on the things that matter most. Jason recently joined [IBM Design](http://www.ibm.com/design/) as a senior front-end developer and mentor to new hires, where he hopes to scale this philosophy throughout one of the largest companies in the world.
-> 
-> He lives in Austin, TX, spends most of his disposable income on food and travel, and can often be spotted in the forest foraging for nuts and berries.
+> Jason Lengstorf is a developer, designer, author, and friendly bear. He 
+> focuses on work-life balance, efficiency, processes, and productivity to help 
+> people get more done in less time — so they can spend more time on the things 
+> that matter most. He recently joined [IBM Design](http://www.ibm.com/design/) 
+> as a senior front-end developer in Austin, TX, where he can often be spotted 
+> in the forest foraging for nuts and berries.
 
 ### Videos of Previous Presentation
+
+- [Who Gives a Fuck About a Monad? Functional Programming for People Who Hate Math](https://youtu.be/4WbpKSh0FWk?t=2h44m44s) — Web Rebels 2017
 
 - [WordPress Deployment for Professionals – How to Solve the Problem of Multiple WordPress Installs in 30 Minutes or Less](http://wordpress.tv/2017/03/29/jason-lengstorf-wordpress-deployment-for-professionals-how-to-solve-the-problem-of-multiple-wordpress-installs-in-30-minutes-or-less/) — WordCamp Atlanta 2017
 

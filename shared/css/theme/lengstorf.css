@@ -449,6 +449,11 @@ html.blackout::after, html.dimmer::after {
       content: '\F0E0';
       font-size: 0.8em;
       padding-right: 0.2em; }
+  .reveal .no-margin {
+    margin-top: 0;
+    margin-bottom: 0; }
+  .reveal .twitter-tweet {
+    margin: 0 auto; }
   .reveal .two-columns {
     columns: 2;
     column-gap: 1.5em; }
