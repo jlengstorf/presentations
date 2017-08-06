@@ -6,7 +6,6 @@ block append config
     config.theme = 'lengstorf';
     config.title = 'How I Cut My Hours in Half';
     config.description = 'And somehow managed to get more done.';
-    config.slidesLink = 'https://code.lengstorf.com/presentation/progressive-web-apps/slides/';
 
     config.author = {
       name: 'Jason Lengstorf',
@@ -21,8 +20,8 @@ block append config
     };
 
     config.conference = {
-      hashtag: false,
-      twitter: false,
+      hashtag: 'ThatConference',
+      twitter: 'ThatConference',
     };
   -
 
@@ -38,50 +37,26 @@ block slides
       br
       small
         a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
-        |  | 
+        | &nbsp; · &nbsp;
         a(href= `mailto:${config.author.email}`)= config.author.email
     
     p
       small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
 
-  //- Front-matter stuff
-    +slide.u--align-left.u--text-light.u--text-shadow(data-background="url(./images/bear-background@2x.jpg)")
-      h2 Who I Am
-      ul
-        li.hide-me 
-        li.hide-me 
-        li.hide-me 
-        li.hide-me 
-        li.hide-me 
-        li.hide-me 
-
-      aside.notes.
-        This joke is so terrible. You should be ashamed of yourself.
-
-    +slide.u--align-left.u--text-light.u--text-shadow(data-background="url(./images/jason-lengstorf-slide-bg@2x.jpg)")
-      h2 Who I Am
-      ul.full-width
-        li.fragment Building web things since 2003
-        li.fragment #[em Huge] process &amp; efficiency nerd
-        li.fragment Work-life balance advocate / consultant
-        li.fragment Senior developer at IBM
-        li.fragment Author of 3 books on development stuff
-        li.fragment World champion purveyor of bear hugs
-
   //- INTRO
   +slide.u--align-left.u--text-light.u--text-shadow(
     data-background="url(./images/jason-lengstorf-slide-bg@2x.jpg)"
   )
-    h2 This beard is 
-      em.hugify glorious
+    h2 #[br]#[br]#[br]#[br]#[br]Look at this beard
+      em.hugify.fragment Glorious!
 
   +slide
-    h3 And I nearly robbed the world of its #[em majesty]
+    h2 I nearly robbed#[br]the world of its #[em.hugify majesty]
 
   +slide.u--text-light.u--text-shadow(
     data-background="url(./images/work-life-balance/mustache.jpg)"
   )
-    h1.fragment.dim-the-lights This was not a choice
+    h3.fragment.dim-the-lights This was not a choice
 
   +slide
     h2 I was a 
@@ -100,17 +75,19 @@ block slides
       or deal with some issue.
 
   +slide
-    h3 Then it all fell apart:
+    h2 My long hours were a point of pride for me
+
+  +slide
+    h3 But then...
+  
+  +slide
     h1
       span.hugify Black Friday
 
   +slide
-    h2 I landed a #[em huge] contract
-    ul
-      li.fragment Fortune 500 company
-      li.fragment High profile project
-      li.fragment Charging agency rates
-      li.fragment ...and rush fees
+    h3 I landed a #[em huge] contract:
+    p A high-profile, Black Friday marketing site for a Fortune 500 company 
+      span.fragment — charging agency rates and rush fees.
 
   +slide
     h3 We planned it all out...
@@ -122,16 +99,17 @@ block slides
   +slide
     h3 ...then reality happened
     img.no-border(
-      src="images/work-life-balance/project-reality.svg"
+      src="images/work-life-balance/project-reality-clean.svg"
       alt="project plan"
     )
 
   +slide
-    h2 But I’m not a
-      strong.hugify quitter
+    h1 But I’m no
+      br
+      strong(style="font-size:130%") quitter
 
   +slide
-    h2 I worked over #[strong.hugify 100 hours] that week
+    h2 I worked over #[strong.hugify 100 hours]
 
   +slide
     h2 The Business Result:
@@ -147,7 +125,7 @@ block slides
       li.fragment I missed Thanksgiving with my family
       li.fragment I slept less than 4 hours a night
       li.fragment I ate fast food delivery for every. single. meal.
-      li.fragment MY FUCKING BEARD FELL OUT
+      li.fragment MY FREAKIN’ BEARD FELL OUT
 
   +slide.u--text-light.u--text-shadow(
     data-background="url(./images/work-life-balance/patchy-beard.jpg)"
@@ -160,8 +138,13 @@ block slides
 
   +slide
     h3 I was already burning out.
-    h3 Losing my beard was the 
-      strong.hugify final straw
+
+  +slide.u--text-light.u--text-shadow(
+    data-background="url(./images/work-life-balance/rage-quit.gif)"
+  )
+    h3.fragment.dim-the-lights Losing my beard
+      br
+      | was the final straw.
 
   +slide
     h3 My decision:
@@ -171,49 +154,68 @@ block slides
     h3 I cut back on everything:
     ul
       li.fragment I only accepted calls during business hours
-      li.fragment I turned off all notifications on my phone and computer
+      li.fragment I turned off #[strong ALL] notifications
       li.fragment I turned on Do Not Disturb mode from 6pm to 8am
       li.fragment I only checked email twice a day
       li.fragment I set up activities with my friends...
       li.fragment ...and left my phone in the car while I was there
 
   +slide
-    h3 I was ready to 
-      strong.hugify lose business
-      | if it meant I could 
-      br
-      em have my life back
+    h2(
+      style="font-size: 230%"
+    ) I was ready to lose business if I could have my life back
 
   +slide
-    h2 But that’s #[em not] what happened
+    h4 &hellip;but that’s #[em not] what happened
 
   +slide
     h2 What I expected:
-    ul
-      li.fragment my clients would leave because I wasn’t available at all hours of the day
-      li.fragment I’d miss big opportunities by turning off notifications
-      li.fragment I’d accomplish less by “wasting time” on non-business activities like hobbies and friendship
+    h4.fragment my clients would leave
+    h4.fragment I’d miss big opportunities
+    h4.fragment I’d accomplish less
+    
+    aside.notes.
+      my clients would leave because I wasn’t available at all hours of the day#[br]
+      I’d miss big opportunities by turning off notifications#[br]
+      I’d accomplish less by “wasting time” on non-business activities like hobbies and friendship
 
   +slide
     h2 What happened:
-    ul
-      li.fragment my clients didn’t notice because I still got back to them within 24 hours
-      li.fragment no opportunities were lost
-      li.fragment I was getting #[em significantly more] work done
+    h4.fragment no one noticed
+    h4.fragment my business grew
+    h4.fragment I got #[em more] done
+
+    aside.notes.
+      my clients didn’t notice because I still got back to them within 24 hours#[br]
+      no opportunities were lost#[br]
+      I was getting #[em significantly more] work done
 
   +slide
     h3 “How is it possible that you got #[em more] done by working #[strong fewer] hours?”
 
   +slide
     h2 First: the science
-    ul
-      li.fragment Working 60+ hours per week makes us #[em less] productive than working 40 hours#[sup 1]
-      li.fragment Long hours destroy passion and engagement#[sup 2]
-      li.fragment Overworking increases employee turnover#[sup 3]
-      li.fragment Creativity suffers if we don’t go outside sometimes#[sup 4]
-      li.fragment Lack of downtime hurts productivity and creativity#[sup 5]
-      li.fragment We lose 20% of our time #[em per task] while multitasking#[sup 6]
-      li.fragment Sleeping less than 7 hours impairs us as much as being too drunk to drive#[sup 7]
+  
+  +slide
+    h3 Working 60+ hours per week makes us #[em less] productive than working 40 hours#[sup 1]
+  
+  +slide
+    h3 Long hours destroy passion and engagement#[sup 2]
+  
+  +slide
+    h3 Overworking increases employee turnover#[sup 3]
+  
+  +slide
+    h3 Creativity suffers if we don’t go outside sometimes#[sup 4]
+  
+  +slide
+    h3 Lack of downtime hurts productivity and creativity#[sup 5]
+  
+  +slide
+    h3 We lose 20% of our time #[em per task] while multitasking#[sup 6]
+  
+  +slide
+    h3 Sleeping less than 7 hours impairs us as much as being too drunk to drive#[sup 7]
 
   //- STRATEGIES
   +slide
@@ -222,14 +224,15 @@ block slides
   +slide
     h2(style="width: 110%; margin-left: -5%;") 5 Strategies to#[br]Boost Productivity
     ol
-      li.fragment Passive time tracking
-      li.fragment Time-boxing tasks
-      li.fragment Front-loading demanding work
-      li.fragment Aggressive prioritization
-      li.fragment NO multitasking
+      li.fragment Track your time (passively)
+      li.fragment Time-box tasks
+      li.fragment Front-load important work
+      li.fragment Prioritize aggressively
+      li.fragment DO NOT multitask
 
   +slide
-    h2 #1: Passive Time Tracking
+    h4 Strategy #1:
+    h2 Track Your Time
     p.
       The simple act of #[em acknowledging] how we spend our time encourages us
       to use it more wisely.
@@ -249,42 +252,84 @@ block slides
     )
 
   +slide
-    h2 #2: Time-Box Tasks
+    h4 Strategy #2:
+    h2 Time-Box Tasks
     p.
-      You’re never more productive than when you’re on deadline with 13% battery
-      left.
+      You’re never more productive than when you’re up against a deadline with 
+      13% battery left.
   
   +slide
     h3 Find your rhythm.
     ul
-      li.fragment Experiment with different lengths of time: 25 minutes (Pomodoro), 60, or 90 to start
-      li.fragment Set a timer
-      li.fragment Close and turn off #[em everything] that isn’t required for the task
-      li.fragment Start the timer
-      li.fragment Kick much ass
+      li.fragment Decide how long you want to focus for
+      li.fragment Close and turn off #[em everything] unrelated
+      li.fragment Start a timer
+      li.fragment Unleash your brilliance upon the world
       li.fragment When the timer goes off, take a break
+      li.fragment Repeat
+    
+    aside.notes.
+      Experiment with different periods of time to figure out what’s best for 
+      your attention span and comfort. I find that 90 minutes works well, but my
+      partner does best with 60-minute blocks. Others swear by the 25-minute 
+      Pomodoro method — everyone will have their own ideal focus period.
+      #[br]#[br]
+      After you’ve experimented with this for a while, you’ll likely notice that
+      you’ve finished your todo list in six hours or less.
 
   +slide
-    h3 Why This Works
-    ul
-      li.fragment Without distractions, we get into a state of “flow”
-      li.fragment The world will not implode if we’re not paying attention for 90 minutes
-        ul
-          li.fragment If things break down because you’re unavailable for 90 minutes, something is #[em very] wrong
-      li.fragment Taking breaks is good for productivity and creativity (and health, if you’re into that)
-      li.fragment Chat and email checks happen at regular intervals without taking over the day
+    h2 Why This Works
 
   +slide
-    h3 Also: science
+    h3 1. We’re #[em not distracted]
+    
+    aside.notes.
+       Interruptions are expensive — writing code requires creating complex
+       mental models, and if we’re interrupted or distracted, we lose a lot of
+       time rebuilding them to remember what we were trying to accomplish.
+
+  +slide
+    h3 2. We get into a #[em flow state]
+    
+    aside.notes.
+       Without interruptions, we can get into what Mihaly Cziksentmihalyi calls
+       a “flow state” — being “in the zone” — which is where we’re deeply
+       engaged in the task at hand. This is where our best (and most satisfying)
+       work happens.
+
+  +slide
+    h3 3. We’re #[em taking breaks]
+    
+    aside.notes.
+       However, if we‘re working in a flow state and not taking regular breaks,
+       we hit what I like to call the “code zombie” state: after a few hours, we
+       hit the wall and get into that foggy, not-quite-human state where we
+       can’t really do useful work anymore, but we’re also too mentally fried to
+       go out and interact with other humans. (Marisa calls this “forgetting how
+       to be a person”.)
+
+  +slide
+    h3 4. We’re #[em still available]
+    
+    aside.notes.
+       Another critical point here is that by time-boxing, we’re not sacrificing
+       availability for focus. We can check in on our colleagues, clients, and
+       other communication channels every 90 minutes or so, allowing us to stay
+       available without multitasking or waiting until the middle of the night
+       to get “real work” done.
+
+  +slide
+    h2 Also: #[em science]
     p.
-      There’s something called an “ultradian rhythm”, which is roughly 90 
-      minutes and regulates our energy.#[sup 8]
+      We all have something called an “ultradian rhythm”, which regulates our 
+      energy in 90-minute-ish intervals.#[sup 8]
 
   +slide
-    h2 #3: Front-Load Demanding Work
+    h4 Strategy #3:
+    h2 Front-Load Important Work
     p.
       Motivation and self-control are resources that deplete as the day goes on.
-      Don’t waste them on bullshit.
+      Don’t waste them.
 
   +slide
     h3 We’re the best versions of ourselves early in our day
@@ -314,12 +359,13 @@ block slides
     )
 
   +slide
-    h2 #4: Prioritize Aggressively
+    h4 Strategy #4:
+    h2 Prioritize Aggressively
     p.
       If everything is The Most Important Thing™, nothing is.
 
   +slide
-    h3 Use the Highlander Technique
+    h4 Use the Highlander Technique
     img(
       src="images/work-life-balance/highlander.jpg"
       alt="highlander"
@@ -335,12 +381,13 @@ block slides
     p(style="margin: 0") ...and then start choosing.
 
   +slide
-    h2 #5: DO NOT Multitask
+    h4 Strategy #5:
+    h2 DO NOT Multitask
     p.
       Ever. Just stop it.
 
   +slide
-    h3 Context Switching is #[strong fatal] to productivity
+    h3 Context Switching is#[br]#[strong fatal] to productivity
     img(
       src="images/work-life-balance/context-switching-costs.png"
       alt="context switching penalty"
@@ -351,11 +398,11 @@ block slides
 
   +slide
     h3 Multitasking makes us#[br]#[strong feel] productive.
-    h3 Single-tasking makes us #[em actually] productive.
+    h3.fragment Single-tasking makes us #[em actually] productive.
 
   //- PROOF
   +slide
-    h1 Prove It
+    h3 “How do I know that any of this junk really works?”
 
   +slide
     h3 My 2016 RescueTime report
@@ -379,15 +426,17 @@ block slides
     h3 I’ve been able to manage:
     ul
       li.fragment My IBM workload
-      li.fragment My personal blog
-      li.fragment My code blog / side projects
-      li.fragment Multiple conference sessions
+      li.fragment My blogs and side projects
+      li.fragment Multiple conference sessions and workshops
       li.fragment A reasonably full social calendar
       li.fragment 3&times; weekly workouts
       li.fragment 8 hours average sleep
 
-  +slide
-    p Caveat: I don’t have kids.
+  aside.notes.
+    I don’t have kids, so things like making it to the gym and sleeping are
+    maybe easier for me, but I want to stress that I’m finishing my work 
+    #[em and] my side projects within the 40 hours or less of screen time I get
+    every week.
 
   //- RECAP
   +slide
@@ -418,40 +467,37 @@ block slides
       li.fragment aggressively prioritizing work to enable better focus
       li.fragment never, ever, #[em ever] multitasking again
 
-  //- 
-    TOC:
-    - Start with the mustache story
-      - I was overworking for years.
-      - Then I got sick.
-      - How I decided to burn it down
-      - ...but then it got better
-    - What happened, pt I: science
-      - sleep
-      - single-tasking
-      - time constraints
-      - varied input
-      - exercise
-    - What happened, pt II: habits
-      - passive tracking (RescueTime, Timing)
-      - time boxing
-      - front-loading
-      - Highlander Technique
-    - 
+  +slide
+    h1 We all have a choice
+
+  +slide.u--text-light.u--text-shadow(
+    data-background="url(./images/work-life-balance/mustache.jpg)"
+  )
+    h3.fragment.dim-the-lights We can live this life&hellip;
+
+  +slide.u--align-left.u--text-light.u--text-shadow(
+    data-background="url(./images/work-life-balance/piggyback-lg@2x.jpg)"
+  )
+    h3.fragment &hellip;or this one.
 
   //- Q&A
   +slide
-    h1 Questions?
-    p= config.author.name
+    img(
+      src="./images/work-life-balance/jason-lengstorf.jpg"
+      alt="Jason Lengstorf"
+      style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;"
+    )
+    p(style="margin-top: 0.25rem;")= config.author.name
       br
       small
         | Follow me on Twitter: 
         a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
-        |  | 
+        | &nbsp; · &nbsp;
         a(href= `mailto:${config.author.email}`)= config.author.email
 
   //- Resources
-  +slide.resourcetext
-    h3 Resources
+  +slide.u--align-left.resourcetext
+    h4 Resources
     ol
       li
         a(href="http://www.enginesofmischief.com/makers/evan/pubs/crunch.html").
@@ -464,12 +510,12 @@ block slides
           Why You Hate Work
       li
         a(href="http://archive.news.ku.edu/2012/april/23/outdoors.shtml").
-          Researchers find time in wild boosts creativity, insight and problem solving
+          Researchers find time in wild boosts creativity, insight, and problem solving
       li
         a(href="https://hbr.org/2012/12/the-upside-of-downtime").
           The Upside of Downtime
       li
-        a(href="https://blog.codinghorror.com/the-multi-tasking-myth/")
+        a(href="https://blog.codinghorror.com/the-multi-tasking-myth/").
           The Multitasking Myth
       li
         a(href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1739867/pdf/v057p00649.pdf").
@@ -508,7 +554,7 @@ block extras
       text: `${config.title} by @${config.author.twitter}`,
       hashtags: config.conference.hashtag || '',
       related: relatedAccounts.join(','),
-      url: config.slidesLink,
+      url: config.slides.link,
     };
 
     // 
