@@ -528,7 +528,7 @@ html.blackout::after, html.dimmer::after {
       font-weight: normal;
       font-size: 0.6em; }
     .reveal .slides > section pre {
-      font-size: 68%;
+      font-size: 65%;
       line-height: 1.375; }
     .reveal .slides > section code {
       max-height: 450px; }

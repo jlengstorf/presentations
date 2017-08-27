@@ -5,7 +5,7 @@ block append config
   -
     config.theme = 'lengstorf';
     config.title = 'Progressive Web Apps';
-    config.description = 'Looks Like Vegetables; Tastes Like Victory';
+    config.description = 'Looks Like 🥒 · Tastes Like 🥓';
     config.slidesLink = 'https://code.lengstorf.com/presentation/progressive-web-apps/slides/';
 
     config.author = {
@@ -21,8 +21,8 @@ block append config
     };
 
     config.conference = {
-      hashtag: false,
-      twitter: false,
+      hashtag: 'websc',
+      twitter: 'websummercamp',
     };
   -
 
@@ -44,33 +44,6 @@ block slides
     p
       small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
 
-  //- Front-matter stuff
-  //- +slide.u--align-left.u--text-light.u--text-shadow(data-background="url(./images/bear-background@2x.jpg)")
-    h2 Who I Am
-    ul
-      li.hide-me 
-      li.hide-me 
-      li.hide-me 
-      li.hide-me 
-      li.hide-me 
-      li.hide-me 
-
-    aside.notes.
-      This joke is so terrible. You should be ashamed of yourself.
-
-  //- +slide.u--align-left.u--text-light.u--text-shadow(data-background="url(./images/jason-lengstorf-slide-bg@2x.jpg)")
-    h2 Who I Am
-    ul.full-width
-      li.fragment Building web things since 2003
-      li.fragment #[em Huge] process &amp; efficiency nerd
-      li.fragment Work-life balance advocate / consultant
-      li.fragment Senior developer at IBM
-      li.fragment Author of 3 books on development stuff
-      li.fragment World champion purveyor of bear hugs
-
-
-  
-  
   //- INTRO
   +slide
     h2 How much does your website
@@ -228,9 +201,278 @@ block slides
       alt="bacon"
     )
     h3 That sounds #[em significantly more awesome] than eating vegetables.
+  
+  +slide
+    h3 Let’s Build a Simple Progressive Web App
+    ol
+      li.fragment Register a Service Worker
+      li.fragment Cache required resources on install
+      li.fragment Serve cached resources when available
+      li.fragment Fall back to the network
+      li.fragment Cache network responses
+      li.fragment Add a fallback for image files
+      li.fragment Add a default fallback page
+      li.fragment Create an app manifest
 
   +slide
-    h4 “Okay, okay — I believe you, but#[br]#[strong I don’t have time] to rewrite my app!”
+    h3 1. Register a Service Worker
+    pre
+      code.js.
+        &lt;script>
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./service-worker.js')
+              .then(() => {
+                console.log(`ServiceWorker registered!`);
+              })
+              .catch(error => {
+                console.error('ServiceWorker error:', error);
+              })
+          }
+        &lt;/script>
+    
+    p
+      small
+        strong NOTE: 
+        | The Service Worker #[em must] be created at the root domain.
+        br
+        | Example: 
+        code https://example.org/service-worker.js
+
+    aside.notes.
+      This is required because Service Workers are restricted to the scope
+      at which they’re registered — for example, if we registered the Service
+      Worker at https://example.org/blog/service-worker.js, we could only
+      handle requests that started with https://example.org/blog/
+
+  +slide
+    h3 2. Install App Resources
+    pre
+      code.js.
+        const CACHE_VERSION = 'sample-pwa-v1';
+
+        self.addEventListener('install', event => {
+          event.waitUntil(
+            caches.open(CACHE_VERSION).then(cache => {
+              // Download all required resources to render the app.
+              return cache.addAll([
+                './index.html',
+                './scripts.js',
+                './styles.css',
+              ]);
+            })
+          );
+        });
+
+  +slide
+    h3 3. Use the Cache By Default
+    pre
+      code.js.
+        self.addEventListener('fetch', event => {
+          event.respondWith(
+            caches
+              // Check for cached data.
+              .match(event.request)
+              // Return the cached data if it exists.
+              .then(data => data)
+          );
+        });
+
+  +slide
+    h3 4. Fall Back to the Network
+    pre
+      code.diff.
+          self.addEventListener('fetch', event => {
+            event.respondWith(
+              caches
+                // Check for cached data.
+                .match(event.request)
+        -       // Return the cached data if it exists.
+        -       .then(data => data)
+        +       // Return the cached data OR hit the network.
+        +       .then(data => data || fetch(event.request))
+            );
+          });
+
+  +slide
+    h3 5a. Cache New Responses
+    pre
+      code.diff.
+          self.addEventListener('fetch', event => {
+        +   const fetchAndCache = request =>
+        +     caches.open(CACHE_VERSION).then(cache =>
+        +       // Load the response from the network.
+        +       fetch(request).then(response => {
+        +         // Add the response to the cache.
+        +         cache.put(request, response.clone());
+        +         return response;
+        +       })
+        +     );
+
+            event.respondWith(
+              /* the rest of the code is skipped to save space */
+          });
+
+  +slide
+    h3 5b. Cache New Responses
+    pre
+      code.diff.
+          self.addEventListener('fetch', event => {
+            const fetchAndCache = request =>
+              /* the rest of the code is skipped to save space */
+
+            event.respondWith(
+              caches
+                // Check for cached data.
+                .match(event.request)
+                // Return the cached data OR hit the network.
+        -       .then(data => data || fetch(event.request))
+        +       .then(data => data || fetchAndCache(event.request))
+            );
+          });
+
+  +slide
+    h3 6a. Add a Fallback for Images
+    pre
+      code.diff.
+          const CACHE_VERSION = 'sample-pwa-v1';
+        + const OFFLINE_IMAGE = './offline.png';
+
+          self.addEventListener('install', event => {
+            event.waitUntil(
+              caches.open(CACHE_VERSION).then(cache => {
+                // Download all required resources to render the app.
+                return cache.addAll([
+                  './index.html',
+                  './scripts.js',
+                  './styles.css',
+        +         OFFLINE_IMAGE,
+                ]);
+              })
+            );
+          });
+
+  +slide
+    h3 6b. Add a Fallback for Images
+    pre
+      code.diff.
+            event.respondWith(
+              caches
+                // Check for cached data.
+                .match(event.request)
+                // Return the cached data OR hit the network.
+                .then(data => data || fetchAndCache(event.request))
+        +       .catch(() => {
+        +         const url = new URL(event.request.url);
+        +
+        +         // Show the fallback image for failed GIF requests.
+        +         if (url.pathname.match(/\.gif$/)) {
+        +           return caches.match(OFFLINE_IMAGE);
+        +         }
+        +       })
+            );
+
+  +slide
+    h3 7a. Add a Default Fallback Page
+    pre
+      code.diff.
+          const CACHE_VERSION = 'sample-pwa-v1';
+          const OFFLINE_IMAGE = './offline.png';
+        + const OFFLINE_PAGE = './offline.html';
+
+          self.addEventListener('install', event => {
+            event.waitUntil(
+              caches.open(CACHE_VERSION).then(cache => {
+                // Download all required resources to render the app.
+                return cache.addAll([
+                  './index.html',
+                  './scripts.js',
+                  './styles.css',
+                  OFFLINE_IMAGE,
+        +         OFFLINE_PAGE,
+                ]);
+              })
+            );
+          });
+
+  +slide
+    h3 7b. Add a Default Fallback Page
+    pre
+      code.diff.
+                .catch(() => {
+                  const url = new URL(event.request.url);
+         
+                  // Show the fallback image for failed GIF requests.
+                  if (url.pathname.match(/\.gif$/)) {
+                    return caches.match(OFFLINE_IMAGE);
+                  }
+
+        +         // Show an offline page for other failed requests.
+        +         return caches.match(OFFLINE_PAGE);
+                })
+
+  +slide
+    h3 8. Create an App Manifest
+    pre
+      code.json.
+        {
+          "name": "Progressive Web App Demo for Web Summer Camp 2017",
+          "short_name": "#websc PWA",
+          "start_url": "./index.html",
+          "display": "standalone",
+          "background_color": "#faf8fd",
+          "theme_color": "#663399"
+        }
+    
+    aside.notes.
+      The `short_name` can only be 12 characters to avoid getting truncated on
+      home screens. The `theme_color` controls the color of the address bar in
+      Chrome on Android, and `background_color` sets the background for the 
+      splash screen.
+
+  +slide
+    h3 9. Add App Icons
+    pre
+      code.diff.
+            "theme_color": "#663399",
+        +   "icons": [
+        +     {
+        +       "src": "./pwa-icon.png",
+        +       "type": "image/png",
+        +       "sizes": "192x192"
+        +     },
+        +     {
+        +       "src": "./pwa-icon-512.png",
+        +       "type": "image/png",
+        +       "sizes": "512x512"
+        +     }
+        +   ]
+          }
+    
+    aside.notes.
+      The official docs for PWAs only require a 192x192 icon, but Google’s
+      Lighthouse check will complain if we don’t also supply a 512x512 icon.
+
+  +slide
+    h3 10. Add the Manifest to the HTML
+    pre
+      code.diff.
+          &lt;head>
+            &lt;meta charset="UTF-8">
+            &lt;meta name="viewport" content="width=device-width, initial-scale=1.0">
+            &lt;meta http-equiv="X-UA-Compatible" content="ie=edge">
+        +   &lt;meta name="theme-color" content="#663399">
+        +   &lt;link rel="manifest" href="./manifest.json">
+            &lt;link rel="stylesheet" href="./styles.css">
+            &lt;title>Simple Progressive Web App&lt;/title>
+          &lt;/head>
+    
+    aside.notes.
+      When the site is run in a browser (not as a PWA), the `theme-color` meta
+      tag controls the browser color.
+
+  +slide
+    h2 Bonus Round: Use #[code sw-precache]
+    p Google
 
   +slide
     h3 We #[em don’t] have to#[br]start from scratch.
@@ -254,10 +496,7 @@ block slides
         cd pwa-workshop-starter
 
         # install dependencies with yarn
-        yarn install
-
-        # (or with NPM, if you prefer)
-        # npm install
+        npm install
 
   +slide
     h4 Right now, it doesn’t score very well:
@@ -294,6 +533,8 @@ block slides
     h3 Step 1: Install 
       br
       code sw-precache-webpack-plugin
+    pre
+      code.shell npm install -D sw-precache-webpack-plugin
     ul
       li.fragment Uses the excellent #[code sw-precache] tool from the Google Chrome team
       li.fragment Creates the Service Worker
@@ -308,13 +549,16 @@ block slides
           plugins: [
             new SWPrecacheWebpackPlugin(
               {
-                filepath: './public/service-worker.js',
+                filepath: './dist/service-worker.js',
                 runtimeCaching: [{
                   urlPattern: /[.]jpg$/,
                   handler: 'cacheFirst'
                 }],
-                staticFileGlobs: ['public/**.*'],
-                stripPrefix: 'public/',
+                staticFileGlobs: [
+                  'dist/assets/{css,js}/main.{css,js}',
+                  'dist/assets/*.{html,png,xml,ico,svg}'
+                ],
+                stripPrefix: 'dist/',
               }
             ),
           ],
@@ -330,7 +574,13 @@ block slides
         &lt;script>
           (function() {
             if('serviceWorker' in navigator) {
-              navigator.serviceWorker.register('./service-worker.js');
+              navigator.serviceWorker.register('./service-worker.js')
+                .then(reg => {
+                  console.log('Added Service Worker at', reg.scope);
+                })
+                .catch(error => {
+                  console.error(error);
+                });
             }
           })();
         &lt;/script>
@@ -385,104 +635,6 @@ block slides
     )
 
   +slide
-    h2 But what if we need a database?
-
-  +slide
-    h3 There are 2 main flavors of databases
-    ul
-      li.fragment
-        strong Server-side:
-        |  the app connects to a remote machine to perform CRUD operations
-      li.fragment
-        strong Client-side:
-        |  the database is on the same device as the app
-
-  +slide
-    h3 The Low-Down on #[br]#[em Server-Side] Databases
-    .two-columns
-      h4 The #[em Good]
-      ul
-        li.fragment Accessible to all connected instances
-        li.fragment Apps don’t need to load #[em all] data to run the app
-      
-      h4 The #[strong Bad]
-      ul
-        li.fragment Can cause a noticeable slow-down in apps
-        li.fragment Apps require an internet connection
-
-  +slide
-    h3 The Low-Down on #[br]#[em Client-Side] Databases
-    .two-columns
-      h4 The #[em Good]
-      ul
-        li.fragment Apps feel much faster because there’s no server request
-        li.fragment Even if there’s no internet connection, apps will still work
-      
-      h4 The #[strong Bad]
-      ul
-        li.fragment Each app has its own instance of the database
-        li.fragment #[em All] of the app’s data needs to be downloaded
-
-  +slide
-    //- h2 What if I would like to #[em have] my cake but also to #[strong eat] my cake?
-    h2 What if I want the #[em best of both] databases?
-    
-  +slide
-    h1 Use ’Em #[em.hugify Both]
-    h3.fragment and sync that shit
-
-  +slide
-    h1 #[em CouchDB] + #[strong PouchDB]
-    h3 With Replication
-
-  +slide
-    h2 PouchDB gives us:
-    ul
-      li.fragment Offline-first capabilities
-      li.fragment Near-instant updates and responses
-      li.fragment A simple JavaScript API for CRUD operations
-
-  +slide
-    h2 CouchDB gives us:
-    ul
-      li.fragment Data persistence across devices
-      li.fragment Support for collaborative editing
-    
-  +slide
-    img(
-      src="./images/progressive-web-apps/its-hard.gif"
-      alt="it’s hard"
-      style="width: 100%;"
-    )
-
-  +slide
-    h1 It’s not hard
-    h4.fragment It’s pretty easy, actually.
-
-  +slide
-    pre
-      code(style="font-size: 80%").
-        // Keep the local (PouchDB) and the remote (CouchDB) databases in sync.
-        PouchDB.sync('local_db', 'https://example.com/remote_db', {
-          live: true,
-          retry: true,
-        });
-        
-        // Whenever there are changes on the remote database, we want to know.
-        db.changes({
-          since: 'now',
-          live: true,
-        }).on('change', handleDataChanges);
-    h3.fragment That’s it — #[em No joke]
-
-  +slide
-    h1 Demo?
-    h4
-      a(
-        href="https://code.lengstorf.com/offline-first-db-example/"
-      ) Meet the Thought Collector!
-
-  +slide
     h1 Let’s Recap
 
   +slide
@@ -495,10 +647,9 @@ block slides
     p.fragment All with a few minutes of effort.
 
   +slide
-    h3 And with just a bit of extra work, we can:
-    ul
-      li.fragment Lazy load resources to further improve load times
-      li.fragment Enable offline data access for truly offline-capable apps
+    p.
+      And with just a bit of extra work, we can lazy load resources to further 
+      improve load times.
   
   +slide
     h2 Progressive Web Apps are #[em Awesome]
@@ -508,23 +659,20 @@ block slides
       em.hugify native apps
 
   +slide
-    h1 🥓    
-
-  //- Q&A
-  +slide
-    h1 Questions?
-    p= config.author.name
-      br
-      small
-        | Follow me on Twitter: 
-        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
-        |  | 
-        a(href= `mailto:${config.author.email}`)= config.author.email
+    h3 It’s not
+    h1 🥕🥒🌽 
+    span.fragment
+      h3 It’s
+      h1 🥓🥓🥓
 
   //- Resources
   +slide.resourcetext
     h3 Resources
     ol
+      li
+        a(
+          href="https://jakearchibald.com/2014/offline-cookbook/"
+        ) Jake Archibald’s Offline Cookbook
       li
         a(
           href="https://developers.google.com/web/tools/lighthouse/"

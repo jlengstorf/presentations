@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Progressive Web Apps</title>
-    <meta name="description" content="Looks Like Vegetables; Tastes Like Victory">
+    <meta name="description" content="Looks Like 🥒 · Tastes Like 🥓">
     <link rel="stylesheet" href="css/reveal.css">
     <link id="theme" rel="stylesheet" href="css/theme/lengstorf.css">
     <link rel="stylesheet" href="lib/css/github.css">
@@ -34,7 +34,7 @@
       <div class="slides">
         <section>
           <h1>Progressive Web Apps</h1>
-          <h3>Looks Like Vegetables; Tastes Like Victory</h3>
+          <h3>Looks Like 🥒 · Tastes Like 🥓</h3>
           <p>by <a href="https://code.lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a> | <a href="mailto:jason@lengstorf.com">jason@lengstorf.com</a></small></p>
           <p><small>Slides: <a href="https://git.io/v9tEr">git.io/v9tEr</a></small></p>
         </section>
@@ -161,7 +161,261 @@
           <h3>That sounds <em>significantly more awesome</em> than eating vegetables.</h3>
         </section>
         <section>
-          <h4>“Okay, okay — I believe you, but<br><strong>I don’t have time</strong> to rewrite my app!”</h4>
+          <h3>Let’s Build a Simple Progressive Web App</h3>
+          <ol>
+            <li class="fragment">Register a Service Worker</li>
+            <li class="fragment">Cache required resources on install</li>
+            <li class="fragment">Serve cached resources when available</li>
+            <li class="fragment">Fall back to the network</li>
+            <li class="fragment">Cache network responses</li>
+            <li class="fragment">Add a fallback for image files</li>
+            <li class="fragment">Add a default fallback page</li>
+            <li class="fragment">Create an app manifest</li>
+          </ol>
+        </section>
+        <section>
+          <h3>1. Register a Service Worker</h3>
+          <pre><code class="js">&lt;script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(() => {
+        console.log(`ServiceWorker registered!`);
+      })
+      .catch(error => {
+        console.error('ServiceWorker error:', error);
+      })
+  }
+&lt;/script>
+</code></pre>
+          <p><small><strong>NOTE: </strong>The Service Worker <em>must</em> be created at the root domain.<br>Example: <code>https://example.org/service-worker.js</code></small></p>
+          <aside class="notes">
+            This is required because Service Workers are restricted to the scope
+            at which they’re registered — for example, if we registered the Service
+            Worker at https://example.org/blog/service-worker.js, we could only
+            handle requests that started with https://example.org/blog/
+            
+          </aside>
+        </section>
+        <section>
+          <h3>2. Install App Resources</h3>
+          <pre><code class="js">const CACHE_VERSION = 'sample-pwa-v1';
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_VERSION).then(cache => {
+      // Download all required resources to render the app.
+      return cache.addAll([
+        './index.html',
+        './scripts.js',
+        './styles.css',
+      ]);
+    })
+  );
+});
+</code></pre>
+        </section>
+        <section>
+          <h3>3. Use the Cache By Default</h3>
+          <pre><code class="js">self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches
+      // Check for cached data.
+      .match(event.request)
+      // Return the cached data if it exists.
+      .then(data => data)
+  );
+});
+</code></pre>
+        </section>
+        <section>
+          <h3>4. Fall Back to the Network</h3>
+          <pre><code class="diff">  self.addEventListener('fetch', event => {
+    event.respondWith(
+      caches
+        // Check for cached data.
+        .match(event.request)
+-       // Return the cached data if it exists.
+-       .then(data => data)
++       // Return the cached data OR hit the network.
++       .then(data => data || fetch(event.request))
+    );
+  });
+</code></pre>
+        </section>
+        <section>
+          <h3>5a. Cache New Responses</h3>
+          <pre><code class="diff">  self.addEventListener('fetch', event => {
++   const fetchAndCache = request =>
++     caches.open(CACHE_VERSION).then(cache =>
++       // Load the response from the network.
++       fetch(request).then(response => {
++         // Add the response to the cache.
++         cache.put(request, response.clone());
++         return response;
++       })
++     );
+
+    event.respondWith(
+      /* the rest of the code is skipped to save space */
+  });
+</code></pre>
+        </section>
+        <section>
+          <h3>5b. Cache New Responses</h3>
+          <pre><code class="diff">  self.addEventListener('fetch', event => {
+    const fetchAndCache = request =>
+      /* the rest of the code is skipped to save space */
+
+    event.respondWith(
+      caches
+        // Check for cached data.
+        .match(event.request)
+        // Return the cached data OR hit the network.
+-       .then(data => data || fetch(event.request))
++       .then(data => data || fetchAndCache(event.request))
+    );
+  });
+</code></pre>
+        </section>
+        <section>
+          <h3>6a. Add a Fallback for Images</h3>
+          <pre><code class="diff">  const CACHE_VERSION = 'sample-pwa-v1';
++ const OFFLINE_IMAGE = './offline.png';
+
+  self.addEventListener('install', event => {
+    event.waitUntil(
+      caches.open(CACHE_VERSION).then(cache => {
+        // Download all required resources to render the app.
+        return cache.addAll([
+          './index.html',
+          './scripts.js',
+          './styles.css',
++         OFFLINE_IMAGE,
+        ]);
+      })
+    );
+  });
+</code></pre>
+        </section>
+        <section>
+          <h3>6b. Add a Fallback for Images</h3>
+          <pre><code class="diff">    event.respondWith(
+      caches
+        // Check for cached data.
+        .match(event.request)
+        // Return the cached data OR hit the network.
+        .then(data => data || fetchAndCache(event.request))
++       .catch(() => {
++         const url = new URL(event.request.url);
++
++         // Show the fallback image for failed GIF requests.
++         if (url.pathname.match(/\.gif$/)) {
++           return caches.match(OFFLINE_IMAGE);
++         }
++       })
+    );
+</code></pre>
+        </section>
+        <section>
+          <h3>7a. Add a Default Fallback Page</h3>
+          <pre><code class="diff">  const CACHE_VERSION = 'sample-pwa-v1';
+  const OFFLINE_IMAGE = './offline.png';
++ const OFFLINE_PAGE = './offline.html';
+
+  self.addEventListener('install', event => {
+    event.waitUntil(
+      caches.open(CACHE_VERSION).then(cache => {
+        // Download all required resources to render the app.
+        return cache.addAll([
+          './index.html',
+          './scripts.js',
+          './styles.css',
+          OFFLINE_IMAGE,
++         OFFLINE_PAGE,
+        ]);
+      })
+    );
+  });
+</code></pre>
+        </section>
+        <section>
+          <h3>7b. Add a Default Fallback Page</h3>
+          <pre><code class="diff">        .catch(() => {
+          const url = new URL(event.request.url);
+ 
+          // Show the fallback image for failed GIF requests.
+          if (url.pathname.match(/\.gif$/)) {
+            return caches.match(OFFLINE_IMAGE);
+          }
+
++         // Show an offline page for other failed requests.
++         return caches.match(OFFLINE_PAGE);
+        })
+</code></pre>
+        </section>
+        <section>
+          <h3>8. Create an App Manifest</h3>
+          <pre><code class="json">{
+  "name": "Progressive Web App Demo for Web Summer Camp 2017",
+  "short_name": "#websc PWA",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#faf8fd",
+  "theme_color": "#663399"
+}
+</code></pre>
+          <aside class="notes">
+            The `short_name` can only be 12 characters to avoid getting truncated on
+            home screens. The `theme_color` controls the color of the address bar in
+            Chrome on Android, and `background_color` sets the background for the 
+            splash screen.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>9. Add App Icons</h3>
+          <pre><code class="diff">    "theme_color": "#663399",
++   "icons": [
++     {
++       "src": "./pwa-icon.png",
++       "type": "image/png",
++       "sizes": "192x192"
++     },
++     {
++       "src": "./pwa-icon-512.png",
++       "type": "image/png",
++       "sizes": "512x512"
++     }
++   ]
+  }
+</code></pre>
+          <aside class="notes">
+            The official docs for PWAs only require a 192x192 icon, but Google’s
+            Lighthouse check will complain if we don’t also supply a 512x512 icon.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>10. Add the Manifest to the HTML</h3>
+          <pre><code class="diff">  &lt;head>
+    &lt;meta charset="UTF-8">
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0">
+    &lt;meta http-equiv="X-UA-Compatible" content="ie=edge">
++   &lt;meta name="theme-color" content="#663399">
++   &lt;link rel="manifest" href="./manifest.json">
+    &lt;link rel="stylesheet" href="./styles.css">
+    &lt;title>Simple Progressive Web App&lt;/title>
+  &lt;/head>
+</code></pre>
+          <aside class="notes">
+            When the site is run in a browser (not as a PWA), the `theme-color` meta
+            tag controls the browser color.
+            
+          </aside>
+        </section>
+        <section>
+          <h2>Bonus Round: Use <code>sw-precache</code></h2>
+          <p>Google</p>
         </section>
         <section>
           <h3>We <em>don’t</em> have to<br>start from scratch.</h3>
@@ -178,10 +432,7 @@ git clone git@github.com:jlengstorf/pwa-workshop-starter.git
 cd pwa-workshop-starter
 
 # install dependencies with yarn
-yarn install
-
-# (or with NPM, if you prefer)
-# npm install
+npm install
 </code></pre>
         </section>
         <section>
@@ -213,6 +464,7 @@ yarn install
         </section>
         <section>
           <h3>Step 1: Install <br><code>sw-precache-webpack-plugin</code></h3>
+          <pre><code class="shell">npm install -D sw-precache-webpack-plugin</code></pre>
           <ul>
             <li class="fragment">Uses the excellent <code>sw-precache</code> tool from the Google Chrome team</li>
             <li class="fragment">Creates the Service Worker</li>
@@ -226,13 +478,16 @@ yarn install
           <pre><code class="js">plugins: [
   new SWPrecacheWebpackPlugin(
     {
-      filepath: './public/service-worker.js',
+      filepath: './dist/service-worker.js',
       runtimeCaching: [{
         urlPattern: /[.]jpg$/,
         handler: 'cacheFirst'
       }],
-      staticFileGlobs: ['public/**.*'],
-      stripPrefix: 'public/',
+      staticFileGlobs: [
+        'dist/assets/{css,js}/main.{css,js}',
+        'dist/assets/*.{html,png,xml,ico,svg}'
+      ],
+      stripPrefix: 'dist/',
     }
   ),
 ],</code></pre>
@@ -245,7 +500,13 @@ yarn install
           <pre><code class="js" style="font-size: 87.5%;">&lt;script>
   (function() {
     if('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./service-worker.js');
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(reg => {
+          console.log('Added Service Worker at', reg.scope);
+        })
+        .catch(error => {
+          console.error(error);
+        });
     }
   })();
 &lt;/script>
@@ -292,96 +553,6 @@ yarn install
           <h3>This score is <em>much better</em>:</h3><img src="images/progressive-web-apps/lighthouse-pwa.png" alt="Lighthouse PWA score" style="width: 75%; margin: 0;">
         </section>
         <section>
-          <h2>But what if we need a database?</h2>
-        </section>
-        <section>
-          <h3>There are 2 main flavors of databases</h3>
-          <ul>
-            <li class="fragment"><strong>Server-side:</strong> the app connects to a remote machine to perform CRUD operations</li>
-            <li class="fragment"><strong>Client-side:</strong> the database is on the same device as the app</li>
-          </ul>
-        </section>
-        <section>
-          <h3>The Low-Down on <br><em>Server-Side</em> Databases</h3>
-          <div class="two-columns">
-            <h4>The <em>Good</em></h4>
-            <ul>
-              <li class="fragment">Accessible to all connected instances</li>
-              <li class="fragment">Apps don’t need to load <em>all</em> data to run the app</li>
-            </ul>
-            <h4>The <strong>Bad</strong></h4>
-            <ul>
-              <li class="fragment">Can cause a noticeable slow-down in apps</li>
-              <li class="fragment">Apps require an internet connection</li>
-            </ul>
-          </div>
-        </section>
-        <section>
-          <h3>The Low-Down on <br><em>Client-Side</em> Databases</h3>
-          <div class="two-columns">
-            <h4>The <em>Good</em></h4>
-            <ul>
-              <li class="fragment">Apps feel much faster because there’s no server request</li>
-              <li class="fragment">Even if there’s no internet connection, apps will still work</li>
-            </ul>
-            <h4>The <strong>Bad</strong></h4>
-            <ul>
-              <li class="fragment">Each app has its own instance of the database</li>
-              <li class="fragment"><em>All</em> of the app’s data needs to be downloaded</li>
-            </ul>
-          </div>
-        </section>
-        <section>
-          <h2>What if I want the <em>best of both</em> databases?</h2>
-        </section>
-        <section>
-          <h1>Use ’Em <em class="hugify">Both</em></h1>
-          <h3 class="fragment">and sync that shit</h3>
-        </section>
-        <section>
-          <h1><em>CouchDB</em> + <strong>PouchDB</strong></h1>
-          <h3>With Replication</h3>
-        </section>
-        <section>
-          <h2>PouchDB gives us:</h2>
-          <ul>
-            <li class="fragment">Offline-first capabilities</li>
-            <li class="fragment">Near-instant updates and responses</li>
-            <li class="fragment">A simple JavaScript API for CRUD operations</li>
-          </ul>
-        </section>
-        <section>
-          <h2>CouchDB gives us:</h2>
-          <ul>
-            <li class="fragment">Data persistence across devices</li>
-            <li class="fragment">Support for collaborative editing</li>
-          </ul>
-        </section>
-        <section><img src="./images/progressive-web-apps/its-hard.gif" alt="it’s hard" style="width: 100%;">
-        </section>
-        <section>
-          <h1>It’s not hard</h1>
-          <h4 class="fragment">It’s pretty easy, actually.</h4>
-        </section>
-        <section>
-          <pre><code style="font-size: 80%;">// Keep the local (PouchDB) and the remote (CouchDB) databases in sync.
-PouchDB.sync('local_db', 'https://example.com/remote_db', {
-  live: true,
-  retry: true,
-});
-
-// Whenever there are changes on the remote database, we want to know.
-db.changes({
-  since: 'now',
-  live: true,
-}).on('change', handleDataChanges);</code></pre>
-          <h3 class="fragment">That’s it — <em>No joke</em></h3>
-        </section>
-        <section>
-          <h1>Demo?</h1>
-          <h4><a href="https://code.lengstorf.com/offline-first-db-example/">Meet the Thought Collector!</a></h4>
-        </section>
-        <section>
           <h1>Let’s Recap</h1>
         </section>
         <section>
@@ -395,11 +566,11 @@ db.changes({
           <p class="fragment">All with a few minutes of effort.</p>
         </section>
         <section>
-          <h3>And with just a bit of extra work, we can:</h3>
-          <ul>
-            <li class="fragment">Lazy load resources to further improve load times</li>
-            <li class="fragment">Enable offline data access for truly offline-capable apps</li>
-          </ul>
+          <p>
+            And with just a bit of extra work, we can lazy load resources to further 
+            improve load times.
+            
+          </p>
         </section>
         <section>
           <h2>Progressive Web Apps are <em>Awesome</em></h2>
@@ -408,15 +579,15 @@ db.changes({
           <h3>With very little effort, we can build web apps that feel just as snappy as <em class="hugify">native apps</em></h3>
         </section>
         <section>
-          <h1>🥓    </h1>
-        </section>
-        <section>
-          <h1>Questions?</h1>
-          <p>Jason Lengstorf<br><small>Follow me on Twitter: <a href="https://twitter.com/jlengstorf">@jlengstorf</a> | <a href="mailto:jason@lengstorf.com">jason@lengstorf.com</a></small></p>
+          <h3>It’s not</h3>
+          <h1>🥕🥒🌽 </h1><span class="fragment">
+            <h3>It’s</h3>
+            <h1>🥓🥓🥓</h1></span>
         </section>
         <section class="resourcetext">
           <h3>Resources</h3>
           <ol>
+            <li><a href="https://jakearchibald.com/2014/offline-cookbook/">Jake Archibald’s Offline Cookbook</a></li>
             <li><a href="https://developers.google.com/web/tools/lighthouse/">Lighthouse</a></li>
             <li><a href="https://github.com/GoogleChrome/sw-precache">sw-precache</a></li>
             <li><a href="https://github.com/goldhand/sw-precache-webpack-plugin">sw-precache-webpack-plugin</a></li>
@@ -428,7 +599,7 @@ db.changes({
       </div>
     </div>
     <div class="hashtag">
-      <p>Tweet: <a href="https://twitter.com/intent/tweet?text=Progressive%20Web%20Apps%20by%20%40jlengstorf&amp;hashtags=&amp;related=jlengstorf&amp;url=https%3A%2F%2Fcode.lengstorf.com%2Fpresentation%2Fprogressive-web-apps%2Fslides%2F" target="_blank">@jlengstorf </a></p>
+      <p>Tweet: <a href="https://twitter.com/intent/tweet?text=Progressive%20Web%20Apps%20by%20%40jlengstorf&amp;hashtags=websc&amp;related=jlengstorf%2Cwebsummercamp&amp;url=https%3A%2F%2Fcode.lengstorf.com%2Fpresentation%2Fprogressive-web-apps%2Fslides%2F" target="_blank">@jlengstorf #websc</a></p>
     </div>
     <footer>
       <ul class="inline">
