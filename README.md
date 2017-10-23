@@ -26,12 +26,10 @@ The goal of this repo is to create a single location where presentations live, i
 
 (This is what I send to people as my bio.)
 
-> Jason Lengstorf is a developer, designer, author, and friendly bear. He 
-> focuses on work-life balance, efficiency, processes, and productivity to help 
-> people get more done in less time — so they can spend more time on the things 
-> that matter most. He recently joined [IBM Design](http://www.ibm.com/design/) 
-> as a senior front-end developer in Austin, TX, where he can often be spotted 
-> in the forest foraging for nuts and berries.
+> Jason Lengstorf is a developer, designer, author, and friendly bear. His 
+> focus is on the efficiency and performance of both teams and software. At IBM,
+> he creates processes and systems to Make The Right Thing The Easy Thing™. At 
+> all other times, he roams the earth in search of new and better snacks.
 
 ### Videos of Previous Presentation
 

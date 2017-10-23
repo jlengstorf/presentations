@@ -55,7 +55,7 @@ body {
 .reveal h6 {
   margin: 0 0 20px 0;
   color: #382a2c;
-  font-family: mallory, sans-serif;
+  font-family: mallory, -apple-system, sans-serif;
   font-weight: normal;
   line-height: 1.2;
   letter-spacing: auto;
