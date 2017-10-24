@@ -1,0 +1,124 @@
+<svg width="800" height="550" viewBox="0 0 800 550" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>gramps-all-together</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-850 -600)">
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M 850 600L 1650 600L 1650 1150L 850 1150L 850 600Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="gramps-all-together" clip-path="url(#clip-0)">
+<g id="Data Sources">
+<g id="Component">
+<g id="Plug">
+<use xlink:href="#path0_fill" transform="translate(883.976 761.119)" fill="#382A2C"/>
+</g>
+<g id="Schema">
+<use xlink:href="#path1_fill" transform="translate(875 737.61)" fill="#C700EB"/>
+</g>
+<g id="Resolvers">
+<use xlink:href="#path2_fill" transform="translate(875 714.073)" fill="#C700EB" fill-opacity="0.75"/>
+</g>
+<g id="Model">
+<use xlink:href="#path3_fill" transform="translate(875 690.537)" fill="#C700EB" fill-opacity="0.625"/>
+</g>
+<g id="Connector">
+<use xlink:href="#path4_fill" transform="translate(875 667)" fill="#C700EB" fill-opacity="0.5"/>
+</g>
+</g>
+<g id="Component">
+<g id="Plug">
+<use xlink:href="#path5_fill" transform="translate(1013.98 761.119)" fill="#382A2C"/>
+</g>
+<g id="Schema">
+<use xlink:href="#path1_fill" transform="translate(1005 737.61)" fill="#C700EB"/>
+</g>
+<g id="Resolvers">
+<use xlink:href="#path2_fill" transform="translate(1005 714.073)" fill="#C700EB" fill-opacity="0.75"/>
+</g>
+<g id="Model">
+<use xlink:href="#path3_fill" transform="translate(1005 690.537)" fill="#C700EB" fill-opacity="0.625"/>
+</g>
+<g id="Connector">
+<use xlink:href="#path4_fill" transform="translate(1005 667)" fill="#C700EB" fill-opacity="0.5"/>
+</g>
+</g>
+<g id="Component">
+<g id="Plug">
+<use xlink:href="#path6_fill" transform="translate(1143.98 761.119)" fill="#382A2C"/>
+</g>
+<g id="Schema">
+<use xlink:href="#path1_fill" transform="translate(1135 737.61)" fill="#C700EB"/>
+</g>
+<g id="Resolvers">
+<use xlink:href="#path2_fill" transform="translate(1135 714.073)" fill="#C700EB" fill-opacity="0.75"/>
+</g>
+<g id="Model">
+<use xlink:href="#path3_fill" transform="translate(1135 690.537)" fill="#C700EB" fill-opacity="0.625"/>
+</g>
+<g id="Connector">
+<use xlink:href="#path4_fill" transform="translate(1135 667)" fill="#C700EB" fill-opacity="0.5"/>
+</g>
+</g>
+<g id="Component">
+<g id="Plug">
+<use xlink:href="#path6_fill" transform="translate(1273.98 761.119)" fill="#382A2C"/>
+</g>
+<g id="Schema">
+<use xlink:href="#path1_fill" transform="translate(1265 737.61)" fill="#C700EB"/>
+</g>
+<g id="Resolvers">
+<use xlink:href="#path2_fill" transform="translate(1265 714.073)" fill="#C700EB" fill-opacity="0.75"/>
+</g>
+<g id="Model">
+<use xlink:href="#path3_fill" transform="translate(1265 690.537)" fill="#C700EB" fill-opacity="0.625"/>
+</g>
+<g id="Connector">
+<use xlink:href="#path4_fill" transform="translate(1265 667)" fill="#C700EB" fill-opacity="0.5"/>
+</g>
+</g>
+<g id="Component">
+<g id="Plug">
+<use xlink:href="#path6_fill" transform="translate(1403.98 761.119)" fill="#382A2C"/>
+</g>
+<g id="Schema">
+<use xlink:href="#path1_fill" transform="translate(1395 737.61)" fill="#C700EB"/>
+</g>
+<g id="Resolvers">
+<use xlink:href="#path2_fill" transform="translate(1395 714.073)" fill="#C700EB" fill-opacity="0.75"/>
+</g>
+<g id="Model">
+<use xlink:href="#path3_fill" transform="translate(1395 690.537)" fill="#C700EB" fill-opacity="0.625"/>
+</g>
+<g id="Connector">
+<use xlink:href="#path4_fill" transform="translate(1395 667)" fill="#C700EB" fill-opacity="0.5"/>
+</g>
+</g>
+<g id="Component">
+<g id="Plug">
+<use xlink:href="#path6_fill" transform="translate(1533.98 761.119)" fill="#382A2C"/>
+</g>
+<g id="Schema">
+<use xlink:href="#path1_fill" transform="translate(1525 737.61)" fill="#C700EB"/>
+</g>
+<g id="Resolvers">
+<use xlink:href="#path2_fill" transform="translate(1525 714.073)" fill="#C700EB" fill-opacity="0.75"/>
+</g>
+<g id="Model">
+<use xlink:href="#path3_fill" transform="translate(1525 690.537)" fill="#C700EB" fill-opacity="0.625"/>
+</g>
+<g id="Connector">
+<use xlink:href="#path4_fill" transform="translate(1525 667)" fill="#C700EB" fill-opacity="0.5"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 0 0L 82.0477 0C 82.0477 3.47772 79.2284 6.297 75.7507 6.297L 57.4524 6.297L 57.4524 37.7383C 57.4524 38.9218 56.493 39.8812 55.3095 39.8812C 54.1261 39.8812 53.1667 38.9218 53.1667 37.7383L 53.1667 6.297L 28.881 6.297L 28.881 37.7383C 28.881 38.9218 27.9216 39.8812 26.7382 39.8812C 25.5547 39.8812 24.5953 38.9218 24.5953 37.7383L 24.5953 6.297L 6.297 6.297C 2.81927 6.297 0 3.47772 0 0Z"/>
+<path id="path1_fill" d="M 0 0L 100 0L 100 0.990082C 100 12.0358 91.0457 20.9901 80 20.9901L 20 20.9901C 8.95431 20.9901 0 12.0358 0 0.990082L 0 0Z"/>
+<path id="path2_fill" d="M 0 0L 100 0L 100 20.9901L 0 20.9901L 0 0Z"/>
+<path id="path3_fill" d="M 0 0L 100 0L 100 20.9901L 0 20.9901L 0 0Z"/>
+<path id="path4_fill" d="M 0 20C 0 8.95431 8.95431 0 20 0L 80 0C 91.0457 0 100 8.95431 100 20L 100 20.9901L 0 20.9901L 0 20Z"/>
+<path id="path5_fill" fill-rule="evenodd" d="M 0 0L 82.0477 0C 82.0477 3.47772 79.2285 6.297 75.7507 6.297L 57.4523 6.297L 57.4523 37.7383C 57.4523 38.9218 56.493 39.8812 55.3095 39.8812C 54.126 39.8812 53.1667 38.9218 53.1667 37.7383L 53.1667 6.297L 28.881 6.297L 28.881 37.7383C 28.881 38.9218 27.9216 39.8812 26.7381 39.8812C 25.5546 39.8812 24.5953 38.9218 24.5953 37.7383L 24.5953 6.297L 6.297 6.297C 2.81927 6.297 0 3.47772 0 0Z"/>
+<path id="path6_fill" fill-rule="evenodd" d="M 0 0L 82.0477 0C 82.0477 3.47772 79.2284 6.297 75.7507 6.297L 57.4524 6.297L 57.4524 37.7383C 57.4524 38.9218 56.493 39.8812 55.3096 39.8812C 54.1261 39.8812 53.1667 38.9218 53.1667 37.7383L 53.1667 6.297L 28.8811 6.297L 28.8811 37.7383C 28.8811 38.9218 27.9216 39.8812 26.7382 39.8812C 25.5547 39.8812 24.5953 38.9218 24.5953 37.7383L 24.5953 6.297L 6.297 6.297C 2.81921 6.297 0 3.47772 0 0Z"/>
+</defs>
+</svg>

@@ -41,15 +41,15 @@
         <section class="u--align-left u--text-light u--text-shadow" data-background="url(./images/jason-lengstorf-slide-bg@2x.jpg)">
           <h2>Who I Am</h2>
           <ul style="width: 75%;">
-            <li class="fragment">Building web things since 2003</li>
-            <li class="fragment">Senior developer / front-end architect for IBM Cloud</li>
-            <li class="fragment">Former workaholic / current work-life balance advocate</li>
-            <li class="fragment"><em>Obsessed</em> with processes &amp; efficiency</li>
-            <li class="fragment">Old man at heart</li>
+            <li>Building web things since 2003</li>
+            <li>Senior developer / front-end architect for IBM Cloud</li>
+            <li>Former workaholic / current work-life balance advocate</li>
+            <li><em>Obsessed</em> with processes &amp; efficiency</li>
+            <li>Old man at heart</li>
           </ul>
         </section>
         <section>
-          <h3>GraphQL is one of the most exciting things I’ve worked on in a long time</h3>
+          <h3><em>GraphQL</em> is one of the most exciting things I’ve worked on in a long time</h3>
           <aside class="notes">
             I’m not going to go deep into the benefits of GraphQL. Other people have
             written great introductions to GraphQL and what it can do — and each
@@ -61,10 +61,10 @@
           </aside>
         </section>
         <section>
-          <h3>I wanted to start using it in production immediately</h3>
+          <h3>I wanted to start using it in production <em>immediately</em></h3>
         </section>
-        <section>
-          <h3>Not everyone was on board</h3>
+        <section><img src="./images/graphql-microservices/nope.gif" alt="nope">
+          <h3 class="no-margin">Not everyone was on board</h3>
           <aside class="notes">
             When I initially started playing with this concept, I was ready to go
             all-in on GraphQL. But other teams immediately started voicing concerns,
@@ -135,26 +135,6 @@
         </section>
         <section>
           <h2>We needed <em>answers</em></h2>
-        </section>
-        <section class="u--align-left">
-          <h3>How can we...</h3>
-          <ul>
-            <li class="fragment">prevent GraphQL from becoming a development bottleneck?</li>
-            <li class="fragment">make sure teams keep control of their own data?</li>
-            <li class="fragment">protect teams from outside code introducing bugs?</li>
-            <li class="fragment">improve the error handling experience?</li>
-            <li class="fragment">be 100% sure the GraphQL µ-service will scale?</li>
-          </ul>
-        </section>
-        <section class="u--align-left">
-          <h3>And furthermore...</h3>
-          <ul>
-            <li class="fragment">How do we drive adoption to make sure teams <strong>actually use GraphQL</strong>?</li>
-            <li class="fragment">How can we avoid the quality and documentation problems we had with REST?</li>
-          </ul>
-        </section>
-        <section>
-          <h3>We had problems to solve:</h3>
           <ol>
             <li class="fragment">Can we give teams control without losing the benefits of GraphQL?</li>
             <li class="fragment">Can we design an approach that <em>improves</em> error handling?</li>
@@ -163,7 +143,7 @@
           </ol>
         </section>
         <section>
-          <h4 class="no-margin">Problem 1:</h4>
+          <h4 class="no-margin">Challenge #1:</h4>
           <h2 class="no-margin"><em>Decentralize</em> Control, but Centralize Data</h2>
         </section>
         <section>
@@ -171,21 +151,28 @@
           <p><span>Each team maintains their own GraphQL schema...</span><br><span class="fragment"> but that schema is aggregated by a central µ-service.</span></p>
         </section>
         <section>
-          <h2>We call these<br>“Data Sources”</h2>
+          <h3>If this was going to work, we needed a <em>standardized format</em> for sharing schemas.</h3>
+          <aside class="notes">
+            In general, the GraphQL community talks about server-side GraphQL as a
+            schema, a set of resolvers, and then code that you have to figure out on
+            your own to get data. But Jonas Helfer suggested additional abstractions:
+            Models and Connectors. We started with that and built a boilerplate for 
+            adding data to GraphQL servers.
+            
+          </aside>
         </section>
         <section>
-          <h3>If this was going to work, we needed a <em>standardized format</em> for data sources.</h3>
+          <h2>We call these<br><em>Data Sources</em></h2>
         </section>
-        <section>
-          <h3>A Data Source consists of:</h3>
-          <ul>
-            <li> <strong>GraphQL schema</strong><span class="fragment">: describes the data</span></li>
-            <li> <strong>Resolver functions</strong><span class="fragment">: maps data to the schema</span></li>
-            <li class="fragment"><strong>Connector</strong><span class="fragment">: determines where to load data from</span></li>
-            <li class="fragment"><strong>Model</strong><span class="fragment">: defines methods for getting specific data</span></li>
-            <li class="fragment"><strong>Main export</strong><span class="fragment">: makes it possible to combine data sources</span></li>
-          </ul>
-          <p class="fragment"><small>Hat tip to Jonas Helfer for the initial concept.</small></p>
+        <section><img class="no-border" src="./images/graphql-microservices/gramps-data-source-1.svg" alt="GrAMPS data source, part 1">
+        </section>
+        <section><img class="no-border" src="./images/graphql-microservices/gramps-data-source-2.svg" alt="GrAMPS data source, part 2">
+        </section>
+        <section><img class="no-border" src="./images/graphql-microservices/gramps-data-source-3.svg" alt="GrAMPS data source, part 3">
+        </section>
+        <section><img class="no-border" src="./images/graphql-microservices/gramps-data-source-4.svg" alt="GrAMPS data source, part 4">
+        </section>
+        <section><img class="no-border" src="./images/graphql-microservices/gramps-data-source-5.svg" alt="GrAMPS data source, part 5">
         </section>
         <section>
           <h3>Each data source is an <em>independent</em> GitHub repo, which means:</h3>
@@ -196,85 +183,144 @@
           </ul>
         </section>
         <section>
-          <h3>Stitching it together:</h3>
-          <ul>
-            <li class="fragment">The GraphQL µ-service core is an empty schema</li>
-            <li class="fragment">Each data source is an npm package, which is added as a dependency</li>
-            <li class="fragment">
-              Express middleware composes the data sources into a single set of 
-              arguments for use with the Apollo Express server
-              
-            </li>
-          </ul>
+          <h3>How do we <em>combine</em> the data sources?</h3>
+          <aside class="notes">
+            <ul>
+              <li>The GraphQL µ-service core is an empty schema</li>
+              <li>Each data source is an npm package, which is added as a dependency</li>
+              <li>
+                Express middleware composes the data sources into a single set of 
+                arguments for use with the Apollo Express server
+                
+              </li>
+            </ul>
+          </aside>
+        </section>
+        <section><img class="no-border" src="./images/graphql-microservices/gramps-all-together-1.svg" alt="GrAMPS architecture, part 1">
+        </section>
+        <section><img class="no-border" src="./images/graphql-microservices/gramps-all-together-2.svg" alt="GrAMPS architecture, part 2">
+        </section>
+        <section><img class="no-border" src="./images/graphql-microservices/gramps-all-together-3.svg" alt="GrAMPS architecture, part 3">
+        </section>
+        <section><img class="no-border" src="./images/graphql-microservices/gramps-all-together-4.svg" alt="GrAMPS architecture, part 4">
         </section>
         <section>
-          <h4>This Is a Simple Apollo GraphQL Server</h4>
-          <pre><code class="js">import Express from 'express';
+          <h2><em>Implementation</em> is easy enough to fit the code on a slide</h2>
+        </section>
+        <section>
+          <h4>This Is a Simple <em>Apollo GraphQL Server</em></h4>
+          <pre style="font-size: 18px;"><code class="js">import Express from 'express';
 import bodyParser from 'body-parser';
 import { graphqlExpress } from 'apollo-server-express';
 
 import mySchema from './schema';
+import myDataAccess from './data';
 
 const app = new Express();
 app.use(bodyParser.json());
 app.use('/graphql',
-  graphqlExpress({ schema: mySchema }),
+  graphqlExpress({
+    schema: mySchema,
+    context: myDataAccess,
+  }),
 );
 </code></pre>
         </section>
         <section>
-          <h4>Our new pattern doesn’t change much</h4>
-          <ol>
-            <li class="fragment">Swaps the single, local schema for a variable number of data source packages</li>
-            <li class="fragment">Adds a piece of middleware</li>
-            <li class="fragment">Updates the Apollo GraphQL server to use the combined schema</li>
-          </ol>
-        </section>
-        <section>
-          <h4>1. Use external packages vs. a single schema</h4>
-          <pre><code class="diff">- import mySchema from './schema';
-+ import schemaOne from '@gramps/data-source-one';
-+ import schemaTwo from '@gramps/data-source-two';
-</code></pre>
-        </section>
-        <section>
-          <h4>2. Add the schema-combining middleware</h4>
-          <pre><code class="diff">+ import { grampsExpress } from '@gramps/gramps-express';
+          <h4>Step 1: Import the <em>Middleware</em></h4>
+          <pre style="font-size: 18px;"><code class="diff">  import Express from 'express';
+  import bodyParser from 'body-parser';
+  import { graphqlExpress } from 'apollo-server-express';
++ import { grampsExpress } from '@gramps/gramps-express';
+
+  import mySchema from './schema';
+  import myDataAccess from './data';
 
   const app = new Express();
   app.use(bodyParser.json());
-
-+ app.use(
-+   grampsExpress({
-+     dataSources: [
-+       schemaOne,
-+       schemaTwo,
-+     ],
-+   }),
-+ );
+  app.use('/graphql',
+    graphqlExpress({
+      schema: mySchema,
+      context: myDataAccess,
+    }),
+  );
 </code></pre>
         </section>
         <section>
-          <h4>3. Update to use the combined schema</h4>
-          <pre><code class="diff">  app.use('/graphql',
--   graphqlExpress({ schema: mySchema }),
-+   graphqlExpress(req => ({ schema: req.combinedSchema })),
-  );</code></pre>
-          <aside class="notes">
-            The goal of the project was to make it as simple as possible to add new 
-            data sources, so we didn’t want to make people mess with configuration or
-            
-            
-          </aside>
+          <h4>Step 2: Import the <em>Data Sources</em></h4>
+          <pre style="font-size: 18px;"><code class="diff">  import Express from 'express';
+  import bodyParser from 'body-parser';
+  import { graphqlExpress } from 'apollo-server-express';
+  import { grampsExpress } from '@gramps/gramps-express';
+
+- import mySchema from './schema';
+- import myDataAccess from './data';
++ import schemaOne from '@gramps/data-source-one';
++ import schemaTwo from '@gramps/data-source-two';
+
+  const app = new Express();
+  app.use(bodyParser.json());
+  app.use('/graphql',
+    graphqlExpress({
+      schema: mySchema,
+      context: myDataAccess,
+    }),
+  );
+</code></pre>
         </section>
         <section>
-          <h4 class="no-margin">Problem 2:</h4>
+          <h4>Step 3: <em>Combine</em> the Data Sources</h4>
+          <pre style="font-size: 18px;"><code class="diff">  import Express from 'express';
+  import bodyParser from 'body-parser';
+  import { graphqlExpress } from 'apollo-server-express';
+  import { grampsExpress } from '@gramps/gramps-express';
+
+  import schemaOne from '@gramps/data-source-one';
+  import schemaTwo from '@gramps/data-source-two';
+
+  const app = new Express();
+  app.use(bodyParser.json());
++ app.use(grampsExpress({ dataSources: [ schemaOne, schemaTwo ] }));
+  app.use('/graphql',
+    graphqlExpress({
+      schema: mySchema,
+      context: myDataAccess,
+    }),
+  );
+</code></pre>
+        </section>
+        <section>
+          <h4>Step 4: Use the New <em>Schema</em> and <em>Context</em></h4>
+          <pre style="font-size: 18px;"><code class="diff">  import Express from 'express';
+  import bodyParser from 'body-parser';
+  import { graphqlExpress } from 'apollo-server-express';
+  import { grampsExpress } from '@gramps/gramps-express';
+
+  import schemaOne from '@gramps/data-source-one';
+  import schemaTwo from '@gramps/data-source-two';
+
+  const app = new Express();
+  app.use(bodyParser.json());
+  app.use(grampsExpress({ dataSources: [ schemaOne, schemaTwo ] }));
+  app.use('/graphql',
++   graphqlExpress(req => ({
++     schema: req.gramps.schema,
++     context: req.gramps.context,
++   })),
+  );
+</code></pre>
+        </section>
+        <section>
+          <h3>If we wanted teams to <em>actually use</em> this, we needed it to be <em>simple</em></h3>
+        </section>
+        <section>
+          <h4 class="no-margin">Challenge #2:</h4>
           <h2 class="no-margin"><em>Improve</em> Error Handling</h2>
         </section>
         <section>
-          <h3>What We Need from Errors:</h3>
+          <h3 style="width: 110%;margin-left: -5%;">What Makes an Error <em>Helpful</em>?</h3>
           <ol>
-            <li class="fragment">Clear descriptions of what went wrong</li>
+            <li class="fragment">Clear description of what went wrong</li>
             <li class="fragment">Clarity about where the error occurred
               <ul>
                 <li style="font-size: 90%;">GraphQL errors vs. underlying data access issues</li>
@@ -320,7 +366,29 @@ Data: {
           </ul>
         </section>
         <section>
-          <h4 class="no-margin">Problem 3:</h4>
+          <h4>Implementation Is <em>Optional</em> and <em>Easy</em></h4>
+          <pre style="font-size: 18px;"><code class="diff">  import Express from 'express';
+  import bodyParser from 'body-parser';
+  import { graphqlExpress } from 'apollo-server-express';
+  import { grampsExpress } from '@gramps/gramps-express';
+
+  import schemaOne from '@gramps/data-source-one';
+  import schemaTwo from '@gramps/data-source-two';
+
+  const app = new Express();
+  app.use(bodyParser.json());
+  app.use(grampsExpress({ dataSources: [ schemaOne, schemaTwo ] }));
+  app.use('/graphql',
+    graphqlExpress(req => ({
+      schema: req.gramps.schema,
+      context: req.gramps.context,
++     formatError: req.gramps.formatError,
+    })),
+  );
+</code></pre>
+        </section>
+        <section>
+          <h4 class="no-margin">Challenge #3:</h4>
           <h2 class="no-margin">Make Local Development <em>Easy</em></h2>
         </section>
         <section>
@@ -353,17 +421,22 @@ Data: {
         </section>
         <section>
           <h4>But add a <em>warning</em></h4><img src="./images/graphql-microservices/local-data-source-warnings-pt1.png" alt="GrAMPS warnings for local data sources">
+          <p><small>Clarified text and updated links are coming (<a href="https://github.com/gramps-graphql/gramps-express/issues/36">#36</a>)</small></p>
         </section>
         <section>
           <h4>Actually, add <em>two</em> warnings</h4><img src="./images/graphql-microservices/local-data-source-warnings-pt2.png" alt="GrAMPS warnings for local data sources">
+          <p><small>Clarified text and updated links are coming (<a href="https://github.com/gramps-graphql/gramps-express/issues/36">#36</a>)</small></p>
         </section>
         <section>
-          <h4 class="no-margin">Problem 4:</h4>
+          <h4 class="no-margin">Challenge #4:</h4>
           <h2 class="no-margin">Build for<br><em>Global</em> Scale</h2>
         </section>
         <section>
           <h3>We didn’t have to do much</h3>
           <p class="fragment">Apollo’s Express server just works.</p>
+        </section>
+        <section>
+          <h4 class="no-margin">So that was pretty <em>great</em></h4><img src="./images/graphql-microservices/pleasant-surprise.gif" alt="pleasant surprise from The Office">
         </section>
         <section>
           <h3>We <em>started</em> working on the GraphQL <span style="text-transform: none;">µ</span>-service in <em>May</em></h3>
@@ -385,10 +458,11 @@ Data: {
         </section>
         <section>
           <h2>#2:</h2>
-          <p>“Hey, this might be useful to other people.”</p>
+          <p>“This might be useful to other people.”</p>
         </section>
         <section>
           <h2>So we’re<br>releasing it under the <em>MIT license</em></h2>
+          <h2>🎉</h2>
         </section>
         <section>
           <h3 class="no-margin">Introducing</h3>
@@ -407,17 +481,11 @@ Data: {
         <section class="u--align-left resourcetext">
           <h4>Resources</h4>
           <ol>
-            <li><a href="http://www.enginesofmischief.com/makers/evan/pubs/crunch.html">Why Crunch Mode Doesn’t Work: 6 Lessons</a></li>
-            <li><a href="http://www.employment-studies.co.uk/report-summary-working-long-hours-review-evidence-volume-1-%E2%80%93-main-report">Working Long Hours: a Review of the Evidence</a></li>
-            <li><a href="http://www.nytimes.com/2014/06/01/opinion/sunday/why-you-hate-work.html?_r=0">Why You Hate Work</a></li>
-            <li><a href="http://archive.news.ku.edu/2012/april/23/outdoors.shtml">Researchers find time in wild boosts creativity, insight, and problem solving</a></li>
-            <li><a href="https://hbr.org/2012/12/the-upside-of-downtime">The Upside of Downtime</a></li>
-            <li><a href="https://blog.codinghorror.com/the-multi-tasking-myth/">The Multitasking Myth</a></li>
-            <li><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1739867/pdf/v057p00649.pdf">Moderate sleep deprivation produces impairments in cognitive and motor performance equivalent to legally prescribed levels of alcohol intoxication</a></li>
-            <li><a href="http://blog.idonethis.com/science-of-better-energy-management/">
-                The Science Behind Why Better Energy Management is the Key to Peak Productivity
-                
-                
+            <li><a href="https://github.com/gramps-graphql/gramps-express">GrAMPS Express Middleware for Apollo on GitHub</a></li>
+            <li><a href="https://github.com/gramps-graphql">All GrAMPS Projects on GitHub</a></li>
+            <li><a href="https://www.npmjs.com/org/gramps">All GrAMPS Projects on npm</a></li>
+            <li><a href="https://dev-blog.apollodata.com/how-to-build-graphql-servers-87587591ded5">
+                How to Build GraphQL Servers by Jonas Helfer
                 </a></li>
           </ol>
         </section>

@@ -51,14 +51,14 @@ block slides
   )
     h2 Who I Am
     ul(style="width: 75%")
-      li.fragment Building web things since 2003
-      li.fragment Senior developer / front-end architect for IBM Cloud
-      li.fragment Former workaholic / current work-life balance advocate
-      li.fragment #[em Obsessed] with processes &amp; efficiency
-      li.fragment Old man at heart
+      li Building web things since 2003
+      li Senior developer / front-end architect for IBM Cloud
+      li Former workaholic / current work-life balance advocate
+      li #[em Obsessed] with processes &amp; efficiency
+      li Old man at heart
 
   +slide
-    h3 GraphQL is one of the most exciting things I’ve worked on in a long time
+    h3 #[em GraphQL] is one of the most exciting things I’ve worked on in a long time
     
     aside.notes.
       I’m not going to go deep into the benefits of GraphQL. Other people have
@@ -69,10 +69,14 @@ block slides
       surface. (Also, the auto-documentation benefits were pretty appealing.)
 
   +slide
-    h3 I wanted to start using it in production immediately
+    h3 I wanted to start using it in production #[em immediately]
 
   +slide
-    h3 Not everyone was on board
+    img(
+      src="./images/graphql-microservices/nope.gif"
+      alt="nope"
+    )
+    h3.no-margin Not everyone was on board
 
     aside.notes.
       When I initially started playing with this concept, I was ready to go
@@ -137,24 +141,6 @@ block slides
   
   +slide
     h2 We needed #[em answers]
-
-  +slide.u--align-left
-    h3 How can we...
-    ul
-      li.fragment prevent GraphQL from becoming a development bottleneck?
-      li.fragment make sure teams keep control of their own data?
-      li.fragment protect teams from outside code introducing bugs?
-      li.fragment improve the error handling experience?
-      li.fragment be 100% sure the GraphQL µ-service will scale?
-
-  +slide.u--align-left
-    h3 And furthermore...
-    ul
-      li.fragment How do we drive adoption to make sure teams #[strong actually use GraphQL]?
-      li.fragment How can we avoid the quality and documentation problems we had with REST?
-
-  +slide
-    h3 We had problems to solve:
     ol
       li.fragment Can we give teams control without losing the benefits of GraphQL?
       li.fragment Can we design an approach that #[em improves] error handling?
@@ -163,7 +149,7 @@ block slides
 
   //- STANDARDIZE WHAT A DATA SOURCE IS
   +slide
-    h4.no-margin Problem 1:
+    h4.no-margin Challenge #1:
     h2.no-margin #[em Decentralize] Control, but Centralize Data
 
   +slide
@@ -174,31 +160,47 @@ block slides
       span.fragment  but that schema is aggregated by a central µ-service.
 
   +slide
-    h2 We call these#[br]“Data Sources”
+    h3 If this was going to work, we needed a #[em standardized format] for sharing schemas.
+
+    aside.notes.
+      In general, the GraphQL community talks about server-side GraphQL as a
+      schema, a set of resolvers, and then code that you have to figure out on
+      your own to get data. But Jonas Helfer suggested additional abstractions:
+      Models and Connectors. We started with that and built a boilerplate for 
+      adding data to GraphQL servers.
 
   +slide
-    h3 If this was going to work, we needed a #[em standardized format] for data sources.
+    h2 We call these#[br]#[em Data Sources]
 
   +slide
-    h3 A Data Source consists of:
-    ul
-      li 
-        strong GraphQL schema
-        span.fragment : describes the data
-      li 
-        strong Resolver functions
-        span.fragment : maps data to the schema
-      li.fragment
-        strong Connector
-        span.fragment : determines where to load data from
-      li.fragment
-        strong Model
-        span.fragment : defines methods for getting specific data
-      li.fragment
-        strong Main export
-        span.fragment : makes it possible to combine data sources
-    p.fragment
-      small Hat tip to Jonas Helfer for the initial concept.
+    img.no-border(
+      src="./images/graphql-microservices/gramps-data-source-1.svg"
+      alt="GrAMPS data source, part 1"
+    )
+
+  +slide
+    img.no-border(
+      src="./images/graphql-microservices/gramps-data-source-2.svg"
+      alt="GrAMPS data source, part 2"
+    )
+
+  +slide
+    img.no-border(
+      src="./images/graphql-microservices/gramps-data-source-3.svg"
+      alt="GrAMPS data source, part 3"
+    )
+
+  +slide
+    img.no-border(
+      src="./images/graphql-microservices/gramps-data-source-4.svg"
+      alt="GrAMPS data source, part 4"
+    )
+
+  +slide
+    img.no-border(
+      src="./images/graphql-microservices/gramps-data-source-5.svg"
+      alt="GrAMPS data source, part 5"
+    )
 
   +slide
     h3 Each data source is an #[em independent] GitHub repo, which means:
@@ -214,85 +216,163 @@ block slides
         small Each team’s code has individual test suites.
 
   +slide
-    h3 Stitching it together:
-    ul
-      li.fragment The GraphQL µ-service core is an empty schema
-      li.fragment Each data source is an npm package, which is added as a dependency
-      li.fragment.
-        Express middleware composes the data sources into a single set of 
-        arguments for use with the Apollo Express server
+    h3 How do we #[em combine] the data sources?
+
+    aside.notes
+      ul
+        li The GraphQL µ-service core is an empty schema
+        li Each data source is an npm package, which is added as a dependency
+        li.
+          Express middleware composes the data sources into a single set of 
+          arguments for use with the Apollo Express server
 
   +slide
-    h4 This Is a Simple Apollo GraphQL Server
-    pre
+    img.no-border(
+      src="./images/graphql-microservices/gramps-all-together-1.svg"
+      alt="GrAMPS architecture, part 1"
+    )
+
+  +slide
+    img.no-border(
+      src="./images/graphql-microservices/gramps-all-together-2.svg"
+      alt="GrAMPS architecture, part 2"
+    )
+
+  +slide
+    img.no-border(
+      src="./images/graphql-microservices/gramps-all-together-3.svg"
+      alt="GrAMPS architecture, part 3"
+    )
+
+  +slide
+    img.no-border(
+      src="./images/graphql-microservices/gramps-all-together-4.svg"
+      alt="GrAMPS architecture, part 4"
+    )
+
+  +slide
+    h2 #[em Implementation] is easy enough to fit the code on a slide
+
+  +slide
+    h4 This Is a Simple #[em Apollo GraphQL Server]
+    pre(style="font-size: 18px")
       code.js.
         import Express from 'express';
         import bodyParser from 'body-parser';
         import { graphqlExpress } from 'apollo-server-express';
 
         import mySchema from './schema';
+        import myDataAccess from './data';
 
         const app = new Express();
         app.use(bodyParser.json());
         app.use('/graphql',
-          graphqlExpress({ schema: mySchema }),
+          graphqlExpress({
+            schema: mySchema,
+            context: myDataAccess,
+          }),
         );
 
   +slide
-    h4 Our new pattern doesn’t change much
-    ol
-      li.fragment Swaps the single, local schema for a variable number of data source packages
-      li.fragment Adds a piece of middleware
-      li.fragment Updates the Apollo GraphQL server to use the combined schema
-
-  +slide
-    h4 1. Use external packages vs. a single schema
-    pre
+    h4 Step 1: Import the #[em Middleware]
+    pre(style="font-size: 18px")
       code.diff.
-        - import mySchema from './schema';
-        + import schemaOne from '@gramps/data-source-one';
-        + import schemaTwo from '@gramps/data-source-two';
-
-  +slide
-    h4 2. Add the schema-combining middleware
-    pre
-      code.diff.
+          import Express from 'express';
+          import bodyParser from 'body-parser';
+          import { graphqlExpress } from 'apollo-server-express';
         + import { grampsExpress } from '@gramps/gramps-express';
-
+  
+          import mySchema from './schema';
+          import myDataAccess from './data';
+  
           const app = new Express();
           app.use(bodyParser.json());
-
-        + app.use(
-        +   grampsExpress({
-        +     dataSources: [
-        +       schemaOne,
-        +       schemaTwo,
-        +     ],
-        +   }),
-        + );
+          app.use('/graphql',
+            graphqlExpress({
+              schema: mySchema,
+              context: myDataAccess,
+            }),
+          );
 
   +slide
-    h4 3. Update to use the combined schema
-    pre
+    h4 Step 2: Import the #[em Data Sources]
+    pre(style="font-size: 18px")
       code.diff.
+          import Express from 'express';
+          import bodyParser from 'body-parser';
+          import { graphqlExpress } from 'apollo-server-express';
+          import { grampsExpress } from '@gramps/gramps-express';
+  
+        - import mySchema from './schema';
+        - import myDataAccess from './data';
+        + import schemaOne from '@gramps/data-source-one';
+        + import schemaTwo from '@gramps/data-source-two';
+  
+          const app = new Express();
+          app.use(bodyParser.json());
           app.use('/graphql',
-        -   graphqlExpress({ schema: mySchema }),
-        +   graphqlExpress(req => ({ schema: req.combinedSchema })),
+            graphqlExpress({
+              schema: mySchema,
+              context: myDataAccess,
+            }),
           );
-    aside.notes.
-      The goal of the project was to make it as simple as possible to add new 
-      data sources, so we didn’t want to make people mess with configuration or
 
+  +slide
+    h4 Step 3: #[em Combine] the Data Sources
+    pre(style="font-size: 18px")
+      code.diff.
+          import Express from 'express';
+          import bodyParser from 'body-parser';
+          import { graphqlExpress } from 'apollo-server-express';
+          import { grampsExpress } from '@gramps/gramps-express';
+
+          import schemaOne from '@gramps/data-source-one';
+          import schemaTwo from '@gramps/data-source-two';
+  
+          const app = new Express();
+          app.use(bodyParser.json());
+        + app.use(grampsExpress({ dataSources: [ schemaOne, schemaTwo ] }));
+          app.use('/graphql',
+            graphqlExpress({
+              schema: mySchema,
+              context: myDataAccess,
+            }),
+          );
+
+  +slide
+    h4 Step 4: Use the New #[em Schema] and #[em Context]
+    pre(style="font-size: 18px")
+      code.diff.
+          import Express from 'express';
+          import bodyParser from 'body-parser';
+          import { graphqlExpress } from 'apollo-server-express';
+          import { grampsExpress } from '@gramps/gramps-express';
+
+          import schemaOne from '@gramps/data-source-one';
+          import schemaTwo from '@gramps/data-source-two';
+  
+          const app = new Express();
+          app.use(bodyParser.json());
+          app.use(grampsExpress({ dataSources: [ schemaOne, schemaTwo ] }));
+          app.use('/graphql',
+        +   graphqlExpress(req => ({
+        +     schema: req.gramps.schema,
+        +     context: req.gramps.context,
+        +   })),
+          );
+
+  +slide
+    h3 If we wanted teams to #[em actually use] this, we needed it to be #[em simple]
 
   //- ERROR HANDLING
   +slide
-    h4.no-margin Problem 2:
+    h4.no-margin Challenge #2:
     h2.no-margin #[em Improve] Error Handling
 
   +slide
-    h3 What We Need from Errors:
+    h3(style="width: 110%;margin-left: -5%") What Makes an Error #[em Helpful]?
     ol
-      li.fragment Clear descriptions of what went wrong
+      li.fragment Clear description of what went wrong
       li.fragment Clarity about where the error occurred
         ul
           li(style="font-size: 90%") GraphQL errors vs. underlying data access issues
@@ -341,9 +421,32 @@ block slides
       li.fragment Development is faster because errors are clear and come with links to docs for solving them
       li.fragment We avoid confusion about which µ-service is the source of a given error
 
+  +slide
+    h4 Implementation Is #[em Optional] and #[em Easy]
+    pre(style="font-size: 18px")
+      code.diff.
+          import Express from 'express';
+          import bodyParser from 'body-parser';
+          import { graphqlExpress } from 'apollo-server-express';
+          import { grampsExpress } from '@gramps/gramps-express';
+
+          import schemaOne from '@gramps/data-source-one';
+          import schemaTwo from '@gramps/data-source-two';
+  
+          const app = new Express();
+          app.use(bodyParser.json());
+          app.use(grampsExpress({ dataSources: [ schemaOne, schemaTwo ] }));
+          app.use('/graphql',
+            graphqlExpress(req => ({
+              schema: req.gramps.schema,
+              context: req.gramps.context,
+        +     formatError: req.gramps.formatError,
+            })),
+          );
+
   //- LOCAL DEVELOPMENT
   +slide
-    h4.no-margin Problem 3:
+    h4.no-margin Challenge #3:
     h2.no-margin Make Local Development #[em Easy]
 
   +slide
@@ -380,6 +483,11 @@ block slides
       src="./images/graphql-microservices/local-data-source-warnings-pt1.png"
       alt="GrAMPS warnings for local data sources"
     )
+    p
+      small Clarified text and updated links are coming (
+        a(href="https://github.com/gramps-graphql/gramps-express/issues/36").
+          #36
+        | )
 
   +slide
     h4 Actually, add #[em two] warnings
@@ -387,15 +495,27 @@ block slides
       src="./images/graphql-microservices/local-data-source-warnings-pt2.png"
       alt="GrAMPS warnings for local data sources"
     )
+    p
+      small Clarified text and updated links are coming (
+        a(href="https://github.com/gramps-graphql/gramps-express/issues/36").
+          #36
+        | )
 
   //- GLOBAL SCALE
   +slide
-    h4.no-margin Problem 4:
+    h4.no-margin Challenge #4:
     h2.no-margin Build for#[br]#[em Global] Scale
 
   +slide
     h3 We didn’t have to do much
     p.fragment Apollo’s Express server just works.
+
+  +slide
+    h4.no-margin So that was pretty #[em great]
+    img(
+      src="./images/graphql-microservices/pleasant-surprise.gif"
+      alt="pleasant surprise from The Office"
+    )
 
   //- OPEN SOURCE
   +slide
@@ -416,10 +536,11 @@ block slides
 
   +slide
     h2 #2:
-    p “Hey, this might be useful to other people.”
+    p “This might be useful to other people.”
 
   +slide
     h2 So we’re#[br]releasing it under the #[em MIT license]
+    h2 🎉
 
   +slide
     h3.no-margin Introducing
@@ -465,31 +586,17 @@ block slides
     h4 Resources
     ol
       li
-        a(href="http://www.enginesofmischief.com/makers/evan/pubs/crunch.html").
-          Why Crunch Mode Doesn’t Work: 6 Lessons
+        a(href="https://github.com/gramps-graphql/gramps-express").
+          GrAMPS Express Middleware for Apollo on GitHub
       li
-        a(href="http://www.employment-studies.co.uk/report-summary-working-long-hours-review-evidence-volume-1-%E2%80%93-main-report").
-          Working Long Hours: a Review of the Evidence
+        a(href="https://github.com/gramps-graphql").
+          All GrAMPS Projects on GitHub
       li
-        a(href="http://www.nytimes.com/2014/06/01/opinion/sunday/why-you-hate-work.html?_r=0").
-          Why You Hate Work
+        a(href="https://www.npmjs.com/org/gramps").
+          All GrAMPS Projects on npm
       li
-        a(href="http://archive.news.ku.edu/2012/april/23/outdoors.shtml").
-          Researchers find time in wild boosts creativity, insight, and problem solving
-      li
-        a(href="https://hbr.org/2012/12/the-upside-of-downtime").
-          The Upside of Downtime
-      li
-        a(href="https://blog.codinghorror.com/the-multi-tasking-myth/").
-          The Multitasking Myth
-      li
-        a(href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1739867/pdf/v057p00649.pdf").
-          Moderate sleep deprivation produces impairments in cognitive and motor performance equivalent to legally prescribed levels of alcohol intoxication
-      li
-        a(href="http://blog.idonethis.com/science-of-better-energy-management/").
-          The Science Behind Why Better Energy Management is the Key to Peak Productivity
-      
-
+        a(href="https://dev-blog.apollodata.com/how-to-build-graphql-servers-87587591ded5").
+          How to Build GraphQL Servers by Jonas Helfer
 
 block styles
   link(
