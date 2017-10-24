@@ -81,13 +81,12 @@
           </aside>
         </section>
         <section>
-          <h3>How IBM Cloud is built:</h3>
+          <h3>How <em>IBM Cloud</em> is built:</h3>
           <ul>
             <li class="fragment">Node µ-service architecture</li>
-            <li class="fragment">30+ teams contribute code to the console</li>
-            <li class="fragment">Each team owns a “plugin” (µ-service)</li>
-            <li class="fragment">Each plugin is a separate Git repo</li>
-            <li class="fragment">Teams control their commit and deploy workflow</li>
+            <li class="fragment">30+ µ-service teams</li>
+            <li class="fragment">Each µ-service (“plugin”) is a separate codebase</li>
+            <li class="fragment">Teams control their own workflow</li>
           </ul>
           <aside class="notes">
             Teams basically have full autonomy to build however they want. This is
@@ -101,31 +100,41 @@
           </aside>
         </section>
         <section>
-          <h3>This has its downsides:</h3>
+          <h3>This has its <strong>downsides</strong>:</h3>
           <ul>
+            <li class="fragment">Things can change in 30+ directions at any given time</li>
+            <li class="fragment">Front-ends need data from multiple µ-services</li>
+            <li class="fragment">Internal documentation &amp; architecture is inconsistent</li>
             <li class="fragment">Code can be wildly inconsistent between µ-services</li>
-            <li class="fragment">It’s almost impossible to know everything that’s happening on the console</li>
-            <li class="fragment">Front-ends need to hit multiple back-end services for the data they need</li>
-            <li class="fragment">Back-end APIs lack consistent documentation and data organization</li>
-            <li class="fragment">Teams rarely control the data they rely on</li>
           </ul>
+          <aside class="notes">
+            There are too many moving parts for anyone to know exactly what’s
+            going on at any given time. If a team makes a breaking change, it’s
+            nearly impossible to let everyone know — so typically teams just break
+            shit and wait for people to ask. If a data source we rely on changes,
+            we need to figure out who owns it and hope that the documentation is
+            clear enough to solve our problem — and that’s not always the case.
+            And since each codebase is completely different, it can be extremely
+            time-consuming to attempt to send pull requests that don’t introduce
+            new bugs. (That’s a topic for another talk, though.)
+            
+          </aside>
         </section>
         <section>
-          <h3 style="width: 110%; margin-left: -5%;">GraphQL has solutions:</h3>
+          <h3 style="width: 110%; margin-left: -5%;">GraphQL has <em>solutions</em>:</h3>
           <ul>
-            <li class="fragment">Front-ends only need to hit one endpoint for all data</li>
-            <li class="fragment">Documentation is centralized and predictable</li>
-            <li class="fragment">Tools like GraphiQL simplify development</li>
-            <li class="fragment">It creates a cleaner, more enforceable separation between the data layer and the presentation layer</li>
+            <li class="fragment">Changes are centralized in the GraphQL µ-service</li>
+            <li class="fragment">Data access happens through a single endpoint</li>
+            <li class="fragment">Documentation is centralized and consistent</li>
+            <li class="fragment">Cleaner separation between data and presentation</li>
           </ul>
         </section>
         <section>
-          <h3 style="width: 110%; margin-left: -5%;">But there are complications:</h3>
+          <h3 style="width: 110%; margin-left: -5%;">But there are <strong>complications</strong>:</h3>
           <ul>
             <li class="fragment">Who “owns” the GraphQL µ-service?</li>
-            <li class="fragment">How can teams own the schema for their µ-services?</li>
-            <li class="fragment">How do we give teams control over the deployment process for individual data sources?</li>
-            <li class="fragment">How can we prevent one team from breaking another team’s code?</li>
+            <li class="fragment">How can teams make independent changes?</li>
+            <li class="fragment">Can one bad commit take down the whole service?</li>
             <li class="fragment">Doesn’t an extra layer make it harder to trace errors?</li>
             <li class="fragment">Can GraphQL handle IBM’s enormous scale?</li>
           </ul>
@@ -135,23 +144,26 @@
         </section>
         <section>
           <h2>We needed <em>answers</em></h2>
+        </section>
+        <section>
+          <h3 class="u--align-left">Can we...</h3>
           <ol>
-            <li class="fragment">Can we give teams control without losing the benefits of GraphQL?</li>
-            <li class="fragment">Can we design an approach that <em>improves</em> error handling?</li>
-            <li class="fragment">Can we make the adoption process so pleasant that teams <em>want</em> to adopt?</li>
-            <li class="fragment">Can we build a service that can handle IBM’s scale?</li>
+            <li class="fragment">Centralize data, but let teams keep control?</li>
+            <li class="fragment">Design an approach that <em>improves</em> error handling?</li>
+            <li class="fragment">Make it so easy teams <em>want</em> to switch?</li>
+            <li class="fragment">Build a service that can handle IBM’s scale?</li>
           </ol>
         </section>
         <section>
           <h4 class="no-margin">Challenge #1:</h4>
-          <h2 class="no-margin"><em>Decentralize</em> Control, but Centralize Data</h2>
+          <h2 class="no-margin"><em>Centralize</em> Data, but <em>Decentralize</em> Control</h2>
         </section>
         <section>
-          <h3>Solution:</h3>
+          <h3>The ideal <em>solution</em>:</h3>
           <p><span>Each team maintains their own GraphQL schema...</span><br><span class="fragment"> but that schema is aggregated by a central µ-service.</span></p>
         </section>
         <section>
-          <h3>If this was going to work, we needed a <em>standardized format</em> for sharing schemas.</h3>
+          <h3 style="width: 110%;max-width: 110%; margin-left: -5%;">If this was going to work, we needed a <em>standardized format</em> for sharing schemas.</h3>
           <aside class="notes">
             In general, the GraphQL community talks about server-side GraphQL as a
             schema, a set of resolvers, and then code that you have to figure out on
@@ -208,7 +220,7 @@
           <h2><em>Implementation</em> is easy enough to fit the code on a slide</h2>
         </section>
         <section>
-          <h4>This Is a Simple <em>Apollo GraphQL Server</em></h4>
+          <h4>Let’s Convert This <em>Apollo GraphQL Server</em></h4>
           <pre style="font-size: 18px;"><code class="js">import Express from 'express';
 import bodyParser from 'body-parser';
 import { graphqlExpress } from 'apollo-server-express';
@@ -311,15 +323,12 @@ app.use('/graphql',
 </code></pre>
         </section>
         <section>
-          <h3>If we wanted teams to <em>actually use</em> this, we needed it to be <em>simple</em></h3>
-        </section>
-        <section>
           <h4 class="no-margin">Challenge #2:</h4>
           <h2 class="no-margin"><em>Improve</em> Error Handling</h2>
         </section>
         <section>
           <h3 style="width: 110%;margin-left: -5%;">What Makes an Error <em>Helpful</em>?</h3>
-          <ol>
+          <ul>
             <li class="fragment">Clear description of what went wrong</li>
             <li class="fragment">Clarity about where the error occurred
               <ul>
@@ -328,20 +337,21 @@ app.use('/graphql',
             </li>
             <li class="fragment">Information to help with tracing bugs</li>
             <li class="fragment">Unique IDs shared on the client and server side</li>
-          </ol>
+          </ul>
         </section>
         <section>
-          <h4><em>Client-Side</em> Errors in Development</h4><img src="./images/graphql-microservices/client-side-error.png" alt="GrAMPS client-side error">
+          <h4><em>Client-Side</em> Errors in Development</h4><img class="no-margin" src="./images/graphql-microservices/client-side-error.png" alt="GrAMPS client-side error">
         </section>
         <section>
-          <h4>In production, we can’t show some data</h4>
+          <h4>In production, we <strong>can’t show some data</strong></h4>
           <ul>
             <li class="fragment">Docs link may be behind our firewall</li>
             <li class="fragment">Target endpoint may not be public</li>
           </ul>
         </section>
         <section>
-          <h4>Client-Side Errors in <em>Production</em></h4><img src="./images/graphql-microservices/client-side-error-production.png" alt="GrAMPS client-side error in production">
+          <h4>Client-Side Errors in <em>Production</em></h4><img class="no-margin" src="./images/graphql-microservices/client-side-error-production.png" alt="GrAMPS client-side error in production">
+          <p class="no-margin"><small><code>docsLink</code> and <code>targetEndpoint</code> are stripped out in production.</small></p>
         </section>
         <section>
           <h4>Client and server errors share a <em>GUID</em></h4>
@@ -354,15 +364,15 @@ Target Endpoint: https://xkcd.com/2000/info.0.json
 Documentation: https://ibm.biz/gramps-data-source-tutorial
 Data: {
   "id": "2000"
-}
-</code></pre>
+}</code></pre>
+          <p class="no-margin"><small>Using the GUID, we can find the <code>docsLink</code> and <code>targetEndpoint</code> in the server logs.</small></p>
         </section>
         <section>
-          <h3>This Means:</h3>
+          <h3 class="u--align-left">This Means...</h3>
           <ul>
-            <li class="fragment">Support tickets can reference errors and developers can find additional details in the logs easily</li>
-            <li class="fragment">Development is faster because errors are clear and come with links to docs for solving them</li>
-            <li class="fragment">We avoid confusion about which µ-service is the source of a given error</li>
+            <li class="fragment">Support tickets can directly reference details in logs</li>
+            <li class="fragment">Errors are clear and come with documentation</li>
+            <li class="fragment">The source of a given error is immediately clear</li>
           </ul>
         </section>
         <section>
@@ -392,7 +402,10 @@ Data: {
           <h2 class="no-margin">Make Local Development <em>Easy</em></h2>
         </section>
         <section>
-          <h3>Step 1: Create a <em>CLI</em></h3>
+          <h3>If we wanted teams to <em>start using GraphQL</em>, we needed it to be <em>dead simple</em> to get started</h3>
+        </section>
+        <section>
+          <h4>We built a <em>CLI</em> for local development</h4>
           <pre><code class="sh">$ gramps --live
 
 ============================================================
@@ -420,12 +433,12 @@ Data: {
           </aside>
         </section>
         <section>
-          <h4>But add a <em>warning</em></h4><img src="./images/graphql-microservices/local-data-source-warnings-pt1.png" alt="GrAMPS warnings for local data sources">
-          <p><small>Clarified text and updated links are coming (<a href="https://github.com/gramps-graphql/gramps-express/issues/36">#36</a>)</small></p>
+          <h4>But add a <em>warning</em></h4><img class="no-margin" src="./images/graphql-microservices/local-data-source-warnings-pt1.png" alt="GrAMPS warnings for local data sources">
+          <p class="no-margin"><small>Clarified text and updated links are coming (<a href="https://github.com/gramps-graphql/gramps-express/issues/36">#36</a>)</small></p>
         </section>
         <section>
-          <h4>Actually, add <em>two</em> warnings</h4><img src="./images/graphql-microservices/local-data-source-warnings-pt2.png" alt="GrAMPS warnings for local data sources">
-          <p><small>Clarified text and updated links are coming (<a href="https://github.com/gramps-graphql/gramps-express/issues/36">#36</a>)</small></p>
+          <h4>Actually, add <em>two</em> warnings</h4><img class="no-margin" src="./images/graphql-microservices/local-data-source-warnings-pt2.png" alt="GrAMPS warnings for local data sources">
+          <p class="no-margin"><small>Clarified text and updated links are coming (<a href="https://github.com/gramps-graphql/gramps-express/issues/36">#36</a>)</small></p>
         </section>
         <section>
           <h4 class="no-margin">Challenge #4:</h4>
@@ -433,7 +446,7 @@ Data: {
         </section>
         <section>
           <h3>We didn’t have to do much</h3>
-          <p class="fragment">Apollo’s Express server just works.</p>
+          <p class="fragment">It turns out Apollo’s Express server just works.</p>
         </section>
         <section>
           <h4 class="no-margin">So that was pretty <em>great</em></h4><img src="./images/graphql-microservices/pleasant-surprise.gif" alt="pleasant surprise from The Office">
@@ -448,7 +461,7 @@ Data: {
           <h3>After the dust settled,<br>we realized <em>two things</em></h3>
         </section>
         <section>
-          <h2>#1:</h2>
+          <h2>#1</h2>
           <p>
             “Holy shit, if everyone wrote their data sources using this format, the 
             dev community could share GraphQL data sources as easily as we share 
@@ -457,24 +470,24 @@ Data: {
           </p>
         </section>
         <section>
-          <h2>#2:</h2>
+          <h2>#2</h2>
           <p>“This might be useful to other people.”</p>
         </section>
         <section>
           <h2>So we’re<br>releasing it under the <em>MIT license</em></h2>
           <h2>🎉</h2>
         </section>
-        <section>
+        <section><img class="no-border" src="./images/graphql-microservices/GrAMPS-logo.svg" alt="GrAMPS: GraphQL Apollo Microservice Pattern Server" style="max-width: 400px;">
           <h3 class="no-margin">Introducing</h3>
-          <h1 class="no-margin">GrAMPS</h1><img class="no-margin" src="./images/graphql-microservices/gramps-banner.png" alt="GrAMPS: GraphQL Apollo Microservice Pattern Server">
+          <h1 class="no-margin">GrAMPS</h1>
           <p><strong>Gr</strong>aphQL <strong>A</strong>pollo <strong>M</strong>icroservice <strong>P</strong>attern <strong>S</strong>erver<small><a href="https://github.com/gramps-graphql/gramps-express">github.com/gramps-graphql/gramps-express</a> &nbsp; · &nbsp; <a href="https://www.npmjs.com/org/gramps">
                 npmjs.com/org/gramps
                 </a></small></p>
         </section>
         <section>
-          <h3>Thanks! Questions?</h3>
-          <p style="margin-top: 0.25rem;"></p><img src="./images/jason-lengstorf.jpg" alt="Jason Lengstorf" style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;">
-          <p style="margin-top: 0.25rem;">Jason Lengstorf<br><small>Follow me on Twitter: <a href="https://twitter.com/jlengstorf">@jlengstorf</a>&nbsp; · &nbsp;<a href="mailto:jason.lengstorf@ibm.com">jason.lengstorf@ibm.com</a></small><br><small><a href="https://github.com/gramps-graphql/gramps-express">github.com/gramps-graphql/gramps-express</a> · <a href="https://www.npmjs.com/org/gramps">
+          <h2>Thanks!</h2>
+          <p style="margin-top: 0.25rem;"></p><img class="no-margin" src="./images/jason-lengstorf.jpg" alt="Jason Lengstorf" style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;">
+          <p style="margin-top: 0;">Jason Lengstorf<br><small>Follow me on Twitter: <a href="https://twitter.com/jlengstorf">@jlengstorf</a>&nbsp; · &nbsp;<a href="mailto:jason.lengstorf@ibm.com">jason.lengstorf@ibm.com</a></small><br><small><a href="https://github.com/gramps-graphql/gramps-express">github.com/gramps-graphql/gramps-express</a> · <a href="https://www.npmjs.com/org/gramps">
                 npmjs.com/org/gramps
                 </a></small></p>
         </section>

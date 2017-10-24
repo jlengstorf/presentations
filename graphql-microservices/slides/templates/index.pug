@@ -91,13 +91,12 @@ block slides
       insight into the way things are structured on our product.
 
   +slide
-    h3 How IBM Cloud is built:
+    h3 How #[em IBM Cloud] is built:
     ul
       li.fragment Node µ-service architecture
-      li.fragment 30+ teams contribute code to the console
-      li.fragment Each team owns a “plugin” (µ-service)
-      li.fragment Each plugin is a separate Git repo
-      li.fragment Teams control their commit and deploy workflow
+      li.fragment 30+ µ-service teams
+      li.fragment Each µ-service (“plugin”) is a separate codebase
+      li.fragment Teams control their own workflow
     
     aside.notes.
       Teams basically have full autonomy to build however they want. This is
@@ -109,29 +108,38 @@ block slides
       to get familiar with a new plugin.
 
   +slide
-    h3 This has its downsides:
+    h3 This has its #[strong downsides]:
     ul
+      li.fragment Things can change in 30+ directions at any given time
+      li.fragment Front-ends need data from multiple µ-services
+      li.fragment Internal documentation &amp; architecture is inconsistent
       li.fragment Code can be wildly inconsistent between µ-services
-      li.fragment It’s almost impossible to know everything that’s happening on the console
-      li.fragment Front-ends need to hit multiple back-end services for the data they need
-      li.fragment Back-end APIs lack consistent documentation and data organization
-      li.fragment Teams rarely control the data they rely on
+
+    aside.notes.
+      There are too many moving parts for anyone to know exactly what’s
+      going on at any given time. If a team makes a breaking change, it’s
+      nearly impossible to let everyone know — so typically teams just break
+      shit and wait for people to ask. If a data source we rely on changes,
+      we need to figure out who owns it and hope that the documentation is
+      clear enough to solve our problem — and that’s not always the case.
+      And since each codebase is completely different, it can be extremely
+      time-consuming to attempt to send pull requests that don’t introduce
+      new bugs. (That’s a topic for another talk, though.)
 
   +slide
-    h3(style="width: 110%; margin-left: -5%;") GraphQL has solutions:
+    h3(style="width: 110%; margin-left: -5%;") GraphQL has #[em solutions]:
     ul
-      li.fragment Front-ends only need to hit one endpoint for all data
-      li.fragment Documentation is centralized and predictable
-      li.fragment Tools like GraphiQL simplify development
-      li.fragment It creates a cleaner, more enforceable separation between the data layer and the presentation layer
+      li.fragment Changes are centralized in the GraphQL µ-service
+      li.fragment Data access happens through a single endpoint
+      li.fragment Documentation is centralized and consistent
+      li.fragment Cleaner separation between data and presentation
 
   +slide
-    h3(style="width: 110%; margin-left: -5%;") But there are complications:
+    h3(style="width: 110%; margin-left: -5%;") But there are #[strong complications]:
     ul
       li.fragment Who “owns” the GraphQL µ-service?
-      li.fragment How can teams own the schema for their µ-services?
-      li.fragment How do we give teams control over the deployment process for individual data sources?
-      li.fragment How can we prevent one team from breaking another team’s code?
+      li.fragment How can teams make independent changes?
+      li.fragment Can one bad commit take down the whole service?
       li.fragment Doesn’t an extra layer make it harder to trace errors?
       li.fragment Can GraphQL handle IBM’s enormous scale?
   
@@ -141,26 +149,29 @@ block slides
   
   +slide
     h2 We needed #[em answers]
+
+  +slide
+    h3.u--align-left Can we...
     ol
-      li.fragment Can we give teams control without losing the benefits of GraphQL?
-      li.fragment Can we design an approach that #[em improves] error handling?
-      li.fragment Can we make the adoption process so pleasant that teams #[em want] to adopt?
-      li.fragment Can we build a service that can handle IBM’s scale?
+      li.fragment Centralize data, but let teams keep control?
+      li.fragment Design an approach that #[em improves] error handling?
+      li.fragment Make it so easy teams #[em want] to switch?
+      li.fragment Build a service that can handle IBM’s scale?
 
   //- STANDARDIZE WHAT A DATA SOURCE IS
   +slide
     h4.no-margin Challenge #1:
-    h2.no-margin #[em Decentralize] Control, but Centralize Data
+    h2.no-margin #[em Centralize] Data, but #[em Decentralize] Control
 
   +slide
-    h3 Solution:
+    h3 The ideal #[em solution]:
     p
       span Each team maintains their own GraphQL schema...
       br
       span.fragment  but that schema is aggregated by a central µ-service.
 
   +slide
-    h3 If this was going to work, we needed a #[em standardized format] for sharing schemas.
+    h3(style="width: 110%;max-width: 110%; margin-left: -5%") If this was going to work, we needed a #[em standardized format] for sharing schemas.
 
     aside.notes.
       In general, the GraphQL community talks about server-side GraphQL as a
@@ -254,7 +265,7 @@ block slides
     h2 #[em Implementation] is easy enough to fit the code on a slide
 
   +slide
-    h4 This Is a Simple #[em Apollo GraphQL Server]
+    h4 Let’s Convert This #[em Apollo GraphQL Server]
     pre(style="font-size: 18px")
       code.js.
         import Express from 'express';
@@ -361,9 +372,6 @@ block slides
         +   })),
           );
 
-  +slide
-    h3 If we wanted teams to #[em actually use] this, we needed it to be #[em simple]
-
   //- ERROR HANDLING
   +slide
     h4.no-margin Challenge #2:
@@ -371,7 +379,7 @@ block slides
 
   +slide
     h3(style="width: 110%;margin-left: -5%") What Makes an Error #[em Helpful]?
-    ol
+    ul
       li.fragment Clear description of what went wrong
       li.fragment Clarity about where the error occurred
         ul
@@ -381,23 +389,25 @@ block slides
 
   +slide
     h4 #[em Client-Side] Errors in Development
-    img(
+    img.no-margin(
       src="./images/graphql-microservices/client-side-error.png"
       alt="GrAMPS client-side error"
     )
   
   +slide
-    h4 In production, we can’t show some data
+    h4 In production, we #[strong can’t show some data]
     ul
       li.fragment Docs link may be behind our firewall
       li.fragment Target endpoint may not be public
 
   +slide
     h4 Client-Side Errors in #[em Production]
-    img(
+    img.no-margin(
       src="./images/graphql-microservices/client-side-error-production.png"
       alt="GrAMPS client-side error in production"
     )
+    p.no-margin
+      small #[code docsLink] and #[code targetEndpoint] are stripped out in production.
   
   +slide
     h4 Client and server errors share a #[em GUID]
@@ -413,13 +423,15 @@ block slides
         Data: {
           "id": "2000"
         }
+    p.no-margin
+      small Using the GUID, we can find the #[code docsLink] and #[code targetEndpoint] in the server logs.
   
   +slide
-    h3 This Means:
+    h3.u--align-left This Means...
     ul
-      li.fragment Support tickets can reference errors and developers can find additional details in the logs easily
-      li.fragment Development is faster because errors are clear and come with links to docs for solving them
-      li.fragment We avoid confusion about which µ-service is the source of a given error
+      li.fragment Support tickets can directly reference details in logs
+      li.fragment Errors are clear and come with documentation
+      li.fragment The source of a given error is immediately clear
 
   +slide
     h4 Implementation Is #[em Optional] and #[em Easy]
@@ -450,7 +462,10 @@ block slides
     h2.no-margin Make Local Development #[em Easy]
 
   +slide
-    h3 Step 1: Create a #[em CLI]
+    h3 If we wanted teams to #[em start using GraphQL], we needed it to be #[em dead simple] to get started
+
+  +slide
+    h4 We built a #[em CLI] for local development
     pre
       code.sh.
         $ gramps --live
@@ -479,11 +494,11 @@ block slides
 
   +slide
     h4 But add a #[em warning]
-    img(
+    img.no-margin(
       src="./images/graphql-microservices/local-data-source-warnings-pt1.png"
       alt="GrAMPS warnings for local data sources"
     )
-    p
+    p.no-margin
       small Clarified text and updated links are coming (
         a(href="https://github.com/gramps-graphql/gramps-express/issues/36").
           #36
@@ -491,11 +506,11 @@ block slides
 
   +slide
     h4 Actually, add #[em two] warnings
-    img(
+    img.no-margin(
       src="./images/graphql-microservices/local-data-source-warnings-pt2.png"
       alt="GrAMPS warnings for local data sources"
     )
-    p
+    p.no-margin
       small Clarified text and updated links are coming (
         a(href="https://github.com/gramps-graphql/gramps-express/issues/36").
           #36
@@ -508,7 +523,7 @@ block slides
 
   +slide
     h3 We didn’t have to do much
-    p.fragment Apollo’s Express server just works.
+    p.fragment It turns out Apollo’s Express server just works.
 
   +slide
     h4.no-margin So that was pretty #[em great]
@@ -528,14 +543,14 @@ block slides
     h3 After the dust settled,#[br]we realized #[em two things]
 
   +slide
-    h2 #1:
+    h2 #1
     p.
       “Holy shit, if everyone wrote their data sources using this format, the 
       dev community could share GraphQL data sources as easily as we share 
       npm packages.”
 
   +slide
-    h2 #2:
+    h2 #2
     p “This might be useful to other people.”
 
   +slide
@@ -543,12 +558,13 @@ block slides
     h2 🎉
 
   +slide
+    img.no-border(
+      src="./images/graphql-microservices/GrAMPS-logo.svg"
+      alt="GrAMPS: GraphQL Apollo Microservice Pattern Server"
+      style="max-width: 400px;"
+    )
     h3.no-margin Introducing
     h1.no-margin GrAMPS
-    img.no-margin(
-      src="./images/graphql-microservices/gramps-banner.png"
-      alt="GrAMPS: GraphQL Apollo Microservice Pattern Server"
-    )
     p #[strong Gr]aphQL #[strong A]pollo #[strong M]icroservice #[strong P]attern #[strong S]erver
       small
         a(href="https://github.com/gramps-graphql/gramps-express").
@@ -559,14 +575,14 @@ block slides
 
   //- Q&A
   +slide
-    h3 Thanks! Questions?
+    h2 Thanks!
     p(style="margin-top: 0.25rem;")
-    img(
+    img.no-margin(
       src="./images/jason-lengstorf.jpg"
       alt="Jason Lengstorf"
       style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;"
     )
-    p(style="margin-top: 0.25rem;")= config.author.name
+    p(style="margin-top: 0;")= config.author.name
       br
       small
         | Follow me on Twitter: 
