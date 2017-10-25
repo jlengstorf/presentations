@@ -16,12 +16,12 @@ block append config
     };
     
     config.slides = {
-      link: 'TODO',
+      link: 'https://git.io/vFvei',
     };
 
     config.conference = {
-      hashtag: '',
-      twitter: '',
+      hashtag: 'graphqlsummit',
+      twitter: 'graphqlsummit',
     };
   -
 
@@ -38,12 +38,15 @@ block slides
       a(href= config.author.link)= config.author.name
       br
       small
-        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        a(
+          href= `https://twitter.com/${config.author.twitter}`
+        )= `@${config.author.twitter}`
         | &nbsp; · &nbsp;
         a(href= `mailto:${config.author.email}`)= config.author.email
 
     p
-      small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
+      small Slides: 
+        a(href= config.slides.link)= config.slides.link.replace('https://', '')
 
   //- INTRO
   +slide.u--align-left.u--text-light.u--text-shadow(
@@ -58,7 +61,9 @@ block slides
       li Old man at heart
 
   +slide
-    h3 #[em GraphQL] is one of the most exciting things I’ve worked on in a long time
+    h3.
+      #[em GraphQL] is one of the most exciting things I’ve worked on 
+      in a long time
     
     aside.notes.
       I’m not going to go deep into the benefits of GraphQL. Other people have
@@ -71,6 +76,13 @@ block slides
   +slide
     h3 I wanted to start using it in production #[em immediately]
 
+    aside.notes.
+      I’m slow to pick up new ideas, but once I decide something is the right
+      path forward, I want to go all-in. So after I did my initial research on
+      the pros and cons of GraphQL and decided it was a smart move, I
+      immediately started telling everyone that we needed to change everything,
+      right away.
+
   +slide
     img(
       src="./images/graphql-microservices/nope.gif"
@@ -79,9 +91,9 @@ block slides
     h3.no-margin Not everyone was on board
 
     aside.notes.
-      When I initially started playing with this concept, I was ready to go
-      all-in on GraphQL. But other teams immediately started voicing concerns,
-      and a number of really good questions were raised.
+      Other teams immediately started voicing concerns, and a number of really
+      good questions were raised. And it’s a good thing, too, because I was only
+      thinking about the end — not the path we’d have to follow to get there.
 
   +slide
     h4 Before we get into the details,#[br]let me set the scene&hellip;
@@ -135,13 +147,13 @@ block slides
       li.fragment Cleaner separation between data and presentation
 
   +slide
-    h3(style="width: 110%; margin-left: -5%;") But there are #[strong complications]:
+    h3(style="width: 110%; margin-left: -5%;").
+      But there are #[strong complications]:
     ul
       li.fragment Who “owns” the GraphQL µ-service?
       li.fragment How can teams make independent changes?
       li.fragment Can one bad commit take down the whole service?
       li.fragment Doesn’t an extra layer make it harder to trace errors?
-      li.fragment Can GraphQL handle IBM’s enormous scale?
   
   +slide
     h3 We wanted the #[em benefits] of GraphQL&hellip;
@@ -157,6 +169,13 @@ block slides
       li.fragment Design an approach that #[em improves] error handling?
       li.fragment Make it so easy teams #[em want] to switch?
       li.fragment Build a service that can handle IBM’s scale?
+    
+    aside.notes.
+      I knew that GraphQL was in production at Facebook, GitHub, and several 
+      other companies at IBM’s scale, but what we #[em didn’t] know was how much
+      hard work goes into making it run. Did we need a whole team just for
+      managing scalability? Would we need to spend a fortune on infrastructure
+      to make it feasible?
 
   //- STANDARDIZE WHAT A DATA SOURCE IS
   +slide
@@ -171,7 +190,9 @@ block slides
       span.fragment  but that schema is aggregated by a central µ-service.
 
   +slide
-    h3(style="width: 110%;max-width: 110%; margin-left: -5%") If this was going to work, we needed a #[em standardized format] for sharing schemas.
+    h3(style="width: 110%;max-width: 110%; margin-left: -5%").
+      If this was going to work, we needed a #[em standardized format] 
+      for sharing schemas.
 
     aside.notes.
       In general, the GraphQL community talks about server-side GraphQL as a
@@ -265,7 +286,7 @@ block slides
     h2 #[em Implementation] is easy enough to fit the code on a slide
 
   +slide
-    h4 Let’s Convert This #[em Apollo GraphQL Server]
+    h4 Let’s #[em Upgrade] this GraphQL Server
     pre(style="font-size: 18px")
       code.js.
         import Express from 'express';
@@ -383,7 +404,8 @@ block slides
       li.fragment Clear description of what went wrong
       li.fragment Clarity about where the error occurred
         ul
-          li(style="font-size: 90%") GraphQL errors vs. underlying data access issues
+          li(style="font-size: 90%").
+            GraphQL errors vs. underlying data access issues
       li.fragment Information to help with tracing bugs
       li.fragment Unique IDs shared on the client and server side
 
@@ -407,7 +429,8 @@ block slides
       alt="GrAMPS client-side error in production"
     )
     p.no-margin
-      small #[code docsLink] and #[code targetEndpoint] are stripped out in production.
+      small.
+        #[code docsLink] and #[code targetEndpoint] are removed in production.
   
   +slide
     h4 Client and server errors share a #[em GUID]
@@ -424,11 +447,14 @@ block slides
           "id": "2000"
         }
     p.no-margin
-      small Using the GUID, we can find the #[code docsLink] and #[code targetEndpoint] in the server logs.
+      small.
+        Using the GUID, we can find the #[code docsLink] and 
+        #[code targetEndpoint] in the server logs.
   
   +slide
     h3.u--align-left This Means...
     ul
+      li.fragment Errors are normalized across all data sources
       li.fragment Support tickets can directly reference details in logs
       li.fragment Errors are clear and come with documentation
       li.fragment The source of a given error is immediately clear
@@ -459,13 +485,27 @@ block slides
   //- LOCAL DEVELOPMENT
   +slide
     h4.no-margin Challenge #3:
-    h2.no-margin Make Local Development #[em Easy]
+    h2.no-margin Make Development So #[em Easy] Teams Want to Use It
 
   +slide
-    h3 If we wanted teams to #[em start using GraphQL], we needed it to be #[em dead simple] to get started
+    h3.
+      If we wanted teams to #[em start using GraphQL], we needed it to be 
+      #[em dead simple] to get started
 
   +slide
-    h4 We built a #[em CLI] for local development
+    h3 We created a data source #[em starter kit]:
+    ul
+      li.fragment Strong starting point for new data sources
+      li.fragment Step-by-step tutorial for building a new data source
+      li.fragment Test coverage starts at 💯
+      li.fragment Pre-configured for Travis CI and Code Climate
+    p
+      small.fragment
+        a(href="https://github.com/gramps-graphql/data-source-base").
+          github.com/gramps-graphql/data-source-base
+
+  +slide
+    h4 We built a #[em CLI] to make development easier
     pre
       code.sh.
         $ gramps --live
@@ -479,8 +519,8 @@ block slides
   +slide
     h3 But there was a #[strong snag]:
     p.fragment.
-      “How do we run a local instance of the GraphQL#[br]µ-service if the data source
-      we’re developing is already installed? Won’t they collide?”
+      “How do we run a local instance of the GraphQL#[br]µ-service if the data 
+      source we’re developing is already installed? Won’t they collide?”
 
   +slide
     h3 The solution?
@@ -526,15 +566,17 @@ block slides
     p.fragment It turns out Apollo’s Express server just works.
 
   +slide
-    h4.no-margin So that was pretty #[em great]
     img(
       src="./images/graphql-microservices/pleasant-surprise.gif"
       alt="pleasant surprise from The Office"
     )
+    h3.no-margin Which is pretty #[em great]
 
   //- OPEN SOURCE
   +slide
-    h3 We #[em started] working on the GraphQL #[span(style="text-transform: none") µ]-service in #[em May]
+    h3.
+      We #[em started] working on the GraphQL 
+      #[span(style="text-transform: none") µ]-service in #[em May]
   
   +slide
     h3 It hit #[em production] in #[em July]
@@ -565,7 +607,12 @@ block slides
     )
     h3.no-margin Introducing
     h1.no-margin GrAMPS
-    p #[strong Gr]aphQL #[strong A]pollo #[strong M]icroservice #[strong P]attern #[strong S]erver
+    p
+      | #[strong Gr]aphQL 
+      | #[strong A]pollo 
+      | #[strong M]icroservice 
+      | #[strong P]attern 
+      | #[strong S]erver
       small
         a(href="https://github.com/gramps-graphql/gramps-express").
           github.com/gramps-graphql/gramps-express
@@ -602,17 +649,26 @@ block slides
     h4 Resources
     ol
       li
-        a(href="https://github.com/gramps-graphql/gramps-express").
-          GrAMPS Express Middleware for Apollo on GitHub
-      li
         a(href="https://github.com/gramps-graphql").
-          All GrAMPS Projects on GitHub
+          GrAMPS on GitHub
       li
-        a(href="https://www.npmjs.com/org/gramps").
-          All GrAMPS Projects on npm
+        a(href="https://github.com/gramps-graphql/gramps-express").
+          GrAMPS Express Middleware
+      li
+        a(href="https://gramps-graphql.github.io/gramps-express/").
+          GrAMPS Documentation
       li
         a(href="https://dev-blog.apollodata.com/how-to-build-graphql-servers-87587591ded5").
-          How to Build GraphQL Servers by Jonas Helfer
+          How to Build GraphQL Servers
+      li
+        a(href="https://github.com/gramps-graphql/data-source-base").
+          GrAMPS Data Source Starter Kit
+      li
+        a(href="https://ibm.biz/gramps-data-source-tutorial").
+          GrAMPS Data Source Tutorial
+      li
+        a(href="https://www.npmjs.com/org/gramps").
+          GrAMPS on npm
 
 block styles
   link(

@@ -4,9 +4,28 @@ I have too many repos that aren't actually useful on their own because they're d
 
 The goal of this repo is to create a single location where presentations live, including relevant demos, slide decks, and other resources.
 
-## What's Inside?
+## Keynotes
 
-### Who gives a fuck about a monad? Functional programming for people who hate math.
+### Keynote: How I Cut My Working Hours in Half and Somehow Managed to Get More Done
+
+- [Slides](./work-life-balance/slides/)
+- [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/work-life-balance)
+
+## Workshops
+
+### Functional Programming Without the Math
+
+- [Slides](./fp-workshop/slides/)
+- [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/fp-workshop)
+
+## Talks
+
+### GraphQL @ Massive Scale: Using GraphQL as the Glue in a µ-Service Architecture
+
+- [Slides](./graphql-microservices/slides/)
+- [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/graphql-microservices)
+
+### Do monads matter? Functional programming for people who hate math.
 
 - [Slides](./functional-programming/slides/)
 - [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/functional-programming)
@@ -33,19 +52,22 @@ The goal of this repo is to create a single location where presentations live, i
 
 ### Videos of Previous Presentation
 
-- [Who Gives a Fuck About a Monad? Functional Programming for People Who Hate Math](https://youtu.be/4WbpKSh0FWk?t=2h44m44s) — Web Rebels 2017
+-   [Who Gives a Fuck About a Monad? Functional Programming for People Who Hate Math][monad] — Web Rebels 2017
 
-- [WordPress Deployment for Professionals – How to Solve the Problem of Multiple WordPress Installs in 30 Minutes or Less](http://wordpress.tv/2017/03/29/jason-lengstorf-wordpress-deployment-for-professionals-how-to-solve-the-problem-of-multiple-wordpress-installs-in-30-minutes-or-less/) — WordCamp Atlanta 2017
+- [WordPress Deployment for Professionals – How to Solve the Problem of Multiple WordPress Installs in 30 Minutes or Less][trellis] — WordCamp Atlanta 2017
 
-- [Happy People Do It Better](https://www.youtube.com/watch?v=AjUwPmFcwJ8) — given via web conference
+-   [Happy People Do It Better][happy]
+    — given via web conference
 
-These ones are behind the Treehouse paywall, but you can watch a short sample.
+These talks are behind the Treehouse paywall, but you can watch a short sample.
 
-- [How to Create Designs That Developers Understand](https://teamtreehouse.com/library/designing-on-a-team-how-to-create-designs-that-developers-understand)
-- [You Need a Development Process (Yes, You.)](https://teamtreehouse.com/library/you-need-a-development-process-yes-you)
-- [CSS Pseudo-Element Master Class](https://teamtreehouse.com/library/pseudoelement-master-class-css)
+-   [How to Create Designs That Developers Understand][devdesign]
+-   [You Need a Development Process (Yes, You.)][devprocess]
+-   [CSS Pseudo-Element Master Class][pseudoelement]
 
-These ones are older and/or low-quality video.
-
-- [Realtime: How to Give Your Web App Hipster Cred](https://vimeo.com/47331511)
-- [Intro to Object-Oriented PHP](https://vimeo.com/16915815) — slide show only, built in OpenOffice, and I'm talking like the [Micro Machines guy](https://www.youtube.com/watch?v=TzbUPfoveok).
+[monad]: https://youtu.be/4WbpKSh0FWk?t=2h44m44s
+[happy]: https://www.youtube.com/watch?v=AjUwPmFcwJ8
+[trellis]: http://wordpress.tv/2017/03/29/jason-lengstorf-wordpress-deployment-for-professionals-how-to-solve-the-problem-of-multiple-wordpress-installs-in-30-minutes-or-less/
+[devdesign]: https://teamtreehouse.com/library/designing-on-a-team-how-to-create-designs-that-developers-understand
+[devprocess]: https://teamtreehouse.com/library/you-need-a-development-process-yes-you
+[pseudoelement]: https://teamtreehouse.com/library/pseudoelement-master-class-css

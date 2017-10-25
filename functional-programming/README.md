@@ -1,10 +1,5 @@
-# Who Gives a Fuck About a Monad?
+# Do Monads Matter?
 ### Functional Programming for People Who Hate Math
-
-— or —
-
-# No Math Required
-### Functional Programming for the Rest of Us
 
 ### tl;dr
 

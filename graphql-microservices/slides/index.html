@@ -36,7 +36,7 @@
           <h1 style="font-size: 110px;">GraphQL @ Massive Scale</h1>
           <h3>GraphQL as the Glue in a<br><span style="text-transform: none;">µ</span>-Service Architecture</h3>
           <p>by <a href="https://code.lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a>&nbsp; · &nbsp;<a href="mailto:jason.lengstorf@ibm.com">jason.lengstorf@ibm.com</a></small></p>
-          <p><small>Slides: <a href="TODO">TODO</a></small></p>
+          <p><small>Slides: <a href="https://git.io/vFvei">git.io/vFvei</a></small></p>
         </section>
         <section class="u--align-left u--text-light u--text-shadow" data-background="url(./images/jason-lengstorf-slide-bg@2x.jpg)">
           <h2>Who I Am</h2>
@@ -49,7 +49,10 @@
           </ul>
         </section>
         <section>
-          <h3><em>GraphQL</em> is one of the most exciting things I’ve worked on in a long time</h3>
+          <h3><em>GraphQL</em> is one of the most exciting things I’ve worked on 
+            in a long time
+            
+          </h3>
           <aside class="notes">
             I’m not going to go deep into the benefits of GraphQL. Other people have
             written great introductions to GraphQL and what it can do — and each
@@ -62,13 +65,21 @@
         </section>
         <section>
           <h3>I wanted to start using it in production <em>immediately</em></h3>
+          <aside class="notes">
+            I’m slow to pick up new ideas, but once I decide something is the right
+            path forward, I want to go all-in. So after I did my initial research on
+            the pros and cons of GraphQL and decided it was a smart move, I
+            immediately started telling everyone that we needed to change everything,
+            right away.
+            
+          </aside>
         </section>
         <section><img src="./images/graphql-microservices/nope.gif" alt="nope">
           <h3 class="no-margin">Not everyone was on board</h3>
           <aside class="notes">
-            When I initially started playing with this concept, I was ready to go
-            all-in on GraphQL. But other teams immediately started voicing concerns,
-            and a number of really good questions were raised.
+            Other teams immediately started voicing concerns, and a number of really
+            good questions were raised. And it’s a good thing, too, because I was only
+            thinking about the end — not the path we’d have to follow to get there.
             
           </aside>
         </section>
@@ -136,7 +147,6 @@
             <li class="fragment">How can teams make independent changes?</li>
             <li class="fragment">Can one bad commit take down the whole service?</li>
             <li class="fragment">Doesn’t an extra layer make it harder to trace errors?</li>
-            <li class="fragment">Can GraphQL handle IBM’s enormous scale?</li>
           </ul>
         </section>
         <section>
@@ -153,6 +163,14 @@
             <li class="fragment">Make it so easy teams <em>want</em> to switch?</li>
             <li class="fragment">Build a service that can handle IBM’s scale?</li>
           </ol>
+          <aside class="notes">
+            I knew that GraphQL was in production at Facebook, GitHub, and several 
+            other companies at IBM’s scale, but what we <em>didn’t</em> know was how much
+            hard work goes into making it run. Did we need a whole team just for
+            managing scalability? Would we need to spend a fortune on infrastructure
+            to make it feasible?
+            
+          </aside>
         </section>
         <section>
           <h4 class="no-margin">Challenge #1:</h4>
@@ -163,7 +181,10 @@
           <p><span>Each team maintains their own GraphQL schema...</span><br><span class="fragment"> but that schema is aggregated by a central µ-service.</span></p>
         </section>
         <section>
-          <h3 style="width: 110%;max-width: 110%; margin-left: -5%;">If this was going to work, we needed a <em>standardized format</em> for sharing schemas.</h3>
+          <h3 style="width: 110%;max-width: 110%; margin-left: -5%;">If this was going to work, we needed a <em>standardized format</em> 
+            for sharing schemas.
+            
+          </h3>
           <aside class="notes">
             In general, the GraphQL community talks about server-side GraphQL as a
             schema, a set of resolvers, and then code that you have to figure out on
@@ -220,7 +241,7 @@
           <h2><em>Implementation</em> is easy enough to fit the code on a slide</h2>
         </section>
         <section>
-          <h4>Let’s Convert This <em>Apollo GraphQL Server</em></h4>
+          <h4>Let’s <em>Upgrade</em> this GraphQL Server</h4>
           <pre style="font-size: 18px;"><code class="js">import Express from 'express';
 import bodyParser from 'body-parser';
 import { graphqlExpress } from 'apollo-server-express';
@@ -351,7 +372,8 @@ app.use('/graphql',
         </section>
         <section>
           <h4>Client-Side Errors in <em>Production</em></h4><img class="no-margin" src="./images/graphql-microservices/client-side-error-production.png" alt="GrAMPS client-side error in production">
-          <p class="no-margin"><small><code>docsLink</code> and <code>targetEndpoint</code> are stripped out in production.</small></p>
+          <p class="no-margin"><small><code>docsLink</code> and <code>targetEndpoint</code> are removed in production.
+              </small></p>
         </section>
         <section>
           <h4>Client and server errors share a <em>GUID</em></h4>
@@ -365,11 +387,14 @@ Documentation: https://ibm.biz/gramps-data-source-tutorial
 Data: {
   "id": "2000"
 }</code></pre>
-          <p class="no-margin"><small>Using the GUID, we can find the <code>docsLink</code> and <code>targetEndpoint</code> in the server logs.</small></p>
+          <p class="no-margin"><small>Using the GUID, we can find the <code>docsLink</code> and 
+              <code>targetEndpoint</code> in the server logs.
+              </small></p>
         </section>
         <section>
           <h3 class="u--align-left">This Means...</h3>
           <ul>
+            <li class="fragment">Errors are normalized across all data sources</li>
             <li class="fragment">Support tickets can directly reference details in logs</li>
             <li class="fragment">Errors are clear and come with documentation</li>
             <li class="fragment">The source of a given error is immediately clear</li>
@@ -399,13 +424,28 @@ Data: {
         </section>
         <section>
           <h4 class="no-margin">Challenge #3:</h4>
-          <h2 class="no-margin">Make Local Development <em>Easy</em></h2>
+          <h2 class="no-margin">Make Development So <em>Easy</em> Teams Want to Use It</h2>
         </section>
         <section>
-          <h3>If we wanted teams to <em>start using GraphQL</em>, we needed it to be <em>dead simple</em> to get started</h3>
+          <h3>If we wanted teams to <em>start using GraphQL</em>, we needed it to be 
+            <em>dead simple</em> to get started
+            
+          </h3>
         </section>
         <section>
-          <h4>We built a <em>CLI</em> for local development</h4>
+          <h3>We created a data source <em>starter kit</em>:</h3>
+          <ul>
+            <li class="fragment">Strong starting point for new data sources</li>
+            <li class="fragment">Step-by-step tutorial for building a new data source</li>
+            <li class="fragment">Test coverage starts at 💯</li>
+            <li class="fragment">Pre-configured for Travis CI and Code Climate</li>
+          </ul>
+          <p><small class="fragment"><a href="https://github.com/gramps-graphql/data-source-base">
+                github.com/gramps-graphql/data-source-base
+                </a></small></p>
+        </section>
+        <section>
+          <h4>We built a <em>CLI</em> to make development easier</h4>
           <pre><code class="sh">$ gramps --live
 
 ============================================================
@@ -417,8 +457,8 @@ Data: {
         </section>
         <section>
           <h3>But there was a <strong>snag</strong>:</h3>
-          <p class="fragment">“How do we run a local instance of the GraphQL<br>µ-service if the data source
-            we’re developing is already installed? Won’t they collide?”
+          <p class="fragment">“How do we run a local instance of the GraphQL<br>µ-service if the data 
+            source we’re developing is already installed? Won’t they collide?”
             
           </p>
         </section>
@@ -448,11 +488,14 @@ Data: {
           <h3>We didn’t have to do much</h3>
           <p class="fragment">It turns out Apollo’s Express server just works.</p>
         </section>
-        <section>
-          <h4 class="no-margin">So that was pretty <em>great</em></h4><img src="./images/graphql-microservices/pleasant-surprise.gif" alt="pleasant surprise from The Office">
+        <section><img src="./images/graphql-microservices/pleasant-surprise.gif" alt="pleasant surprise from The Office">
+          <h3 class="no-margin">Which is pretty <em>great</em></h3>
         </section>
         <section>
-          <h3>We <em>started</em> working on the GraphQL <span style="text-transform: none;">µ</span>-service in <em>May</em></h3>
+          <h3>We <em>started</em> working on the GraphQL 
+            <span style="text-transform: none;">µ</span>-service in <em>May</em>
+            
+          </h3>
         </section>
         <section>
           <h3>It hit <em>production</em> in <em>July</em></h3>
@@ -480,9 +523,14 @@ Data: {
         <section><img class="no-border" src="./images/graphql-microservices/GrAMPS-logo.svg" alt="GrAMPS: GraphQL Apollo Microservice Pattern Server" style="max-width: 400px;">
           <h3 class="no-margin">Introducing</h3>
           <h1 class="no-margin">GrAMPS</h1>
-          <p><strong>Gr</strong>aphQL <strong>A</strong>pollo <strong>M</strong>icroservice <strong>P</strong>attern <strong>S</strong>erver<small><a href="https://github.com/gramps-graphql/gramps-express">github.com/gramps-graphql/gramps-express</a> &nbsp; · &nbsp; <a href="https://www.npmjs.com/org/gramps">
+          <p><strong>Gr</strong>aphQL 
+            <strong>A</strong>pollo 
+            <strong>M</strong>icroservice 
+            <strong>P</strong>attern 
+            <strong>S</strong>erver<small><a href="https://github.com/gramps-graphql/gramps-express">github.com/gramps-graphql/gramps-express</a> &nbsp; · &nbsp; <a href="https://www.npmjs.com/org/gramps">
                 npmjs.com/org/gramps
-                </a></small></p>
+                </a></small>
+          </p>
         </section>
         <section>
           <h2>Thanks!</h2>
@@ -494,22 +542,25 @@ Data: {
         <section class="u--align-left resourcetext">
           <h4>Resources</h4>
           <ol>
-            <li><a href="https://github.com/gramps-graphql/gramps-express">GrAMPS Express Middleware for Apollo on GitHub</a></li>
-            <li><a href="https://github.com/gramps-graphql">All GrAMPS Projects on GitHub</a></li>
-            <li><a href="https://www.npmjs.com/org/gramps">All GrAMPS Projects on npm</a></li>
-            <li><a href="https://dev-blog.apollodata.com/how-to-build-graphql-servers-87587591ded5">
-                How to Build GraphQL Servers by Jonas Helfer
+            <li><a href="https://github.com/gramps-graphql">GrAMPS on GitHub</a></li>
+            <li><a href="https://github.com/gramps-graphql/gramps-express">GrAMPS Express Middleware</a></li>
+            <li><a href="https://gramps-graphql.github.io/gramps-express/">GrAMPS Documentation</a></li>
+            <li><a href="https://dev-blog.apollodata.com/how-to-build-graphql-servers-87587591ded5">How to Build GraphQL Servers</a></li>
+            <li><a href="https://github.com/gramps-graphql/data-source-base">GrAMPS Data Source Starter Kit</a></li>
+            <li><a href="https://ibm.biz/gramps-data-source-tutorial">GrAMPS Data Source Tutorial</a></li>
+            <li><a href="https://www.npmjs.com/org/gramps">
+                GrAMPS on npm
                 </a></li>
           </ol>
         </section>
       </div>
     </div>
     <div class="hashtag">
-      <p>Tweet: <a href="https://twitter.com/intent/tweet?text=GraphQL%20%40%20Massive%20Scale%20by%20%40jlengstorf&amp;hashtags=&amp;related=jlengstorf&amp;url=TODO" target="_blank">@jlengstorf </a></p>
+      <p>Tweet: <a href="https://twitter.com/intent/tweet?text=GraphQL%20%40%20Massive%20Scale%20by%20%40jlengstorf&amp;hashtags=graphqlsummit&amp;related=jlengstorf%2Cgraphqlsummit&amp;url=https%3A%2F%2Fgit.io%2FvFvei" target="_blank">@jlengstorf #graphqlsummit</a></p>
     </div>
     <footer>
       <ul class="inline">
-        <li>“GraphQL @ Massive Scale” by <a href="https://code.lengstorf.com/">Jason Lengstorf</a> (slides: <a href="TODO">TODO</a>)</li>
+        <li>“GraphQL @ Massive Scale” by <a href="https://code.lengstorf.com/">Jason Lengstorf</a> (slides: <a href="https://git.io/vFvei">git.io/vFvei</a>)</li>
         <li><a href="https://twitter.com/jlengstorf">@jlengstorf</a></li>
         <li><a href="https://github.com/jlengstorf">github.com/jlengstorf</a></li>
       </ul>
