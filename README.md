@@ -6,7 +6,7 @@ The goal of this repo is to create a single location where presentations live, i
 
 ## Keynotes
 
-### Keynote: How I Cut My Working Hours in Half and Somehow Managed to Get More Done
+### How I Cut My Working Hours in Half and Somehow Managed to Get More Done
 
 - [Slides](./work-life-balance/slides/)
 - [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/work-life-balance)
@@ -17,6 +17,13 @@ The goal of this repo is to create a single location where presentations live, i
 
 - [Slides](./fp-workshop/slides/)
 - [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/fp-workshop)
+
+### Progressive Web Apps from Scratch
+
+- [Slides](./progressive-web-apps/slides/)
+- [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/progressive-web-apps)
+- [Simple Demo](https://code.lengstorf.com/pwa-simple/)
+- [sw-precache Demo](https://code.lengstorf.com/pwa-workshop-starter/)
 
 ## Talks
 
@@ -30,11 +37,9 @@ The goal of this repo is to create a single location where presentations live, i
 - [Slides](./functional-programming/slides/)
 - [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/functional-programming)
 
-### Progressive Web Apps: Looks like vegetables; tastes like victory.
+### “But Testing Sucks!” How IBM is building a quality-driven culture.
 
-- [Slides](./progressive-web-apps/slides/)
-- [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/progressive-web-apps)
-- Demo: [without PWA features](https://code.lengstorf.com/presentations/progressive-web-apps/demo/no-pwa/) · [with PWA features](https://code.lengstorf.com/presentations/progressive-web-apps/demo/pwa/)
+- [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/building-quality-driven-culture)
 
 ### How to give presentations that aren't horrible and boring.
 
@@ -46,9 +51,10 @@ The goal of this repo is to create a single location where presentations live, i
 (This is what I send to people as my bio.)
 
 > Jason Lengstorf is a developer, designer, author, and friendly bear. His 
-> focus is on the efficiency and performance of both teams and software. At IBM,
-> he creates processes and systems to Make The Right Thing The Easy Thing™. At 
-> all other times, he roams the earth in search of new and better snacks.
+> focus is on the efficiency and performance of people, teams, and software. At 
+> IBM, he creates processes and systems to Make The Right Thing The Easy 
+> Thing™. At all other times, he wanders the earth in search of new and 
+> better snacks.
 
 ### Videos of Previous Presentation
 
