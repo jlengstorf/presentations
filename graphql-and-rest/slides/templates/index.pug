@@ -1,0 +1,624 @@
+//- Use the presentation layout so we can keep this clean
+extends layouts/presentation
+
+block append config
+  -
+    config.theme = 'lengstorf';
+    config.title = 'When REST Isn’t Enough';
+    config.description = 'Extending REST With GraphQL';
+
+    config.author = {
+      name: 'Jason Lengstorf',
+      email: 'jason.lengstorf@ibm.com',
+      link: 'https://code.lengstorf.com/',
+      twitter: 'jlengstorf',
+      github: 'jlengstorf',
+    };
+    
+    config.slides = {
+      link: 'https://git.io/vFvei',
+    };
+
+    config.conference = {
+      hashtag: 'APIStrat',
+      twitter: '',
+    };
+  -
+
+//- Add your slides here. See templates/includes/_mixins.pug for information 
+//- on how `+slide` works.
+block slides
+  +slide
+    h1.no-margin(style="font-size: 110px")= config.title
+    h3.no-margin(style="font-size: 47px")= config.description
+    
+    p by 
+      a(href= config.author.link)= config.author.name
+      br
+      small
+        a(
+          href= `https://twitter.com/${config.author.twitter}`
+        )= `@${config.author.twitter}`
+        | &nbsp; · &nbsp;
+        a(href= `mailto:${config.author.email}`)= config.author.email
+
+    p
+      small Slides: 
+        a(href= config.slides.link)= config.slides.link.replace('https://', '')
+
+  //- INTRO
+  +slide.u--align-left.u--text-light.u--text-shadow(
+    data-background="url(./images/jason-lengstorf-slide-bg@2x.jpg)"
+  )
+    h2 Who I Am
+    ul(style="width: 75%")
+      li Building web things since 2003
+      li Senior developer / architect @ IBM Cloud
+      li Former workaholic
+      li Current work-life balance advocate
+      li #[em Obsessed] with processes &amp; efficiency
+
+  +slide
+    h3.
+      #[em GraphQL] is one of the most exciting things I’ve worked on 
+      in a long time
+    
+    aside.notes.
+      I’m not going to go deep into the benefits of GraphQL. Other people have
+      written great introductions to GraphQL and what it can do — and each
+      speaker at this event will highlight different benefits of GraphQL, but 
+      in particular, I was really interested in the ways GraphQL would let us
+      improve our front-end developer experience and even out an uneven API
+      surface. (Also, the auto-documentation benefits were pretty appealing.)
+
+  +slide
+    h3 Why GraphQL is exciting:
+    ul
+      li.fragment Wraps existing REST endpoints with minimal code
+      li.fragment Reduces demands on API teams to create aggregate endpoints
+      li.fragment Creates a single source of truth for data
+      li.fragment Enables mock responses and local development
+      li.fragment Comes with browser-based tools for exploring data and testing queries
+
+  +slide
+    h2 This promised #[em solutions] to a lot of our pain
+
+  +slide
+    h3 How #[em IBM Cloud] is built:
+    ul
+      li.fragment Node µ-service architecture
+      li.fragment 30+ µ-service teams
+      li.fragment Each µ-service (“plugin”) is a separate codebase
+      li.fragment Teams control their own workflow
+    
+    aside.notes.
+      Teams basically have full autonomy to build however they want. This is
+      great for empowering our teams, but it’s led to consistency problems.
+      Documentation is spotty, hidden in wikis, and usually incomplete and/or
+      out of date. You have to know someone who knows someone to get help
+      fetching data from a new back-end service. Developers can’t help out
+      other teams because the codebases are so different that it takes too long
+      to get familiar with a new plugin.
+
+  +slide
+    h3 This has its #[strong downsides]:
+    ul
+      li.fragment Things can change in 30+ directions at any given time
+      li.fragment Front-ends need data from multiple µ-services
+      li.fragment Internal documentation &amp; architecture is inconsistent
+      li.fragment Code can be wildly inconsistent between µ-services
+
+    aside.notes.
+      There are too many moving parts for anyone to know exactly what’s
+      going on at any given time. If a team makes a breaking change, it’s
+      nearly impossible to let everyone know — so typically teams just break
+      shit and wait for people to ask. If a data source we rely on changes,
+      we need to figure out who owns it and hope that the documentation is
+      clear enough to solve our problem — and that’s not always the case.
+      And since each codebase is completely different, it can be extremely
+      time-consuming to attempt to send pull requests that don’t introduce
+      new bugs. (That’s a topic for another talk, though.)
+
+  +slide
+    h3(style="width: 110%; margin-left: -5%;") GraphQL has #[em solutions]:
+    ul
+      li.fragment Changes are centralized in the GraphQL µ-service
+      li.fragment Data access happens through a single endpoint
+      li.fragment Documentation is centralized and consistent
+      li.fragment Cleaner separation between data and presentation
+
+  +slide
+    h3 I wanted to start using it in production #[em immediately]
+
+    aside.notes.
+      I’m slow to pick up new ideas, but once I decide something is the right
+      path forward, I want to go all-in. So after I did my initial research on
+      the pros and cons of GraphQL and decided it was a smart move, I
+      immediately started telling everyone that we needed to change everything,
+      right away.
+
+  +slide
+    img(
+      src="./images/graphql-microservices/nope.gif"
+      alt="nope"
+    )
+    h3.no-margin Not everyone was on board
+
+    aside.notes.
+      Other teams immediately started voicing concerns, and a number of really
+      good questions were raised. And it’s a good thing, too, because I was only
+      thinking about the end — not the path we’d have to follow to get there.
+
+  +slide
+    h3(style="width: 110%; margin-left: -5%;").
+      There are #[strong complications]:
+    ul
+      li.fragment Who “owns” the GraphQL µ-service?
+      li.fragment How can teams make independent changes?
+      li.fragment Can one bad commit take down the whole service?
+      li.fragment Doesn’t an extra layer make it harder to trace errors?
+  
+  +slide
+    h3 We wanted the #[em benefits] of GraphQL&hellip;
+      span.fragment  but could we afford the trade-offs?
+  
+  +slide
+    h2 We needed #[em answers]
+
+  +slide
+    h3.u--align-left Can we...
+    ol
+      li.fragment Centralize data, but let teams keep control?
+      li.fragment Design an approach that #[em improves] error handling?
+      li.fragment Make it so easy teams #[em want] to switch?
+      li.fragment Build a service that can handle IBM’s scale?
+    
+    aside.notes.
+      I knew that GraphQL was in production at Facebook, GitHub, and several 
+      other companies at IBM’s scale, but what we #[em didn’t] know was how much
+      hard work goes into making it run. Did we need a whole team just for
+      managing scalability? Would we need to spend a fortune on infrastructure
+      to make it feasible?
+
+  //- STANDARDIZE WHAT A DATA SOURCE IS
+  +slide
+    h4.no-margin Challenge #1:
+    h2.no-margin #[em Centralize] Data, but #[em Decentralize] Control
+
+  +slide
+    h3 The ideal #[em solution]:
+    p
+      span Each team maintains their own GraphQL schema...
+      br
+      span.fragment  but that schema is aggregated by a central µ-service.
+
+  +slide
+    h3(style="width: 110%;max-width: 110%; margin-left: -5%").
+      If this was going to work, we needed a #[em standardized format] 
+      for sharing schemas.
+
+    aside.notes.
+      In general, the GraphQL community talks about server-side GraphQL as a
+      schema, a set of resolvers, and then code that you have to figure out on
+      your own to get data. But Jonas Helfer suggested additional abstractions:
+      Models and Connectors. We started with that and built a boilerplate for 
+      adding data to GraphQL servers.
+
+  +slide
+    h2 We call these#[br]#[em Data Sources]
+
+  +slide
+    img.no-border(
+      src="./images/graphql-microservices/gramps-data-source-1.svg"
+      alt="GrAMPS data source, part 1"
+    )
+
+  +slide
+    img.no-border(
+      src="./images/graphql-microservices/gramps-data-source-2.svg"
+      alt="GrAMPS data source, part 2"
+    )
+
+  +slide
+    img.no-border(
+      src="./images/graphql-microservices/gramps-data-source-3.svg"
+      alt="GrAMPS data source, part 3"
+    )
+
+  +slide
+    img.no-border(
+      src="./images/graphql-microservices/gramps-data-source-4.svg"
+      alt="GrAMPS data source, part 4"
+    )
+
+  +slide
+    img.no-border(
+      src="./images/graphql-microservices/gramps-data-source-5.svg"
+      alt="GrAMPS data source, part 5"
+    )
+
+  +slide
+    h3 Each data source is an #[em independent] GitHub repo, which means:
+    ul.align-center
+      li.fragment ✅ No bottlenecks
+        br
+        small Each team commits and deploys code independently.
+      li.fragment ✅ No loss of control
+        br
+        small Each team owns their data source.
+      li.fragment ✅ No accidental borking
+        br
+        small Each team’s code has individual test suites.
+
+  +slide
+    h3 How do we #[em combine] the data sources?
+
+    aside.notes
+      ul
+        li The GraphQL µ-service core is an empty schema
+        li Each data source is an npm package, which is added as a dependency
+        li.
+          Express middleware composes the data sources into a single set of 
+          arguments for use with the Apollo Express server
+
+  +slide
+    img.no-border(
+      src="./images/graphql-microservices/gramps-all-together-1.svg"
+      alt="GrAMPS architecture, part 1"
+    )
+
+  +slide
+    img.no-border(
+      src="./images/graphql-microservices/gramps-all-together-2.svg"
+      alt="GrAMPS architecture, part 2"
+    )
+
+  +slide
+    img.no-border(
+      src="./images/graphql-microservices/gramps-all-together-3.svg"
+      alt="GrAMPS architecture, part 3"
+    )
+
+  +slide
+    img.no-border(
+      src="./images/graphql-microservices/gramps-all-together-4.svg"
+      alt="GrAMPS architecture, part 4"
+    )
+
+  //- ERROR HANDLING
+  +slide
+    h4.no-margin Challenge #2:
+    h2.no-margin #[em Improve] Error Handling
+
+  +slide
+    h3(style="width: 110%;margin-left: -5%") What Makes an Error #[em Helpful]?
+    ul
+      li.fragment Clear description of what went wrong
+      li.fragment Clarity about where the error occurred
+        ul
+          li(style="font-size: 90%").
+            GraphQL errors vs. underlying data access issues
+      li.fragment Information to help with tracing bugs
+      li.fragment Unique IDs shared on the client and server side
+
+  +slide
+    h4 #[em Client-Side] Errors in Development
+    img.no-margin(
+      src="./images/graphql-microservices/client-side-error.png"
+      alt="GrAMPS client-side error"
+    )
+  
+  +slide
+    h4 In production, we #[strong can’t show some data]
+    ul
+      li.fragment Docs link may be behind our firewall
+      li.fragment Target endpoint may not be public
+
+  +slide
+    h4 Client-Side Errors in #[em Production]
+    img.no-margin(
+      src="./images/graphql-microservices/client-side-error-production.png"
+      alt="GrAMPS client-side error in production"
+    )
+    p.no-margin
+      small.
+        #[code docsLink] and #[code targetEndpoint] are removed in production.
+  
+  +slide
+    h4 Client and server errors share a #[em GUID]
+    pre
+      code.sh.
+        Error: Could not load the given xkcd comic
+          (178460c1-c8d7-42c2-ba0e-f617afb5d3fd)
+        Description: Could not load the given xkcd comic
+        Error Code: XKCDModel_Error
+        GraphQL Model: XKCDModel
+        Target Endpoint: https://xkcd.com/2000/info.0.json
+        Documentation: https://ibm.biz/gramps-data-source-tutorial
+        Data: {
+          "id": "2000"
+        }
+    p.no-margin
+      small.
+        Using the GUID, we can find the #[code docsLink] and 
+        #[code targetEndpoint] in the server logs.
+  
+  +slide
+    h3.u--align-left This Means...
+    ul
+      li.fragment Errors are normalized across all data sources
+      li.fragment Support tickets can directly reference details in logs
+      li.fragment Errors are clear and come with documentation
+      li.fragment The source of a given error is immediately clear
+
+  +slide
+    h4 Implementation Is #[em Optional] and #[em Easy]
+    pre(style="font-size: 18px")
+      code.diff.
+          import Express from 'express';
+          import bodyParser from 'body-parser';
+          import { graphqlExpress } from 'apollo-server-express';
+          import { grampsExpress } from '@gramps/gramps-express';
+
+          import schemaOne from '@gramps/data-source-one';
+          import schemaTwo from '@gramps/data-source-two';
+  
+          const app = new Express();
+          app.use(bodyParser.json());
+          app.use(grampsExpress({ dataSources: [ schemaOne, schemaTwo ] }));
+          app.use('/graphql',
+            graphqlExpress(req => ({
+              schema: req.gramps.schema,
+              context: req.gramps.context,
+        +     formatError: req.gramps.formatError,
+            })),
+          );
+
+  //- LOCAL DEVELOPMENT
+  +slide
+    h4.no-margin Challenge #3:
+    h2.no-margin Make Development So #[em Easy] Teams Want to Use It
+
+  +slide
+    h3.
+      If we wanted teams to #[em start using GraphQL], we needed it to be 
+      #[em dead simple] to get started
+
+  +slide
+    h3 We created a data source #[em starter kit]:
+    ul
+      li.fragment Strong starting point for new data sources
+      li.fragment Step-by-step tutorial for building a new data source
+      li.fragment Test coverage starts at 💯
+      li.fragment Pre-configured for Travis CI and Code Climate
+    p
+      small.fragment
+        a(href="https://github.com/gramps-graphql/data-source-base").
+          github.com/gramps-graphql/data-source-base
+
+  +slide
+    h4 We built a #[em CLI] to make development easier
+    pre
+      code.sh.
+        $ gramps --live
+
+        ============================================================
+            GrAMPS is running in live mode on port 8080
+
+            GraphiQL: http://localhost:8080/graphiql
+        ============================================================
+  
+  +slide
+    h3 But there was a #[strong snag]:
+    p.fragment.
+      “How do we run a local instance of the GraphQL#[br]µ-service if the data 
+      source we’re developing is already installed? Won’t they collide?”
+
+  +slide
+    h3 The solution?
+    h2 Allow local#[br]data sources#[br]to #[em override]
+    p
+      code.sh gramps --data-source-dir ./
+
+    aside.notes.
+      We built a CLI to make development easier, then added checks for
+      data source name collisions, giving local data sources precedence.
+
+  +slide
+    h4 But add a #[em warning]
+    img.no-margin(
+      src="./images/graphql-microservices/local-data-source-warnings-pt1.png"
+      alt="GrAMPS warnings for local data sources"
+    )
+    p.no-margin
+      small Clarified text and updated links are coming (
+        a(href="https://github.com/gramps-graphql/gramps-express/issues/36").
+          #36
+        | )
+
+  +slide
+    h4 Actually, add #[em two] warnings
+    img.no-margin(
+      src="./images/graphql-microservices/local-data-source-warnings-pt2.png"
+      alt="GrAMPS warnings for local data sources"
+    )
+    p.no-margin
+      small Clarified text and updated links are coming (
+        a(href="https://github.com/gramps-graphql/gramps-express/issues/36").
+          #36
+        | )
+
+  //- GLOBAL SCALE
+  +slide
+    h4.no-margin Challenge #4:
+    h2.no-margin Build for#[br]#[em Global] Scale
+
+  +slide
+    h3 We didn’t have to do much
+    p.fragment It turns out Apollo’s Express server just works.
+
+  +slide
+    img(
+      src="./images/graphql-microservices/pleasant-surprise.gif"
+      alt="pleasant surprise from The Office"
+    )
+    h3.no-margin Which is pretty #[em great]
+
+  //- OPEN SOURCE
+  +slide
+    h3 Okay, sure, but #[strong how long] did it take to get GraphQL into production?”
+  +slide
+    h3.
+      We #[em started] working on the GraphQL 
+      #[span(style="text-transform: none") µ]-service in #[em May]
+  
+  +slide
+    h3 It hit #[em production] in #[em July]
+
+  +slide
+    h3 After the dust settled,#[br]we realized #[em two things]
+
+  +slide
+    h2 #1
+    p.
+      “Holy shit, if everyone wrote their data sources using this format, the 
+      dev community could share GraphQL data sources as easily as we share 
+      npm packages.”
+
+  +slide
+    h2 #2
+    p “This might be useful to other people.”
+
+  +slide
+    h2 So we’re#[br]releasing it under the #[em MIT license]
+    h2 🎉
+
+  +slide
+    img.no-border(
+      src="./images/graphql-microservices/GrAMPS-logo.svg"
+      alt="GrAMPS: GraphQL Apollo Microservice Pattern Server"
+      style="max-width: 400px;"
+    )
+    h3.no-margin Introducing
+    h1.no-margin GrAMPS
+    p
+      | #[strong Gr]aphQL 
+      | #[strong A]pollo 
+      | #[strong M]icroservice 
+      | #[strong P]attern 
+      | #[strong S]erver
+      small
+        a(href="https://github.com/gramps-graphql/gramps-express").
+          github.com/gramps-graphql/gramps-express
+        |  &nbsp; · &nbsp; 
+        a(href="https://www.npmjs.com/org/gramps").
+          npmjs.com/org/gramps
+
+  //- Q&A
+  +slide
+    h2 Thanks!
+    p(style="margin-top: 0.25rem;")
+    img.no-margin(
+      src="./images/jason-lengstorf.jpg"
+      alt="Jason Lengstorf"
+      style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;"
+    )
+    p(style="margin-top: 0;")= config.author.name
+      br
+      small
+        | Follow me on Twitter: 
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        | &nbsp; · &nbsp;
+        a(href= `mailto:${config.author.email}`)= config.author.email
+      br
+      small
+        a(href="https://github.com/gramps-graphql/gramps-express").
+          github.com/gramps-graphql/gramps-express
+        |  · 
+        a(href="https://www.npmjs.com/org/gramps").
+          npmjs.com/org/gramps
+
+  //- Resources
+  +slide.u--align-left.resourcetext
+    h4 Resources
+    ol
+      li
+        a(href="https://github.com/gramps-graphql").
+          GrAMPS on GitHub
+      li
+        a(href="https://github.com/gramps-graphql/gramps-express").
+          GrAMPS Express Middleware
+      li
+        a(href="https://gramps-graphql.github.io/gramps-express/").
+          GrAMPS Documentation
+      li
+        a(href="https://dev-blog.apollodata.com/how-to-build-graphql-servers-87587591ded5").
+          How to Build GraphQL Servers
+      li
+        a(href="https://github.com/gramps-graphql/data-source-base").
+          GrAMPS Data Source Starter Kit
+      li
+        a(href="https://ibm.biz/gramps-data-source-tutorial").
+          GrAMPS Data Source Tutorial
+      li
+        a(href="https://www.npmjs.com/org/gramps").
+          GrAMPS on npm
+
+block styles
+  link(
+    rel="stylesheet"
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  )
+  script.
+    (function(d) {
+      var config = {
+        kitId: 'fnr1orp',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+
+block extras
+  -
+    const relatedAccounts = [config.author.twitter];
+    
+    if (config.conference.twitter) {
+      relatedAccounts.push(config.conference.twitter);
+    }
+
+    // See https://dev.twitter.com/web/tweet-button/web-intent for parameters.
+    const tweetObj = {
+      text: `${config.title} by @${config.author.twitter}`,
+      hashtags: config.conference.hashtag || '',
+      related: relatedAccounts.join(','),
+      url: config.slides.link,
+    };
+
+    // 
+    const e = encodeURIComponent;
+    const args = Object.keys(tweetObj).map(key => `${key}=${e(tweetObj[key])}`);
+    const tweetUrl = `https://twitter.com/intent/tweet?${args.join('&')}`;
+  -
+  .hashtag
+    p
+      | Tweet: 
+      a(
+        href=tweetUrl
+        target="_blank"
+      ) @#{config.author.twitter} 
+        | #{config.conference.hashtag ? `#${config.conference.hashtag}` : ''}
+  footer
+    ul.inline
+      li
+        | “#{config.title}” by 
+        a(href= config.author.link)= config.author.name
+        |  (slides: 
+        a(href= config.slides.link)= config.slides.link.replace('https://', '')
+        | )
+      li
+        a(href="https://twitter.com/"+config.author.twitter).
+          @#{config.author.twitter}
+      li
+        a(href="https://github.com/"+config.author.github).
+          github.com/#{config.author.github}
