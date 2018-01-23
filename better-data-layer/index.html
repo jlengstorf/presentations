@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Killer Speed, Quality Code, Better UX, Simplified Development</title>
+    <meta name="description" content="How modern front-end workflows are changing everything">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link id="theme" rel="stylesheet" href="css/theme/lengstorf.css">
+    <link rel="stylesheet" href="lib/css/github.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script>
+      (function(d) {
+        var config = {
+          kitId: 'fnr1orp',
+          scriptTimeout: 3000,
+          async: true
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+    </script>
+    <style>
+      .forever-aload {
+        position: relative;
+      }
+      
+      .forever-aload::after {
+        position: absolute;
+        content: '';
+        top: 80px;
+        left: 34%;
+        width: 130px;
+        height: 130px;
+        background: url(./images/better-data-layer/loading.gif);
+        background-position: center;
+        background-size: 850px;
+      }
+      
+    </style>
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+      
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1 style="font-size: 100px;">Killer <em>Speed </em><em>Quality </em>Code 
+            Better <em>UX </em>Simplified Development
+          </h1>
+          <h4>How modern front-end workflows<br>are changing everything</h4>
+          <p><a href="https://lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a>&nbsp; · &nbsp;<a href="mailto:jason.lengstorf@ibm.com">jason.lengstorf@ibm.com</a></small></p>
+        </section>
+        <section>
+          <h1 class="wider">Front-End Development<br>Is <strong>Hard</strong></h1>
+        </section>
+        <section>
+          <h4>Why is front-end development hard?</h4>
+          <ul>
+            <li class="fragment">More and more app logic is living in the front-end</li>
+            <li class="fragment">The front-end is creeping further into the back-end</li>
+            <li class="fragment">Our apps have to be <em>fast</em>...</li>
+            <li class="fragment">...even on slow and unstable connections</li>
+          </ul>
+        </section>
+        <section>
+          <h3>It’s harder across teams:</h3>
+          <ul>
+            <li class="fragment">FEDs are dependent on back-end teams</li>
+            <li class="fragment">APIs have to exist before UI work can start</li>
+            <li class="fragment">If docs are missing or out of date... </li>
+            <li class="fragment">...our “docs” are asking Steve on Slack</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Back-end teams <strong>burn</strong> tons of hours supporting FEDs</h2>
+          <aside class="notes">
+            Back-end teams have to create aggregate API endpoints, deal with the
+            pressure of being a bottleneck for other teams, and support other
+            developers who don’t have what they need to get started. All of this
+            happens <em>instead</em> of completing their tasks.
+            
+          </aside>
+        </section>
+        <section>
+          <h2>Front-end teams <strong>burn</strong> tons of hours getting started</h2>
+          <aside class="notes">
+            Take a poll in the room: by a show of hands, how many people have wasted
+            more than 8 hours trying to get a new UI up and running? Hunting down a 
+            way to load data needed to build a UI? On the phone, post a scream emoji.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>And if a server goes down...</h3><img src="./images/better-data-layer/server-down.gif" alt="Simpsons taking the system down.">
+        </section>
+        <section>
+          <h3>...we wait.</h3><img src="./images/better-data-layer/waiting.gif" alt="Cookie Monster waiting.">
+        </section>
+        <section>
+          <h2>It can be rough on our <em>users</em>, too.</h2>
+        </section>
+        <section>
+          <div class="forever-aload"><img src="./images/better-data-layer/forever-aload.jpg" alt="Forever a-load."></div>
+        </section>
+        <section>
+          <h2>We can do <em>better</em></h2>
+        </section>
+        <section>
+          <h2>What if we could...</h2>
+          <ul>
+            <li class="fragment">find all our data in a single place?</li>
+            <li class="fragment">test data queries in the browser?</li>
+            <li class="fragment">create custom queries with only data we need?</li>
+            <li class="fragment">work in parallel with back-end teams?</li>
+            <li class="fragment">develop even if the server is down?</li>
+            <li class="fragment">show explorable UIs before data is loaded?</li>
+            <li class="fragment">render data as it loads instead of all at once?</li>
+          </ul>
+        </section>
+        <section>
+          <p><small>(Pause for dramatic effect.)</small></p>
+        </section>
+        <section>
+          <h2>🎉 We can! 🎉</h2>
+          <h4>...and <em>GraphQL</em> + <em>React</em> make it easy</h4>
+        </section>
+        <section>
+          <h4>Interactive Online <em>Documentation</em></h4><img class="no-margin" src="./images/better-data-layer/graphql-playground.png" alt="GraphQL Playground.">
+          <p class="no-margin">Guaranteed to be up-to-date!</p>
+        </section>
+        <section>
+          <h4><em>Test Queries</em> in the Browser</h4><img class="no-margin" src="./images/better-data-layer/full-query.png" alt="GraphQL query and result.">
+          <p class="no-margin">This is copy-pasteable into your app.</p>
+        </section>
+        <section>
+          <h4>Load <em>Only</em> Data We Need</h4><img class="no-margin" src="./images/better-data-layer/query-test.png" alt="GraphQL Playground query with only a few fields.">
+          <p class="no-margin">No wasted data transfer.</p>
+        </section>
+        <section>
+          <h3>🕹 Demo 🕹</h3>
+        </section>
+        <section>
+          <h4>Work <em>Offline</em></h4><img class="no-margin" src="./images/better-data-layer/mock-data.png" alt="GraphQL query using mock data.">
+          <p class="no-margin">Get realistic, variable mock data.</p>
+        </section>
+        <section>
+          <h3>🕹 Demo 🕹</h3>
+        </section>
+        <section>
+          <h2>Adding data to the UI is a breeze 👌</h2>
+        </section>
+        <section><img class="no-margin no-border" src="./images/better-data-layer/react-with-data.png" alt="React component using GraphQL query.">
+        </section>
+        <section>
+          <h4><em>Loading states</em> are basically free</h4><img class="no-margin no-border" src="./images/better-data-layer/loading-pattern.png" alt="Loading and error properties.">
+        </section>
+        <section>
+          <h4><em>Skeleton</em> components 💀 are even better</h4><img class="no-margin no-border" src="./images/better-data-layer/skeleton-pattern.png" alt="Loading class for skeleton components.">
+        </section>
+        <section>
+          <h4>Skeleton components let us render an explorable UI <em>before</em> data is loaded</h4>
+          <p class="codepen" data-height="396" data-theme-id="0" data-slug-hash="NabRVb" data-default-tab="result" data-user="jlengstorf" data-embed-version="2" data-pen-title="Skeleton Loading Pattern Example" style="min-height: 350px;">See the Pen <a href="https://codepen.io/jlengstorf/pen/JMVYoa/">Skeleton Loading Pattern Example for Links</a> by Jason Lengstorf (<a href="https://codepen.io/jlengstorf">@jlengstorf</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+          <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+        </section>
+        <section>
+          <h4>We can also show data <em>as it arrives</em></h4><img class="no-margin no-border" src="./images/better-data-layer/deferred.png" alt="Deferred data loading.">
+        </section>
+        <section>
+          <h2>Case Study:</h2>
+          <h4>IBM Cloud Account Usage Dashboard</h4>
+        </section>
+        <section>
+          <video src="./video/2017-06-08-comparison_first-load.mp4" controls></video>
+        </section>
+        <section>
+          <video src="./video/2017-06-08-comparison_switch-account.mp4" controls></video>
+        </section>
+        <section>
+          <h2>This is already in <em>production</em></h2>
+          <p>
+            The IBM Cloud Account µ-service and SoftLayer VSI and bare metal
+            provisioning µ-service have already shipped with GraphQL + React.
+          </p>
+          <p class="fragment">
+            IBM Cloud IAM, Watson IoT, and the Genesis UI teams are also
+            in development.
+            
+          </p>
+        </section>
+        <section>
+          <h2>Is <em>your team</em> next?</h2>
+        </section>
+        <section>
+          <h3 style="width: 110%; margin-left: -5%;">With <em>GraphQL</em> + <em>React</em>, you get:</h3>
+          <ul>
+            <li class="fragment">Easy-as-pie data access</li>
+            <li class="fragment">In-browser documentation and query testing</li>
+            <li class="fragment">Automatic performance benefits</li>
+            <li class="fragment">Simple loading and error handling patterns</li>
+            <li class="fragment">Offline development</li>
+            <li class="fragment">Clean separation between back- and front-end teams</li>
+            <li class="fragment">Ability to work in parallel with back-end teams</li>
+          </ul>
+        </section>
+        <section>
+          <h2>✨ All for <em>free</em> ✨</h2>
+        </section>
+        <section>
+          <h3>Plus:</h3>
+          <ul>
+            <li class="fragment">Excellent developer tools from the open source community</li>
+            <li class="fragment">Rapid onboarding for team members of all skill levels</li>
+            <li class="fragment">Lower demands on back-end teams’ time</li>
+            <li class="fragment">Decreased need for aggregate REST API endpoints</li>
+            <li class="fragment">Increased autonomy for experimentation</li>
+            <li class="fragment">Faster turnaround time for new features</li>
+          </ul>
+        </section>
+        <section>
+          <h2>The Bottom Line:</h2>
+          <h3 class="fragment"><em>GraphQL</em> + <em>React</em> Rules<span style="display: block; margin-top: 0.25em; font-size: 150%;">🤜💥🤛</span></h3>
+        </section>
+        <section>
+          <h2>Customers win</h2>
+        </section>
+        <section>
+          <h2>FEDs win</h2>
+        </section>
+        <section>
+          <h2>Back-end devs win</h2>
+        </section>
+        <section>
+          <h2>Executives and VPs and managers win</h2>
+        </section>
+        <section>
+          <h2>Everyone wins</h2><img src="./images/better-data-layer/oprah.gif" alt="Oprah. Winning.">
+        </section>
+        <section><img src="./images/work-life-balance/jason-lengstorf.jpg" alt="Jason Lengstorf" style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;">
+          <p style="margin-top: 0.25rem;">Jason Lengstorf<br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a>&nbsp; · &nbsp;<a href="mailto:jason.lengstorf@ibm.com">jason.lengstorf@ibm.com</a></small></p>
+        </section>
+      </div>
+    </div>
+    <div class="hashtag">
+      <p>Tweet: <a href="https://twitter.com/intent/tweet?text=Killer%20Speed%2C%20Quality%20Code%2C%20Better%20UX%2C%20Simplified%20Development%20by%20%40jlengstorf&amp;hashtags=&amp;related=jlengstorf&amp;url=https%3A%2F%2Fgit.io%2Fv9L9Z" target="_blank">@jlengstorf </a></p>
+    </div>
+    <footer>
+      <ul class="inline">
+        <li>“Killer Speed, Quality Code, Better UX, Simplified Development” by <a href="https://lengstorf.com/">Jason Lengstorf</a></li>
+        <li><a href="https://twitter.com/jlengstorf">@jlengstorf</a></li>
+        <li><a href="https://github.com/jlengstorf">github.com/jlengstorf</a></li>
+      </ul>
+    </footer>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+      // We'll reference this element several times
+      var htmlElement = document.querySelector('html');
+      
+      // Bind a function to the `fragmentshown` event so we can do some custom bits
+      Reveal.addEventListener('fragmentshown', function (event) {
+        var fragment = event.fragment;
+      
+        // For fragments with a `dim-the-lights` class, we dim the lights
+        if (fragment.classList && fragment.classList.contains('dim-the-lights')) {
+          htmlElement.classList.add('blackout');
+        }
+      });
+      
+      // Define a quick function to remove the blackout class from the document
+      var removeBlackout = function removeBlackout() {
+        return htmlElement.classList.remove('blackout');
+      };
+      
+      // Bind the function to Reveal actions so we get the desired effect
+      Reveal.addEventListener('fragmenthidden', removeBlackout);
+      Reveal.addEventListener('slidechanged', removeBlackout);
+      
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+        transition: 'none',
+        backgroundTransition: 'none',
+      
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+      
+    </script>
+  </body>
+</html>
