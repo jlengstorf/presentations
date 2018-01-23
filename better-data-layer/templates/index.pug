@@ -1,0 +1,393 @@
+//- Use the presentation layout so we can keep this clean
+extends layouts/presentation
+
+block append config
+  -
+    config.theme = 'lengstorf';
+    config.title = 'Killer Speed, Quality Code, Better UX, Simplified Development';
+    config.description = 'How modern front-end workflows are changing everything';
+
+    config.author = {
+      name: 'Jason Lengstorf',
+      email: 'jason.lengstorf@ibm.com',
+      link: 'https://lengstorf.com/',
+      twitter: 'jlengstorf',
+      github: 'jlengstorf',
+    };
+    
+    config.slides = {
+      link: 'https://git.io/v9L9Z',
+    };
+
+    config.conference = {
+      hashtag: '',
+      twitter: '',
+    };
+  -
+
+//- Add your slides here. See templates/includes/_mixins.pug for information 
+//- on how `+slide` works.
+block slides
+  +slide
+    h1(style="font-size: 100px")
+      | Killer 
+      em Speed 
+      em Quality 
+      | Code 
+      | Better 
+      em UX 
+      | Simplified Development
+    h4 How modern front-end workflows#[br]are changing everything
+    
+    p
+      a(href= config.author.link)= config.author.name
+      br
+      small
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        | &nbsp; · &nbsp;
+        a(href= `mailto:${config.author.email}`)= config.author.email
+    
+    //-p
+      small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
+
+  //- INTRO
+  +slide
+    h1.wider Front-End Development#[br]Is #[strong Hard]
+  
+  +slide
+    h4 Why is front-end development hard?
+    ul
+      li.fragment More and more app logic is living in the front-end
+      li.fragment The front-end is creeping further into the back-end
+      li.fragment Our apps have to be #[em fast]...
+      li.fragment ...even on slow and unstable connections
+  
+  +slide
+    h3 It’s harder across teams:
+    ul
+      li.fragment FEDs are dependent on back-end teams
+      li.fragment APIs have to exist before UI work can start
+      li.fragment If docs are missing or out of date... 
+      li.fragment ...our “docs” are asking Steve on Slack
+
+  +slide
+    h2 Back-end teams #[strong burn] tons of hours supporting FEDs
+    
+    aside.notes.
+      Back-end teams have to create aggregate API endpoints, deal with the
+      pressure of being a bottleneck for other teams, and support other
+      developers who don’t have what they need to get started. All of this
+      happens #[em instead] of completing their tasks.
+  
+  +slide
+    h2 Front-end teams #[strong burn] tons of hours getting started
+
+    aside.notes.
+      Take a poll in the room: by a show of hands, how many people have wasted
+      more than 8 hours trying to get a new UI up and running? Hunting down a 
+      way to load data needed to build a UI? On the phone, post a scream emoji.
+
+  +slide
+    h3 And if a server goes down...
+    img(
+      src="./images/better-data-layer/server-down.gif"
+      alt="Simpsons taking the system down."
+    )
+
+  +slide
+    h3 ...we wait.
+    img(
+      src="./images/better-data-layer/waiting.gif"
+      alt="Cookie Monster waiting."
+    )
+  
+  +slide
+    h2 It can be rough on our #[em users], too.
+  
+  +slide
+    .forever-aload
+      img(
+        src="./images/better-data-layer/forever-aload.jpg"
+        alt="Forever a-load."
+      )
+
+  +slide
+    h2 We can do #[em better]
+
+  +slide
+    h2 What if we could...
+    ul
+      li.fragment find all our data in a single place?
+      li.fragment test data queries in the browser?
+      li.fragment create custom queries with only data we need?
+      li.fragment work in parallel with back-end teams?
+      li.fragment develop even if the server is down?
+      li.fragment show explorable UIs before data is loaded?
+      li.fragment render data as it loads instead of all at once?
+
+  +slide
+    p
+      small (Pause for dramatic effect.)
+  
+  +slide
+    h2 🎉 We can! 🎉
+    h4 ...and #[em GraphQL] + #[em React] make it easy
+
+  +slide
+    h4 Interactive Online #[em Documentation]
+    img.no-margin(
+      src="./images/better-data-layer/graphql-playground.png"
+      alt="GraphQL Playground."
+    )
+    p.no-margin Guaranteed to be up-to-date!
+
+  +slide
+    h4 #[em Test Queries] in the Browser
+    img.no-margin(
+      src="./images/better-data-layer/full-query.png"
+      alt="GraphQL query and result."
+    )
+    p.no-margin This is copy-pasteable into your app.
+
+  +slide
+    h4 Load #[em Only] Data We Need
+    img.no-margin(
+      src="./images/better-data-layer/query-test.png"
+      alt="GraphQL Playground query with only a few fields."
+    )
+    p.no-margin No wasted data transfer.
+  
+  +slide
+    h3 🕹 Demo 🕹
+
+  +slide
+    h4 Work #[em Offline]
+    img.no-margin(
+      src="./images/better-data-layer/mock-data.png"
+      alt="GraphQL query using mock data."
+    )
+    p.no-margin Get realistic, variable mock data.
+  
+  +slide
+    h3 🕹 Demo 🕹
+
+  +slide
+    h2 Adding data to the UI is a breeze 👌
+  
+  +slide
+    img.no-margin.no-border(
+      src="./images/better-data-layer/react-with-data.png"
+      alt="React component using GraphQL query."
+    )
+
+  +slide
+    h4 #[em Loading states] are basically free
+    img.no-margin.no-border(
+      src="./images/better-data-layer/loading-pattern.png"
+      alt="Loading and error properties."
+    )
+
+  +slide
+    h4 #[em Skeleton] components 💀 are even better
+    img.no-margin.no-border(
+      src="./images/better-data-layer/skeleton-pattern.png"
+      alt="Loading class for skeleton components."
+    )
+  
+  +slide
+    h4 Skeleton components let us render an explorable UI #[em before] data is loaded
+    p.codepen(
+      data-height="396" data-theme-id="0" data-slug-hash="NabRVb" 
+      data-default-tab="result" data-user="jlengstorf" data-embed-version="2" 
+      data-pen-title="Skeleton Loading Pattern Example"
+      style="min-height: 350px"
+    )
+      | See the Pen 
+      a(href="https://codepen.io/jlengstorf/pen/JMVYoa/") Skeleton Loading Pattern Example for Links
+      |  by Jason Lengstorf (
+      a(href="https://codepen.io/jlengstorf") @jlengstorf
+      | ) on 
+      a(href="https://codepen.io") CodePen
+      | .
+    script(async src="https://production-assets.codepen.io/assets/embed/ei.js")
+
+  +slide
+    h4 We can also show data #[em as it arrives]
+    img.no-margin.no-border(
+      src="./images/better-data-layer/deferred.png"
+      alt="Deferred data loading."
+    )
+
+  +slide
+    h2 Case Study:
+    h4 IBM Cloud Account Usage Dashboard
+
+  +slide
+    video(
+      src="./video/2017-06-08-comparison_first-load.mp4"
+      controls
+    )
+
+  +slide
+    video(
+      src="./video/2017-06-08-comparison_switch-account.mp4"
+      controls
+    )
+
+  +slide
+    h2 This is already in #[em production]
+    p.
+      The IBM Cloud Account µ-service and SoftLayer VSI and bare metal
+      provisioning µ-service have already shipped with GraphQL + React.
+    p.fragment.
+      IBM Cloud IAM, Watson IoT, and the Genesis UI teams are also
+      in development.
+  
+  +slide
+    h2 Is #[em your team] next?
+  
+  +slide
+    h3(style="width: 110%; margin-left: -5%") With #[em GraphQL] + #[em React], you get:
+    ul
+      li.fragment Easy-as-pie data access
+      li.fragment In-browser documentation and query testing
+      li.fragment Automatic performance benefits
+      li.fragment Simple loading and error handling patterns
+      li.fragment Offline development
+      li.fragment Clean separation between back- and front-end teams
+      li.fragment Ability to work in parallel with back-end teams
+  
+  +slide
+    h2 ✨ All for #[em free] ✨
+
+  +slide
+    h3 Plus:
+    ul
+      li.fragment Excellent developer tools from the open source community
+      li.fragment Rapid onboarding for team members of all skill levels
+      li.fragment Lower demands on back-end teams’ time
+      li.fragment Decreased need for aggregate REST API endpoints
+      li.fragment Increased autonomy for experimentation
+      li.fragment Faster turnaround time for new features
+  
+  +slide
+    h2 The Bottom Line:
+    h3.fragment #[em GraphQL] + #[em React] Rules
+      span(style="display: block; margin-top: 0.25em; font-size: 150%") 🤜💥🤛
+  
+  +slide
+    h2 Customers win
+  
+  +slide
+    h2 FEDs win
+  
+  +slide
+    h2 Back-end devs win
+  
+  +slide
+    h2 Executives and VPs and managers win
+  
+  +slide
+    h2 Everyone wins
+    img(
+      src="./images/better-data-layer/oprah.gif"
+      alt="Oprah. Winning."
+    )
+
+  //- Q&A
+  +slide
+    img(
+      src="./images/work-life-balance/jason-lengstorf.jpg"
+      alt="Jason Lengstorf"
+      style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;"
+    )
+    p(style="margin-top: 0.25rem;")= config.author.name
+      br
+      small
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        | &nbsp; · &nbsp;
+        a(href= `mailto:${config.author.email}`)= config.author.email
+
+  //- Resources
+    +slide.u--align-left.resourcetext
+      h4 Resources
+      ol
+        li
+          a(href="http://www.enginesofmischief.com/makers/evan/pubs/crunch.html").
+            Why Crunch Mode Doesn’t Work: 6 Lessons
+
+
+block styles
+  link(
+    rel="stylesheet"
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  )
+  script.
+    (function(d) {
+      var config = {
+        kitId: 'fnr1orp',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+  style.
+    .forever-aload {
+      position: relative;
+    }
+
+    .forever-aload::after {
+      position: absolute;
+      content: '';
+      top: 80px;
+      left: 34%;
+      width: 130px;
+      height: 130px;
+      background: url(./images/better-data-layer/loading.gif);
+      background-position: center;
+      background-size: 850px;
+    }
+
+block extras
+  -
+    const relatedAccounts = [config.author.twitter];
+    
+    if (config.conference.twitter) {
+      relatedAccounts.push(config.conference.twitter);
+    }
+
+    // See https://dev.twitter.com/web/tweet-button/web-intent for parameters.
+    const tweetObj = {
+      text: `${config.title} by @${config.author.twitter}`,
+      hashtags: config.conference.hashtag || '',
+      related: relatedAccounts.join(','),
+      url: config.slides.link,
+    };
+
+    // 
+    const e = encodeURIComponent;
+    const args = Object.keys(tweetObj).map(key => `${key}=${e(tweetObj[key])}`);
+    const tweetUrl = `https://twitter.com/intent/tweet?${args.join('&')}`;
+  -
+  .hashtag
+    p
+      | Tweet: 
+      a(
+        href=tweetUrl
+        target="_blank"
+      ) @#{config.author.twitter} 
+        | #{config.conference.hashtag ? `#${config.conference.hashtag}` : ''}
+  footer
+    ul.inline
+      li
+        | “#{config.title}” by 
+        a(href= config.author.link)= config.author.name
+        //-|  (slides: 
+          a(href= config.slides.link)= config.slides.link.replace('https://', '')
+          | )
+      li
+        a(href="https://twitter.com/"+config.author.twitter).
+          @#{config.author.twitter}
+      li
+        a(href="https://github.com/"+config.author.github).
+          github.com/#{config.author.github}
