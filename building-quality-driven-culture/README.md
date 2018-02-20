@@ -43,3 +43,4 @@ code quality analysis, and code reviews.
 
 * Why checking work is important:
   https://twitter.com/GarethMarlow/status/938335937142108160/photo/1
+  
