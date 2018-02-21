@@ -16,12 +16,12 @@ block append config
     };
     
     config.slides = {
-      link: 'https://git.io/v9L9Z',
+      link: 'https://git.io/vA0BN',
     };
 
     config.conference = {
-      hashtag: '',
-      twitter: '',
+      hashtag: 'assertJS',
+      twitter: 'assertjs',
     };
   -
 
@@ -43,12 +43,104 @@ block slides
     p
       small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
 
+  //- TOC
+
+    # The Problem
+
+    - We all know testing is important
+    - But testing takes time...
+    - ...and deadlines rarely leave us extra time
+    - Developers don’t want to write tests
+      - They slow us down
+      - Hard to write
+      - Hard to maintain
+      - Confusing to onboard and modify
+    - Mocking is the worst
+
+    # Why is this a problem?
+
+    - Without tests, we’re guessing
+    - People can only hold so much info in their heads at one time
+    - Complex codebases have lots of intersections and touch points
+    - Manual QA won’t always catch issues in unrelated code
+    - (Assuming manual QA happens in the first place)
+
+    # What’s the ideal?
+
+    - Teams submit changes through pull requests (`master` is protected)
+    - PRs run tests automatically (Travis CI, Jenkins)
+    - PRs must meet testing requirements (e.g. coverage thresholds)
+    - PRs must meet quality guidelines (e.g. linting, SonarCloud/CodeClimate/Codacy)
+    - PRs must be peer reviewed and approved
+
+    # Why?
+
+    - PRs create a control flow: no one can go rogue, no force pushing, etc.
+    - Automated tests help decrease accidental regressions
+    - Quality checks catch known problematic patterns and teach solutions
+    - Automatic enforcement removes the need for a human code cop
+    - Peer reviews create opportunities to learn and coach
+    - Writing more testable code usually means more stable code (e.g. cleaner separation, better APIs, fewer side effects)
+
+    # How can we get there?
+
+    - Make the Right Thing the Easy Thing™
+    - Make the learning curve shallow (e.g. Jest)
+      - Provide examples and starters with tests in place
+      - If the team doesn’t have a lot of testing experience, consider using simple APIs like Jest to avoid the cognitive load of learning Mocha, Chai, Sinopia, Nock, etc. all at once
+    - Hold internal training
+      - Hackathons to refactor existing codebases with tests
+      - Hands-on workshops to teach different testing techniques
+      - Regular cross-team code reviews to share knowledge and best practices
+      - Coach developers on how to write more testable code
+    - Teach management why testing is good (e.g. tech debt, maintenance cost)
+      - Code without tests is fragile
+      - Fragile code can break in unpredictable ways
+      - Unpredictability puts projects at risk of delay
+      - Delays cost money, frustrate customers, increase turnover
+    - Make code quality a point of pride (e.g. reward the preferred behavior)
+      - Provide visual indications of code quality (e.g. SonarCloud dashboard)
+      - Track repo quality over time as a team metric
+    - Make tests _part_ of the deliverables, not a “nice to have”
+      - Cut features before allowing test checks to be disabled
+    
+    # Getting Resistant Teams On Board
+
+    - Split up resistant teams
+      - If a team is digging their heels in, reorganize them into teams that have higher compliance
+    - Measure managers on code quality
+      - Teams deliver what they're measured by
+      - If manager performance is tied to code quality, it will be a primary focus for the team
+      - (Beware of adding extra requirements without adjusting expectations at first)
+    - Don’t reward bad behavior
+      - Shipping features on time without tests is a failure
+      - “Coming back to write tests once things calm down” means it’ll never happen
+    - Set the bar at a reasonable height
+      - A repo with 0% coverage shouldn’t be on the hook to hit 80%+ coverage by the next release
+      - Phase the ramp-up: 20% by next release, then 50%, etc.
+
+    # Recap / Resources
+
+    - Getting started with testing is hard
+    - Maintaining high-quality testing on a well-tested repo is easy
+    - “Go slow to go fast.”
+      - Spend the time up front
+      - The added velocity and reliability later on will pay for it many times over
+
+    - Make the Right Thing the Easy Thing
+    - Provide the right kind of support to developers
+    - Manage up to convince executives that quality matters
+    - Reward the right behaviors — and stop rewarding bad behavior
+    - Automate as much of the process as possible
+    - Take pride in the quality of the product, not just the features/velocity
+
   //- INTRO
   +slide
     h2 TKTK
 
   //- Q&A
   +slide
+    h2 Thanks!
     img(
       src="./images/work-life-balance/jason-lengstorf.jpg"
       alt="Jason Lengstorf"
@@ -57,7 +149,6 @@ block slides
     p(style="margin-top: 0.25rem;")= config.author.name
       br
       small
-        | Follow me on Twitter: 
         a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
         | &nbsp; · &nbsp;
         a(href= `mailto:${config.author.email}`)= config.author.email
@@ -118,7 +209,7 @@ block extras
   footer
     ul.inline
       li
-        | “#{config.title}” by 
+        | #{config.title} by 
         a(href= config.author.link)= config.author.name
         |  (slides: 
         a(href= config.slides.link)= config.slides.link.replace('https://', '')
