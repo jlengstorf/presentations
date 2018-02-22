@@ -39,7 +39,336 @@
           <p><small>Slides: <a href="https://git.io/vA0BN">git.io/vA0BN</a></small></p>
         </section>
         <section>
-          <h2>TKTK</h2>
+          <h1>We all <em>know</em> testing is important</h1>
+          <aside class="notes">
+            Do a straw poll: how many people currently have well-tested code
+            throughout their whole organization?
+            
+          </aside>
+        </section>
+        <section>
+          <h3>...so why isn’t it happening?</h3>
+        </section>
+        <section>
+          <h3>There are plenty of “reasons” <strong>not</strong> to test:</h3>
+          <ul>
+            <li class="fragment">“We don’t have time to write tests!”</li>
+            <li class="fragment">“Where do we even start with testing?”</li>
+            <li class="fragment">“Testing slows us down!”</li>
+            <li class="fragment">“Tests are too hard to maintain!”</li>
+            <li class="fragment">“Junior devs don’t know how to write tests...”</li>
+            <li class="fragment">“...and we don’t have bandwidth to train them.”</li>
+          </ul>
+        </section>
+        <section><img style="height: 400px;" src="../images/building-quality-driven-culture/but-its-hard.gif" alt="But it’s hard — Scott Pilgrim vs. the World.">
+        </section>
+        <section>
+          <h1>Hard or not, we <em>need</em> to write tests</h1>
+        </section>
+        <section>
+          <h3>If our code isn’t tested, we’re <strong>just guessing</strong></h3>
+        </section>
+        <section>
+          <h3>Even smaller codebases have lots of <strong>edge cases</strong></h3>
+        </section>
+        <section>
+          <h3>Manual quality assurance <strong>doesn’t</strong> catch everything</h3>
+          <aside class="notes">
+            And that’s assuming manual QA happens in the first place.
+            
+          </aside>
+        </section>
+        <section>
+          <h1>Testing <em>Doesn’t</em> Have to Be Hard</h1>
+        </section>
+        <section>
+          <h3>A <em>battle-tested</em> strategy</h3>
+          <ul>
+            <li class="fragment">Code changes must be sent as pull requests</li>
+            <li class="fragment">A build pipeline runs tests automatically</li>
+            <li class="fragment">The new code must meet testing requirements</li>
+            <li class="fragment">The new code must meet quality guidelines</li>
+            <li class="fragment">Change must be peer reviewed and approved</li>
+          </ul>
+        </section>
+        <section>
+          <h3>What should the <em>testing</em> requirements be?</h3>
+          <ul>
+            <li class="fragment">The app builds successfully</li>
+            <li class="fragment">All tests pass</li>
+            <li class="fragment">Coverage thresholds must be met for new code</li>
+            <li class="fragment">Coverage thresholds for the whole repo (maybe)</li>
+          </ul>
+        </section>
+        <section>
+          <h3>What should the <em>quality</em> guidelines be?</h3>
+          <ul>
+            <li class="fragment">Limit cyclomatic and cognitive complexity</li>
+            <li class="fragment">Avoid known problematic patterns</li>
+            <li class="fragment">Check for security vulnerabilities</li>
+            <li class="fragment">Eliminate duplicate code</li>
+          </ul>
+        </section>
+        <section>
+          <h4>We should <strong>not</strong> fail a pull request on style</h4>
+          <p class="fragment">Just use Prettier and forget about it.</p>
+        </section>
+        <section>
+          <h3>Test and quality checks can be <em>automated</em>:</h3>
+          <ul>
+            <li class="fragment">Linters and IDE plugins to help as code is written</li>
+            <li class="fragment">Husky and Git hooks to check changes pre-push</li>
+            <li class="fragment">TravisCI and Jenkins to build and test PRs</li>
+            <li class="fragment">SonarCloud, Code Climate, Codacy for quality checks</li>
+            <li class="fragment">Prettier to auto-fix code style</li>
+          </ul>
+        </section>
+        <section>
+          <h1>Why This Strategy <em>Works</em></h1>
+        </section>
+        <section>
+          <h3>Pull requests create a <em>control flow</em></h3>
+          <ul>
+            <li class="fragment">No force pushing</li>
+            <li class="fragment">Creates a place for automated tests to run</li>
+            <li class="fragment">Requires team participation</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Automated tests catch more edge cases <em>before</em> regressions happen</h3>
+        </section>
+        <section>
+          <h3>Quality checks <em>minimize</em> technical debt and maintenance overhead</h3>
+        </section>
+        <section>
+          <h3>Automating enforcement removes the need for a <strong>human code cop</strong></h3>
+        </section>
+        <section>
+          <h3>Peer reviews create opportunities to <em>learn</em><br>&amp; <em>share</em> knowledge</h3>
+        </section>
+        <section>
+          <h3>Testable code is <em>better</em> code</h3>
+          <ul>
+            <li class="fragment">Cleaner separation of different functionality</li>
+            <li class="fragment">Fewer side effects (because mocking sucks)</li>
+            <li class="fragment">Better APIs because edge cases are tested for</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Okay, but...</h3>
+        </section>
+        <section>
+          <h1>How Do We <em>Get There</em>?</h1>
+        </section>
+        <section>
+          <h2 style="width: 110%; margin-left: -5%;">Make the <em>Right</em> Thing the <em>Easy</em> Thing
+            
+          </h2>
+        </section>
+        <section>
+          <h4><em>Integrate</em> checks into your workflow</h4><img class="no-border no-margin" style="max-height: 400px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);" src="../images/building-quality-driven-culture/code-climate-github-integration.jpg" alt="Code Climate GitHub integration.">
+          <p class="no-margin"><small>Source: <a href="https://codeclimate.com/product/">Code Climate</a></small></p>
+        </section>
+        <section>
+          <h4>Use built-in <em>coaching</em> to improve quality</h4><img class="no-border no-margin" style="max-height: 400px;" src="../images/building-quality-driven-culture/codacy-issue-explanation.png" alt="Codacy issue explanation.">
+          <p class="no-margin"><small>Source: <a href="https://www.codacy.com/product">Codacy</a></small></p>
+        </section>
+        <section>
+          <h2>Make the learning curve as <em>shallow</em> as possible</h2>
+        </section>
+        <section>
+          <h4>Using 3 packages for testing is <strong>confusing</strong></h4><img class="no-border no-margin" src="../images/building-quality-driven-culture/test-mocha-chai-sinon.png" alt="Testing with Mocha + Chai + Sinon.">
+        </section>
+        <section>
+          <h4>A unified API makes testing <em>approachable</em></h4><img class="no-border no-margin" src="../images/building-quality-driven-culture/test-jest.png" alt="Testing with Jest.">
+        </section>
+        <section>
+          <h3>Starting from 0% is <strong>hard</strong></h3>
+        </section>
+        <section>
+          <h3>Keeping tested code tested is significantly <em>less hard</em></h3>
+        </section>
+        <section>
+          <h3>Internal <em>training</em> is key</h3>
+          <ul>
+            <li class="fragment">Hackathons to add tests to older code</li>
+            <li class="fragment">Hands-on workshops to teach testing techniques</li>
+            <li class="fragment">Cross-team code reviews to share knowledge</li>
+            <li class="fragment">Compile best practices into internal docs</li>
+            <li class="fragment">Coach the team on writing more testable code</li>
+            <li class="fragment">Hire external trainers if necessary</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Don’t forget: <em>executives</em> also need training</h3>
+          <ul>
+            <li class="fragment">An untested product is fragile</li>
+            <li class="fragment">Fragile products break in unpredictable ways</li>
+            <li class="fragment">Unpredictability causes delays</li>
+            <li class="fragment">Delays cost money and frustrate customers</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Make code quality a point of <em>pride</em></h2>
+        </section>
+        <section>
+          <h4 class="no-margin"><em>Visually</em> represent code health in public</h4><img class="no-border no-margin" src="../images/building-quality-driven-culture/sonarqube-dashboard.png" alt="SonarQube dashboard.">
+          <p class="no-margin"><small>Source: <a href="https://www.sonarqube.org/features/centralization/">SonarQube</a></small></p>
+        </section>
+        <section>
+          <h4>Measure code health over time for teams</h4><img class="no-border no-margin" style="max-height: 400px;" src="../images/building-quality-driven-culture/code-quality-over-time.png" alt="Code quality over time on SonarQube.">
+          <p class="no-margin"><small>Source: <a href="https://www.sonarqube.org/features/centralization/">SonarQube</a></small></p>
+        </section>
+        <section>
+          <h2 style="width: 110%; margin-left: -5%;">Make testing a <em class="hugify alright-calm-down-a-little">deliverable</em> not a “nice to have”</h2>
+        </section>
+        <section>
+          <h3 style="width: 110%; margin-left: -5%;">New features <strong>without tests</strong> are not safe to launch</h3>
+        </section>
+        <section>
+          <h1>What if people <strong>fight</strong> testing?</h1>
+        </section>
+        <section>
+          <h2>Change is <strong>hard</strong>:</h2>
+          <ul>
+            <li class="fragment">Old habits are hard to break</li>
+            <li class="fragment">New requirements cause anxiety</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Replace old habits with <em>better</em> ones</h3>
+          <aside class="notes">
+            It’s extremely difficult to remove a bad habit without providing an
+            alternative. This goes back to what we talked about earlier — Make the
+            Right Thing the Easy Thing — we need to provide a happy path for
+            developers that saves time, effort, hassle, etc..
+            
+          </aside>
+        </section>
+        <section>
+          <h3>Try to <em>understand</em> where resistance is coming from</h3>
+          <aside class="notes">
+            For a developer who already feels like they don’t have enough time,
+            additional requirements are going to feel like an attack. If the
+            developer is unfamiliar with testing, they may be worried about the
+            time requirements for learning to write tests. In many cases, the simple
+            fact that things are changing in any way will trigger resistance.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>Focus on the <em>bright spots</em></h3>
+          <aside class="notes">
+            Teams who embrace testing culture should be nurtured and held up as
+            great examples to the rest of the company. Don’t ignore the good teams
+            when trying to deal with troublesome teams.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>Reward the <em>right behavior</em></h3>
+          <ul>
+            <li class="fragment">Use testing and quality as a metric during reviews</li>
+            <li class="fragment">Publicly recognize team members who improve code</li>
+          </ul>
+        </section>
+        <section>
+          <h3>If that <strong>doesn’t</strong> work...</h3>
+        </section>
+        <section>
+          <h3><em>Reorganize</em> resistant teams</h3>
+          <aside class="notes">
+            People tend to mirror the people they spend the most time with. If a
+            whole team is resisting change, sometimes all it takes is shuffling
+            those developers to new teams that aren’t resisting; the social norms
+            will change, and that 
+            
+          </aside>
+        </section>
+        <section>
+          <h3>Measure <em>management</em> on their team’s code quality</h3>
+          <aside class="notes">
+            Teams deliver what they’re measured by; tie manager incentives to quality
+            and watch it soar!
+            
+          </aside>
+        </section>
+        <section>
+          <h3>A word of <strong>caution</strong>:</h3>
+          <p>Don’t add requirements without adjusting expectations. Deadlines will need to shift at first.</p>
+        </section>
+        <section>
+          <h2><em>Stop</em> rewarding bad behavior</h2>
+        </section>
+        <section>
+          <h3>Teams shipping features <strong class="hugify">without tests</strong> missed their deadline</h3>
+        </section>
+        <section>
+          <h3>This is <strong>not okay</strong>:</h3>
+          <h4>“We just need to get something out there. We’ll add tests later.”</h4>
+        </section>
+        <section>
+          <h2>Be <em>reasonable</em></h2>
+          <aside class="notes">
+            Getting started takes time. Don’t expect 0–💯 in a sprint or two
+            
+          </aside>
+        </section>
+        <section>
+          <h3>Start <em>plugging</em> leaks first</h3>
+          <aside class="notes">
+            On codebases with really low coverage, start by simply requiring that
+            all new code has tests and passes quality gates.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>Create a <em>ramp-up</em> period</h3>
+          <aside class="notes">
+            Refactoring large codebases takes time. Create a phased approach to allow
+            plenty of time for teams to get it done. For example, maybe the target is
+            to cover 15% of the project per quarter. In some projects this will be
+            laughably easy; in others it’ll be a serious struggle.
+            
+          </aside>
+        </section>
+        <section>
+          <h2>Go <em>slow</em> to go <em>fast</em></h2>
+        </section>
+        <section>
+          <h3>Improving <em>foundational</em> quality will help to:</h3>
+          <ul>
+            <li class="fragment">Increase the reliability of code</li>
+            <li class="fragment">Decrease the time to find and fix bugs</li>
+            <li class="fragment">Speed up delivery times for new features</li>
+            <li class="fragment">Eliminate existing technical debt...</li>
+            <li class="fragment">...and help prevent new debt from being created</li>
+            <li class="fragment">Lower the cost of maintenance</li>
+          </ul>
+        </section>
+        <section>
+          <h2><em class="hugify" style="font-size: 320%;">Recap</em>With Action Steps</h2>
+        </section>
+        <section>
+          <h3>To create <em>quality-driven</em> culture in your company:</h3>
+          <ol>
+            <li class="fragment">Make the Right Thing the Easy Thing</li>
+            <li class="fragment">Provide support and ramp-up time for developers</li>
+            <li class="fragment">Convince management to make time for quality</li>
+            <li class="fragment">Reward the desired behavior...</li>
+            <li class="fragment">...and stop rewarding bad behavior</li>
+            <li class="fragment">Automate as much of the process as possible</li>
+            <li class="fragment">Take pride in shipping <em>quality</em>, not just shipping</li>
+          </ol>
+        </section>
+        <section><img class="no-margin" style="height: 400px;" src="../images/building-quality-driven-culture/dontshipshit.png" alt="Don’t ship shit.">
+          <p class="no-margin"><small>Credit: <a href="http://blog.vanessabrooks.com/2014/11/dont-ship-shit-and-other-things-learned.html">Vanessa Brooks</a></small></p>
+        </section>
+        <section>
+          <h2>Testing is a <em style="display: block; font-size: 120%;">supercharger</em> for companies</h2>
+        </section>
+        <section>
+          <h3>It’s <em>slow</em> and <em>difficult</em> to get the mindset in place...<br><span class="fragment">but then it’s <em>unstoppable</em></span></h3>
         </section>
         <section>
           <h2>Thanks!</h2><img src="./images/work-life-balance/jason-lengstorf.jpg" alt="Jason Lengstorf" style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;">

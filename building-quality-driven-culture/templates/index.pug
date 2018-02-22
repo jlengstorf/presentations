@@ -43,100 +43,370 @@ block slides
     p
       small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
 
-  //- TOC
+  //- THE PROBLEM
 
-    # The Problem
-
-    - We all know testing is important
-    - But testing takes time...
-    - ...and deadlines rarely leave us extra time
-    - Developers don’t want to write tests
-      - They slow us down
-      - Hard to write
-      - Hard to maintain
-      - Confusing to onboard and modify
-    - Mocking is the worst
-
-    # Why is this a problem?
-
-    - Without tests, we’re guessing
-    - People can only hold so much info in their heads at one time
-    - Complex codebases have lots of intersections and touch points
-    - Manual QA won’t always catch issues in unrelated code
-    - (Assuming manual QA happens in the first place)
-
-    # What’s the ideal?
-
-    - Teams submit changes through pull requests (`master` is protected)
-    - PRs run tests automatically (Travis CI, Jenkins)
-    - PRs must meet testing requirements (e.g. coverage thresholds)
-    - PRs must meet quality guidelines (e.g. linting, SonarCloud/CodeClimate/Codacy)
-    - PRs must be peer reviewed and approved
-
-    # Why?
-
-    - PRs create a control flow: no one can go rogue, no force pushing, etc.
-    - Automated tests help decrease accidental regressions
-    - Quality checks catch known problematic patterns and teach solutions
-    - Automatic enforcement removes the need for a human code cop
-    - Peer reviews create opportunities to learn and coach
-    - Writing more testable code usually means more stable code (e.g. cleaner separation, better APIs, fewer side effects)
-
-    # How can we get there?
-
-    - Make the Right Thing the Easy Thing™
-    - Make the learning curve shallow (e.g. Jest)
-      - Provide examples and starters with tests in place
-      - If the team doesn’t have a lot of testing experience, consider using simple APIs like Jest to avoid the cognitive load of learning Mocha, Chai, Sinopia, Nock, etc. all at once
-    - Hold internal training
-      - Hackathons to refactor existing codebases with tests
-      - Hands-on workshops to teach different testing techniques
-      - Regular cross-team code reviews to share knowledge and best practices
-      - Coach developers on how to write more testable code
-    - Teach management why testing is good (e.g. tech debt, maintenance cost)
-      - Code without tests is fragile
-      - Fragile code can break in unpredictable ways
-      - Unpredictability puts projects at risk of delay
-      - Delays cost money, frustrate customers, increase turnover
-    - Make code quality a point of pride (e.g. reward the preferred behavior)
-      - Provide visual indications of code quality (e.g. SonarCloud dashboard)
-      - Track repo quality over time as a team metric
-    - Make tests _part_ of the deliverables, not a “nice to have”
-      - Cut features before allowing test checks to be disabled
-    
-    # Getting Resistant Teams On Board
-
-    - Split up resistant teams
-      - If a team is digging their heels in, reorganize them into teams that have higher compliance
-    - Measure managers on code quality
-      - Teams deliver what they're measured by
-      - If manager performance is tied to code quality, it will be a primary focus for the team
-      - (Beware of adding extra requirements without adjusting expectations at first)
-    - Don’t reward bad behavior
-      - Shipping features on time without tests is a failure
-      - “Coming back to write tests once things calm down” means it’ll never happen
-    - Set the bar at a reasonable height
-      - A repo with 0% coverage shouldn’t be on the hook to hit 80%+ coverage by the next release
-      - Phase the ramp-up: 20% by next release, then 50%, etc.
-
-    # Recap / Resources
-
-    - Getting started with testing is hard
-    - Maintaining high-quality testing on a well-tested repo is easy
-    - “Go slow to go fast.”
-      - Spend the time up front
-      - The added velocity and reliability later on will pay for it many times over
-
-    - Make the Right Thing the Easy Thing
-    - Provide the right kind of support to developers
-    - Manage up to convince executives that quality matters
-    - Reward the right behaviors — and stop rewarding bad behavior
-    - Automate as much of the process as possible
-    - Take pride in the quality of the product, not just the features/velocity
-
-  //- INTRO
   +slide
-    h2 TKTK
+    h1 We all #[em know] testing is important
+
+    aside.notes.
+      Do a straw poll: how many people currently have well-tested code
+      throughout their whole organization?
+  
+  +slide
+    h3 ...so why isn’t it happening?
+  
+  +slide
+    h3 There are plenty of “reasons” #[strong not] to test:
+    ul
+      li.fragment “We don’t have time to write tests!”
+      li.fragment “Where do we even start with testing?”
+      li.fragment “Testing slows us down!”
+      li.fragment “Tests are too hard to maintain!”
+      li.fragment “Junior devs don’t know how to write tests...”
+      li.fragment “...and we don’t have bandwidth to train them.”
+
+  +slide
+    img(
+      style="height: 400px;"
+      src="../images/building-quality-driven-culture/but-its-hard.gif"
+      alt="But it’s hard — Scott Pilgrim vs. the World."
+    )
+
+  //- WHY IS THIS A PROBLEM?
+
+  +slide
+    h1 Hard or not, we #[em need] to write tests
+  
+  +slide
+    h3 If our code isn’t tested, we’re #[strong just guessing]
+  
+  +slide
+    h3 Even smaller codebases have lots of #[strong edge cases]
+  
+  +slide
+    h3 Manual quality assurance #[strong doesn’t] catch everything
+
+    aside.notes.
+      And that’s assuming manual QA happens in the first place.
+  
+  //- WHAT’S THE IDEAL?
+
+  +slide
+    h1 Testing #[em Doesn’t] Have to Be Hard
+
+  +slide
+    h3 A #[em battle-tested] strategy
+    ul
+      li.fragment Code changes must be sent as pull requests
+      li.fragment A build pipeline runs tests automatically
+      li.fragment The new code must meet testing requirements
+      li.fragment The new code must meet quality guidelines
+      li.fragment Change must be peer reviewed and approved
+
+  +slide
+    h3 What should the #[em testing] requirements be?
+    ul
+      li.fragment The app builds successfully
+      li.fragment All tests pass
+      li.fragment Coverage thresholds must be met for new code
+      li.fragment Coverage thresholds for the whole repo (maybe)
+
+  +slide
+    h3 What should the #[em quality] guidelines be?
+    ul
+      li.fragment Limit cyclomatic and cognitive complexity
+      li.fragment Avoid known problematic patterns
+      li.fragment Check for security vulnerabilities
+      li.fragment Eliminate duplicate code
+  
+  +slide
+    h4 We should #[strong not] fail a pull request on style
+    p.fragment Just use Prettier and forget about it.
+
+  +slide
+    h3 Test and quality checks can be #[em automated]:
+    ul
+      li.fragment Linters and IDE plugins to help as code is written
+      li.fragment Husky and Git hooks to check changes pre-push
+      li.fragment TravisCI and Jenkins to build and test PRs
+      li.fragment SonarCloud, Code Climate, Codacy for quality checks
+      li.fragment Prettier to auto-fix code style
+
+  +slide
+    h1 Why This Strategy #[em Works]
+  
+  +slide
+    h3 Pull requests create a #[em control flow]
+    ul
+      li.fragment No force pushing
+      li.fragment Creates a place for automated tests to run
+      li.fragment Requires team participation
+
+  +slide
+    h3 Automated tests catch more edge cases #[em before] regressions happen
+  
+  +slide
+    h3 Quality checks #[em minimize] technical debt and maintenance overhead
+
+  +slide
+    h3 Automating enforcement removes the need for a #[strong human code cop]
+
+  +slide
+    h3 Peer reviews create opportunities to #[em learn]#[br]&amp; #[em share] knowledge
+
+  +slide
+    h3 Testable code is #[em better] code
+    ul
+      li.fragment Cleaner separation of different functionality
+      li.fragment Fewer side effects (because mocking sucks)
+      li.fragment Better APIs because edge cases are tested for
+
+  //- HOW DO WE GET THERE?
+
+  +slide
+    h3 Okay, but...
+  
+  +slide
+    h1 How Do We #[em Get There]?
+
+  +slide
+    h2(style="width: 110%; margin-left: -5%;").
+      Make the #[em Right] Thing the #[em Easy] Thing
+
+  +slide
+    h4 #[em Integrate] checks into your workflow
+    img.no-border.no-margin(
+      style="max-height: 400px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);"
+      src="../images/building-quality-driven-culture/code-climate-github-integration.jpg"
+      alt="Code Climate GitHub integration."
+    )
+    p.no-margin
+      small Source: #[a(href="https://codeclimate.com/product/") Code Climate]
+
+  +slide
+    h4 Use built-in #[em coaching] to improve quality
+    img.no-border.no-margin(
+      style="max-height: 400px"
+      src="../images/building-quality-driven-culture/codacy-issue-explanation.png"
+      alt="Codacy issue explanation."
+    )
+    p.no-margin
+      small Source: #[a(href="https://www.codacy.com/product") Codacy]
+
+  +slide
+    h2 Make the learning curve as #[em shallow] as possible
+
+  +slide
+    h4 Using 3 packages for testing is #[strong confusing]
+    img.no-border.no-margin(
+      src="../images/building-quality-driven-culture/test-mocha-chai-sinon.png"
+      alt="Testing with Mocha + Chai + Sinon."
+    )
+
+  +slide
+    h4 A unified API makes testing #[em approachable]
+    img.no-border.no-margin(
+      src="../images/building-quality-driven-culture/test-jest.png"
+      alt="Testing with Jest."
+    )
+  
+  +slide
+    h3 Starting from 0% is #[strong hard]
+  
+  +slide
+    h3 Keeping tested code tested is significantly #[em less hard]
+
+  +slide
+    h3 Internal #[em training] is key
+    ul
+      li.fragment Hackathons to add tests to older code
+      li.fragment Hands-on workshops to teach testing techniques
+      li.fragment Cross-team code reviews to share knowledge
+      li.fragment Compile best practices into internal docs
+      li.fragment Coach the team on writing more testable code
+      li.fragment Hire external trainers if necessary
+
+  +slide
+    h3 Don’t forget: #[em executives] also need training
+    ul
+      li.fragment An untested product is fragile
+      li.fragment Fragile products break in unpredictable ways
+      li.fragment Unpredictability causes delays
+      li.fragment Delays cost money and frustrate customers
+
+  +slide
+    h2 Make code quality a point of #[em pride]
+
+  +slide
+    h4.no-margin #[em Visually] represent code health in public
+    img.no-border.no-margin(
+      src="../images/building-quality-driven-culture/sonarqube-dashboard.png"
+      alt="SonarQube dashboard."
+    )
+    p.no-margin
+      small Source: #[a(href="https://www.sonarqube.org/features/centralization/") SonarQube]
+  
+  +slide
+    h4 Measure code health over time for teams
+    img.no-border.no-margin(
+      style="max-height: 400px"
+      src="../images/building-quality-driven-culture/code-quality-over-time.png"
+      alt="Code quality over time on SonarQube."
+    )
+    p.no-margin
+      small Source: #[a(href="https://www.sonarqube.org/features/centralization/") SonarQube]
+
+  +slide
+    h2(style="width: 110%; margin-left: -5%;") Make testing a #[em.hugify.alright-calm-down-a-little deliverable] not a “nice to have”
+  
+  +slide
+    h3(style="width: 110%; margin-left: -5%;") New features #[strong without tests] are not safe to launch
+
+  //- OVERCOMING RESISTANT TEAMS
+
+  +slide
+    h1 What if people #[strong fight] testing?
+
+  +slide
+    h2 Change is #[strong hard]:
+    ul
+      li.fragment Old habits are hard to break
+      li.fragment New requirements cause anxiety
+
+  +slide
+    h3 Replace old habits with #[em better] ones
+
+    aside.notes.
+      It’s extremely difficult to remove a bad habit without providing an
+      alternative. This goes back to what we talked about earlier — Make the
+      Right Thing the Easy Thing — we need to provide a happy path for
+      developers that saves time, effort, hassle, etc..
+  
+  +slide
+    h3 Try to #[em understand] where resistance is coming from
+
+    aside.notes.
+      For a developer who already feels like they don’t have enough time,
+      additional requirements are going to feel like an attack. If the
+      developer is unfamiliar with testing, they may be worried about the
+      time requirements for learning to write tests. In many cases, the simple
+      fact that things are changing in any way will trigger resistance.
+
+  +slide
+    h3 Focus on the #[em bright spots]
+
+    aside.notes.
+      Teams who embrace testing culture should be nurtured and held up as
+      great examples to the rest of the company. Don’t ignore the good teams
+      when trying to deal with troublesome teams.
+
+  +slide
+    h3 Reward the #[em right behavior]
+    ul
+      li.fragment Use testing and quality as a metric during reviews
+      li.fragment Publicly recognize team members who improve code
+
+  +slide
+    h3 If that #[strong doesn’t] work...
+
+  +slide
+    h3 #[em Reorganize] resistant teams
+
+    aside.notes.
+      People tend to mirror the people they spend the most time with. If a
+      whole team is resisting change, sometimes all it takes is shuffling
+      those developers to new teams that aren’t resisting; the social norms
+      will change, and that 
+
+  +slide
+    h3 Measure #[em management] on their team’s code quality
+    
+    aside.notes.
+      Teams deliver what they’re measured by; tie manager incentives to quality
+      and watch it soar!
+  
+  +slide
+    h3 A word of #[strong caution]:
+    p Don’t add requirements without adjusting expectations. Deadlines will need to shift at first.
+
+  +slide
+    h2 #[em Stop] rewarding bad behavior
+  
+  +slide
+    h3 Teams shipping features #[strong.hugify without tests] missed their deadline
+  
+  +slide
+    h3 This is #[strong not okay]:
+    h4 “We just need to get something out there. We’ll add tests later.”
+
+  +slide
+    h2 Be #[em reasonable]
+    
+    aside.notes.
+      Getting started takes time. Don’t expect 0–💯 in a sprint or two
+
+  +slide
+    h3 Start #[em plugging] leaks first
+
+    aside.notes.
+      On codebases with really low coverage, start by simply requiring that
+      all new code has tests and passes quality gates.
+
+  +slide
+    h3 Create a #[em ramp-up] period
+
+    aside.notes.
+      Refactoring large codebases takes time. Create a phased approach to allow
+      plenty of time for teams to get it done. For example, maybe the target is
+      to cover 15% of the project per quarter. In some projects this will be
+      laughably easy; in others it’ll be a serious struggle.
+  
+  +slide
+    h2 Go #[em slow] to go #[em fast]
+
+  +slide
+    h3 Improving #[em foundational] quality will help to:
+    ul
+      li.fragment Increase the reliability of code
+      li.fragment Decrease the time to find and fix bugs
+      li.fragment Speed up delivery times for new features
+      li.fragment Eliminate existing technical debt...
+      li.fragment ...and help prevent new debt from being created
+      li.fragment Lower the cost of maintenance
+
+  +slide
+    h2
+      em.hugify(style="font-size: 320%;") Recap
+      | With Action Steps
+  
+  +slide
+    h3 To create #[em quality-driven] culture in your company:
+    ol
+      li.fragment Make the Right Thing the Easy Thing
+      li.fragment Provide support and ramp-up time for developers
+      li.fragment Convince management to make time for quality
+      li.fragment Reward the desired behavior...
+      li.fragment ...and stop rewarding bad behavior
+      li.fragment Automate as much of the process as possible
+      li.fragment Take pride in shipping #[em quality], not just shipping
+  
+  +slide
+    img.no-margin(
+      style="height: 400px"
+      src="../images/building-quality-driven-culture/dontshipshit.png"
+      alt="Don’t ship shit."
+    )
+    p.no-margin
+      small Credit: #[a(href="http://blog.vanessabrooks.com/2014/11/dont-ship-shit-and-other-things-learned.html") Vanessa Brooks]
+
+  +slide
+    h2 Testing is a #[em(style="display: block; font-size: 120%;") supercharger] for companies
+  
+  +slide
+    h3
+      | It’s #[em slow] and #[em difficult] to get the mindset in place...
+      br
+      span.fragment but then it’s #[em unstoppable]
 
   //- Q&A
   +slide
