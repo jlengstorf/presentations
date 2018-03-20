@@ -36,10 +36,439 @@
           <h1 style="font-size: 110px">Functional Programming in JavaScript</h1>
           <h3>Featuring Ramda.js</h3>
           <p>by <a href="https://code.lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a>&nbsp; · &nbsp;<a href="mailto:jason@lengstorf.com">jason@lengstorf.com</a></small></p>
-          <p><small>Slides: <a href="https://git.io/v9L9Z">git.io/v9L9Z</a></small></p>
+          <p><small>Slides: <a href="https://git.io/fp-workshop">git.io/fp-workshop</a></small></p>
         </section>
         <section>
-          <h2>TKTK</h2>
+          <h3>Before we start:</h3>
+          <h1>What I’m <em>Not</em> Here to Do</h1>
+        </section>
+        <section>
+          <h3 class="wider">I’m not here to <strong>“convert”</strong> you.</h3>
+        </section>
+        <section>
+          <h3>I’m not trying to convince you to write <strong>all of your code</strong> a certain way.</h3>
+        </section>
+        <section>
+          <h3>As web developers, <span style="display: block; font-size: 325%;">dogma</span>can get us <strong>left behind</strong>.</h3>
+          <aside class="notes">
+            I tend to avoid developers who say things like, “Well, that’s the way 
+            we’ve always done it.”
+            
+          </aside>
+        </section>
+        <section>
+          <h1>What I <em>Am</em> Here to Do</h1>
+        </section>
+        <section>
+          <h3>Learn techniques to improve code quality in <em>many</em> situations...</h3>
+          <h3 class="fragment">...but not <em>all</em> of them.</h3>
+        </section>
+        <section>
+          <h1>Cool?</h1>
+        </section>
+        <section>
+          <h1>Cool.</h1>
+        </section>
+        <section>
+          <h2>What is <em>functional programming</em>?</h2>
+        </section>
+        <section>
+          <h3>What does this mean?</h3>
+          <pre><code class="js">(s → a) → ((a, s) → s) → Lens s a
+Lens s a = Functor f => (a → f a) → s → f s</code></pre>
+          <p><small class="fragment">(If you <em>do</em> understand this, now would be a good time to fake an urgent
+              phone call.)
+              </small></p>
+          <aside class="notes">
+            This is the "signature" of the Lens function in Ramda. I have no idea
+            what this means.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>The examples <strong>don't</strong> help:</h3>
+          <pre><code class="js">var xLens = R.lens(R.prop('x'), R.assoc('x'));
+
+R.view(xLens, {x: 1, y: 2});           //=> 1
+R.set(xLens, 4, {x: 1, y: 2});         //=> {x: 4, y: 2}
+R.over(xLens, R.negate, {x: 1, y: 2}); //=> {x: -1, y: 2}
+</code></pre>
+          <aside class="notes">
+            This is the example code for the Lens function in Ramda. Before we can 
+            understand how it works, we need to look up six additional functions. I
+            now feel dumber about functional programming than I did before.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>And, of course: the <strong>jargon</strong></h3>
+          <h2 class="wider"><span class="fragment">monads </span><em class="fragment">composability </em><span class="fragment">referential transparency </span><em class="fragment">arity </em><strong class="fragment">side-effects</strong><br><span class="fragment">immutability </span><em class="fragment">currying </em><strong class="fragment">category theory </strong><span class="fragment">tuples </span><span class="fragment">variadic functions</span></h2>
+          <aside class="notes">
+            It seems like only a certain group of people know what functional 
+            programming is, and these are the kinds of people who talk about "maths" 
+            — as a plural. Articles on the subject open the floodgates of jargon, and 
+            it takes less than a sentence before you feel well and truly overwhelmed.
+            
+          </aside>
+        </section>
+        <section><img src="images/functional-programming/too-much-stahp.gif">
+          <aside class="notes">
+            Before long, it's easy to just give up.
+            
+          </aside>
+        </section>
+        <section>
+          <h1>This is nerd stuff for <em class="hugify">Nerds</em></h1>
+          <aside class="notes">
+            We assume functional programming is nerd stuff for nerds and move on.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>...or is it?</h3>
+        </section>
+        <section>
+          <h2>What is functional programming?</h2>
+          <h4>(The <em>jargon-free</em> version)</h4>
+          <aside class="notes">Before we get started, let me give a disclaimer: this is <em>not</em> going 
+            to be a talk about the academically "correct" version of functional 
+            programming — I don't know the theories, or the underlying math, or the 
+            precise terminology for techniques. What I want to accomplish today is to
+            share what I've learned from digging through functional programming 
+            libraries, discussions, articles, and how-tos. This is a practical talk,
+            not a theoretical one, so let me apologize in advance if I call something
+            by the wrong name, or screw up the minutiae. Please grab me after this 
+            talk or drop me a line on Twitter if there's something I'm saying here 
+            that you disagree with or think I should further clarify.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>Functional programming<br>helps us write code that is:</h3>
+          <ul style="width: 80%">
+            <li class="fragment">Easier to understand and debug</li>
+            <li class="fragment">Cheaper and easier to maintain</li>
+            <li class="fragment">More legible</li>
+            <li class="fragment">More reusable</li>
+            <li class="fragment">More testable</li>
+            <li class="fragment">Less error-prone</li>
+          </ul>
+        </section>
+        <section>
+          <h3>To accomplish this, our code follows a few rules:</h3>
+          <ol style="width: 80%">
+            <li class="fragment">Use functions over loops whenever possible</li>
+            <li class="fragment">Always return the same result given the same arguments</li>
+            <li class="fragment">Write functions that do one thing</li>
+          </ol>
+        </section>
+        <section>
+          <p><small>First: a quick bit of 
+              <del>jargon</del> <ins>vocabulary</ins>.</small></p>
+        </section>
+        <section>
+          <h3><strong>Imperative</strong> Programming</h3>
+          <p>Code that explicitly describes <strong>how to do something</strong>.</p>
+        </section>
+        <section>
+          <h4 style="margin-bottom: 0;">An <strong>Imperative</strong> Approach to Eating:</h4>
+          <p><img src="images/functional-programming/imperative-sally.jpg" alt="When Harry Met Sally" style="margin-top: 0;margin-bottom: 0;"><br>"I'd like the pie heated and I don't want the ice cream on top, I want 
+            it on the side, and I'd like strawberry instead of vanilla if you have 
+            it. If not, then no ice cream, just whipped cream — but only if it's 
+            real; if it's out of the can then nothing."
+          </p>
+        </section>
+        <section>
+          <h3><em>Declarative</em> Programming</h3>
+          <p>Code that describes <strong>what the result should be</strong>.</p>
+        </section>
+        <section>
+          <h4 style="margin-bottom: 0;">A <em>Declarative</em> Approach to Eating:</h4>
+          <p><img src="images/functional-programming/declarative-ron.jpg" alt="Parks and Recreation" style="margin-top: 0;margin-bottom: 0;"><br>"Give me all the bacon and eggs you have."</p>
+        </section>
+        <section>
+          <h2>Got it?</h2>
+        </section>
+        <section>
+          <h2>Let's build <em>awesome shit</em></h2>
+        </section>
+        <section>
+          <style type="text/css">
+            .schedule-time {
+              display: inline-block;
+              margin-right: 0.5em !important; /* I’m sorry! */
+              text-align: right;
+              width: 300px;
+            }
+          </style>
+          <h2>Today’s Agenda:</h2>
+          <p style="text-align: left;"><strong class="schedule-time">9:00–9:25</strong> Intro to functional programming<br><strong class="schedule-time">9:25–10:40</strong> JavaScript array methods<br><strong class="schedule-time">10:40–11:00</strong> Break<br><strong class="schedule-time">11:00–12:00</strong> Composition and partial application<br><strong class="schedule-time">12:00–13:00</strong> Lunch<br><strong class="schedule-time">13:00–13:20</strong> Intro to Ramda<br><strong class="schedule-time">13:20–14:20</strong> Build an app using Ramda, part 1<br><strong class="schedule-time">14:20–14:40</strong> Break<br><strong class="schedule-time">14:40–17:00</strong> Build an app using Ramda, part 2</p>
+        </section>
+        <section>
+          <h1 class="wider">Array Methods</h1>
+          <aside class="notes">
+            If you've worked with array methods before, some of this might seem really 
+            easy. Please stick with us, and look around for people who are less
+            familiar with array methods that could use an extra set of eyes.
+            
+          </aside>
+        </section>
+        <section>
+          <h2>Let’s <em>Build</em> Stuff!</h2>
+          <pre><code>git clone git@github.com:jlengstorf/learn-fp-exercises.git
+</code></pre>
+        </section>
+        <section>
+          <h1 class="wider">Functional Composition</h1>
+        </section>
+        <section>
+          <h2>The Same Input<em class="hugify" style="display: block; margin-top: 0.5rem;font-size: 215%;line-height:0.75;">Always</em>Returns the<br>Same Result</h2>
+        </section>
+        <section>
+          <h3>"Wait. That's dumb. My code already does that."</h3>
+        </section>
+        <section>
+          <h2>Are you <strong>sure</strong>?</h2>
+        </section>
+        <section>
+          <h3>The Jargon:</h3>
+          <h1><em class="hugify" style="font-size: 225%">Pure</em> vs. <strong>Impure</strong></h1>
+        </section>
+        <section>
+          <h3>Scenario: Tell People About <span class="hugify">Your <em>Favorite</em> Thing</span></h3>
+        </section>
+        <section>
+          <h3>An <strong>Impure</strong> Solution</h3>
+          <pre><code class="js">let myFavoriteThing = 'whiskey';
+
+function describeMyFavoriteThing() {
+  return `I prefer to drink quality ${myFavoriteThing}.`;
+}</code></pre>
+          <p>Try this live: <a href="https://goo.gl/IQeD45">https://goo.gl/IQeD45</a></p>
+        </section>
+        <section>
+          <h3>Wait! New feature request:</h3>
+          <pre><code class="js">function clarifyFavoriteThing() {
+  myFavoriteThing = 'aged ' + myFavoriteThing;
+}</code></pre>
+          <p>Try this live: <a href="https://goo.gl/FEUtUZ">https://goo.gl/FEUtUZ</a></p>
+        </section>
+        <section>
+          <h3>Then Legal Gets Involved:</h3>
+          <pre><code class="js">function makeFamilyFriendly() {
+  myFavoriteThing = 'scented bubble bath';
+}</code></pre>
+          <p>Try this live: <a href="https://goo.gl/zgRpEm">https://goo.gl/zgRpEm</a></p>
+        </section>
+        <section>
+          <h3>Good Luck Debugging This:</h3>
+          <pre><code class="js">let myFavoriteThing = 'whiskey';
+
+clarifyFavoriteThing();
+describeMyFavoriteThing();
+//=> "I prefer to drink quality aged whiskey." (yay!)
+
+// ...probably a bunch of additional code...
+makeFamilyFriendly();
+// ...probably more additional code...
+
+describeMyFavoriteThing();
+//=> "I prefer to drink quality scented bubble bath." (!)</code></pre>
+          <p>Try this live: <a href="https://goo.gl/xFPtJF">https://goo.gl/xFPtJF</a></p>
+          <aside class="notes">This is hard to debug and we <em>just wrote it</em>. Imagine coming back to
+            this in six months, or inheriting this code from a team member and having
+            no idea what each of these functions is supposed to be doing.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>A <em>Pure</em> Approach</h3>
+          <pre><code class="js">function describeMyFavoriteThing(beverage) {
+  return `I prefer to drink quality ${beverage}.`;
+}
+
+function clarifyFavoriteThing(favoriteThing) {
+  return `aged ${favoriteThing}`;
+}
+
+function makeFamilyFriendly() {
+  return 'scented bubble bath';
+}</code></pre>
+          <p>Try this live: <a href="https://goo.gl/qDtJeu">https://goo.gl/qDtJeu</a></p>
+        </section>
+        <section>
+          <h3>We can clearly follow what's happening:</h3>
+          <pre><code class="js">const myFavoriteThing = 'whiskey';
+const clarified = clarifyFavoriteThing(myFavoriteThing);
+const newFavorite = makeFamilyFriendly();
+
+describeMyFavoriteThing(myFavoriteThing);
+//=> "I prefer to drink quality whiskey."
+
+describeMyFavoriteThing(clarified);
+//=> "I prefer to drink quality aged whiskey."
+
+describeMyFavoriteThing(newFavorite);
+//=> "I prefer to drink quality scented bubble bath."</code></pre>
+          <p>Try this live: <a href="https://goo.gl/qDtJeu">https://goo.gl/qDtJeu</a></p>
+        </section>
+        <section>
+          <h3>Debugging is <em>easy</em>:</h3>
+          <pre><code class="js">// start debugging here: ↓ ↓ ↓ ↓ ↓
+describeMyFavoriteThing(newFavorite);
+</code></pre>
+        </section>
+        <section>
+          <h3>This Is Called <em class="hugify">Referential Transparency</em></h3>
+          <p class="fragment">
+            This means the function call can always be replaced with its return value
+            without breaking the program.
+            
+          </p>
+        </section>
+        <section>
+          <h3>We can replace any pure function with its return value &amp; get the <em>same result</em>:</h3>
+          <pre><code class="js">const chz = `I love ${clarifyFavoriteThing('cheddar')}`;</code></pre>
+          <p>...is the same as...</p>
+          <pre><code class="js">const chz = 'I love aged cheddar.';
+</code></pre>
+        </section>
+        <section>
+          <h3>Testing’s Never Been <em>Easier</em>:</h3>
+          <pre><code class="js">expect(clarifyFavoriteThing('cheddar'))
+  .toEqual('aged cheddar');
+</code></pre>
+        </section>
+        <section>
+          <h3>This enables a 
+            <del>magical</del> functional technique:<em class="hugify">Composition</em>
+          </h3>
+          <pre><code class="js">const showClarifiedFavorite = compose(
+  describeMyFavoriteThing,
+  clarifyFavoriteThing
+);
+
+showClarifiedFavorite('whiskey');
+//=> "I prefer to drink quality aged whiskey."</code></pre>
+          <p>Try this live: <a href="https://goo.gl/wQFhZK">https://goo.gl/wQFhZK</a></p>
+        </section>
+        <section>
+          <h3>Using <em>Composition</em> is the same as calling this:</h3>
+          <pre><code class="js">describeMyFavoriteThing(clarifyFavoriteThing('whiskey'));
+//=> "I prefer to drink quality aged whiskey."</code></pre>
+          <p class="fragment">It just means we don't need the data up front.</p>
+        </section>
+        <section>
+          <h1 class="wider">Partial Application<br>&amp; Currying</h1>
+        </section>
+        <section>
+          <h3>What if a function<br>requires two arguments?</h3>
+          <pre><code class="js">const getStatus = (minimum, student) => ({
+  ...student,
+  status: student.score >= minimum ? 'passed' : 'failed',
+});
+
+const printScore = (student) =>
+  `${student.name} ${student.status}.`;
+
+compose(printScore, getStatus)({ name: 'Kim', score: 75 });
+//=> "Cannot read property 'score' of undefined"</code></pre>
+          <p>Try this live: <a href="https://goo.gl/36qmnx">https://goo.gl/36qmnx</a></p>
+        </section>
+        <section>
+          <h3>Partial Application allows us to bind an argument to an uncalled function.</h3>
+          <pre><code class="js">const getStatus = (minimum, student) => ({
+  ...student,
+  status: student.score >= minimum ? 'passed' : 'failed',
+});
+
+const minScore70 = getStatus.bind(null, 70);
+
+minScore70({ name: 'Kim', score: 75 });
+//=> {"name": "Kim", "score": 75, "status": "passed"}</code></pre>
+          <p>Try this live: <a href="https://goo.gl/oBTSnP">https://goo.gl/oBTSnP</a></p>
+        </section>
+        <section>
+          <h3>Currying is similar, but creates a chain of single-argument functions.</h3>
+          <pre><code class="js">const getStatus = minimum => student => ({
+  ...student,
+  status: student.score >= minimum ? 'passed' : 'failed',
+});
+
+const minScore70 = getStatus(70);
+
+minScore70({ name: 'Kim', score: 75 });
+//=> {"name": "Kim", "score": 75, "status": "passed"}</code></pre>
+          <p>Try this live: <a href="https://goo.gl/M4aheK">https://goo.gl/M4aheK</a></p>
+        </section>
+        <section>
+          <h1 class="wider">Using Ramda.js</h1>
+        </section>
+        <section>
+          <h3 class="wider">Ramda is a popular <em class="hugify">utility library</em> for functional programming </h3>
+        </section>
+        <section>
+          <h3>For example, it can curry any function easily:</h3>
+          <pre><code class="js">const getStatus = (minimum, student) => ({
+  ...student,
+  status: student.score >= minimum ? 'passed' : 'failed',
+});
+
+const getStatusCurried = R.curry(getStatus);
+
+const minScore70 = getStatusCurried(70);
+
+minScore70({ name: 'Kim', score: 75 });
+//=> {"name": "Kim", "score": 75, "status": "passed"}</code></pre>
+          <p>Try this live: <a href="https://goo.gl/rKmEps">https://goo.gl/rKmEps</a></p>
+        </section>
+        <section>
+          <h3>Let’s build an app<br>using Ramda!</h3>
+          <pre><code>git clone git@github.com:jlengstorf/workshop-fp-ramda.git
+</code></pre>
+        </section>
+        <section>
+          <h3>Get an API key from Pixabay</h3>
+          <ol>
+            <li>Create or log in to your Pixabay account at <a href="https://pixabay.com/en/accounts/login/?next=/api/docs/">pixabay.com</a></li>
+            <li>Once logged in, head to <a href="https://pixabay.com/api/docs/">pixabay.com/api/docs/</a></li>
+            <li>Scroll down to the “Search Images” section</li>
+            <li>Copy your API key from the <code>key</code> parameter</li>
+          </ol>
+        </section>
+        <section>
+          <h1>Recap</h1>
+        </section>
+        <section>
+          <h3>Functional programming<br>helps us write code that is:</h3>
+          <ul style="width: 80%">
+            <li class="fragment">Easier to understand and debug</li>
+            <li class="fragment">Cheaper and easier to maintain</li>
+            <li class="fragment">More legible</li>
+            <li class="fragment">More reusable</li>
+            <li class="fragment">More testable</li>
+            <li class="fragment">Less error-prone</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Functional programming doesn’t require any math.</h3>
+          <ol style="width: 90%">
+            <li class="fragment">Take advantage of array methods to avoid complex loops.</li>
+            <li class="fragment">Write composable functions for easier testing and debugging.</li>
+            <li class="fragment">
+              Use partial application to turn general-purpose functions into 
+              specific ones.
+              
+            </li>
+          </ol>
+        </section>
+        <section>
+          <h3>You can go <em>waaay deeper</em>...</h3>
+          <p class="fragment">
+            ...but just these three techniques will save you hours of headaches and 
+            make your code better and easier to deal with going forward.
+            
+          </p>
         </section>
         <section>
           <h2 class="no-margin">Thanks!</h2><img src="./images/work-life-balance/jason-lengstorf.jpg" alt="Jason Lengstorf" style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;">
@@ -64,11 +493,11 @@
       </div>
     </div>
     <div class="hashtag">
-      <p>Tweet: <a href="https://twitter.com/intent/tweet?text=Functional%20Programming%20in%20JavaScript%20by%20%40jlengstorf&amp;hashtags=JazzCon&amp;related=jlengstorf%2CJazz_Con&amp;url=https%3A%2F%2Fgit.io%2Fv9L9Z" target="_blank">@jlengstorf #JazzCon</a></p>
+      <p>Tweet: <a href="https://twitter.com/intent/tweet?text=Functional%20Programming%20in%20JavaScript%20by%20%40jlengstorf&amp;hashtags=JazzCon&amp;related=jlengstorf%2CJazz_Con&amp;url=https%3A%2F%2Fgit.io%2Ffp-workshop" target="_blank">@jlengstorf #JazzCon</a></p>
     </div>
     <footer>
       <ul class="inline">
-        <li>“Functional Programming in JavaScript” by <a href="https://code.lengstorf.com/">Jason Lengstorf</a> (slides: <a href="https://git.io/v9L9Z">git.io/v9L9Z</a>)</li>
+        <li>“Functional Programming in JavaScript” by <a href="https://code.lengstorf.com/">Jason Lengstorf</a> (slides: <a href="https://git.io/fp-workshop">git.io/fp-workshop</a>)</li>
         <li><a href="https://twitter.com/jlengstorf">@jlengstorf</a></li>
         <li><a href="https://github.com/jlengstorf">github.com/jlengstorf</a></li>
       </ul>

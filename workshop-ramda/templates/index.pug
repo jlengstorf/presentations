@@ -16,7 +16,7 @@ block append config
     };
     
     config.slides = {
-      link: 'https://git.io/v9L9Z',
+      link: 'https://git.io/fp-workshop',
     };
 
     config.conference = {
@@ -44,9 +44,530 @@ block slides
     p
       small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
 
-  //- INTRO
   +slide
-    h2 TKTK
+    h3 Before we start:
+    h1 What I’m #[em Not] Here to Do
+
+  +slide
+    h3.wider I’m not here to #[strong “convert”] you.
+
+  +slide
+    h3 I’m not trying to convince you to write #[strong all of your code] a certain way.
+
+  +slide
+    h3 As web developers, 
+      span(style="display: block; font-size: 325%;") dogma
+      | can get us #[strong left behind].
+
+    aside.notes.
+      I tend to avoid developers who say things like, “Well, that’s the way 
+      we’ve always done it.”
+
+  +slide
+    h1 What I #[em Am] Here to Do
+
+  +slide
+    h3 Learn techniques to improve code quality in #[em many] situations...
+    h3.fragment ...but not #[em all] of them.
+
+  +slide
+    h1 Cool?
+
+  +slide
+    h1 Cool.
+
+  //- Intro: functional programming is really confusing
+  +slide
+    h2 What is #[em functional programming]?
+  
+  +slide
+    h3 What does this mean?
+    pre
+      code.js.
+        (s → a) → ((a, s) → s) → Lens s a
+        Lens s a = Functor f => (a → f a) → s → f s
+    p
+      small.fragment.
+        (If you #[em do] understand this, now would be a good time to fake an urgent
+        phone call.)
+
+    aside.notes.
+      This is the "signature" of the Lens function in Ramda. I have no idea
+      what this means.
+
+  +slide
+    h3 The examples #[strong don't] help:
+    pre
+      code.js.
+        var xLens = R.lens(R.prop('x'), R.assoc('x'));
+
+        R.view(xLens, {x: 1, y: 2});           //=> 1
+        R.set(xLens, 4, {x: 1, y: 2});         //=> {x: 4, y: 2}
+        R.over(xLens, R.negate, {x: 1, y: 2}); //=> {x: -1, y: 2}
+    
+    aside.notes.
+      This is the example code for the Lens function in Ramda. Before we can 
+      understand how it works, we need to look up six additional functions. I
+      now feel dumber about functional programming than I did before.
+
+  +slide
+    h3 And, of course: the #[strong jargon]
+    h2.wider
+      span.fragment monads 
+      em.fragment composability 
+      span.fragment referential transparency 
+      em.fragment arity 
+      strong.fragment side-effects
+      br
+      span.fragment immutability 
+      em.fragment currying 
+      strong.fragment category theory 
+      span.fragment tuples 
+      span.fragment variadic functions
+    
+    aside.notes.
+      It seems like only a certain group of people know what functional 
+      programming is, and these are the kinds of people who talk about "maths" 
+      — as a plural. Articles on the subject open the floodgates of jargon, and 
+      it takes less than a sentence before you feel well and truly overwhelmed.
+
+  +slide
+    img(src="images/functional-programming/too-much-stahp.gif")
+      
+    aside.notes.
+      Before long, it's easy to just give up.
+
+  +slide
+    h1 This is nerd stuff for 
+      em.hugify Nerds
+    
+    aside.notes.
+      We assume functional programming is nerd stuff for nerds and move on.
+
+  +slide
+    h3 ...or is it?
+    
+  //- What is functional programming?
+  +slide
+    h2 What is functional programming?
+    h4 (The #[em jargon-free] version)
+    
+    aside.notes.
+      Before we get started, let me give a disclaimer: this is #[em not] going 
+      to be a talk about the academically "correct" version of functional 
+      programming — I don't know the theories, or the underlying math, or the 
+      precise terminology for techniques. What I want to accomplish today is to
+      share what I've learned from digging through functional programming 
+      libraries, discussions, articles, and how-tos. This is a practical talk,
+      not a theoretical one, so let me apologize in advance if I call something
+      by the wrong name, or screw up the minutiae. Please grab me after this 
+      talk or drop me a line on Twitter if there's something I'm saying here 
+      that you disagree with or think I should further clarify.
+  
+  +slide
+    h3 Functional programming#[br]helps us write code that is:
+    ul(style="width: 80%")
+      li.fragment Easier to understand and debug
+      li.fragment Cheaper and easier to maintain
+      li.fragment More legible
+      li.fragment More reusable
+      li.fragment More testable
+      li.fragment Less error-prone
+
+  +slide
+    h3 To accomplish this, our code follows a few rules:
+    ol(style="width: 80%")
+      li.fragment Use functions over loops whenever possible
+      li.fragment Always return the same result given the same arguments
+      li.fragment Write functions that do one thing
+
+  //- Vocabulary: Imperative vs. Declarative
+  +slide
+    p
+      small First: a quick bit of #[del jargon] #[ins vocabulary].
+
+  +slide
+    h3 #[strong Imperative] Programming
+    p Code that explicitly describes #[strong how to do something].
+  
+  +slide
+    h4(style="margin-bottom: 0;") An #[strong Imperative] Approach to Eating:
+    p
+      img(
+        src="images/functional-programming/imperative-sally.jpg"
+        alt="When Harry Met Sally"
+        style="margin-top: 0;margin-bottom: 0;"
+      )
+      br
+      | "I'd like the pie heated and I don't want the ice cream on top, I want 
+      | it on the side, and I'd like strawberry instead of vanilla if you have 
+      | it. If not, then no ice cream, just whipped cream — but only if it's 
+      | real; if it's out of the can then nothing."
+  
+  +slide
+    h3 #[em Declarative] Programming
+    p Code that describes #[strong what the result should be].
+
+  +slide
+    h4(style="margin-bottom: 0;") A #[em Declarative] Approach to Eating:
+    p
+      img(
+        src="images/functional-programming/declarative-ron.jpg"
+        alt="Parks and Recreation"
+        style="margin-top: 0;margin-bottom: 0;"
+      )
+      br
+      | "Give me all the bacon and eggs you have."
+
+  +slide
+    h2 Got it?
+
+  +slide
+    h2 Let's build #[em awesome shit]
+  
+  +slide
+    style(type="text/css").
+      .schedule-time {
+        display: inline-block;
+        margin-right: 0.5em !important; /* I’m sorry! */
+        text-align: right;
+        width: 300px;
+      }
+    h2 Today’s Agenda:
+    p(style="text-align: left;")
+      strong.schedule-time 9:00–9:25
+      |  Intro to functional programming
+      br 
+      strong.schedule-time 9:25–10:40
+      |  JavaScript array methods
+      br 
+      strong.schedule-time 10:40–11:00
+      |  Break
+      br 
+      strong.schedule-time 11:00–12:00
+      |  Composition and partial application
+      br 
+      strong.schedule-time 12:00–13:00
+      |  Lunch
+      br 
+      strong.schedule-time 13:00–13:20
+      |  Intro to Ramda
+      br 
+      strong.schedule-time 13:20–14:20
+      |  Build an app using Ramda, part 1
+      br 
+      strong.schedule-time 14:20–14:40
+      |  Break
+      br 
+      strong.schedule-time 14:40–17:00
+      |  Build an app using Ramda, part 2
+      
+  +slide
+    h1.wider Array Methods
+
+    aside.notes.
+      If you've worked with array methods before, some of this might seem really 
+      easy. Please stick with us, and look around for people who are less
+      familiar with array methods that could use an extra set of eyes.
+  
+  +slide
+    h2 Let’s #[em Build] Stuff!
+    pre
+      code.
+        git clone git@github.com:jlengstorf/learn-fp-exercises.git
+
+  +slide
+    h1.wider Functional Composition
+
+  +slide
+    h2 The Same Input
+      em.hugify(style="display: block; margin-top: 0.5rem;font-size: 215%;line-height:0.75;") Always
+      | Returns the
+      br
+      | Same Result
+
+  +slide
+    h3 "Wait. That's dumb. My code already does that."
+  
+  +slide
+    h2 Are you #[strong sure]?
+
+  //- Vocabulary: Pure vs. Impure
+  +slide
+    h3 The Jargon:
+    h1 #[em.hugify(style="font-size: 225%") Pure] vs. #[strong Impure]
+
+  +slide
+    h3 Scenario: Tell People About 
+      span.hugify Your #[em Favorite] Thing
+
+  +slide
+    h3 An #[strong Impure] Solution
+    pre
+      code.js.
+        let myFavoriteThing = 'whiskey';
+
+        function describeMyFavoriteThing() {
+          return `I prefer to drink quality ${myFavoriteThing}.`;
+        }
+    p Try this live: 
+      a(href="https://goo.gl/IQeD45") https://goo.gl/IQeD45
+
+  +slide
+    h3 Wait! New feature request:
+    pre
+      code.js.
+        function clarifyFavoriteThing() {
+          myFavoriteThing = 'aged ' + myFavoriteThing;
+        }
+    p Try this live: 
+      a(href="https://goo.gl/FEUtUZ") https://goo.gl/FEUtUZ
+
+  +slide
+    h3 Then Legal Gets Involved:
+    pre
+      code.js.
+        function makeFamilyFriendly() {
+          myFavoriteThing = 'scented bubble bath';
+        }
+    p Try this live: 
+      a(href="https://goo.gl/zgRpEm") https://goo.gl/zgRpEm
+
+  +slide
+    h3 Good Luck Debugging This:
+    pre
+      code.js.
+        let myFavoriteThing = 'whiskey';
+
+        clarifyFavoriteThing();
+        describeMyFavoriteThing();
+        //=> "I prefer to drink quality aged whiskey." (yay!)
+
+        // ...probably a bunch of additional code...
+        makeFamilyFriendly();
+        // ...probably more additional code...
+
+        describeMyFavoriteThing();
+        //=> "I prefer to drink quality scented bubble bath." (!)
+    p Try this live: 
+      a(href="https://goo.gl/xFPtJF") https://goo.gl/xFPtJF
+
+    aside.notes.
+      This is hard to debug and we #[em just wrote it]. Imagine coming back to
+      this in six months, or inheriting this code from a team member and having
+      no idea what each of these functions is supposed to be doing.
+
+  +slide
+    h3 A #[em Pure] Approach
+    pre
+      code.js.
+        function describeMyFavoriteThing(beverage) {
+          return `I prefer to drink quality ${beverage}.`;
+        }
+
+        function clarifyFavoriteThing(favoriteThing) {
+          return `aged ${favoriteThing}`;
+        }
+
+        function makeFamilyFriendly() {
+          return 'scented bubble bath';
+        }
+    p Try this live: 
+      a(href="https://goo.gl/qDtJeu") https://goo.gl/qDtJeu
+
+  +slide
+    h3 We can clearly follow what's happening:
+    pre
+      code.js.
+        const myFavoriteThing = 'whiskey';
+        const clarified = clarifyFavoriteThing(myFavoriteThing);
+        const newFavorite = makeFamilyFriendly();
+
+        describeMyFavoriteThing(myFavoriteThing);
+        //=> "I prefer to drink quality whiskey."
+
+        describeMyFavoriteThing(clarified);
+        //=> "I prefer to drink quality aged whiskey."
+
+        describeMyFavoriteThing(newFavorite);
+        //=> "I prefer to drink quality scented bubble bath."
+    p Try this live: 
+      a(href="https://goo.gl/qDtJeu") https://goo.gl/qDtJeu
+
+  +slide
+    h3 Debugging is #[em easy]:
+    pre
+      code.js.
+        // start debugging here: ↓ ↓ ↓ ↓ ↓
+        describeMyFavoriteThing(newFavorite);
+
+  +slide
+    h3 This Is Called 
+      em.hugify Referential Transparency
+    p.fragment.
+      This means the function call can always be replaced with its return value
+      without breaking the program.
+
+  +slide
+    h3 We can replace any pure function with its return value &amp; get the #[em same result]:
+    pre
+      code.js.
+        const chz = `I love ${clarifyFavoriteThing('cheddar')}`;
+    p ...is the same as...
+    pre
+      code.js.
+        const chz = 'I love aged cheddar.';
+
+  +slide
+    h3 Testing’s Never Been #[em Easier]:
+    pre
+      code.js.
+        expect(clarifyFavoriteThing('cheddar'))
+          .toEqual('aged cheddar');
+
+  +slide
+    h3 This enables a #[del magical] functional technique:
+      em.hugify Composition
+    pre
+      code.js.
+        const showClarifiedFavorite = compose(
+          describeMyFavoriteThing,
+          clarifyFavoriteThing
+        );
+
+        showClarifiedFavorite('whiskey');
+        //=> "I prefer to drink quality aged whiskey."
+    p Try this live: 
+        a(href="https://goo.gl/wQFhZK") https://goo.gl/wQFhZK
+
+  +slide
+    h3 Using #[em Composition] is the same as calling this:
+    pre
+      code.js.
+        describeMyFavoriteThing(clarifyFavoriteThing('whiskey'));
+        //=> "I prefer to drink quality aged whiskey."
+    p.fragment It just means we don't need the data up front.
+
+
+  +slide
+    h1.wider Partial Application#[br]&amp; Currying
+
+  +slide
+    h3 What if a function#[br]requires two arguments?
+    pre
+      code.js.
+        const getStatus = (minimum, student) => ({
+          ...student,
+          status: student.score >= minimum ? 'passed' : 'failed',
+        });
+
+        const printScore = (student) =>
+          `${student.name} ${student.status}.`;
+
+        compose(printScore, getStatus)({ name: 'Kim', score: 75 });
+        //=> "Cannot read property 'score' of undefined"
+    p Try this live: 
+        a(href="https://goo.gl/36qmnx") https://goo.gl/36qmnx
+
+  +slide
+    h3 Partial Application allows us to bind an argument to an uncalled function.
+    pre
+      code.js.
+        const getStatus = (minimum, student) => ({
+          ...student,
+          status: student.score >= minimum ? 'passed' : 'failed',
+        });
+
+        const minScore70 = getStatus.bind(null, 70);
+
+        minScore70({ name: 'Kim', score: 75 });
+        //=> {"name": "Kim", "score": 75, "status": "passed"}
+    p Try this live: 
+        a(href="https://goo.gl/oBTSnP") https://goo.gl/oBTSnP
+
+  +slide
+    h3 Currying is similar, but creates a chain of single-argument functions.
+    pre
+      code.js.
+        const getStatus = minimum => student => ({
+          ...student,
+          status: student.score >= minimum ? 'passed' : 'failed',
+        });
+
+        const minScore70 = getStatus(70);
+
+        minScore70({ name: 'Kim', score: 75 });
+        //=> {"name": "Kim", "score": 75, "status": "passed"}
+    p Try this live: 
+        a(href="https://goo.gl/M4aheK") https://goo.gl/M4aheK
+
+  +slide
+    h1.wider Using Ramda.js
+  
+  +slide
+    h3.wider Ramda is a popular #[em.hugify utility library] for functional programming 
+  
+  +slide
+    h3 For example, it can curry any function easily:
+    pre
+      code.js.
+        const getStatus = (minimum, student) => ({
+          ...student,
+          status: student.score >= minimum ? 'passed' : 'failed',
+        });
+
+        const getStatusCurried = R.curry(getStatus);
+
+        const minScore70 = getStatusCurried(70);
+
+        minScore70({ name: 'Kim', score: 75 });
+        //=> {"name": "Kim", "score": 75, "status": "passed"}
+    p Try this live: 
+        a(href="https://goo.gl/rKmEps") https://goo.gl/rKmEps
+  
+  +slide
+    h3 Let’s build an app#[br]using Ramda!
+    pre
+      code.
+        git clone git@github.com:jlengstorf/workshop-fp-ramda.git
+  
+  +slide
+    h3 Get an API key from Pixabay
+    ol
+      li Create or log in to your Pixabay account at 
+        a(href="https://pixabay.com/en/accounts/login/?next=/api/docs/") pixabay.com
+      li Once logged in, head to 
+        a(href="https://pixabay.com/api/docs/") pixabay.com/api/docs/
+      li Scroll down to the “Search Images” section
+      li Copy your API key from the #[code key] parameter
+
+  +slide
+    h1 Recap
+
+  +slide
+    h3 Functional programming#[br]helps us write code that is:
+    ul(style="width: 80%")
+      li.fragment Easier to understand and debug
+      li.fragment Cheaper and easier to maintain
+      li.fragment More legible
+      li.fragment More reusable
+      li.fragment More testable
+      li.fragment Less error-prone
+
+  +slide
+    h3 Functional programming doesn’t require any math.
+    ol(style="width: 90%")
+      li.fragment Take advantage of array methods to avoid complex loops.
+      li.fragment Write composable functions for easier testing and debugging.
+      li.fragment.
+        Use partial application to turn general-purpose functions into 
+        specific ones.
+
+  +slide
+    h3 You can go #[em waaay deeper]...
+    p.fragment.
+      ...but just these three techniques will save you hours of headaches and 
+      make your code better and easier to deal with going forward.
 
   //- Q&A
   +slide
