@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Functional Programming in JavaScript</title>
+    <meta name="description" content="Featuring Ramda.js">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link id="theme" rel="stylesheet" href="css/theme/lengstorf.css">
+    <link rel="stylesheet" href="lib/css/github.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script>
+      (function(d) {
+        var config = {
+          kitId: 'fnr1orp',
+          scriptTimeout: 3000,
+          async: true
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+      
+    </script>
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+      
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1 style="font-size: 110px">Functional Programming in JavaScript</h1>
+          <h3>Featuring Ramda.js</h3>
+          <p>by <a href="https://code.lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a>&nbsp; · &nbsp;<a href="mailto:jason@lengstorf.com">jason@lengstorf.com</a></small></p>
+          <p><small>Slides: <a href="https://git.io/v9L9Z">git.io/v9L9Z</a></small></p>
+        </section>
+        <section>
+          <h2>TKTK</h2>
+        </section>
+        <section>
+          <h2 class="no-margin">Thanks!</h2><img src="./images/work-life-balance/jason-lengstorf.jpg" alt="Jason Lengstorf" style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;">
+          <p style="margin-top: 0.25rem;">Jason Lengstorf<br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a>&nbsp; · &nbsp;<a href="mailto:jason@lengstorf.com">jason@lengstorf.com</a></small></p>
+        </section>
+        <section class="u--align-left resourcetext">
+          <h4>Resources</h4>
+          <ol>
+            <li><a href="http://www.enginesofmischief.com/makers/evan/pubs/crunch.html">Why Crunch Mode Doesn’t Work: 6 Lessons</a></li>
+            <li><a href="http://www.employment-studies.co.uk/report-summary-working-long-hours-review-evidence-volume-1-%E2%80%93-main-report">Working Long Hours: a Review of the Evidence</a></li>
+            <li><a href="http://www.nytimes.com/2014/06/01/opinion/sunday/why-you-hate-work.html?_r=0">Why You Hate Work</a></li>
+            <li><a href="http://archive.news.ku.edu/2012/april/23/outdoors.shtml">Researchers find time in wild boosts creativity, insight, and problem solving</a></li>
+            <li><a href="https://hbr.org/2012/12/the-upside-of-downtime">The Upside of Downtime</a></li>
+            <li><a href="https://blog.codinghorror.com/the-multi-tasking-myth/">The Multitasking Myth</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1739867/pdf/v057p00649.pdf">Moderate sleep deprivation produces impairments in cognitive and motor performance equivalent to legally prescribed levels of alcohol intoxication</a></li>
+            <li><a href="http://blog.idonethis.com/science-of-better-energy-management/">
+                The Science Behind Why Better Energy Management is the Key to Peak Productivity
+                
+                </a></li>
+          </ol>
+        </section>
+      </div>
+    </div>
+    <div class="hashtag">
+      <p>Tweet: <a href="https://twitter.com/intent/tweet?text=Functional%20Programming%20in%20JavaScript%20by%20%40jlengstorf&amp;hashtags=JazzCon&amp;related=jlengstorf%2CJazz_Con&amp;url=https%3A%2F%2Fgit.io%2Fv9L9Z" target="_blank">@jlengstorf #JazzCon</a></p>
+    </div>
+    <footer>
+      <ul class="inline">
+        <li>“Functional Programming in JavaScript” by <a href="https://code.lengstorf.com/">Jason Lengstorf</a> (slides: <a href="https://git.io/v9L9Z">git.io/v9L9Z</a>)</li>
+        <li><a href="https://twitter.com/jlengstorf">@jlengstorf</a></li>
+        <li><a href="https://github.com/jlengstorf">github.com/jlengstorf</a></li>
+      </ul>
+    </footer>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+      // We'll reference this element several times
+      var htmlElement = document.querySelector('html');
+      
+      // Bind a function to the `fragmentshown` event so we can do some custom bits
+      Reveal.addEventListener('fragmentshown', function (event) {
+        var fragment = event.fragment;
+      
+        // For fragments with a `dim-the-lights` class, we dim the lights
+        if (fragment.classList && fragment.classList.contains('dim-the-lights')) {
+          htmlElement.classList.add('blackout');
+        }
+      });
+      
+      // Define a quick function to remove the blackout class from the document
+      var removeBlackout = function removeBlackout() {
+        return htmlElement.classList.remove('blackout');
+      };
+      
+      // Bind the function to Reveal actions so we get the desired effect
+      Reveal.addEventListener('fragmenthidden', removeBlackout);
+      Reveal.addEventListener('slidechanged', removeBlackout);
+      
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+        transition: 'none',
+        backgroundTransition: 'none',
+      
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+      
+    </script>
+  </body>
+</html>

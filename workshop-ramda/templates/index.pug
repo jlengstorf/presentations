@@ -1,0 +1,153 @@
+//- Use the presentation layout so we can keep this clean
+extends layouts/presentation
+
+block append config
+  -
+    config.theme = 'lengstorf';
+    config.title = 'Functional Programming in JavaScript';
+    config.description = 'Featuring Ramda.js';
+
+    config.author = {
+      name: 'Jason Lengstorf',
+      email: 'jason@lengstorf.com',
+      link: 'https://code.lengstorf.com/',
+      twitter: 'jlengstorf',
+      github: 'jlengstorf',
+    };
+    
+    config.slides = {
+      link: 'https://git.io/v9L9Z',
+    };
+
+    config.conference = {
+      hashtag: 'JazzCon',
+      twitter: 'Jazz_Con',
+    };
+  -
+
+//- Add your slides here. See templates/includes/_mixins.pug for information 
+//- on how `+slide` works.
+block slides
+  //- TITLE SLIDE
+  +slide
+    h1(style="font-size: 110px")= config.title
+    h3= config.description
+    
+    p by 
+      a(href= config.author.link)= config.author.name
+      br
+      small
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        | &nbsp; · &nbsp;
+        a(href= `mailto:${config.author.email}`)= config.author.email
+    
+    p
+      small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
+
+  //- INTRO
+  +slide
+    h2 TKTK
+
+  //- Q&A
+  +slide
+    h2.no-margin Thanks!
+    img(
+      src="./images/work-life-balance/jason-lengstorf.jpg"
+      alt="Jason Lengstorf"
+      style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;"
+    )
+    p(style="margin-top: 0.25rem;")= config.author.name
+      br
+      small
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        | &nbsp; · &nbsp;
+        a(href= `mailto:${config.author.email}`)= config.author.email
+
+  //- Resources
+  +slide.u--align-left.resourcetext
+    h4 Resources
+    ol
+      li
+        a(href="http://www.enginesofmischief.com/makers/evan/pubs/crunch.html").
+          Why Crunch Mode Doesn’t Work: 6 Lessons
+      li
+        a(href="http://www.employment-studies.co.uk/report-summary-working-long-hours-review-evidence-volume-1-%E2%80%93-main-report").
+          Working Long Hours: a Review of the Evidence
+      li
+        a(href="http://www.nytimes.com/2014/06/01/opinion/sunday/why-you-hate-work.html?_r=0").
+          Why You Hate Work
+      li
+        a(href="http://archive.news.ku.edu/2012/april/23/outdoors.shtml").
+          Researchers find time in wild boosts creativity, insight, and problem solving
+      li
+        a(href="https://hbr.org/2012/12/the-upside-of-downtime").
+          The Upside of Downtime
+      li
+        a(href="https://blog.codinghorror.com/the-multi-tasking-myth/").
+          The Multitasking Myth
+      li
+        a(href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1739867/pdf/v057p00649.pdf").
+          Moderate sleep deprivation produces impairments in cognitive and motor performance equivalent to legally prescribed levels of alcohol intoxication
+      li
+        a(href="http://blog.idonethis.com/science-of-better-energy-management/").
+          The Science Behind Why Better Energy Management is the Key to Peak Productivity
+
+
+block styles
+  link(
+    rel="stylesheet"
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  )
+  script.
+    (function(d) {
+      var config = {
+        kitId: 'fnr1orp',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+
+block extras
+  -
+    const relatedAccounts = [config.author.twitter];
+    
+    if (config.conference.twitter) {
+      relatedAccounts.push(config.conference.twitter);
+    }
+
+    // See https://dev.twitter.com/web/tweet-button/web-intent for parameters.
+    const tweetObj = {
+      text: `${config.title} by @${config.author.twitter}`,
+      hashtags: config.conference.hashtag || '',
+      related: relatedAccounts.join(','),
+      url: config.slides.link,
+    };
+
+    // 
+    const e = encodeURIComponent;
+    const args = Object.keys(tweetObj).map(key => `${key}=${e(tweetObj[key])}`);
+    const tweetUrl = `https://twitter.com/intent/tweet?${args.join('&')}`;
+  -
+  .hashtag
+    p
+      | Tweet: 
+      a(
+        href=tweetUrl
+        target="_blank"
+      ) @#{config.author.twitter} 
+        | #{config.conference.hashtag ? `#${config.conference.hashtag}` : ''}
+  footer
+    ul.inline
+      li
+        | “#{config.title}” by 
+        a(href= config.author.link)= config.author.name
+        |  (slides: 
+        a(href= config.slides.link)= config.slides.link.replace('https://', '')
+        | )
+      li
+        a(href="https://twitter.com/"+config.author.twitter).
+          @#{config.author.twitter}
+      li
+        a(href="https://github.com/"+config.author.github).
+          github.com/#{config.author.github}
