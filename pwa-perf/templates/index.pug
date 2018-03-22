@@ -1,0 +1,385 @@
+//- Use the presentation layout so we can keep this clean
+extends layouts/presentation
+
+block append config
+  -
+    config.theme = 'lengstorf';
+    config.title = 'Progressive Web Apps';
+    config.description = 'Looks Like 🥒 · Tastes Like 🥓';
+
+    config.author = {
+      name: 'Jason Lengstorf',
+      email: 'jason@lengstorf.com',
+      link: 'https://code.lengstorf.com/',
+      twitter: 'jlengstorf',
+      github: 'jlengstorf',
+    };
+    
+    config.slides = {
+      link: 'https://git.io/v9tEr',
+    };
+
+    config.conference = {
+      hashtag: 'PerfMatters',
+      twitter: 'perfmattersconf',
+    };
+  -
+
+//- Add your slides here. See templates/includes/_mixins.pug for information 
+//- on how `+slide` works.
+block slides
+  +slide
+    h1= config.title
+    h3= config.description
+    
+    p by 
+      a(href= config.author.link)= config.author.name
+      br
+      small
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        |  | 
+        a(href= `mailto:${config.author.email}`)= config.author.email
+    
+    p
+      small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
+
+  //- INTRO
+  +slide
+    h2 How much does your website
+      span.hugify(style="font-size: 280%") #[strong cost]?
+  
+  +slide
+    h3 We measure cost in seconds:
+    img.no-margin(
+      src="images/progressive-web-apps/load-cost-seconds.svg"
+      alt="seconds to load popular websites"
+    )
+    p.no-margin
+      small Source: Time To Interactive from Lighthouse. I ran the test twice and took the faster time.
+
+  +slide
+    h3 Time isn’t the only cost
+    blockquote.twitter-tweet(data-lang="en")
+      p(lang="en" dir="ltr")
+        a(href="https://twitter.com/Una") @Una
+        | Yes. On a recent trip to the US I spent $7 to load the conference homepage on my iPhone.
+      | &mdash; Roy Tomeij (@roy) 
+      a(href="https://twitter.com/roy/status/861563195424681985") May 8, 2017
+    script(async src="//platform.twitter.com/widgets.js" charset="utf-8")
+
+  +slide
+    h2 Mobile Data Can Be #[strong.hugify Expensive]
+  
+  +slide
+    h1(style="font-size: 420%") $2.05/MB
+    p
+      small Price in USD for a #[a(href="https://www.att.com/offers/international-plans/compare-options.html") US-based AT&amp;T customer traveling internationally].
+    
+    aside.notes.
+      Roy Tomeij
+      #[a(href="https://twitter.com/roy/status/861589144123920384") pays USD $2.74 per MB] 
+      on his Netherlands-based plan while traveling abroad.
+
+  +slide
+    h3 Websites are getting larger
+    img.no-margin(
+      src="images/progressive-web-apps/page-size-trend.svg"
+      alt="website size from 2012 to 2017"
+    )
+    p.no-margin
+      small Source: 
+        a(
+          href="http://httparchive.org/trends.php?s=All&minlabel=Mar+15+2012&maxlabel=Apr+15+2017#bytesTotal&reqTotal"
+        ) HTTP Archive
+
+  +slide
+    h3 Would you #[strong pay $10]#[br]to load this website?
+    img.no-margin(
+      src="images/progressive-web-apps/new-yorker.png"
+      alt="cost in USD to load popular websites"
+    )
+
+    aside.notes
+      ul
+        li Twitter: $0.21 (0.1 MB)
+        li Google: $0.61 (0.3 MB)
+        li Facebook: $1.23 (0.6 MB)
+        li Smashing Conf: $1.23 (0.6 MB)
+        li OSCON: $12.01 (5.9 MB)
+        li CSS Dev Conf: $30.14 (14.7 MB)
+
+  +slide
+    h2 Also: loading huge sites on mobile just 
+      strong(style="font-size: 345%;") sucks
+    
+    aside.notes.
+      They’re slow, they jump all over, and if you’re on a train or in an 
+      elevator, they fail and give errors if the connection stutters.
+  
+  +slide
+    img(
+      src="images/progressive-web-apps/no-connection.png"
+      alt="Chrome’s no connection screen"
+      style="width: 80%;"
+    )
+    p.no-margin ...and what if the connection is flaky?
+
+    aside.notes.
+      On less reliable connections, the site might not load at all, or it’ll time
+      out and end up on the “no connection” screen.
+
+  +slide
+    h1 We Can Fix It!
+    p
+      small.fragment (And it doesn’t mean starting from scratch.)
+  
+  +slide
+    h3 The Solution:
+    h1
+      em Progressive Web Apps
+
+  +slide
+    h3 With Progressive Web Apps (PWAs), we can:
+    ol
+      li.fragment Significantly decrease the amount of data transferred on each page load
+      li.fragment Improve the experience for users on unreliable connections
+
+  +slide
+    img(
+      src="images/progressive-web-apps/boooooring.gif"
+      alt="boooooring"
+      style="width: 100%;"
+    )
+    h3 Booooooooooooooring!
+  
+  +slide
+    h4 “That’s not my target market.”
+
+    aside.notes.
+      PWAs seem like a lot of work to help users that may not be in your 
+      demographic. And a lot of the language around PWAs mentions international
+      markets with flaky internet and poor infrastructure, so that’s not really
+      an unfair thing to believe.
+
+  +slide
+    img(
+      src="images/progressive-web-apps/eat-your-veggies.gif"
+      alt="eat your veggies"
+      style="width: 100%;"
+    )
+    
+    aside.notes.
+      The checklist to meet “Progressive Web App” standards isn’t
+      short, and a lot of the items on the list seem pretty complicated to 
+      implement. Adding PWA features to an app might sound an awful lot like 
+      being told to eat your vegetables.
+
+  +slide
+    h3 Can’t we just #[strong ignore] PWAs?
+
+  +slide
+    h1 Nope
+
+  +slide
+    h2 Here’s why:
+    ul
+      li.fragment PWAs decrease load times on #[strong all] connections
+      li.fragment Perceived load times improve
+      li.fragment Stability improves for mobile users everywhere
+      li.fragment User experience is better all around
+    
+    aside.notes.
+      By caching resources, repeat visists and navigating to new pages is 
+      lightweight — and it’s #[em fast]. It eliminates HTTP requests, so 
+      stability improves. And with all that combined, the user experience gets
+      better — even for users on high-speed connections.
+
+  +slide
+    img(
+      src="images/progressive-web-apps/bacon.gif"
+      alt="bacon"
+    )
+    h3 That sounds #[em significantly more awesome] than eating vegetables.
+
+  +slide
+    h2 What exactly #[em is] a PWA?
+    ul
+      li.fragment TKTK
+
+  //- 
+    What is a PWA?
+      - Service Worker
+      - Web Manifest
+    
+    ...does that guarantee great performance?
+      - No.
+    
+    So what else do I need?
+      - Load the critical stuff super-fast
+      - Get rid of all the unnecessary stuff
+      - Preload stuff that will eventually be necessary
+      - And make all of that invisible to users
+    
+    Can you make that less confusing?
+      - I sure hope so.
+    
+    Websites are made up of four things:
+      - HTML
+      - CSS
+      - JavaScript
+      - Assets: images, video, etc.
+    
+    What’s “critical”?
+      - HTML (so there’s content to see)
+      - CSS (so the content doesn’t look like crap)
+      - ...and that’s (probably) it
+    
+    But what if we use React/Angular/Vue/[JS framework]?
+      - ☹️ Loading 100KB of JavaScript before anything can be displayed
+      - 😐 Showing a loading spinner while the framework initializes
+      - 😊 Server-side rendering so no JavaScript is required to display the page
+    
+    Server-side rendering is hard!
+      - Yep.
+    
+
+
+  +slide
+    h1 Let’s Recap
+
+  +slide
+    h3 Progressive Web Apps:
+    ul
+      li.fragment Make our apps faster
+      li.fragment Improve the user experience on all devices
+      li.fragment Increase the reliability of our app
+      li.fragment Allow our users to “install” our app on their home screen
+    p.fragment All with a few minutes of effort.
+
+  +slide
+    p.
+      And with just a bit of extra work, we can lazy load resources to further 
+      improve load times.
+  
+  +slide
+    h2 Progressive Web Apps are #[em Awesome]
+
+  +slide
+    h3 With very little effort, we can build web apps that feel just as snappy as 
+      em.hugify native apps
+
+  +slide
+    h3 It’s not
+    h1 🥕🥒🌽 
+    span.fragment
+      h3 It’s
+      h1 🥓🥓🥓
+
+  //- Q&A
+  +slide
+    h1.no-margin Thanks!
+    img(
+      src="./images/work-life-balance/jason-lengstorf.jpg"
+      alt="Jason Lengstorf"
+      style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;"
+    )
+    p(style="margin-top: 0.25rem;")= config.author.name
+      br
+      small
+        | Follow me on Twitter: 
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        //- | &nbsp; · &nbsp;
+        //- a(href= `mailto:${config.author.email}`)= config.author.email
+
+  //- Resources
+  +slide.resourcetext
+    h3 Resources
+    ol
+      li
+        a(
+          href="https://jakearchibald.com/2014/offline-cookbook/"
+        ) Jake Archibald’s Offline Cookbook
+      li
+        a(
+          href="https://developers.google.com/web/tools/lighthouse/"
+        ) Lighthouse
+      li
+        a(
+          href="https://github.com/GoogleChrome/sw-precache"
+        ) sw-precache
+      li
+        a(
+          href="https://github.com/goldhand/sw-precache-webpack-plugin"
+        ) sw-precache-webpack-plugin
+      li
+        a(
+          href="http://realfavicongenerator.net/"
+        ) Favicon Generator (for manifest.json)
+      li
+        a(
+          href="https://github.com/jlengstorf/responsive-lazyload.js"
+        ) responsive-lazyload.js
+      li
+        a(
+          href="https://pouchdb.com/"
+        ) PouchDB
+
+
+block styles
+  link(
+    rel="stylesheet"
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  )
+  script.
+    (function(d) {
+      var config = {
+        kitId: 'fnr1orp',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+
+block extras
+  -
+    const relatedAccounts = [config.author.twitter];
+    
+    if (config.conference.twitter) {
+      relatedAccounts.push(config.conference.twitter);
+    }
+
+    // See https://dev.twitter.com/web/tweet-button/web-intent for parameters.
+    const tweetObj = {
+      text: `${config.title} by @${config.author.twitter}`,
+      hashtags: config.conference.hashtag || '',
+      related: relatedAccounts.join(','),
+      url: config.slides.link,
+    };
+
+    // 
+    const e = encodeURIComponent;
+    const args = Object.keys(tweetObj).map(key => `${key}=${e(tweetObj[key])}`);
+    const tweetUrl = `https://twitter.com/intent/tweet?${args.join('&')}`;
+  -
+  .hashtag
+    p
+      | Tweet: 
+      a(
+        href=tweetUrl
+        target="_blank"
+      ) @#{config.author.twitter} 
+        | #{config.conference.hashtag ? `#${config.conference.hashtag}` : ''}
+  footer
+    ul.inline
+      li
+        | “#{config.title}” by 
+        a(href= config.author.link)= config.author.name
+        |  (slides: 
+        a(href= config.slides.link)= config.slides.link.replace('https://', '')
+        | )
+      li
+        a(href="https://twitter.com/"+config.author.twitter).
+          @#{config.author.twitter}
+      li
+        a(href="https://github.com/"+config.author.github).
+          github.com/#{config.author.github}

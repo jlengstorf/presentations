@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Progressive Web Apps</title>
+    <meta name="description" content="Looks Like 🥒 · Tastes Like 🥓">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link id="theme" rel="stylesheet" href="css/theme/lengstorf.css">
+    <link rel="stylesheet" href="lib/css/github.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script>
+      (function(d) {
+        var config = {
+          kitId: 'fnr1orp',
+          scriptTimeout: 3000,
+          async: true
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+      
+    </script>
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+      
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>Progressive Web Apps</h1>
+          <h3>Looks Like 🥒 · Tastes Like 🥓</h3>
+          <p>by <a href="https://code.lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a> | <a href="mailto:jason@lengstorf.com">jason@lengstorf.com</a></small></p>
+          <p><small>Slides: <a href="https://git.io/v9tEr">git.io/v9tEr</a></small></p>
+        </section>
+        <section>
+          <h2>How much does your website<span class="hugify" style="font-size: 280%"><strong>cost</strong>?</span></h2>
+        </section>
+        <section>
+          <h3>We measure cost in seconds:</h3><img class="no-margin" src="images/progressive-web-apps/load-cost-seconds.svg" alt="seconds to load popular websites">
+          <p class="no-margin"><small>Source: Time To Interactive from Lighthouse. I ran the test twice and took the faster time.</small></p>
+        </section>
+        <section>
+          <h3>Time isn’t the only cost</h3>
+          <blockquote class="twitter-tweet" data-lang="en">
+            <p lang="en" dir="ltr"><a href="https://twitter.com/Una">@Una</a>Yes. On a recent trip to the US I spent $7 to load the conference homepage on my iPhone.</p>&mdash; Roy Tomeij (@roy) <a href="https://twitter.com/roy/status/861563195424681985">May 8, 2017</a>
+          </blockquote>
+          <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </section>
+        <section>
+          <h2>Mobile Data Can Be <strong class="hugify">Expensive</strong></h2>
+        </section>
+        <section>
+          <h1 style="font-size: 420%">$2.05/MB</h1>
+          <p><small>Price in USD for a <a href="https://www.att.com/offers/international-plans/compare-options.html">US-based AT&amp;T customer traveling internationally</a>.</small></p>
+          <aside class="notes">
+            Roy Tomeij
+            <a href="https://twitter.com/roy/status/861589144123920384">pays USD $2.74 per MB</a> 
+            on his Netherlands-based plan while traveling abroad.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>Websites are getting larger</h3><img class="no-margin" src="images/progressive-web-apps/page-size-trend.svg" alt="website size from 2012 to 2017">
+          <p class="no-margin"><small>Source: <a href="http://httparchive.org/trends.php?s=All&amp;minlabel=Mar+15+2012&amp;maxlabel=Apr+15+2017#bytesTotal&amp;reqTotal">HTTP Archive</a></small></p>
+        </section>
+        <section>
+          <h3>Would you <strong>pay $10</strong><br>to load this website?</h3><img class="no-margin" src="images/progressive-web-apps/new-yorker.png" alt="cost in USD to load popular websites">
+          <aside class="notes">
+            <ul>
+              <li>Twitter: $0.21 (0.1 MB)</li>
+              <li>Google: $0.61 (0.3 MB)</li>
+              <li>Facebook: $1.23 (0.6 MB)</li>
+              <li>Smashing Conf: $1.23 (0.6 MB)</li>
+              <li>OSCON: $12.01 (5.9 MB)</li>
+              <li>CSS Dev Conf: $30.14 (14.7 MB)</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h2>Also: loading huge sites on mobile just <strong style="font-size: 345%;">sucks</strong></h2>
+          <aside class="notes">
+            They’re slow, they jump all over, and if you’re on a train or in an 
+            elevator, they fail and give errors if the connection stutters.
+            
+          </aside>
+        </section>
+        <section><img src="images/progressive-web-apps/no-connection.png" alt="Chrome’s no connection screen" style="width: 80%;">
+          <p class="no-margin">...and what if the connection is flaky?</p>
+          <aside class="notes">
+            On less reliable connections, the site might not load at all, or it’ll time
+            out and end up on the “no connection” screen.
+            
+          </aside>
+        </section>
+        <section>
+          <h1>We Can Fix It!</h1>
+          <p><small class="fragment">(And it doesn’t mean starting from scratch.)</small></p>
+        </section>
+        <section>
+          <h3>The Solution:</h3>
+          <h1><em>Progressive Web Apps</em></h1>
+        </section>
+        <section>
+          <h3>With Progressive Web Apps (PWAs), we can:</h3>
+          <ol>
+            <li class="fragment">Significantly decrease the amount of data transferred on each page load</li>
+            <li class="fragment">Improve the experience for users on unreliable connections</li>
+          </ol>
+        </section>
+        <section><img src="images/progressive-web-apps/boooooring.gif" alt="boooooring" style="width: 100%;">
+          <h3>Booooooooooooooring!</h3>
+        </section>
+        <section>
+          <h4>“That’s not my target market.”</h4>
+          <aside class="notes">
+            PWAs seem like a lot of work to help users that may not be in your 
+            demographic. And a lot of the language around PWAs mentions international
+            markets with flaky internet and poor infrastructure, so that’s not really
+            an unfair thing to believe.
+            
+          </aside>
+        </section>
+        <section><img src="images/progressive-web-apps/eat-your-veggies.gif" alt="eat your veggies" style="width: 100%;">
+          <aside class="notes">
+            The checklist to meet “Progressive Web App” standards isn’t
+            short, and a lot of the items on the list seem pretty complicated to 
+            implement. Adding PWA features to an app might sound an awful lot like 
+            being told to eat your vegetables.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>Can’t we just <strong>ignore</strong> PWAs?</h3>
+        </section>
+        <section>
+          <h1>Nope</h1>
+        </section>
+        <section>
+          <h2>Here’s why:</h2>
+          <ul>
+            <li class="fragment">PWAs decrease load times on <strong>all</strong> connections</li>
+            <li class="fragment">Perceived load times improve</li>
+            <li class="fragment">Stability improves for mobile users everywhere</li>
+            <li class="fragment">User experience is better all around</li>
+          </ul>
+          <aside class="notes">
+            By caching resources, repeat visists and navigating to new pages is 
+            lightweight — and it’s <em>fast</em>. It eliminates HTTP requests, so 
+            stability improves. And with all that combined, the user experience gets
+            better — even for users on high-speed connections.
+            
+          </aside>
+        </section>
+        <section><img src="images/progressive-web-apps/bacon.gif" alt="bacon">
+          <h3>That sounds <em>significantly more awesome</em> than eating vegetables.</h3>
+        </section>
+        <section>
+          <h2>What exactly <em>is</em> a PWA?</h2>
+          <ul>
+            <li class="fragment">TKTK</li>
+          </ul>
+        </section>
+        <section>
+          <h1>Let’s Recap</h1>
+        </section>
+        <section>
+          <h3>Progressive Web Apps:</h3>
+          <ul>
+            <li class="fragment">Make our apps faster</li>
+            <li class="fragment">Improve the user experience on all devices</li>
+            <li class="fragment">Increase the reliability of our app</li>
+            <li class="fragment">Allow our users to “install” our app on their home screen</li>
+          </ul>
+          <p class="fragment">All with a few minutes of effort.</p>
+        </section>
+        <section>
+          <p>
+            And with just a bit of extra work, we can lazy load resources to further 
+            improve load times.
+            
+          </p>
+        </section>
+        <section>
+          <h2>Progressive Web Apps are <em>Awesome</em></h2>
+        </section>
+        <section>
+          <h3>With very little effort, we can build web apps that feel just as snappy as <em class="hugify">native apps</em></h3>
+        </section>
+        <section>
+          <h3>It’s not</h3>
+          <h1>🥕🥒🌽 </h1><span class="fragment">
+            <h3>It’s</h3>
+            <h1>🥓🥓🥓</h1></span>
+        </section>
+        <section>
+          <h1 class="no-margin">Thanks!</h1><img src="./images/work-life-balance/jason-lengstorf.jpg" alt="Jason Lengstorf" style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;">
+          <p style="margin-top: 0.25rem;">Jason Lengstorf<br><small>Follow me on Twitter: <a href="https://twitter.com/jlengstorf">@jlengstorf</a></small></p>
+        </section>
+        <section class="resourcetext">
+          <h3>Resources</h3>
+          <ol>
+            <li><a href="https://jakearchibald.com/2014/offline-cookbook/">Jake Archibald’s Offline Cookbook</a></li>
+            <li><a href="https://developers.google.com/web/tools/lighthouse/">Lighthouse</a></li>
+            <li><a href="https://github.com/GoogleChrome/sw-precache">sw-precache</a></li>
+            <li><a href="https://github.com/goldhand/sw-precache-webpack-plugin">sw-precache-webpack-plugin</a></li>
+            <li><a href="http://realfavicongenerator.net/">Favicon Generator (for manifest.json)</a></li>
+            <li><a href="https://github.com/jlengstorf/responsive-lazyload.js">responsive-lazyload.js</a></li>
+            <li><a href="https://pouchdb.com/">PouchDB</a></li>
+          </ol>
+        </section>
+      </div>
+    </div>
+    <div class="hashtag">
+      <p>Tweet: <a href="https://twitter.com/intent/tweet?text=Progressive%20Web%20Apps%20by%20%40jlengstorf&amp;hashtags=PerfMatters&amp;related=jlengstorf%2Cperfmattersconf&amp;url=https%3A%2F%2Fgit.io%2Fv9tEr" target="_blank">@jlengstorf #PerfMatters</a></p>
+    </div>
+    <footer>
+      <ul class="inline">
+        <li>“Progressive Web Apps” by <a href="https://code.lengstorf.com/">Jason Lengstorf</a> (slides: <a href="https://git.io/v9tEr">git.io/v9tEr</a>)</li>
+        <li><a href="https://twitter.com/jlengstorf">@jlengstorf</a></li>
+        <li><a href="https://github.com/jlengstorf">github.com/jlengstorf</a></li>
+      </ul>
+    </footer>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+      // We'll reference this element several times
+      var htmlElement = document.querySelector('html');
+      
+      // Bind a function to the `fragmentshown` event so we can do some custom bits
+      Reveal.addEventListener('fragmentshown', function (event) {
+        var fragment = event.fragment;
+      
+        // For fragments with a `dim-the-lights` class, we dim the lights
+        if (fragment.classList && fragment.classList.contains('dim-the-lights')) {
+          htmlElement.classList.add('blackout');
+        }
+      });
+      
+      // Define a quick function to remove the blackout class from the document
+      var removeBlackout = function removeBlackout() {
+        return htmlElement.classList.remove('blackout');
+      };
+      
+      // Bind the function to Reveal actions so we get the desired effect
+      Reveal.addEventListener('fragmenthidden', removeBlackout);
+      Reveal.addEventListener('slidechanged', removeBlackout);
+      
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+        transition: 'none',
+        backgroundTransition: 'none',
+      
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+      
+    </script>
+  </body>
+</html>
