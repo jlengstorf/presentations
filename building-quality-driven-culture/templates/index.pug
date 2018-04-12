@@ -16,7 +16,7 @@ block append config
     };
     
     config.slides = {
-      link: 'https://git.io/vA0BN',
+      link: 'https://git.io/test-culture',
     };
 
     config.conference = {
@@ -29,7 +29,7 @@ block append config
 //- on how `+slide` works.
 block slides
   +slide
-    h1(style="width: 110%; margin-left: -5%; font-size: 75px;")= config.title
+    h1(style="width: 110%; margin-top: 80px; margin-left: -5%; font-size: 75px;")= config.title
     h3= config.description
     
     p by 
@@ -209,6 +209,10 @@ block slides
       src="../images/building-quality-driven-culture/test-jest.png"
       alt="Testing with Jest."
     )
+
+    aside.notes.
+      Tools like Jest and Cypress have an all-in-one API that eliminates a lot
+      of the cognitive overhead of setting up and searching the docs.
   
   +slide
     h3 Starting from 0% is #[strong hard]
