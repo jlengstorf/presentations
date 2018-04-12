@@ -3,14 +3,14 @@
  */
 
 // Default mixins and settings -----------------
-@import "../template/mixins";
-@import "../template/settings";
+@import '../template/mixins';
+@import '../template/settings';
 // ---------------------------------------------
 
 // Override theme settings (see ../template/settings.scss)
-$mainFont: mallory, sans-serif;//'Mercury Text G2 A', 'Mercury Text G2 B', 'Mercury Text G2', Georgia, "Times New Roman", Times, serif;
+$mainFont: mallory, sans-serif; //'Mercury Text G2 A', 'Mercury Text G2 B', 'Mercury Text G2', Georgia, "Times New Roman", Times, serif;
 $mainColor: #56453b;
-$headingFont: mallory, -apple-system, sans-serif;//'Knockout 67 A', 'Knockout 67 B', 'Knockout-HTF67-FullBantamwt', impact, sans-serif;;
+$headingFont: mallory, -apple-system, sans-serif; //'Knockout 67 A', 'Knockout 67 B', 'Knockout-HTF67-FullBantamwt', impact, sans-serif;;
 $headingColor: #382a2c;
 $headingLetterSpacing: auto;
 $headingTextShadow: none;
@@ -22,7 +22,7 @@ $linkColor: darken(#ff7800, 7.5%);
 $linkColorHover: lighten($linkColor, 20%);
 $selectionBackgroundColor: $linkColor;
 
-@import "../template/utils";
+@import '../template/utils';
 
 // Fix links so they are not cut off
 .reveal a:not(.image) {
@@ -36,7 +36,7 @@ $selectionBackgroundColor: $linkColor;
 }
 
 // Theme template ------------------------------
-@import "../template/theme";
+@import '../template/theme';
 // ---------------------------------------------
 
 html {
@@ -133,7 +133,9 @@ html {
   }
 
   h3,
-  h4 { font-weight: 800; }
+  h4 {
+    font-weight: 800;
+  }
 
   ul,
   ol {
@@ -191,11 +193,11 @@ html {
       }
     }
 
-    a[href*="twitter.com"]::before {
+    a[href*='twitter.com']::before {
       content: '\F099';
     }
 
-    a[href*="mailto"]::before {
+    a[href*='mailto']::before {
       position: relative;
       top: -0.15em;
       content: '\F0E0';
@@ -285,7 +287,7 @@ html {
 
         &::before {
           counter-increment: section;
-          content: counters(section, ".") ". ";
+          content: counters(section, '.') '. ';
           position: absolute;
           left: 0;
           top: 0.35em;
@@ -294,7 +296,7 @@ html {
         }
 
         a::after {
-          content: "(" attr(href) ")";
+          content: '(' attr(href) ')';
           display: block;
           color: lighten($mainColor, 30%);
           font-size: 62.5%;
@@ -320,8 +322,17 @@ html {
     }
 
     pre {
+      border: 1px solid #eee;
+      border-radius: 0.5rem;
+      box-shadow: none;
       font-size: 65%;
       line-height: 1.375;
+
+      code {
+        background-color: #fff;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+      }
     }
 
     code {
@@ -375,7 +386,7 @@ section li > code {
   padding: 0 8px !important;
   border: 1px solid #ccc !important;
   border-radius: 3px;
-  background: #eee;
+  background: #fff;
 }
 
 section div.code,
@@ -456,7 +467,7 @@ section .right {
   }
 
   &::before {
-    content: attr(data-credit-type) ": ";
+    content: attr(data-credit-type) ': ';
   }
 
   &__link {
@@ -526,15 +537,15 @@ footer {
           vertical-align: -5%;
         }
 
-        &[href*="twitter.com"]::before {
+        &[href*='twitter.com']::before {
           content: '\F099';
         }
 
-        &[href*="facebook.com"]::before {
+        &[href*='facebook.com']::before {
           content: '\F09A';
         }
 
-        &[href*="github.com"]::before {
+        &[href*='github.com']::before {
           content: '\F09B';
         }
       }
