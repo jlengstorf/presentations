@@ -1,27 +1,20 @@
-# GraphQL: Killer Speed, Quality Code, Better UX, and Simpler Development Workflow 🔥
+# Killer Speed, Quality Code, Better UX, and Simpler Development Workflow 🔥
 
-GraphQL is a better data layer. It consumes data from multiple data sources — REST APIs, databases, text files, and more — and creates a single endpoint with a simple, JSON-like syntax for retrieving just the data you need to build the UI.
+## How modern front-end workflows are changing everything
 
-Companies including Facebook (where GraphQL originated), Twitter, Airbnb, and more are moving to GraphQL. In this talk we’ll take a look at some of the reasons why, and how we can get those same benefits in our own projects.
+Is your stack so intuitive junior devs can pick it up in a day? Does it allow you to keep working even if the staging server is down? Is it crazy fast? Can you work 2–3x faster than before? In this talk, we’ll see how modern workflows provide all these benefits and more — all with minimal rewrites.
 
-## Outline
+## Full Abstract
 
-* What currently sucks?
-    * Data
-        * Finding docs about data (show 404 page)
-        * Having to bother other teams for data
-        * Waiting for data to be available (API is down)
-        * Getting data (REST fetch example)
-    * Loading spinners
-    * Long load times
-    * Managing app state
-* What if it didn’t suck anymore?
-    * Have a single place where all data is explorable, testable, and documented
-    * Create autonomy to allow teams to work in parallel
-    * Eliminate external dependencies during development
-    * Describe data declaratively and it just... arrives
-    * Show an explorable UI even when no data has been loaded
-    * Make the
-* How can we get to that magical place?
-    *
-* Recap.
+Modern front-end development is hard: more and more of the app logic is moving into the browser, putting more demands on front-end developers than ever before. This added complexity has led to a huge boom in tools and frameworks — and the results are incredible. In this talk, we’ll take a look at how the combination of modern JS frameworks and a modern data layer creates a better development experience than we’ve ever had before.
+
+Learn how these practices are being applied at some of the largest tech companies in the world to get incredible results, including:
+
+- Intuitive data access that developers of all skill levels can understand
+- Built-in patterns for boosting perceived performance
+- Increased autonomy for teams
+- Huge improvements in turnaround time and code quality
+
+Modern tools give us these improvements (almost) free, and the improvements can be dramatic: one of our pages saw a 245% improvement in loading time.
+
+The future of front-end is awesome. See how you can start living in the future today.
