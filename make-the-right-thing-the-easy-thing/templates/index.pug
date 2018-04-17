@@ -4,24 +4,24 @@ extends layouts/presentation
 block append config
   -
     config.theme = 'lengstorf';
-    config.title = 'Gatsby';
-    config.description = 'Two-Day Workshop';
+    config.title = 'Make the Right Thing the Easy Thing';
+    config.description = 'How to Design Systems and Processes Teams Actually Follow';
 
     config.author = {
       name: 'Jason Lengstorf',
       email: 'jason@lengstorf.com',
-      link: 'https://code.lengstorf.com/',
+      link: 'https://lengstorf.com/',
       twitter: 'jlengstorf',
       github: 'jlengstorf',
     };
     
     config.slides = {
-      link: 'https://git.io/tktk',
+      link: 'https://git.io/right-thing-easy-thing',
     };
 
     config.conference = {
-      hashtag: 'gatsbyjs',
-      twitter: 'gatsbyjs',
+      hashtag: 'LeadDevNewYork',
+      twitter: 'theleaddev',
     };
   -
 
@@ -29,8 +29,8 @@ block append config
 //- on how `+slide` works.
 block slides
   +slide
-    h1(style="font-size: 110px")= config.title
-    h3 And somehow managed#[br]to get more done
+    h1(style="font-size: 80px; width: 110%; margin-left: -5%; margin-top: 80px;")= config.title
+    h3(style="font-size: 40px; width: 110%; margin-left: -5%;")= config.description
     
     p by 
       a(href= config.author.link)= config.author.name
@@ -42,6 +42,145 @@ block slides
     
     p
       small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
+    
+  +slide
+    h2 TKTK
+  
+  //-
+    INTRODUCTION
+    - What makes working on a team hard?
+      - Knowledge silos
+      - Inconsistency between projects/teams
+      - Lack of documentation
+      - Bottlenecks and gatekeepers
+    - Are other developers just jerks?
+      - Of course not!
+      - Usually
+    - Then how does this bad stuff happen?
+      - We write code based on a mental model
+        - Typically, that mental model is complex
+        - [Illustration: seeing the Matrix]
+      - Everyone builds slightly different mental models
+        - [Illustration: two people, same problem, different models]
+      - The code we write only represents a fraction of the work that was done
+        - [Illustration: iceberg]
+      - Other developers don’t have access to our mental models
+        - [Illustration: code on stage in front of audience, model behind curtain]
+      - This leads to confusion and uncertainty
+        - [Illustration: TODO fix the mystery box that makes us money]
+      - Uncertainty leads to:
+        - Making the original author into a bottleneck
+        - Contextual knowledge being siloed in a given dev’s head (or within a team)
+        - Unwillingness to modify code — people code around it instead
+        - [Illustration: scaffolding around the mystery box]
+    - These issues happen in solo projects, too
+      - We build a mental context
+      - Then we write code
+      - Then we forget the mental context
+      - And when we come back, we can’t remember why we did things this way
+      - [Graphic: find that comic of “What idiot wrote this code?! Oh, it was me.”]
+    - How can we fix it?
+      - Documentation
+      - Code reviews
+      - Internal training
+      - Writing tests
+      - Style and quality guidelines
+      - [Illustration: docs, two people, presentation, green checkmarks, white glove]
+    - You just said all the worst things!
+      - [GIF: nope]
+    - This is the problem
+      - Many of us associate best practices with extra work
+      - Sometimes we have the energy, but usually we don’t
+      - If deadlines get tight, the “nice to have” stuff gets cut
+      - So even if we try, doing things the right way tends to slip over time
+    - Can we fix it?
+      - Yes!
+      - How?
+        - Identify the Right Things
+        - Make the Right Thing the Easy Thing
+      - Research to reference:
+        - Switch (Chip and Dan Heath)
+        - Additive vs. Subtractive (Precision Nutrition)
+        - How to Get People to Do Stuff (I forget the author’s name)
+
+    WHAT ARE THE RIGHT THINGS?
+    - Create consistent code across all teams
+      - Automate style corrections
+      - Enforce quality rules
+      - Require code reviews
+      - Enforce minimum test coverage (maybe only for new code at first)
+    - Design quality control processes
+      - Protect the master branch
+      - Enforce (or strongly suggest) a maximum pull request size
+    - Remove yourself as a bottleneck
+      - Understand that writing tons of code while the rest of the team is 
+        blocked or struggling is not making you a hero
+      - Comparison graphics
+        - Team of 10 average developers
+          - Output: 100%
+          - Contribution per dev: ~10%
+          - Chance of getting paged: ~10%
+        - Team of 10 with a “rockstar” developer
+          - Output: ~150%
+          - “Rockstar” contribution: > 50%
+          - Chance of “rockstar” getting paged: > 90%
+        - Team of 10 with a lead developer
+          - Output: ~200%
+          - Contribution per dev: ~10%
+          - Chance of getting paged: ~10%
+  
+  +slide(data-background="./images/make-the-right-thing-the-easy-thing/average-team.png")
+  +slide(data-background="./images/make-the-right-thing-the-easy-thing/average-team-details.png")
+  +slide(data-background="./images/make-the-right-thing-the-easy-thing/rockstar.png")
+  +slide(data-background="./images/make-the-right-thing-the-easy-thing/rockstar-details.png")
+  +slide(data-background="./images/make-the-right-thing-the-easy-thing/lead-dev.png")
+  +slide(data-background="./images/make-the-right-thing-the-easy-thing/lead-dev-details.png")
+
+  //-
+    - Raise your Bus Factor (who invented this concept?)
+
+    MAKE THE RIGHT THING THE EASY THING
+    - Socialize knowledge across teams
+      - Hold regular team code reviews (focus on good and bad code)
+      - Do lunch-and-learn sessions, hackathons
+      - Encourage all team members to lead education sessions
+    - Automate whenever possible
+      - Remove the need for a “code cop”
+      - Run Prettier in CI and auto-commit the formatted code
+      - Run ESLint in CI and fail the build for errors
+        - Only use rules that check code quality
+    - Focus on the developer experience
+      - Choose tools that serve multiple goals
+        - Good for users (e.g. great performance)
+        - Good for developers (e.g. great docs, ecosystem, community)
+    - Build a strong technical foundation
+      - Develop internal tooling for common tasks
+      - Create boilerplates and examples with 100% test coverage
+
+    HOW TO DRIVE ADOPTION
+    - Adoption starts at the top AND the bottom
+    - Put it in executive terms
+      - Execs don’t care about the details
+      - What are they on the hook to deliver?
+      - Frame the changes in terms of the effect on executive deliverables
+    - Define metrics for managers
+      - We manage what is measured
+      - Measure the right things
+        - Technical debt
+        - Quality trends
+        - Changes over time, not absolute measures of the codebase
+          - A team with a big legacy app may only show 20% code coverage, but may
+            have covered 10K+ lines of code in the last few months
+          - A team may have 85% coverage, but that’s down from 100% six weeks ago
+    - Reward the right behaviors
+      - Negative reinforcement doesn’t work very well (research?)
+      - Publicly reward team members who follow best practices
+    - Lead from the front
+      - The LAST person who gets to cut corners is you
+  
+  //-
+    Don't be a 10× developer
+    Help everyone around you become a 2× developer
 
   //- Q&A
   +slide
