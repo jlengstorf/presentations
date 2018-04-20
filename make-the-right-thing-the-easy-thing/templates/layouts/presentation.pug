@@ -110,6 +110,12 @@ html
         Reveal.addEventListener('fragmenthidden', removeBlackout);
         Reveal.addEventListener('slidechanged', removeBlackout);
 
+        Reveal.addEventListener('slidechanged', event => {
+          if (event.currentSlide.classList.contains('dim')) {
+            htmlElement.classList.add('blackout');
+          }
+        });
+
         // More info https://github.com/hakimel/reveal.js#configuration
         Reveal.initialize({
           history: true,
