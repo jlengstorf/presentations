@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * Custom Reveal.js themes for Jason Lengstorf
  */
@@ -6,7 +7,7 @@
 
 .u--text-light,
 .u--text-light * {
-  color: #fffcff !important; }
+  color: #fff !important; }
 
 .u--text-shadow,
 .u--text-shadow > * {
@@ -19,14 +20,14 @@
  * GLOBAL STYLES
  *********************************************/
 body {
-  background: #ffe8ff;
-  background: -moz-radial-gradient(center, circle cover, #fffcff 0%, #ffe8ff 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #fffcff), color-stop(100%, #ffe8ff));
-  background: -webkit-radial-gradient(center, circle cover, #fffcff 0%, #ffe8ff 100%);
-  background: -o-radial-gradient(center, circle cover, #fffcff 0%, #ffe8ff 100%);
-  background: -ms-radial-gradient(center, circle cover, #fffcff 0%, #ffe8ff 100%);
-  background: radial-gradient(center, circle cover, #fffcff 0%, #ffe8ff 100%);
-  background-color: #fffcff; }
+  background: whitesmoke;
+  background: -moz-radial-gradient(center, circle cover, #fff 0%, whitesmoke 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #fff), color-stop(100%, whitesmoke));
+  background: -webkit-radial-gradient(center, circle cover, #fff 0%, whitesmoke 100%);
+  background: -o-radial-gradient(center, circle cover, #fff 0%, whitesmoke 100%);
+  background: -ms-radial-gradient(center, circle cover, #fff 0%, whitesmoke 100%);
+  background: radial-gradient(center, circle cover, #fff 0%, whitesmoke 100%);
+  background-color: #fff; }
 
 .reveal {
   font-family: mallory, sans-serif;
@@ -36,7 +37,7 @@ body {
 
 ::selection {
   color: #fff;
-  background: #d96600;
+  background: #e06900;
   text-shadow: none; }
 
 .reveal .slides > section,
@@ -219,20 +220,20 @@ body {
  * LINKS
  *********************************************/
 .reveal a {
-  color: #d96600;
+  color: #e06900;
   text-decoration: none;
   -webkit-transition: color .15s ease;
   -moz-transition: color .15s ease;
   transition: color .15s ease; }
 
 .reveal a:hover {
-  color: #ff9a40;
+  color: #ff8214;
   text-shadow: none;
   border: none; }
 
 .reveal .roll span:after {
   color: #fff;
-  background: #8c4200; }
+  background: #944500; }
 
 /*********************************************
  * IMAGES
@@ -254,7 +255,7 @@ body {
 
 .reveal a:hover img {
   background: rgba(255, 255, 255, 0.2);
-  border-color: #d96600;
+  border-color: #e06900;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
 
 /*********************************************
@@ -262,31 +263,31 @@ body {
  *********************************************/
 .reveal .controls .navigate-left,
 .reveal .controls .navigate-left.enabled {
-  border-right-color: #d96600; }
+  border-right-color: #e06900; }
 
 .reveal .controls .navigate-right,
 .reveal .controls .navigate-right.enabled {
-  border-left-color: #d96600; }
+  border-left-color: #e06900; }
 
 .reveal .controls .navigate-up,
 .reveal .controls .navigate-up.enabled {
-  border-bottom-color: #d96600; }
+  border-bottom-color: #e06900; }
 
 .reveal .controls .navigate-down,
 .reveal .controls .navigate-down.enabled {
-  border-top-color: #d96600; }
+  border-top-color: #e06900; }
 
 .reveal .controls .navigate-left.enabled:hover {
-  border-right-color: #ff9a40; }
+  border-right-color: #ff8214; }
 
 .reveal .controls .navigate-right.enabled:hover {
-  border-left-color: #ff9a40; }
+  border-left-color: #ff8214; }
 
 .reveal .controls .navigate-up.enabled:hover {
-  border-bottom-color: #ff9a40; }
+  border-bottom-color: #ff8214; }
 
 .reveal .controls .navigate-down.enabled:hover {
-  border-top-color: #ff9a40; }
+  border-top-color: #ff8214; }
 
 /*********************************************
  * PROGRESS BAR
@@ -295,7 +296,7 @@ body {
   background: rgba(0, 0, 0, 0.2); }
 
 .reveal .progress span {
-  background: #d96600;
+  background: #e06900;
   -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
@@ -307,7 +308,7 @@ html::before {
   left: 0;
   right: 0;
   border-top: 4px solid #c700eb;
-  border-bottom: 2px solid #fffcff;
+  border-bottom: 2px solid #fff;
   z-index: 100; }
 
 html::after {
@@ -344,7 +345,7 @@ html.blackout::after, html.dimmer::after {
     .reveal h4 strong,
     .reveal h5 strong,
     .reveal h6 strong {
-      color: #ff7800;
+      color: #e06900;
       font-weight: 800; }
     .reveal h1 em,
     .reveal h2 em,
@@ -485,7 +486,7 @@ html.blackout::after, html.dimmer::after {
     .reveal .slides > section.light-text h1,
     .reveal .slides > section.light-text h2,
     .reveal .slides > section.light-text h3 {
-      color: #fffcff;
+      color: #fff;
       text-shadow: 2px 2px 0 #56453b; }
     .reveal .slides > section.resourcetext ol {
       columns: 2;
@@ -628,7 +629,7 @@ section .right {
   padding: 10px 20px;
   background-color: rgba(56, 42, 44, 0.75);
   border-radius: 15px;
-  color: #fffcff;
+  color: #fff;
   font-size: 18px;
   z-index: 10; }
   .reveal .image-credit--with-text {
@@ -638,6 +639,25 @@ section .right {
   .reveal .image-credit__link {
     color: inherit;
     font-weight: 700; }
+
+/*
+ * Animated underline, stolen shamelessly from @elifitch because it’s awesome.
+ */
+.underlined {
+  position: relative; }
+  .underlined::after {
+    content: ' ';
+    position: absolute;
+    top: 0.74em;
+    left: -4px;
+    width: calc(100% + 8px);
+    height: 12px;
+    border-radius: 6px;
+    background-color: #c700eb;
+    z-index: -1;
+    transition: 1s width ease-out; }
+    [hidden] .underlined::after {
+      width: 0; }
 
 .hashtag {
   position: absolute;
@@ -649,7 +669,7 @@ section .right {
     padding: 10px 20px;
     background-color: #382a2c;
     border-radius: 0 0 0 15px;
-    color: #fffcff;
+    color: #fff;
     font-family: mallory, sans-serif;
     font-size: 18px;
     font-weight: 700; }
@@ -660,7 +680,7 @@ section .right {
 footer {
   display: none;
   position: absolute;
-  background: rgba(255, 252, 255, 0.75);
+  background: rgba(255, 255, 255, 0.75);
   bottom: 0;
   width: 100%;
   z-index: 1000; }
@@ -679,7 +699,7 @@ footer {
       font-family: mallory, sans-serif;
       font-size: 17px;
       color: #666461;
-      text-shadow: 1px 1px 1px #fffcff; }
+      text-shadow: 1px 1px 1px #fff; }
       footer ul.inline li a {
         color: inherit;
         text-decoration: none; }

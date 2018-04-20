@@ -16,10 +16,10 @@ $headingLetterSpacing: auto;
 $headingTextShadow: none;
 $heading1TextShadow: none;
 $accentColor: #c700eb;
-$brandColor: #ff7800;
-$backgroundColor: #fffcff;
-$linkColor: darken(#ff7800, 7.5%);
-$linkColorHover: lighten($linkColor, 20%);
+$brandColor: #e06900;
+$backgroundColor: #fff;
+$linkColor: $brandColor;
+$linkColorHover: lighten($linkColor, 10%);
 $selectionBackgroundColor: $linkColor;
 
 @import '../template/utils';
@@ -473,6 +473,30 @@ section .right {
   &__link {
     color: inherit;
     font-weight: 700;
+  }
+}
+
+/*
+ * Animated underline, stolen shamelessly from @elifitch because it’s awesome.
+ */
+.underlined {
+  position: relative;
+
+  &::after {
+    content: ' ';
+    position: absolute;
+    top: 0.74em;
+    left: -4px;
+    width: calc(100% + 8px);
+    height: 12px;
+    border-radius: 6px;
+    background-color: #c700eb;
+    z-index: -1;
+    transition: 1s width ease-out;
+
+    [hidden] & {
+      width: 0;
+    }
   }
 }
 
