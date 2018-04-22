@@ -169,7 +169,7 @@ block slides
       em.hugify(style="margin-top: 0.05em; line-height: 0.7") real
       | problem
     aside.notes.
-      Yes, it’s not all that glamorous, but if we really want to create teams that run really well, we need to fix the underlying problems that created a need for a rockstar in the first place.
+      Yes, it’s not all that glamorous, but if we really want to create teams that run well, we need to fix the underlying problems that created a need for a rockstar in the first place.
 
   +slide
     h1
@@ -187,12 +187,25 @@ block slides
       li.fragment Lack of confidence in ability, knowledge, or autonomy
       li.fragment Lack of clarity about the goal of a given project
 
+    aside.notes.
+      When teams run poorly, in my experience that largely comes from people either lacking confidence — they’re not confident they know how to do the thing, they’re not confident they’re allowed to do the thing without sign-off, they’re not confident that someone else on the team won’t go in and rewrite their code later — or lacking clarity: they’re not clear on what’s expected of them; they’re not clear on who the stakeholders are; they’re not clear on what “done” looks like.
+
   +slide
-    h3(style="font-size: 180%") A good process creates
+    h3(style="margin-bottom: 0; font-size: 180%") A good process creates
       span(style="display: block; margin-top: 0.05em; font-size: 210%")
         em confidence
         span(style="font-size: 118%") &amp; 
           em clarity
+    h4.no-margin 
+      span.fragment + #[em autonomy] 
+      span.fragment + #[em trust] 
+      span.fragment + #[em ownership] 
+      span.fragment + #[em safety]
+      br
+      span.fragment + other buzzwords meaning “happy team”
+    
+    aside.notes.
+      When a team feels confident, they can act without feeling like they need to seek approval — and that’s a good thing, because the parameters for what someone can do without approval are clearly defined in the process. Since the goals and accountability chains are crystal clear, no one needs to wonder where to start or what to work on next. This leads to a team of people who trust each other because the proper guard rails are in place. And because there’s trust, team members feel real ownership in the projects and process: they have a voice, and that voice is being heard. And because the process defines what is and isn’t acceptable, the whole team can feel safe to bring up potential issues. Usually, though, a good process means the issues get caught #[em way] earlier, before they become huge problems. All of this leads to the kind of high-collaboration, high-functioning environment every management consultant dreams about.
 
   +slide
     h3(style="font-size: 180%") A good process creates
@@ -205,229 +218,330 @@ block slides
       li.fragment No chaos if devs take vacation, get promoted, or quit
 
   +slide
+    h1(style="font-size: 360%") How can we
+      em(style="display: block; font-size: 180%") create
+      span(style="display: block; font-size: 73%; line-height: 0.8") solid processes?
 
+  +slide
+    h3(style="font-size: 180%") A good process needs
+    ul
+      li.fragment Excellent onboarding and documentation
+      li.fragment Ongoing internal education and training
+      li.fragment Frequent code reviews and coaching
+      li.fragment Comprehensive test suites
+      li.fragment Internally consistent style and quality guidelines
 
-  //-
+    aside.notes.
+      A high-functioning team’s process will be so solid that new team members are basically painting by numbers to get started. A good measuring stick for this is whether or not you can get a new hire up and running fast enough to have them commit non-trivial code to production on the first day. The team should be documenting any repeatable process so it can be quickly referenced by everyone else. This gets driven home by solid coaching, and the best practices are enforced by comprehensive test suites and a set of guidelines for code style and quality.
 
-    - Fixing the root problem pays dividends
-      - The whole team becomes stronger
-      - No one is a bottleneck
-      - Knowledge silos disappear
-      - Everyone can take a real vacation
-    - “If you want to go fast, go alone. If you want to go far, go together.”
-    - Compare teams
-      - Average
-      - Rockstar
-      - Lead Developer
-    - So... what IS the root problem?
-    - Probably some combination of:
-      - Lack of confidence
-      - Lack of clarity
-    - What gives teams confidence?
-      - Autonomy
-      - Clear processes
-      - Shared knowledge
-    - What gives teams clarity?
-      - Clear, measurable goals
-      - Well-defined accountability chain
-    - How to create that inside your team
-      - Documentation
-      - Internal processes
-      - Internal training
-      - Code reviews
-      - Writing tests
-      - Style and quality guidelines
-    - “I try! My team won’t do it!”
-    - The elephant and the rider. (Chip & Dan Heath)
-      - We can’t expect people to do things because they’re right
-      - We need to appeal to the elephant
-    - Make the Right Thing the Easy Thing
-      - Education
-      - Automation
-      - Foundation
-    - Education
-      - Pair programming
-        - Helps us see where context is unclear
-      - Lunch and learn
-        - Encourage all team members to lead
-        - For junior devs, share what they’re learning now
-        - For more experienced devs, share what they’re learning now
-      - Code reviews
-        - Call out good patterns
-        - Demonstrate opportunities for refactoring
-    - Automation
-      - Run Prettier automatically
-      - PR-based pipeline
-      - Require tests to pass, minimum coverage (on new code at least)
-      - Run ESLint to guard against low-quality/high-complexity patterns
-      - Require PR reviews before merging
-    - Foundation
-      - Only add tools when the benefit outweighs the training costs
-        - https://twitter.com/chrisbiscardi/status/985005863785000961
-        - “Premature optimization can be a violent source of tech debt. If you
-          have experience and know it’s the right move, great. Otherwise: keep
-          it as simple as possible for as long as possible.” –@chrisbiscardi
-      - Create starters and boilerplates w/100% test coverage
-        - It’s hard to start from a defecit
-        - It’s much easier to maintain a healthy project
-        - Psychology (loss aversion? narrative bias?)
-      - Build small tools to decrease complexity
-        - If everyone has to do it anyways, make it automatic
-        - Examples:
-          - CLI to configure an NGINX reverse proxy
-          - Script toolbox to allow an upgradeable, shareable config for webpack, etc.
-    - INVEST IN THE FOUNDATION
-      - 1 repeatable task × 4 hours × 15 developers × average $70K salary = $2,625
-      - 1 repeatable task × 1 lead dev × 6 hours = CLI tool
-      - 1 repeatable task × 1 CLI tool × 5 minutes × 15 developers = >$2K saved
-    - At IBM, 3.5 hours saved per developer on IBM Cloud means over $80K saved, which is enough to:
-      - Hire a new developer
-      - Give the top 10% of performers a $1K bonus
-    - This is just ONE TASK
-      - These add up in a hurry
-    - “But we have deadlines!”
-    - Remember: move slow to move fast
-      - Don’t be a hero at the expense of long-term efficiency
-      - 
+  +slide
+    h1(style="font-size: 290%") “I’ve tried this!
+      strong(style="display: block; font-size: 222%") No one
+      span(style="font-size: 120%") will listen!”
 
+    aside.notes.
+      I know, I just said all of the worst things. Even the most well-intentioned teams typically try and fail to adopt things like documentation. It might work for a while, but then it gets busy, or people get comfortable and forget, and ultimately the team’s best practices become more theoretical than practical.
 
-    INTRODUCTION
-    - What makes working on a team hard?
-      - Knowledge silos
-      - Inconsistency between projects/teams
-      - Lack of documentation
-      - Bottlenecks and gatekeepers
-      - Confusion about accountability
-      - Competing demands
-      - Too many stakeholders
-    - Are other developers just jerks?
-      - Of course not!
-      - Usually
-    - Then how does this bad stuff happen?
-      - We write code based on a mental model
-        - Typically, that mental model is complex
-        - [Illustration: seeing the Matrix]
-      - Everyone builds slightly different mental models
-        - [Illustration: two people, same problem, different models]
-      - The code we write only represents a fraction of the work that was done
-        - [Illustration: iceberg]
-      - Other developers don’t have access to our mental models
-        - [Illustration: code on stage in front of audience, model behind curtain]
-      - This leads to confusion and uncertainty
-        - [Illustration: TODO fix the mystery box that makes us money]
-      - Uncertainty leads to:
-        - Making the original author into a bottleneck
-        - Contextual knowledge being siloed in a given dev’s head (or within a team)
-        - Unwillingness to modify code — people code around it instead
-        - [Illustration: scaffolding around the mystery box]
-    - These issues happen in solo projects, too
-      - We build a mental context
-      - Then we write code
-      - Then we forget the mental context
-      - And when we come back, we can’t remember why we did things this way
-      - [Graphic: find that comic of “What idiot wrote this code?! Oh, it was me.”]
-    - How can we fix it?
-      - Documentation
-      - Code reviews
-      - Internal training
-      - Writing tests
-      - Style and quality guidelines
-      - [Illustration: docs, two people, presentation, green checkmarks, white glove]
-    - You just said all the worst things!
-      - [GIF: nope]
-    - This is the problem
-      - Many of us associate best practices with extra work
-      - Sometimes we have the energy, but usually we don’t
-      - If deadlines get tight, the “nice to have” stuff gets cut
-      - So even if we try, doing things the right way tends to slip over time
-    - Can we fix it?
-      - Yes!
-      - How?
-        - Identify the Right Things
-        - Make the Right Thing the Easy Thing
-      - Research to reference:
-        - Switch (Chip and Dan Heath)
-        - Additive vs. Subtractive (Precision Nutrition)
-        - How to Get People to Do Stuff (I forget the author’s name)
+  +slide
+    h2(style="font-size: 300%") Why processes
+      strong(style="display: block; font-size: 383%") fail
 
-    WHAT ARE THE RIGHT THINGS?
-    - Create consistent code across all teams
-      - Automate style corrections
-      - Enforce quality rules
-      - Require code reviews
-      - Enforce minimum test coverage (maybe only for new code at first)
-    - Design quality control processes
-      - Protect the master branch
-      - Enforce (or strongly suggest) a maximum pull request size
-    - Remove yourself as a bottleneck
-      - Understand that writing tons of code while the rest of the team is 
-        blocked or struggling is not making you a hero
-      - Comparison graphics
-        - Team of 10 average developers
-          - Output: 100%
-          - Contribution per dev: ~10%
-          - Chance of getting paged: ~10%
-        - Team of 10 with a “rockstar” developer
-          - Output: ~150%
-          - “Rockstar” contribution: > 50%
-          - Chance of “rockstar” getting paged: > 90%
-        - Team of 10 with a lead developer
-          - Output: ~200%
-          - Contribution per dev: ~10%
-          - Chance of getting paged: ~10%
+  +slide
+    h1(style="font-size: 670%") Know
+      small(style="display: block; color: inherit; font-size: 45%; line-height: 0.7; margin-bottom: 0.125em") vs
+      em(style="font-size: 145%") feel
   
-  +slide(data-background="./images/make-the-right-thing-the-easy-thing/average-team.png")
-  +slide(data-background="./images/make-the-right-thing-the-easy-thing/average-team-details.png")
-  +slide(data-background="./images/make-the-right-thing-the-easy-thing/rockstar.png")
-  +slide(data-background="./images/make-the-right-thing-the-easy-thing/rockstar-details.png")
-  +slide(data-background="./images/make-the-right-thing-the-easy-thing/lead-dev.png")
-  +slide(data-background="./images/make-the-right-thing-the-easy-thing/lead-dev-details.png")
+  +slide
+    h3 The Rider and The Elephant
+    p TKTK illustration? (person driving brain hovercraft; elephant with a heart painted on its side)
 
-  //-
-    - Raise your Bus Factor (who invented this concept?)
-
-    MAKE THE RIGHT THING THE EASY THING
-    - Socialize knowledge across teams
-      - Hold regular team code reviews (focus on good and bad code)
-      - Do lunch-and-learn sessions, hackathons
-      - Encourage all team members to lead education sessions
-    - Automate whenever possible
-      - Remove the need for a “code cop”
-      - Run Prettier in CI and auto-commit the formatted code
-      - Run ESLint in CI and fail the build for errors
-        - Only use rules that check code quality
-    - Focus on the developer experience
-      - Choose tools that serve multiple goals
-        - Good for users (e.g. great performance)
-        - Good for developers (e.g. great docs, ecosystem, community)
-    - Build a strong technical foundation
-      - Develop internal tooling for common tasks
-      - Create boilerplates and examples with 100% test coverage
-
-    HOW TO DRIVE ADOPTION
-    - Adoption starts at the top AND the bottom
-    - Put it in executive terms
-      - Execs don’t care about the details
-      - What are they on the hook to deliver?
-      - Frame the changes in terms of the effect on executive deliverables
-    - Define metrics for managers
-      - We manage what is measured
-      - Measure the right things
-        - Technical debt
-        - Quality trends
-        - Changes over time, not absolute measures of the codebase
-          - A team with a big legacy app may only show 20% code coverage, but may
-            have covered 10K+ lines of code in the last few months
-          - A team may have 85% coverage, but that’s down from 100% six weeks ago
-    - Reward the right behaviors
-      - Negative reinforcement doesn’t work very well (research?)
-      - Publicly reward team members who follow best practices
-    - Lead from the front
-      - The LAST person who gets to cut corners is you
+    aside.notes.
+      Chip and Dan Heath have written extensively about behavioral change, and a concept they use frequently is “the elephant and the rider”. We’re all pretty rational and capable of thinking through long-term benefits — that’s the rider. But there’s this other set of urges that frequently overpower our rationality in favor of instant gratification — that’s the elephant.
   
-  //-
-    Don't be a 10× developer
-    Help everyone around you become a 2× developer
+  +slide
+    img.no-border(
+      src="./images/make-the-right-thing-the-easy-thing/book-switch.png"
+      alt="Book cover for Switch, by Chip and Dan Heath."
+    )
+
+    aside.notes.
+      This is a concept that’s explored deeply in their book, #[em Switch], which I’d highly recommend reading.
+  
+  +slide
+    h2(style="font-size: 204%") Make the Right Thing
+      em(style="display: block; font-size: 147%") The Easy Thing
+    h4
+      span.fragment By focusing on four core values:
+      br
+      em.fragment Emotional Rewards 
+      span.fragment + 
+        em Automation
+      br
+      span.fragment + 
+        em Simplification 
+      span.fragment + 
+        em Yak Shaving
+
+    aside.notes.
+      Being right isn’t enough. If we could solve human problems with logic, there wouldn’t be any problems. The rider can only take us so far; if we want to make real, lasting change, we need to appeal to the elephant. This means that we need to make any new processes more emotionally rewarding than the old way of doing things.
+  
+  +slide
+    h3(style="font-size: 200%; text-align: left")
+      em(style="display: inline-block; vertical-align: middle; width: 1.2ch; font-size: 160%; text-align: center") E
+      | motional Rewards
+      br
+      span.fragment
+        em(style="display: inline-block; vertical-align: middle; width: 1.2ch; font-size: 160%; text-align: center") A
+        | utomation
+      br
+      span.fragment
+        em(style="display: inline-block; vertical-align: middle; width: 1.2ch; font-size: 160%; text-align: center") S
+        | implification
+      br
+      span.fragment
+        em(style="display: inline-block; vertical-align: middle; width: 1.2ch; font-size: 160%; text-align: center") Y
+        | ak Shaving
+  
+  +slide
+    h4(style="margin-bottom: 0.125em") Make the Right Thing the Easy Thing: part 1
+    h1.no-margin
+      em(style="font-size: 120%") Emotional
+        span(style="font-size: 125%; line-height: 0.75") Rewards
+    ul
+      li.fragment Less effort required to do things the new way
+      li.fragment Immediate praise and positive feedback
+      li.fragment Public recognition and gratitude
+    
+    aside.notes.
+      One of the most rewarding things is to make people more efficient — it feels really good to do great work ahead of schedule, so we should try to make sure that every process we introduce feels like an upgrade. Some processes require extra work, though, so we should make sure to frequently and immediately praise great work from the team. When someone follows the process, reinforce that behavior by thanking them personally. Remember, it never sucks to hear you’re doing a good job, and usually we have to live with “no news is good news”; offer positive feedback early and often. When there’s a team meeting or a company all-hands, recognize the team publicly for doing good work. It’s a small effort, but it goes a long way.
+  
+  +slide
+    blockquote.photo-quote
+      .photo
+        img(
+          src="./images/make-the-right-thing-the-easy-thing/marisa.jpg"
+          alt="Marisa Morby"
+        )
+      .quote
+        p “Very few things at work feel better than the validation of other people praising your contributions in public.”
+          strong Marisa Morby
+            small Head of Research, Clearhead
+    
+    aside.notes.
+      We often don’t give people praise because it feels weird to compliment people. And maybe we’re more intrinsically motivated and don’t place the same importance on validation, but here’s the thing: telling someone they did a good job when you see good work #[em never] hurts; #[em not] telling someone they did a good job can potentially lead to them feeling like they’re doing poorly. [Tell Marisa and Mike story.]
+
+  +slide
+    blockquote.photo-quote
+      .photo
+        img(
+          src="./images/jason-lengstorf.jpg"
+          alt="Jason Lengstorf."
+        )
+      .quote
+        p “It doesn’t matter how objectively correct your solution is; it only matters if people will use it.”
+        strong Me, just now
+    
+    aside.notes.
+
+  +slide
+    h4(style="margin-bottom: 0.125em") Make the Right Thing the Easy Thing: part 2
+    h1.no-margin
+      em(style="font-size: 105%") Automation
+    ul
+      li.fragment Set up CI/CD (e.g. Travis, Jenkins) for tests
+      li.fragment Run and commit Prettier automatically
+      li.fragment Use ESLint, Danger.js, etc. to catch quality issues
+      li.fragment Automate code coverage checks
+      li.fragment Use semantic-release for versioning and releases
+    
+    aside.notes.
+      Automation is a great way to hit that efficiency emotional reward. Take something that sucks (like deploying and testing changes) and automate it. Once the automation is in place, it’s relatively easy to extend the automation to do more things, like automatically fix style issues, check for known anti-patterns with ESLint, check for internal issues using something like Danger.js, enforce code coverage standards, or even automatically deploy new versions of your app.
+  
+  +slide
+    h2(style="font-size: 250%")
+      span(style="font-size: 130%") Don’t fail on
+      em(style="display: block; font-size: 320%; line-height: 0.8") style
+      span.fragment Just #[span.underlined use Prettier]
+    
+    aside.notes.
+      A surefire way to undermine any automated process is to make it nitpicky. Don’t fail a PR on something like missing semicolons or formatting; just run Prettier and autocommit the result to the PR. If team members have to jump through annoying hoops to appease the automations, they WILL find a way to work around them (like prettierignore).
+
+  +slide
+    h1 Tired: Code Cops
+    p TKTK illustration?
+    
+    aside.notes.
+      Earlier, I talked about how it’s not glamorous to be the team’s auditor. Most of that comes from the fact that it sucks to have to follow people around and hassle them about things like code style, test coverage, and other things that we all know we should be doing, but often get lazy about. Being the team’s code cop starts to feel a lot like being a parent nagging your kids to clean their rooms.
+  
+  +slide
+    h1 Wired: Code Bots
+    p TKTK illustration?
+
+    aside.notes.
+      However, if we can get a robot in there to do the nagging, it gets a lot easier. There’s nothing emotional or judgmental about an automated process — no one’s code gets preferential treatment, and the rules are exactly the same for everyone, regardless of experience or title. Plus, no one needs to be the auditor; the things the team decides are important get checked consistently and automatically every single time someone opens a PR. This practice alone will avoid mountains of technical debt.
+
+  +slide
+    h4(style="margin-bottom: 0.125em") Make the Right Thing the Easy Thing: part 3
+    h1.no-margin
+      em(style="font-size: 92%") Simplification
+    ul
+      li.fragment Consider onboarding and training costs of new tools
+      li.fragment Use open source tools if a stable option exists
+      li.fragment Write code that’s small and easy to delete
+      li.fragment Build for now, not 5 years into the future
+  
+    aside.notes.
+      It can be tempting to build a project in, say, React, and then start adding tools: Redux, Thunk, Sagas, Recompose, and so on. But each of those tools adds extra complexity and cognitive overhead for the team. Don’t add a tool until you’ve got a real reason. If you definitely need a tool, look for a well-documented, stable, open source tool first; building stuff in-house means someone internal is on the hook to document, maintain, and support it, and that’s rarely a sustainable option for utilities. And don’t try to predict the future; code is a relatively short-lived product, so trying to build something “future-proof” is a bit of a fool’s errand. Code with deletion and replacement in mind, not infinite flexibility and scalability.
+
+  +slide
+    blockquote.photo-quote
+      .photo
+        img(
+          src="./images/make-the-right-thing-the-easy-thing/jem-young.jpg"
+          alt="Jem Young."
+        )
+      .quote
+        p “Weigh the trade-offs and choose the thing that makes your team more productive.”
+        strong Jem Young
+          small Senior Software Engineer, Netflix
+
+    aside.notes.
+      Everything we do in our codebase has trade-offs. Jem recommends basing each decision on what will make the team most productive, even if that means skipping a tool that might logically be “more correct” because it’s too complicated to easily train the rest of the team.
+
+  +slide
+    blockquote.photo-quote
+      .photo
+        img(
+          src="./images/make-the-right-thing-the-easy-thing/chris-biscardi.jpg"
+          alt="Chris Biscardi."
+        )
+      .quote
+        p(style="font-size: 78%") “Premature optimization can be a violent source of tech debt. If you have experience and know it’s the right move, great. Otherwise: keep it as simple as possible for as long as possible.”
+        strong Chris Biscardi
+          small Software Engineer, Honeycomb
+    
+    aside.notes.
+      In the spirit of trade-offs, “future-proofing” an app is making a trade-off. Adding a ton of “maybe we’ll need this someday” options is extra complexity now that may never actually be useful. But we also shouldn’t completely ignore the future when designing our projects — our job as lead developers is to find the right balance of keeping people productive now without ending up with tomorrow’s legacy nightmare. One way to do this is to emphasize writing easy-to-delete code: few dependencies, small size, and no side-effects.
+
+  +slide
+    h4(style="margin-bottom: 0.125em") Make the Right Thing the Easy Thing: part 4
+    h1.no-margin
+      em(style="font-size: 108%") Yak Shaving
+    ul
+      li.fragment Limit the team’s exposure to yak shaving
+      li.fragment Invest in your technical foundation
+      li.fragment Create zero- or low-config dev environments
+    
+    aside.notes.
+      Probably the most important point, in my humble opinion, is to limit your team’s exposure to yak-shaving, which is all the terrible busywork we have to do #[em before] we can do our actual work. This means investing in our tech foundation to create solid dev environments and tooling to eliminate the need to do a ton of work just so they can start working.
+
+  +slide
+    blockquote.photo-quote
+      .photo
+        img(
+          src="./images/jason-lengstorf.jpg"
+          alt="Jason Lengstorf."
+        )
+      .quote
+        p(style="font-size: 88%") “Don’t make people do a ton of work before they can start working.”
+        strong Also me, just now
+    
+    aside.notes.
+      I can’t stress enough how important it is to invest in your team’s technical foundation. [Straw poll: how many of you lose at least an hour a week to fighting your dev environment (e.g. build tools, local envs, containers, deployment)?] [Tell IBM NGINX story.]
+  
+  +slide
+    h3(style="font-size: 144%") 1 hr/week 
+      span.fragment &times; 10 devs 
+      span.fragment &times; $70k/year
+      strong.fragment(style="display: block; font-size: 509%; line-height: 1") $16,153
+      span.fragment(style="font-size: 133%") burned on yak shaving
+    
+    aside.notes.
+      If anyone tries to argue that working on the foundation doesn’t have anything to do with business needs, show them this math. Assuming a dev team of 10 people and using Glassdoor info for a salary baseline, just #[em one hour] of time spent on yak shaving costs over $16,000 dollars. And if my experience is any indicator, it’s probably safe to say that the average dev is losing #[em way more] than one hour each week to non-core work.
+
+  +slide.light-text.dim(
+    data-background-image="./images/make-the-right-thing-the-easy-thing/dumpster-fire.gif"
+  )
+    h2 Don’t ask people to 
+      span.underlined(style="display: block; font-size: 204%; line-height: 0.9") fix a mess
+    
+    aside.notes.
+      Another reason to focus on the foundation is that we can enforce cultural norms through our boilerplates. If we provide a boilerplate with all the best practices baked into it, we’re changing the psychology of how our team interacts with our codebase. Instead of handing our team a blank slate (or worse, a pile of spaghetti code) and then asking them to fix it so it follows our team standards...
+
+  +slide.light-text.dim(
+    data-background-image="./images/make-the-right-thing-the-easy-thing/alley-oop.gif"
+  )
+    h2(style="font-size: 300%") Set them up to
+      span.underlined(style="display: block; font-size: 187%; line-height: 0.9") succeed
+    
+    aside.notes.
+      ...we should work to hand them well-built, thoroughly tested starters and boilerplates that already meet our standards. That way, all they have to do is keep it healthy and worry about #[em new] code. This appeals to our subconscious desire to keep nice things nice, and it helps steer the elephant in the direction of doing things The Right Way. We’re giving them the best possible chance of doing something awesome, demonstrated on this slide by these gentlemen playing sportsball.
+
+  +slide
+    h1(style="font-size: 470%") What is a 
+      em(style="display: block; font-size: 200%") Lead
+      span(style="display: block; line-height: 0.65; font-size: 84%") Developer?
+
+  +slide
+    h2(style="font-size: 190%;") A lead developer 
+      strong isn’t
+    ul
+      li.fragment Carrying their team by doing most of the work
+      li.fragment Overseeing and approving every code decision
+      li.fragment Single-handedly enforcing the team’s style guide
+
+  +slide
+    h2(style="font-size: 190%;") A lead developer 
+      em is
+    ul
+      li.fragment Creating guard rails to encourage best practices
+      li.fragment Defining processes to create confidence and clarity
+      li.fragment Removing bottlenecks and knowledge silos
+
+  +slide
+    h2.no-margin Lead Developers
+    h3.no-margin Design processes that are 
+      span.underlined emotionally rewarding
+
+  +slide
+    h2.no-margin Lead Developers
+    h3.no-margin Improve consistency by 
+      span.underlined Automating processes
+
+  +slide
+    h2.no-margin Lead Developers
+    h3.no-margin Reduce training costs by 
+      span.underlined simplifying workflows
+
+  +slide
+    h2.no-margin Lead Developers
+    h3.no-margin Invest in the foundation to 
+      span.underlined Prevent yak shaving
+
+  +slide
+    h2.no-margin Teams we build
+    h3.no-margin Maintain a reasonable 
+      span.underlined vacation tolerance
+
+  +slide
+    h2.no-margin Teams we build
+    h3.no-margin Operate with high levels of 
+      span.underlined confidence &amp; clarity
+
+  +slide
+    h2.no-margin Teams we build
+    h3.no-margin Know their work is both 
+      span.underlined recognized &amp; valued
+
+  +slide
+    h2.no-margin Teams we build
+    h3.no-margin Feel confident in their 
+      span.underlined autonomy &amp; safety
+
+  +slide
+    h2.no-margin Teams we build
+    h3.no-margin Are not dependent on 
+      span.underlined rockstar developers
 
   //- Q&A
   +slide
@@ -435,7 +549,7 @@ block slides
     img(
       src="./images/work-life-balance/jason-lengstorf.jpg"
       alt="Jason Lengstorf"
-      style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;"
+      style="display: block; border-radius: 50%; width: 240px; min-width: 0; margin: 0 auto"
     )
     p(style="margin-top: 0.25rem;")= config.author.name
       br
@@ -450,6 +564,12 @@ block slides
       li
         a(href="https://youtu.be/zqdCM8zR6Mc").
           “But Testing Sucks!” — How to Build a Testing- and Quality-Driven Culture
+      li
+        a(href="http://heathbrothers.com/books/switch/").
+          Switch by Chip and Dan Heath
+      li
+        a(href="https://bit.ly/script-toolboxes").
+          Kent C. Dodds on Script Toolboxes
 
 block styles
   link(

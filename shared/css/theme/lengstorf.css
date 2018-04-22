@@ -466,6 +466,38 @@ html.blackout::after, html.dimmer::after {
     .reveal .two-columns h6 {
       -webkit-column-break-before: always;
       break-before: column; }
+  .reveal .photo-quote {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-align: left;
+    font-style: normal;
+    font-size: 115%; }
+    .reveal .photo-quote .photo {
+      flex: 1 1 30%; }
+    .reveal .photo-quote .quote {
+      flex: 2 1 65%;
+      margin-left: 5%; }
+    .reveal .photo-quote img {
+      display: block;
+      border-radius: 50%;
+      width: 100%; }
+    .reveal .photo-quote p {
+      color: #554043;
+      margin-top: 0;
+      text-indent: -0.45em; }
+    .reveal .photo-quote strong {
+      display: block;
+      margin-left: 7em;
+      font-size: 80%;
+      color: #382a2c;
+      margin-top: 0.25em; }
+    .reveal .photo-quote small {
+      color: #a6888c;
+      display: block;
+      font-size: 60%;
+      font-weight: normal; }
   .reveal .slides > section {
     background-size: cover;
     background-repeat: no-repeat; }
@@ -656,6 +688,7 @@ section .right {
     background-color: #c700eb;
     z-index: -1;
     transition: 1s width ease-out; }
+    .fragment:not(.visible) .underlined::after,
     [hidden] .underlined::after {
       width: 0; }
 

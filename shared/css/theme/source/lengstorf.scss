@@ -230,6 +230,52 @@ html {
     }
   }
 
+  .photo-quote {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-align: left;
+    font-style: normal;
+    font-size: 115%;
+
+    .photo {
+      flex: 1 1 30%;
+    }
+
+    .quote {
+      flex: 2 1 65%;
+      margin-left: 5%;
+    }
+
+    img {
+      display: block;
+      border-radius: 50%;
+      width: 100%;
+    }
+
+    p {
+      color: lighten($headingColor, 10);
+      margin-top: 0;
+      text-indent: -0.45em;
+    }
+
+    strong {
+      display: block;
+      margin-left: 7em;
+      font-size: 80%;
+      color: $headingColor;
+      margin-top: 0.25em;
+    }
+
+    small {
+      color: lighten($headingColor, 40);
+      display: block;
+      font-size: 60%;
+      font-weight: normal;
+    }
+  }
+
   .slides > section {
     background-size: cover;
     background-repeat: no-repeat;
@@ -494,6 +540,7 @@ section .right {
     z-index: -1;
     transition: 1s width ease-out;
 
+    .fragment:not(.visible) &,
     [hidden] & {
       width: 0;
     }
