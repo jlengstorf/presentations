@@ -58,26 +58,23 @@ block slides
       support, leadership, and mentoring to our team members. Our managers and
       other non-technical leadership relies on us to keep the wheels on.
 
-  +slide
-    h3 When the pressure is on...
-    p TKTK GIF of DOOOOOOOOOOOOOooooooooommmmmmmm...
 
   +slide
     h3 When the pressure is on
       br
-      | we have two choices
+      span.fragment we have two choices
     div(style="display: flex; justify-content: space-between;")
       div.fragment(style="width: 45%")
         img(
-          src="./images/building-quality-driven-culture/but-its-hard.gif"
-          alt="TKTK replace this with complicated GIF"
+          src="./images/make-the-right-thing-the-easy-thing/wintergatan.webp"
+          alt="Wintergatan, a complex, marble-powered musical instrument."
           style="display: block;"
         )
         h4 Fix the process
       div.fragment(style="width: 45%")
         img(
-          src="./images/building-quality-driven-culture/but-its-hard.gif"
-          alt="TKTK replace this with badass hero GIF"
+          src="./images/make-the-right-thing-the-easy-thing/smurfs.webp"
+          alt="Smurf being a hero."
           style="display: block;"
         )
         h4 Fix the problem
@@ -253,7 +250,13 @@ block slides
   
   +slide
     h3 The Rider and The Elephant
-    p TKTK illustration? (person driving brain hovercraft; elephant with a heart painted on its side)
+    figure
+      img(
+        src="./images/make-the-right-thing-the-easy-thing/rider-elephant.jpg"
+        alt="The elephant and the rider, by Kristin Noelle."
+      )
+      figcaption Credit: 
+        a(href="https://www.etsy.com/shop/SacredLoom") Kristin Noelle
 
     aside.notes.
       Chip and Dan Heath have written extensively about behavioral change, and a concept they use frequently is “the elephant and the rider”. We’re all pretty rational and capable of thinking through long-term benefits — that’s the rider. But there’s this other set of urges that frequently overpower our rationality in favor of instant gratification — that’s the elephant.
@@ -367,15 +370,19 @@ block slides
       A surefire way to undermine any automated process is to make it nitpicky. Don’t fail a PR on something like missing semicolons or formatting; just run Prettier and autocommit the result to the PR. If team members have to jump through annoying hoops to appease the automations, they WILL find a way to work around them (like prettierignore).
 
   +slide
-    h1 Tired: Code Cops
-    p TKTK illustration?
+    h4.no-margin Tired:
+    h1 Code 
+      strong Cops
+    h1 👮‍♀️ 👮🏽‍♂️
     
     aside.notes.
       Earlier, I talked about how it’s not glamorous to be the team’s auditor. Most of that comes from the fact that it sucks to have to follow people around and hassle them about things like code style, test coverage, and other things that we all know we should be doing, but often get lazy about. Being the team’s code cop starts to feel a lot like being a parent nagging your kids to clean their rooms.
   
   +slide
-    h1 Wired: Code Bots
-    p TKTK illustration?
+    h4.no-margin Wired:
+    h1 Code 
+      em Bots
+    h1 🤖 🤖
 
     aside.notes.
       However, if we can get a robot in there to do the nagging, it gets a lot easier. There’s nothing emotional or judgmental about an automated process — no one’s code gets preferential treatment, and the rules are exactly the same for everyone, regardless of experience or title. Plus, no one needs to be the auditor; the things the team decides are important get checked consistently and automatically every single time someone opens a PR. This practice alone will avoid mountains of technical debt.
@@ -436,7 +443,8 @@ block slides
       Probably the most important point, in my humble opinion, is to limit your team’s exposure to yak-shaving, which is all the terrible busywork we have to do #[em before] we can do our actual work. This means investing in our tech foundation to create solid dev environments and tooling to eliminate the need to do a ton of work just so they can start working.
 
   +slide
-    blockquote.photo-quote
+    h3 Don’t make people do a bunch of work before they can start working
+    //- blockquote.photo-quote
       .photo
         img(
           src="./images/jason-lengstorf.jpg"
@@ -487,7 +495,7 @@ block slides
       strong isn’t
     ul
       li.fragment Carrying their team by doing most of the work
-      li.fragment Overseeing and approving every code decision
+      li.fragment Inserting themself into every code decision
       li.fragment Single-handedly enforcing the team’s style guide
 
   +slide
@@ -570,6 +578,15 @@ block slides
       li
         a(href="https://bit.ly/script-toolboxes").
           Kent C. Dodds on Script Toolboxes
+      li
+        a(href="https://twitter.com/marisamorby").
+          Marisa Morby on Twitter
+      li
+        a(href="https://twitter.com/JemYoung").
+          Jem Young on Twitter
+      li
+        a(href="https://twitter.com/chrisbiscardi").
+          Chris Biscardi on Twitter
 
 block styles
   link(
