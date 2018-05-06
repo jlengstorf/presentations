@@ -10,7 +10,7 @@ block append config
     config.author = {
       name: 'Jason Lengstorf',
       email: 'jason@lengstorf.com',
-      link: 'https://code.lengstorf.com/',
+      link: 'https://lengstorf.com/',
       twitter: 'jlengstorf',
       github: 'jlengstorf',
     };
@@ -20,8 +20,8 @@ block append config
     };
 
     config.conference = {
-      hashtag: 'generateconf',
-      twitter: '',
+      hashtag: 'craftconf',
+      twitter: 'CraftConf',
     };
   -
 
@@ -568,7 +568,7 @@ block extras
     const args = Object.keys(tweetObj).map(key => `${key}=${e(tweetObj[key])}`);
     const tweetUrl = `https://twitter.com/intent/tweet?${args.join('&')}`;
   -
-  .hashtag
+  //- .hashtag
     p
       | Tweet: 
       a(
@@ -578,15 +578,13 @@ block extras
         | #{config.conference.hashtag ? `#${config.conference.hashtag}` : ''}
   footer
     ul.inline
-      li
-        | “#{config.title}” by 
-        a(href= config.author.link)= config.author.name
-        |  (slides: 
+      li(style="font-size: 140%;")
         a(href= config.slides.link)= config.slides.link.replace('https://', '')
-        | )
-      li
+      li(style="margin-left: 2em; font-size: 140%;")
+        a.no-icon(href="https://twitter.com/search?q=%23" + config.conference.hashtag)= "#" + config.conference.hashtag
+      li(style="margin: 0 2em; font-size: 140%;")
         a(href="https://twitter.com/"+config.author.twitter).
           @#{config.author.twitter}
-      li
+      li(style="font-size: 140%;")
         a(href="https://github.com/"+config.author.github).
           github.com/#{config.author.github}
