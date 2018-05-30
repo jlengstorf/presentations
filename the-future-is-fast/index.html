@@ -35,11 +35,463 @@
         <section>
           <h1 style="width: 110%; margin-top: 80px; margin-left: -5%; font-size: 75px;">The Future Is Fast</h1>
           <h3>Dynamic Apps, Static Files, Unreal Performance</h3>
-          <p>by <a href="https://code.lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a>&nbsp; · &nbsp;<a href="mailto:jason@lengstorf.com">jason@lengstorf.com</a></small></p>
-          <p><small>Slides: <a href="https://git.io/test-culture">git.io/test-culture</a></small></p>
+          <p>by <a href="https://lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a>&nbsp; · &nbsp;<a href="mailto:jason@lengstorf.com">jason@lengstorf.com</a></small></p>
+          <p><small>Slides: <a href="https://git.io/future-is-fast">git.io/future-is-fast</a></small></p>
         </section>
         <section>
-          <h2>TKTK</h2>
+          <h3>Hi! I’m Jason Lengstorf.</h3>
+          <blockquote class="photo-quote">
+            <div class="photo"><img src="./images/jason-lengstorf.jpg" alt="Jason Lengstorf."></div>
+            <div class="quote">
+              <ul style="width: 100%; font-size: 2rem;">
+                <li>Senior dev / front-end architect</li>
+                <li>Occasional designer</li>
+                <li>Author &amp; speaker</li>
+                <li>Process and efficiency wonk</li>
+                <li>Developer relations @ Gatsby</li>
+                <li>@jlengstorf on Twitter, Github, etc.</li>
+              </ul>
+            </div>
+          </blockquote>
+        </section>
+        <section data-background-image="./images/gatsby.jpg">
+        </section>
+        <section>
+          <h2 class="no-margin">An Incomplete</h2>
+          <h4 style="margin: 0.5rem 0 0.75rem; opacity: 0.25">(and Heavily Biased)</h4>
+          <h3 class="no-margin"><em>History</em> of the Internet</h3>
+          <aside class="notes">
+            <ul>
+              <li>The internet’s history is long</li>
+              <li>I’m going to skip most of it</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h4 class="no-margin">In the beginning, there was <em>HTML</em></h4><img class="no-margin no-border" src="./images/the-future-is-fast/html.png" alt="HTML code.">
+          <aside class="notes">
+            At first, we just wrote HTML. Everything was hand-coded.
+            
+          </aside>
+        </section>
+        <section>
+          <figure><img class="no-border" src="./images/the-future-is-fast/x-files-geocities.png" alt="X-Files fan page on Geocities.">
+            <figcaption>Credit: <a href="http://oneterabyteofkilobyteage.tumblr.com/post/42498699597/original-url">One Terabyte of Kilobyte Age Photo Op</a></figcaption>
+          </figure>
+          <aside class="notes">
+            Which allowed us to create masterpieces on Geocities dedicated to our favorite things.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>In some ways it was <em>great</em>:</h3>
+          <ul>
+            <li class="fragment">Can be hosted cheaply (or free, e.g. on Geocities)</li>
+            <li class="fragment">Supported almost everywhere on the web</li>
+            <li class="fragment">Few requests to display a page</li>
+            <li class="fragment">Typically small file size </li>
+          </ul>
+        </section>
+        <section>
+          <h3>In other ways it <strong>sucked</strong>:</h3>
+          <ul>
+            <li class="fragment">Lots of copy-pasta</li>
+            <li class="fragment">No such thing as DRY</li>
+            <li class="fragment">Terrible developer experience</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>Plain HTML is great for getting started</li>
+              <li>Professional use is cumbersome</li>
+            </ul>
+          </aside>
+        </section>
+        <section><img src="./images/the-future-is-fast/not-good-enough.gif" alt="Not good enough.">
+        </section>
+        <section>
+          <h4 class="no-margin">Next came <em>server-side</em> rendering</h4><img class="no-border no-margin" src="./images/the-future-is-fast/wordpress.png" alt="WordPress PHP code." style="width: 100%; max-height: 100%">
+        </section>
+        <section>
+          <h3>In some ways it was <em>great</em>:</h3>
+          <ul>
+            <li class="fragment">Separation of concerns!</li>
+            <li class="fragment">Code reusability!</li>
+            <li class="fragment">Dynamic data manipulation!</li>
+          </ul>
+        </section>
+        <section>
+          <h3>In other ways it <strong>sucked</strong>:</h3>
+          <ul>
+            <li class="fragment">Servers are expensive</li>
+            <li class="fragment">Special hosting required</li>
+            <li class="fragment">Scaling is HARD</li>
+            <li class="fragment">Added complexity</li>
+          </ul>
+        </section>
+        <section><img src="./images/the-future-is-fast/oprah.webp" alt="I will not accept that." style="width: 100%;">
+        </section>
+        <section>
+          <h4 class="no-margin">Then we tried <em>client-side</em> rendering</h4><img class="no-border no-margin" src="./images/the-future-is-fast/handlebars.png" alt="Handlebars code.">
+        </section>
+        <section>
+          <h3>In some ways it was <em>great</em>:</h3>
+          <ul>
+            <li class="fragment">Keeps most of the benefits of server-side rendering</li>
+            <li class="fragment">No special servers required</li>
+            <li class="fragment">Additional opportunities for interactive UIs</li>
+          </ul>
+        </section>
+        <section>
+          <h3>In other ways it <strong>sucked</strong>:</h3>
+          <ul>
+            <li class="fragment">Extra requests to load the library</li>
+            <li class="fragment">Interactions are tricky and error-prone</li>
+            <li class="fragment">Requires JavaScript to be enabled</li>
+          </ul>
+        </section>
+        <section><img src="./images/the-future-is-fast/it-wasnt-enough.gif" alt="It wasn’t enough." style="width: 100%; max-height: 100%">
+        </section>
+        <section>
+          <h4 class="no-margin">We <em>doubled down</em> on client-side rendering</h4><img class="no-border no-margin" src="./images/the-future-is-fast/react.png" alt="React code.">
+        </section>
+        <section>
+          <h3>In some ways it was <em>great</em>:</h3>
+          <ul>
+            <li class="fragment">Can run full-on apps only in JavaScript</li>
+            <li class="fragment">Interactivity is incredibly simple</li>
+            <li class="fragment">The community and ecosystem is extensive</li>
+            <li class="fragment">The developer experience is much better</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>Mention prior art: Ember, Backbone, Angular, etc.</li>
+              <li>Some developers talk about JS frameworks like we've solved all the problems</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h3>In other ways it <strong>sucked</strong>:</h3>
+          <ul>
+            <li class="fragment">We’re sending TONS of JS to the browser</li>
+            <li class="fragment">We still need JavaScript to be enabled</li>
+            <li class="fragment">Pages are loading <em>slooooooooooow</em></li>
+          </ul>
+        </section>
+        <section><img src="./images/the-future-is-fast/almost-there.gif" alt="Goalie blocks the goal, but it rolls in behind him while he celebrates." style="width: 100%; max-height: 100%">
+          <aside class="notes">
+            <ul>
+              <li>We may have celebrated a bit prematurely.</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h3>This is where we are today</h3>
+          <aside class="notes">
+            <ul>
+              <li>The modern web is being built on JavaScript</li>
+              <li>The average web page is getting larger and larger</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h2>JS Frameworks are <em class="hugify">powerful</em></h2>
+        </section>
+        <section>
+          <h2>But they’re also<strong class="hugify">expensive</strong></h2>
+          <h4><span class="fragment">Slow</span> <span class="fragment">Bloated</span> <span class="fragment">JavaScript-dependent</span></h4>
+          <aside class="notes">
+            <ul>
+              <li>Async data loading takes time</li>
+              <li>Large bundles are slow to download</li>
+              <li>Parsing JS is slow on low-powered devices</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h2>53% of visits are <strong class="hugify" style="font-size: 165%">abandoned</strong> if a mobile site takes longer than 3 seconds to load</h2>
+          <p><small>Source: <a href="https://www.thinkwithgoogle.com/data-gallery/detail/mobile-site-abandonment-three-second-load/">
+                Think With Google
+                </a></small></p>
+        </section>
+        <section>
+          <h2>So how do we <em>fix it</em>?</h2>
+        </section>
+        <section>
+          <h3 class="no-margin">Service Worker</h3><img class="no-margin no-border" src="./images/the-future-is-fast/service-worker.png" alt="Service Worker code.">
+          <p class="no-margin"><small><a href="https://bit.ly/offline-cookbook">bit.ly/offline-cookbook</a></small></p>
+        </section>
+        <section>
+          <h3>What <em>Service Workers</em> do:</h3>
+          <ul>
+            <li class="fragment">Cache critical assets when first installed</li>
+            <li class="fragment">Precache non-critical assets in the background</li>
+            <li class="fragment">Act as a proxy for all outgoing requests</li>
+            <li class="fragment">Skip server &amp; provide cached assets if possible</li>
+          </ul>
+        </section>
+        <section>
+          <h4>This allows Progressive Web Apps to<br><em>load offline</em> on subsequent visits</h4>
+        </section>
+        <section>
+          <h3>To make JS-powered apps <em>really fast</em>, we should:</h3>
+          <ul>
+            <li class="fragment">Implement route-based code splitting</li>
+            <li class="fragment">Use HTTP/2 to serve assets</li>
+            <li class="fragment">Set up background prefetching</li>
+            <li class="fragment">Lazy load any non-critical assets</li>
+          </ul>
+        </section>
+        <section>
+          <h4>You may have heard this called <em class="hugify">the PRPL Pattern</em></h4><img class="no-margin" src="./images/pwa-perf/addyosmani.jpg" alt="Addy Osmani" style="border-radius: 50%; width: 250px; min-width: initial;">
+          <p class="no-margin"><small>Addy Osmani<br><a href="https://bit.ly/prpl-pattern">
+                bit.ly/prpl-pattern
+                </a></small></p>
+        </section>
+        <section>
+          <div class="acronym" style="text-align: left; width: 500px; margin-left: auto; margin-right: auto;">
+            <h3><em>P</em>ush</h3>
+            <h3 class="fragment"><em>R</em>ender</h3>
+            <h3 class="fragment"><em>P</em>re-cache</h3>
+            <h3 class="fragment"><em>L</em>azy-load</h3>
+          </div>
+        </section>
+        <section>
+          <h3>To make JS-powered apps <em>really fast</em>, we should:</h3>
+          <ul>
+            <li>Implement route-based code splitting</li>
+            <li>Use HTTP/2 to serve assets</li>
+            <li>Set up background prefetching</li>
+            <li>Lazy load any non-critical assets</li>
+            <li class="fragment">Eliminate all unused code</li>
+            <li class="fragment">Use server-side rendering to generate static files</li>
+          </ul>
+        </section>
+        <section>
+          <h3>That’s a lot of things.</h3><img class="no-margin" src="./images/pwa-perf/kanye.webp" alt="Kanye WTF." style="width: 800px">
+        </section>
+        <section>
+          <h3>Route-based <em>code splitting</em>:</h3>
+          <ul>
+            <li class="fragment">Creates smaller bundles for specific routes</li>
+            <li class="fragment">Creates shared bundles for common code</li>
+            <li class="fragment">Allows loading only what’s <em>really</em> needed</li>
+          </ul>
+        </section>
+        <section><img class="no-border" src="./images/pwa-perf/app-build-bundles.png" alt="App build bundles.">
+          <p><small>Source: <a href="https://bit.ly/prpl-pattern">Google Developers</a></small></p>
+        </section>
+        <section>
+          <h4>Code splitting with <em>Webpack</em>:</h4>
+          <ul>
+            <li class="fragment">Use <code>import()</code> to identify chunks</li>
+            <li class="fragment">in Webpack 4, use <code>optimization.splitChunks</code></li>
+            <li class="fragment">In Webpack 3 or earlier, use <code>CommonsChunkPlugin</code></li>
+          </ul>
+        </section>
+        <section>
+          <style type="text/css">
+            .reveal .beetlesean {
+              position: relative;
+              width: 750px;
+              height: 411px;
+              margin: 0 auto;
+            }
+            
+            .beetlesean img {
+              width: 100%;
+              margin: 0;
+            }
+            
+            .beetlesean::after {
+              content: ' ';
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-image: url(./images/pwa-perf/sean-face.png);
+              background-size: 100%;
+            }
+            
+          </style>
+          <h3 class="no-margin">Totally True Internet Fact</h3>
+          <div class="beetlesean"><img src="./images/pwa-perf/webpack.gif" alt="Summoning Sean Larkin"></div>
+          <p>If you say “Webpack” 3 times, Sean Larkin will appear.</p>
+          <aside class="notes">
+            I’ve just said “Webpack” 3 times, which means I’ve summoned Sean Larkin.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>Serving assets with <em>HTTP/2</em>:</h3>
+          <ul>
+            <li class="fragment">Allows multiplexed downloads</li>
+            <li class="fragment">Provides push capabilities to minimize requests</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Asset <em>prefetching</em>:</h3>
+          <ul>
+            <li class="fragment">Assumes which routes the user will load next</li>
+            <li class="fragment">Loads the assets for those routes in the background</li>
+            <li class="fragment">Makes loading the next route almost instantaneous</li>
+          </ul>
+        </section>
+        <section>
+          <h3><em>Lazy loading</em> assets:</h3>
+          <ul>
+            <li class="fragment">Prevents images from blocking the initial load</li>
+            <li class="fragment">Only requests them once they’re in the viewport</li>
+          </ul>
+          <aside class="notes">
+            Again, we’re seeing how these performance boosts are
+            good for everyone: because we don’t try to load images
+            until the user scrolls it into view, we don’t waste
+            their data.
+            
+          </aside>
+        </section>
+        <section>
+          <h4>“Won’t lazy loading make the page jump?”</h4>
+        </section>
+        <section><img class="no-margin" src="./images/pwa-perf/image-jump.gif" alt="Page jumping while images load.">
+          <p class="no-margin"><small>Source: <a href="https://bit.ly/2GayxFF">bit.ly/2GayxFF</a></small></p>
+        </section>
+        <section>
+          <h2>We can <em>fix it</em>!</h2>
+        </section>
+        <section>
+          <h4>Lazy loading with <em>loading animation</em></h4><img class="no-margin" src="./images/pwa-perf/lazy-load-box.gif" alt="Lazy loading with animation." style="height: 450px;">
+          <p class="no-margin"><small>Source: <a href="https://git.io/lazyload">responsive-lazyload.js</a></small></p>
+        </section>
+        <section>
+          <h4>Lazy loading with the <em>blur-up technique</em></h4><img class="no-margin" src="./images/pwa-perf/lazy-load-blur.gif" alt="Lazy loading with animation." style="height: 450px;">
+          <p class="no-margin"><small>Source: <a href="https://medium.com">medium.com</a></small></p>
+        </section>
+        <section>
+          <h4>Lazy loading with <em>traced SVG</em></h4><img class="no-margin" src="./images/pwa-perf/lazy-load-traced-svg.gif" alt="Lazy loading with traced SVG." style="height: 450px;">
+          <p class="no-margin"><small>Source: <a href="https://bit.ly/traced-svg">Gatsby.js</a></small></p>
+        </section>
+        <section>
+          <h4>Lazy loading with <em>simplified polygons</em></h4><img class="no-margin" src="./images/pwa-perf/lazy-load-svg-shapes.gif" alt="Lazy loading with SVG polygons." style="height: 450px;">
+          <p class="no-margin"><small>Source: <a href="https://bit.ly/2G92KJf">Gatsby.js</a></small></p>
+        </section>
+        <section>
+          <h3>Eliminating <em>unused code</em>:</h3>
+          <ul>
+            <li class="fragment">Reduces the overall size of the codebase</li>
+            <li class="fragment">Helps avoid module bloat</li>
+          </ul>
+        </section>
+        <section><img class="no-margin" src="./images/pwa-perf/node-modules.jpg" alt="Heaviest objects in the universe.">
+          <p class="no-margin"><small>Source: Reddit?</small></p>
+        </section>
+        <section>
+          <h4>How to <em>remove unused code</em>:</h4>
+          <ul>
+            <li class="fragment">Use Uglify.js to remove dead code</li>
+            <li class="fragment">Enable tree-shaking with ES modules</li>
+            <li class="fragment">Analyze your bundle output</li>
+          </ul>
+        </section>
+        <section><img class="no-margin" src="./images/pwa-perf/bundle-analyzer.gif" alt="Webpack Bundle Analyzer.">
+          <p class="no-margin"><small>Source: <a href="https://bit.ly/2G6gJj0">Webpack Bundle Analyzer</a></small></p>
+        </section>
+        <section>
+          <h3>Serving only <em>static assets</em>:</h3>
+          <ul>
+            <li class="fragment">Removes the need for runtime server rendering</li>
+            <li class="fragment">Eliminates an extra HTTP round-trip</li>
+            <li class="fragment">Improves cacheability</li>
+          </ul>
+        </section>
+        <section>
+          <h3>😱 Server-side rendering?! 😱</h3><img class="no-margin" src="./images/pwa-perf/its-hard.gif" alt="But it’s hard!" style="width: 900px;">
+        </section>
+        <section>
+          <h1>☹️</h1>
+          <h4><strong>Loading 1MB of blocking JavaScript</strong> before anything can be displayed</h4>
+        </section>
+        <section>
+          <h1>😐</h1>
+          <h4>Showing a <strong>loading spinner</strong> while the framework initializes</h4>
+        </section>
+        <section>
+          <h1>😊</h1>
+          <h4><em>Server-side rendering</em> so no JavaScript is required to initially display the page</h4>
+        </section>
+        <section>
+          <h4>“But <strong>static files won’t work</strong> for my app!”</h4>
+        </section>
+        <section>
+          <h3>Yes they will. <em class="fragment">Probably.</em></h3>
+          <aside class="notes">
+            Pretty much anything can be built client-side using React,
+            Angular, or Vue these days, from user authentication to 
+            e-commerce to social media. All you need is a back-end API
+            to call and you’re ready to switch to a static front-end.
+            
+          </aside>
+        </section>
+        <section>
+          <h2><em class="hugify" style="font-size: 135%">Beyond Static</em></h2>
+          <h2>Pre-rendered 
+            <spane class="underlined">PWAs</spane>
+          </h2>
+        </section>
+        <section>
+          <h3>If all of this seems a little <strong class="hugify">overwhelming</strong> I totally understand</h3>
+        </section>
+        <section>
+          <h2>Performance is <strong class="hugify" style="font-size: 302%">hard</strong></h2>
+        </section>
+        <section>
+          <h3>We can get most of these performance improvements <em class="hugify" style="font-size: 350%; margin-top: 0.75rem">for free</em></h3>
+          <p class="fragment">Open source is awesome. 🎉💕</p>
+        </section>
+        <section>
+          <h3>Gatsby.js does all of this<em class="hugify" style="font-size: 315%">already</em></h3>
+        </section>
+        <section>
+          <blockquote class="twitter-tweet" data-lang="en">
+            <p lang="en" dir="ltr">I migrated my super active blog to <a href="https://twitter.com/gatsbyjs?ref_src=twsrc%5Etfw">@gatsbyjs</a> and think I&#39;m off to a pretty good start 💪 <a href="https://t.co/pQwxrbt8Rr">pic.twitter.com/pQwxrbt8Rr</a></p>&mdash; Mads Obel (@madsobel) <a href="https://twitter.com/madsobel/status/996830661397958657?ref_src=twsrc%5Etfw">May 16, 2018</a></p>
+          </blockquote>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </section>
+        <section>
+          <h3>What is Gatsby.js?</h3>
+          <ul>
+            <li class="fragment">Framework for building React apps</li>
+            <li class="fragment">Compiles to static files</li>
+            <li class="fragment">Add Service Worker + Web Manifest with plugins</li>
+            <li class="fragment">The developer experience is 👌</li>
+            <li class="fragment">Generated apps are unbelievably fast</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>I discovered Gatsby because I was trying to improve performance at IBM</li>
+              <li>I liked the platform so much I joined the team</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h1>Let’s Recap</h1>
+        </section>
+        <section>
+          <h1>🔥🔥🔥</h1>
+          <h3>Blazing fast apps need <em class="hugify">fine tuning️</em></h3>
+        </section>
+        <section>
+          <h2><em>PWA Performance</em> <span class="hugify">Checklist:</span></h2>
+          <p style="width: 480px; margin-left: auto; margin-right: auto; text-align: left;"><span class="fragment">✅ Add a Service Worker</span><br><span class="fragment">✅ Create a Web Manifest</span><br><span class="fragment">✅ Follow the PRPL Pattern</span><br><span class="fragment">✅ Remove unused code</span><br><span class="fragment">✅ Generate static files</span></p>
+        </section>
+        <section>
+          <h2 class="no-margin">Use Gatsby.js to <em class="hugify">automate</em> perf best practices</h2>
+          <h4>(If you want your performance for free)</h4>
+        </section>
+        <section>
+          <h2 class="no-margin" style="font-size: 300%">Pre-Rendered PWAs are the <em class="hugify">future</em></h2>
+          <h3 class="no-margin fragment">...and the future is fast</h3>
         </section>
         <section>
           <h2>Thanks!</h2><img src="./images/work-life-balance/jason-lengstorf.jpg" alt="Jason Lengstorf" style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;">
@@ -48,11 +500,11 @@
       </div>
     </div>
     <div class="hashtag">
-      <p>Tweet: <a href="https://twitter.com/intent/tweet?text=The%20Future%20Is%20Fast%20by%20%40jlengstorf&amp;hashtags=&amp;related=jlengstorf&amp;url=https%3A%2F%2Fgit.io%2Ftest-culture" target="_blank">@jlengstorf </a></p>
+      <p>Tweet: <a href="https://twitter.com/intent/tweet?text=The%20Future%20Is%20Fast%20by%20%40jlengstorf&amp;hashtags=&amp;related=jlengstorf&amp;url=https%3A%2F%2Fgit.io%2Ffuture-is-fast" target="_blank">@jlengstorf </a></p>
     </div>
     <footer>
       <ul class="inline">
-        <li>“The Future Is Fast” by <a href="https://code.lengstorf.com/">Jason Lengstorf</a> (slides: <a href="https://git.io/test-culture">git.io/test-culture</a>)</li>
+        <li>“The Future Is Fast” by <a href="https://lengstorf.com/">Jason Lengstorf</a> (slides: <a href="https://git.io/future-is-fast">git.io/future-is-fast</a>)</li>
         <li><a href="https://twitter.com/jlengstorf">@jlengstorf</a></li>
         <li><a href="https://github.com/jlengstorf">github.com/jlengstorf</a></li>
       </ul>

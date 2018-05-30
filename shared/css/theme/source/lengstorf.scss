@@ -608,7 +608,7 @@ footer {
           vertical-align: -5%;
         }
 
-        &[href*='twitter.com']::before {
+        &[href*='twitter.com']:not(.no-icon)::before {
           content: '\F099';
         }
 

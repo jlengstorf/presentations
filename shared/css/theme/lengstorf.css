@@ -741,7 +741,7 @@ footer {
           margin-right: 4px;
           font-family: 'FontAwesome';
           vertical-align: -5%; }
-        footer ul.inline li a[href*='twitter.com']::before {
+        footer ul.inline li a[href*='twitter.com']:not(.no-icon)::before {
           content: '\F099'; }
         footer ul.inline li a[href*='facebook.com']::before {
           content: '\F09A'; }

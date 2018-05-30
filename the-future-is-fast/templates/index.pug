@@ -10,13 +10,13 @@ block append config
     config.author = {
       name: 'Jason Lengstorf',
       email: 'jason@lengstorf.com',
-      link: 'https://code.lengstorf.com/',
+      link: 'https://lengstorf.com/',
       twitter: 'jlengstorf',
       github: 'jlengstorf',
     };
     
     config.slides = {
-      link: 'https://git.io/test-culture',
+      link: 'https://git.io/future-is-fast',
     };
 
     config.conference = {
@@ -44,7 +44,559 @@ block slides
       small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
 
   +slide
-    h2 TKTK
+    h3 Hi! I’m Jason Lengstorf.
+    blockquote.photo-quote
+      .photo
+        img(
+          src="./images/jason-lengstorf.jpg"
+          alt="Jason Lengstorf."
+        )
+      .quote
+        ul(style="width: 100%; font-size: 2rem;")
+          li Senior dev / front-end architect
+          li Occasional designer
+          li Author &amp; speaker
+          li Process and efficiency wonk
+          li Developer relations @ Gatsby
+          li @jlengstorf on Twitter, Github, etc.
+
+  +slide(data-background-image="./images/gatsby.jpg")
+
+  +slide
+    h2.no-margin An Incomplete
+    h4(style="margin: 0.5rem 0 0.75rem; opacity: 0.25") (and Heavily Biased)
+    h3.no-margin #[em History] of the Internet
+    aside.notes
+      ul
+        li The internet’s history is long
+        li I’m going to skip most of it
+  
+  +slide
+    h4.no-margin In the beginning, there was #[em HTML]
+    img.no-margin.no-border(
+      src="./images/the-future-is-fast/html.png"
+      alt="HTML code."
+    )
+    aside.notes.
+      At first, we just wrote HTML. Everything was hand-coded.
+  
+  +slide
+    figure
+      img.no-border(
+        src="./images/the-future-is-fast/x-files-geocities.png"
+        alt="X-Files fan page on Geocities."
+      )
+      figcaption Credit: 
+        a(
+          href="http://oneterabyteofkilobyteage.tumblr.com/post/42498699597/original-url"
+        ) One Terabyte of Kilobyte Age Photo Op
+    aside.notes.
+      Which allowed us to create masterpieces on Geocities dedicated to our favorite things.
+  
+  +slide
+    h3 In some ways it was #[em great]:
+    ul
+      li.fragment Can be hosted cheaply (or free, e.g. on Geocities)
+      li.fragment Supported almost everywhere on the web
+      li.fragment Few requests to display a page
+      li.fragment Typically small file size 
+  
+  +slide
+    h3 In other ways it #[strong sucked]:
+    ul
+      li.fragment Lots of copy-pasta
+      li.fragment No such thing as DRY
+      li.fragment Terrible developer experience
+    aside.notes
+      ul
+        li Plain HTML is great for getting started
+        li Professional use is cumbersome
+  
+  +slide
+    img(
+      src="./images/the-future-is-fast/not-good-enough.gif"
+      alt="Not good enough."
+    )
+
+  +slide
+    h4.no-margin Next came #[em server-side] rendering
+    img.no-border.no-margin(
+      src="./images/the-future-is-fast/wordpress.png"
+      alt="WordPress PHP code."
+      style="width: 100%; max-height: 100%"
+    )
+
+  +slide
+    h3 In some ways it was #[em great]:
+    ul
+      li.fragment Separation of concerns!
+      li.fragment Code reusability!
+      li.fragment Dynamic data manipulation!
+  
+  +slide
+    h3 In other ways it #[strong sucked]:
+    ul
+      li.fragment Servers are expensive
+      li.fragment Special hosting required
+      li.fragment Scaling is HARD
+      li.fragment Added complexity
+  
+  +slide
+    img(
+      src="./images/the-future-is-fast/oprah.webp"
+      alt="I will not accept that."
+      style="width: 100%;"
+    )
+
+  +slide
+    h4.no-margin Then we tried #[em client-side] rendering
+    img.no-border.no-margin(
+      src="./images/the-future-is-fast/handlebars.png"
+      alt="Handlebars code."
+    )
+
+  +slide
+    h3 In some ways it was #[em great]:
+    ul
+      li.fragment Keeps most of the benefits of server-side rendering
+      li.fragment No special servers required
+      li.fragment Additional opportunities for interactive UIs
+  
+  +slide
+    h3 In other ways it #[strong sucked]:
+    ul
+      li.fragment Extra requests to load the library
+      li.fragment Interactions are tricky and error-prone
+      li.fragment Requires JavaScript to be enabled
+  
+  +slide
+    img(
+      src="./images/the-future-is-fast/it-wasnt-enough.gif"
+      alt="It wasn’t enough."
+      style="width: 100%; max-height: 100%"
+    )
+
+  +slide
+    h4.no-margin We #[em doubled down] on client-side rendering
+    img.no-border.no-margin(
+      src="./images/the-future-is-fast/react.png"
+      alt="React code."
+    )
+
+  +slide
+    h3 In some ways it was #[em great]:
+    ul
+      li.fragment Can run full-on apps only in JavaScript
+      li.fragment Interactivity is incredibly simple
+      li.fragment The community and ecosystem is extensive
+      li.fragment The developer experience is much better
+    aside.notes
+      ul
+        li Mention prior art: Ember, Backbone, Angular, etc.
+        li Some developers talk about JS frameworks like we've solved all the problems
+  
+  +slide
+    h3 In other ways it #[strong sucked]:
+    ul
+      li.fragment We’re sending TONS of JS to the browser
+      li.fragment We still need JavaScript to be enabled
+      li.fragment Pages are loading #[em slooooooooooow]
+  
+  +slide
+    img(
+      src="./images/the-future-is-fast/almost-there.gif"
+      alt="Goalie blocks the goal, but it rolls in behind him while he celebrates."
+      style="width: 100%; max-height: 100%"
+    )
+    aside.notes
+      ul
+        li We may have celebrated a bit prematurely.
+
+  +slide
+    h3 This is where we are today
+    aside.notes
+      ul
+        li The modern web is being built on JavaScript
+        li The average web page is getting larger and larger
+  
+  +slide
+    h2 JS Frameworks are 
+      em.hugify powerful
+    
+  +slide
+    h2 But they’re also
+      strong.hugify expensive
+    h4
+      span.fragment Slow
+      |  
+      span.fragment Bloated
+      |  
+      span.fragment JavaScript-dependent
+    aside.notes
+      ul
+        li Async data loading takes time
+        li Large bundles are slow to download
+        li Parsing JS is slow on low-powered devices
+  
+  +slide
+    h2 53% of visits are #[strong.hugify(style="font-size: 165%") abandoned] if a mobile site takes longer than 3 seconds to load
+    p
+      small Source: 
+        a(href="https://www.thinkwithgoogle.com/data-gallery/detail/mobile-site-abandonment-three-second-load/").
+          Think With Google
+
+  +slide
+    h2 So how do we #[em fix it]?
+  
+  +slide
+    h3.no-margin Service Worker
+    img.no-margin.no-border(
+      src="./images/the-future-is-fast/service-worker.png"
+      alt="Service Worker code."
+    )
+    p.no-margin
+      small
+        a(href="https://bit.ly/offline-cookbook") bit.ly/offline-cookbook
+      
+
+  +slide
+    h3 What #[em Service Workers] do:
+    ul
+      li.fragment Cache critical assets when first installed
+      li.fragment Precache non-critical assets in the background
+      li.fragment Act as a proxy for all outgoing requests
+      li.fragment Skip server &amp; provide cached assets if possible
+
+  +slide
+    h4 This allows Progressive Web Apps to#[br]#[em load offline] on subsequent visits
+
+  +slide
+    h3 To make JS-powered apps #[em really fast], we should:
+    ul
+      li.fragment Implement route-based code splitting
+      li.fragment Use HTTP/2 to serve assets
+      li.fragment Set up background prefetching
+      li.fragment Lazy load any non-critical assets
+  
+  +slide
+    h4 You may have heard this called #[em.hugify the PRPL Pattern]
+    img.no-margin(
+      src="./images/pwa-perf/addyosmani.jpg"
+      alt="Addy Osmani"
+      style="border-radius: 50%; width: 250px; min-width: initial;"
+    )
+    p.no-margin
+      small Addy Osmani
+        br
+        a(href="https://bit.ly/prpl-pattern").
+          bit.ly/prpl-pattern
+  
+  +slide
+    .acronym(
+      style="text-align: left; width: 500px; margin-left: auto; margin-right: auto;"
+    )
+      h3 #[em P]ush
+      h3.fragment #[em R]ender
+      h3.fragment #[em P]re-cache
+      h3.fragment #[em L]azy-load
+
+  +slide
+    h3 To make JS-powered apps #[em really fast], we should:
+    ul
+      li Implement route-based code splitting
+      li Use HTTP/2 to serve assets
+      li Set up background prefetching
+      li Lazy load any non-critical assets
+      li.fragment Eliminate all unused code
+      li.fragment Use server-side rendering to generate static files
+  
+  +slide
+    h3 That’s a lot of things.
+    img.no-margin(
+      src="./images/pwa-perf/kanye.webp"
+      alt="Kanye WTF."
+      style="width: 800px"
+    )
+
+  +slide
+    h3 Route-based #[em code splitting]:
+    ul
+      li.fragment Creates smaller bundles for specific routes
+      li.fragment Creates shared bundles for common code
+      li.fragment Allows loading only what’s #[em really] needed
+  
+  +slide
+    img.no-border(
+      src="./images/pwa-perf/app-build-bundles.png"
+      alt="App build bundles."
+    )
+    p
+      small Source: 
+        a(href="https://bit.ly/prpl-pattern") Google Developers
+
+  +slide
+    h4 Code splitting with #[em Webpack]:
+    ul
+      li.fragment Use #[code import()] to identify chunks
+      li.fragment in Webpack 4, use #[code optimization.splitChunks]
+      li.fragment In Webpack 3 or earlier, use #[code CommonsChunkPlugin]
+    
+  +slide
+    style(type="text/css").
+      .reveal .beetlesean {
+        position: relative;
+        width: 750px;
+        height: 411px;
+        margin: 0 auto;
+      }
+
+      .beetlesean img {
+        width: 100%;
+        margin: 0;
+      }
+
+      .beetlesean::after {
+        content: ' ';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url(./images/pwa-perf/sean-face.png);
+        background-size: 100%;
+      }
+
+    h3.no-margin Totally True Internet Fact
+    .beetlesean
+      img(
+        src="./images/pwa-perf/webpack.gif"
+        alt="Summoning Sean Larkin"
+      )
+    p If you say “Webpack” 3 times, Sean Larkin will appear.
+    
+    aside.notes.
+      I’ve just said “Webpack” 3 times, which means I’ve summoned Sean Larkin.
+
+  +slide
+    h3 Serving assets with #[em HTTP/2]:
+    ul
+      li.fragment Allows multiplexed downloads
+      li.fragment Provides push capabilities to minimize requests
+
+  +slide
+    h3 Asset #[em prefetching]:
+    ul
+      li.fragment Assumes which routes the user will load next
+      li.fragment Loads the assets for those routes in the background
+      li.fragment Makes loading the next route almost instantaneous
+  
+  +slide
+    h3 #[em Lazy loading] assets:
+    ul
+      li.fragment Prevents images from blocking the initial load
+      li.fragment Only requests them once they’re in the viewport
+    
+    aside.notes.
+      Again, we’re seeing how these performance boosts are
+      good for everyone: because we don’t try to load images
+      until the user scrolls it into view, we don’t waste
+      their data.
+
+  +slide
+    h4 “Won’t lazy loading make the page jump?”
+  
+  +slide
+    img.no-margin(
+      src="./images/pwa-perf/image-jump.gif"
+      alt="Page jumping while images load."
+    )
+    p.no-margin
+      small Source: 
+        a(href="https://bit.ly/2GayxFF") bit.ly/2GayxFF
+
+  +slide
+    h2 We can #[em fix it]!
+  
+  +slide
+    h4 Lazy loading with #[em loading animation]
+    img.no-margin(
+      src="./images/pwa-perf/lazy-load-box.gif"
+      alt="Lazy loading with animation."
+      style="height: 450px;"
+    )
+    p.no-margin
+      small Source: 
+        a(href="https://git.io/lazyload") responsive-lazyload.js
+
+  +slide
+    h4 Lazy loading with the #[em blur-up technique]
+    img.no-margin(
+      src="./images/pwa-perf/lazy-load-blur.gif"
+      alt="Lazy loading with animation."
+      style="height: 450px;"
+    )
+    p.no-margin
+      small Source: 
+        a(href="https://medium.com") medium.com
+
+  +slide
+    h4 Lazy loading with #[em traced SVG]
+    img.no-margin(
+      src="./images/pwa-perf/lazy-load-traced-svg.gif"
+      alt="Lazy loading with traced SVG."
+      style="height: 450px;"
+    )
+    p.no-margin
+      small Source: 
+        a(href="https://bit.ly/traced-svg") Gatsby.js
+
+  +slide
+    h4 Lazy loading with #[em simplified polygons]
+    img.no-margin(
+      src="./images/pwa-perf/lazy-load-svg-shapes.gif"
+      alt="Lazy loading with SVG polygons."
+      style="height: 450px;"
+    )
+    p.no-margin
+      small Source: 
+        a(href="https://bit.ly/2G92KJf") Gatsby.js
+
+  +slide
+    h3 Eliminating #[em unused code]:
+    ul
+      li.fragment Reduces the overall size of the codebase
+      li.fragment Helps avoid module bloat
+
+  +slide
+    img.no-margin(
+      src="./images/pwa-perf/node-modules.jpg"
+      alt="Heaviest objects in the universe."
+    )
+    p.no-margin
+      small Source: Reddit?
+  
+  +slide
+    h4 How to #[em remove unused code]:
+    ul
+      li.fragment Use Uglify.js to remove dead code
+      li.fragment Enable tree-shaking with ES modules
+      li.fragment Analyze your bundle output
+
+  +slide
+    img.no-margin(
+      src="./images/pwa-perf/bundle-analyzer.gif"
+      alt="Webpack Bundle Analyzer."
+    )
+    p.no-margin
+      small Source: 
+        a(href="https://bit.ly/2G6gJj0") Webpack Bundle Analyzer
+
+  +slide
+    h3 Serving only #[em static assets]:
+    ul
+      li.fragment Removes the need for runtime server rendering
+      li.fragment Eliminates an extra HTTP round-trip
+      li.fragment Improves cacheability
+
+  +slide
+    h3 😱 Server-side rendering?! 😱
+    img.no-margin(
+      src="./images/pwa-perf/its-hard.gif"
+      alt="But it’s hard!"
+      style="width: 900px;"
+    )
+
+  +slide
+    h1 ☹️
+    h4 #[strong Loading 1MB of blocking JavaScript] before anything can be displayed
+
+  +slide
+    h1 😐
+    h4 Showing a #[strong loading spinner] while the framework initializes
+
+  +slide
+    h1 😊
+    h4 #[em Server-side rendering] so no JavaScript is required to initially display the page
+
+  +slide
+    h4 “But #[strong static files won’t work] for my app!”
+  
+  +slide
+    h3 Yes they will. 
+      em.fragment Probably.
+    
+    aside.notes.
+      Pretty much anything can be built client-side using React,
+      Angular, or Vue these days, from user authentication to 
+      e-commerce to social media. All you need is a back-end API
+      to call and you’re ready to switch to a static front-end.
+
+  +slide
+    h2
+      em.hugify(style="font-size: 135%") Beyond Static
+    h2 Pre-rendered 
+      spane.underlined PWAs
+
+  +slide
+    h3 If all of this seems a little #[strong.hugify overwhelming] I totally understand
+  
+  +slide
+    h2 Performance is #[strong.hugify(style="font-size: 302%") hard]
+
+  +slide
+    h3 We can get most of these performance improvements 
+      em.hugify(style="font-size: 350%; margin-top: 0.75rem") for free
+    p.fragment Open source is awesome. 🎉💕
+
+  +slide
+    h3 Gatsby.js does all of this
+      em.hugify(style="font-size: 315%") already
+  
+  +slide
+    blockquote.twitter-tweet(data-lang="en")
+      p(lang="en" dir="ltr") I migrated my super active blog to #[a(href="https://twitter.com/gatsbyjs?ref_src=twsrc%5Etfw") @gatsbyjs] and think I&#39;m off to a pretty good start 💪 #[a(href="https://t.co/pQwxrbt8Rr") pic.twitter.com/pQwxrbt8Rr]</p>&mdash; Mads Obel (@madsobel) #[a(href="https://twitter.com/madsobel/status/996830661397958657?ref_src=twsrc%5Etfw") May 16, 2018]
+    script(async src="https://platform.twitter.com/widgets.js" charset="utf-8")
+
+  +slide
+    h3 What is Gatsby.js?
+    ul
+      li.fragment Framework for building React apps
+      li.fragment Compiles to static files
+      li.fragment Add Service Worker + Web Manifest with plugins
+      li.fragment The developer experience is 👌
+      li.fragment Generated apps are unbelievably fast
+    aside.notes
+      ul
+        li I discovered Gatsby because I was trying to improve performance at IBM
+        li I liked the platform so much I joined the team
+
+  +slide
+    h1 Let’s Recap
+  
+  +slide
+    h1 🔥🔥🔥
+    h3 Blazing fast apps need #[em.hugify fine tuning️]
+
+  +slide
+    h2 #[em PWA Performance] #[span.hugify Checklist:]
+    p(style="width: 480px; margin-left: auto; margin-right: auto; text-align: left;")
+      span.fragment ✅ Add a Service Worker
+      br
+      span.fragment ✅ Create a Web Manifest
+      br
+      span.fragment ✅ Follow the PRPL Pattern
+      br
+      span.fragment ✅ Remove unused code
+      br
+      span.fragment ✅ Generate static files
+
+  +slide
+    h2.no-margin Use Gatsby.js to #[em.hugify automate] perf best practices
+    h4 (If you want your performance for free)
+
+  +slide
+    h2(style="font-size: 300%").no-margin Pre-Rendered PWAs are the #[em.hugify future]
+    h3.no-margin.fragment ...and the future is fast
 
   //- Q&A
   +slide
