@@ -249,6 +249,7 @@ html {
     }
 
     img {
+      background-color: $mainColor;
       display: block;
       border-radius: 50%;
       width: 100%;
@@ -354,7 +355,7 @@ html {
 
     blockquote {
       box-shadow: none;
-      color: lighten($mainColor, 15%);
+      color: $mainColor;
     }
 
     a {
@@ -500,12 +501,12 @@ section .right {
 
 .reveal .image-credit {
   display: inline-block;
-  margin: 90vh auto 0;
-  padding: 10px 20px;
+  margin: 58vh auto 0;
+  padding: 5px 20px;
   background-color: transparentize($headingColor, 0.25);
-  border-radius: 15px;
+  border-radius: 20px;
   color: $backgroundColor;
-  font-size: 18px;
+  font-size: 16px;
   z-index: 10;
 
   &--with-text {
@@ -518,7 +519,6 @@ section .right {
 
   &__link {
     color: inherit;
-    font-weight: 700;
   }
 }
 
@@ -611,6 +611,9 @@ footer {
         &[href*='twitter.com']:not(.no-icon)::before {
           content: '\F099';
         }
+        &[href*='git.io']:not(.no-icon)::before {
+          content: '\F26C';
+        }
 
         &[href*='facebook.com']::before {
           content: '\F09A';
@@ -619,6 +622,18 @@ footer {
         &[href*='github.com']::before {
           content: '\F09B';
         }
+      }
+    }
+  }
+
+  &.v2 {
+    background: transparentize($backgroundColor, 0.125);
+
+    ul.inline {
+      li {
+        color: $headingColor;
+        font-size: 36px;
+        font-weight: bold;
       }
     }
   }

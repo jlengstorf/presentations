@@ -480,6 +480,7 @@ html.blackout::after, html.dimmer::after {
       flex: 2 1 65%;
       margin-left: 5%; }
     .reveal .photo-quote img {
+      background-color: #56453b;
       display: block;
       border-radius: 50%;
       width: 100%; }
@@ -553,7 +554,7 @@ html.blackout::after, html.dimmer::after {
         line-height: 1; }
     .reveal .slides > section blockquote {
       box-shadow: none;
-      color: #83695a; }
+      color: #56453b; }
     .reveal .slides > section a {
       font-weight: 700; }
     .reveal .slides > section sup {
@@ -657,20 +658,19 @@ section .right {
 
 .reveal .image-credit {
   display: inline-block;
-  margin: 90vh auto 0;
-  padding: 10px 20px;
+  margin: 58vh auto 0;
+  padding: 5px 20px;
   background-color: rgba(56, 42, 44, 0.75);
-  border-radius: 15px;
+  border-radius: 20px;
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
   z-index: 10; }
   .reveal .image-credit--with-text {
     margin-top: 10vh; }
   .reveal .image-credit::before {
     content: attr(data-credit-type) ": "; }
   .reveal .image-credit__link {
-    color: inherit;
-    font-weight: 700; }
+    color: inherit; }
 
 /*
  * Animated underline, stolen shamelessly from @elifitch because it’s awesome.
@@ -743,7 +743,15 @@ footer {
           vertical-align: -5%; }
         footer ul.inline li a[href*='twitter.com']:not(.no-icon)::before {
           content: '\F099'; }
+        footer ul.inline li a[href*='git.io']:not(.no-icon)::before {
+          content: '\F26C'; }
         footer ul.inline li a[href*='facebook.com']::before {
           content: '\F09A'; }
         footer ul.inline li a[href*='github.com']::before {
           content: '\F09B'; }
+  footer.v2 {
+    background: rgba(255, 255, 255, 0.875); }
+    footer.v2 ul.inline li {
+      color: #382a2c;
+      font-size: 36px;
+      font-weight: bold; }

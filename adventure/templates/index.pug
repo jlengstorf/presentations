@@ -1,0 +1,1016 @@
+//- Use the presentation layout so we can keep this clean
+extends layouts/presentation
+
+block append config
+  -
+    config.theme = 'lengstorf';
+    config.title = 'Adventure as a career plan';
+    config.description = 'how curiosity and exploration create our best lives, friendships, and careers';
+
+    config.author = {
+      name: 'Jason Lengstorf',
+      email: 'jason@lengstorf.com',
+      link: 'https://lengstorf.com/',
+      twitter: 'jlengstorf',
+      github: 'jlengstorf',
+    };
+    
+    config.slides = {
+      link: 'https://git.io/tktk',
+    };
+
+    config.conference = {
+      hashtag: 'ThatConference',
+      twitter: 'ThatConference',
+    };
+  -
+
+//- Add your slides here. See templates/includes/_mixins.pug for information 
+//- on how `+slide` works.
+block slides
+  +slide
+    h1(style="font-size: 110px")= config.title
+    h4= config.description
+    
+    p by 
+      a(href= config.author.link)= config.author.name
+      br
+      small
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        | &nbsp; · &nbsp;
+        a(href= `mailto:${config.author.email}`)= config.author.email
+    
+    p
+      small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
+
+  +slide(
+    data-background="url(./images/adventure/mom-sweater.jpg)"
+  )
+    .image-credit(
+      data-credit-type="Photo"
+    )
+      strong Lengstorf Family Archive
+    aside.notes
+      ul
+        li Tell a story from Mom’s perspective
+        li Story starts with a kid: me
+
+  +slide(
+    data-background="url(./images/adventure/adorable.jpg)"
+  )
+    .image-credit(
+      data-credit-type="Photos"
+    )
+      strong Lengstorf Family Archive
+    aside.notes
+      ul
+        li I am ADORABLE
+
+  +slide
+    img.no-border.no-margin(
+      src="./images/adventure/mom/happy.png"
+      alt="Mom feeling happy."
+      width=300
+    )
+    aside.notes
+      ul
+        li Great student
+        li Well behaved
+        li So far so good
+        li She’s got big plans for me!
+
+  +slide(
+    data-background="url(./images/adventure/jason-high-school-photos.jpg)"
+  )
+    .image-credit(
+      data-credit-type="Photos"
+    )
+      strong Wendy Lengstorf’s Wall of Shame
+    aside.notes
+      ul
+        li As a teenager, things got... difficult
+        li Pot-stirrer
+        li Angry teenager
+        li Pretty much a jerk
+
+  +slide
+    img.no-border.no-margin(
+      src="./images/adventure/mom/angry.png"
+      alt="Mom feeling angry."
+      width=300
+    )
+    aside.notes
+      ul
+        li Wrote short stories about a utopian world where the first kid was just practice and you got to give it back
+
+  +slide(
+    data-background="url(./images/adventure/graduate.jpg)"
+  )
+    .image-credit(
+      data-credit-type="Photo"
+    )
+      a.image-credit__link(
+        href="https://unsplash.com/photos/vEgVWRBr2VY"
+      ) Cole Keister
+    aside.notes
+      ul
+        li I #[em did] graduate, though
+
+  +slide
+    img.no-border.no-margin(
+      src="./images/adventure/mom/happy.png"
+      alt="Mom feeling happy."
+      width=300
+    )
+    aside.notes
+      ul
+        li At the very least, I’d be out of the house now
+
+  +slide(
+    data-background="url(./images/adventure/harvard.jpg)"
+  )
+    .image-credit(
+      data-credit-type="Photo"
+    )
+      a.image-credit__link(
+        href="https://commons.wikimedia.org/wiki/File:Elizabeth_Cary_Agassiz_House_-_Radcliffe_Yard,_Harvard_University,_Cambridge,_Massachusetts,_USA_-_IMG_6597.JPG"
+      ) Daderot
+    aside.notes
+      ul
+        li Next step on the Right Path™: go to college
+        li ...I did not go to college
+
+  +slide(
+    data-background="url(./images/adventure/band.jpg)"
+  )
+    .image-credit(
+      data-credit-type="Photo"
+    ) 
+      a.image-credit__link(href="http://tysonvick.com") Tyson Vick
+
+  +slide(
+    data-background="url(./images/adventure/band-arrow.jpg)"
+  )
+    .image-credit(
+      data-credit-type="Photo"
+    ) 
+      a.image-credit__link(href="http://tysonvick.com") Tyson Vick
+
+  +slide
+    img.no-border.no-margin(
+      src="./images/adventure/mom/swearing.png"
+      alt="Mom swearing at me."
+      width=300
+    )
+    aside.notes
+      ul
+        li This went poorly
+        li Her mood did not improve when...
+
+  +slide(
+    data-background="url(./images/adventure/van.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="http://www.lasvegasbussales.com/sold-buses/1998-ford-e350-15-passenger-van"
+    ) Las Vegas Bus Sales
+    aside.notes
+      ul
+        li ...I went on tour for two solid years...
+        li 200-ish shows per year
+
+  +slide(
+    data-background="url(./images/adventure/van-bench.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="http://www.lasvegasbussales.com/sold-buses/1998-ford-e350-15-passenger-van"
+    ) Las Vegas Bus Sales
+    aside.notes
+      ul
+        li ...and slept in a van...
+        li Or on a stranger’s floor
+
+  +slide(
+    data-background="url(./images/adventure/ramen.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="http://nissinfoods.com/products/top-ramen-noodles"
+    ) Nissin
+    aside.notes
+      ul
+        li ...and ate pretty much nothing but Top Ramen
+        li The dollar menu was a rare luxury
+        li Looking back, I probably had mild scurvy
+
+  +slide(
+    data-background="url(./images/adventure/on-stage.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="https://summit.graphql.com/"
+    ) GraphQL Summit
+    aside.notes
+      ul
+        li Fast forward to today
+
+  +slide(
+    data-background="url(./images/adventure/on-stage-arrow.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="https://summit.graphql.com/"
+    ) GraphQL Summit
+    aside.notes
+      ul
+        li Pretty comfortable in my career
+
+  +slide
+    img.no-border.no-margin(
+      src="./images/adventure/mom/happy.png"
+      alt="Mom feeling happy."
+      width=300
+    )
+    aside.notes
+      ul
+        li Mom’s pretty happy with me again
+        li Parents aren’t supposed to have favorite kids, but if she #[em had] to pick one...
+
+  +slide
+    h1
+      span(style="font-size: 115%") How is this 
+      em(style="font-size: 140%") possible?
+
+  +slide
+    h1
+      span(style="font-size: 129%") I’ve done 
+      span everything
+      em(style="font-size: 168%") wrong
+
+  +slide(
+    data-background="url(./images/adventure/seeking-vs-wandering.jpg)"
+  )
+    .image-credit(
+      data-credit-type="Photos"
+    )
+      a.image-credit__link(
+        href="https://unsplash.com/photos/cF4mevB-trE"
+      ) Jeremy Bishop
+      |  & 
+      a.image-credit__link(
+        href="https://unsplash.com/photos/tNqBjuUzF9U"
+      ) Ryan Franco
+
+  //- SEEKING
+  +slide(
+    data-background="url(./images/adventure/seeking.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="https://unsplash.com/photos/cF4mevB-trE"
+    ) Jeremy Bishop
+
+  +slide
+    h2
+      span(style="font-size: 145%") Seeking is the 
+      em(style="display: block; font-size: 255%") pursuit
+      span(style="font-size: 113%")  of a defined goal
+
+  //- Don’t think I want to use this one.
+    +slide(
+      data-background="url(./images/adventure/seeking.jpg)"
+    )
+      a.image-credit(
+        data-credit-type="Photo"
+        href="https://unsplash.com/photos/cF4mevB-trE"
+      ) Jeremy Bishop
+      aside.notes
+        ul
+          li The American Dream is almost all seeking
+          li Get a degree (we go to college #[em to become something], not to learn)
+          li Get a job
+          li Get a spouse
+          li Get a promotion
+          li Get a nest egg
+          li Get a house
+          li Get some kids
+          li Get a good retirement
+
+  +slide(
+    data-background="url(./images/adventure/violinist.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="https://unsplash.com/photos/qtYhAQnIwSE"
+    ) William Recinos
+    aside.notes
+      ul
+        li Seeking is how we become great
+        li Pick a goal and put the work in to achieve it
+        li Anders Ericsson coined the term “deliberate practice” to describe it
+        li Often oversimplified to “10,000 hours”
+
+  +slide
+    h1
+      span(style="font-size: 140%") Seeking is 
+      em(style="font-size: 180%") limited
+      span(style="font-size: 70%; display: block") to what we know
+    aside.notes
+      ul
+        li It’s really difficult to set a goal that we don’t know exists
+        li Think about pre-industrial business: people inherited the family business because that was what they knew
+
+  +slide
+    h1
+      span(style="font-size: 80%") Seeking creates 
+      em(style="font-size: 120%") risk & fear
+    aside.notes
+      ul
+        li When you set a big goal, failure carries risk
+        li Can lead to playing it safe
+        li “If I might fail, it’s probably better not to try”
+        li High confidence in a narrow discipline
+        li Low confidence everywhere else
+        li Fixed mindset
+  
+  +slide
+    h2
+      span(style="font-size: 134%") Fixed Mindset:
+    h3 “I’m  not the kind of person who can __________________.”
+    aside.notes
+      ul
+        li This is the wrong story to tell ourselves
+        li We tend to live the stories we tell ourselves
+
+  +slide
+    h1
+      span(style="font-size: 165%") Failure
+      em(style="display: block; font-size: 130%") &nbsp;
+    aside.notes
+      ul
+        li This is because we tend to have an “all is lost” mentality about failure
+        li That’s simply not true
+        li We #[em need] failure
+
+  +slide
+    h1
+      del(style="font-size: 165%") Failure
+      em(style="display: block; font-size: 130%") Learning
+    aside.notes
+      ul
+        li Failure is learning
+        li Knowing what _doesn’t_ work can be just as helpful as knowing what does
+        li Copter Labs story
+
+  +slide(
+    data-background="url(./images/adventure/copter.jpg)"
+  )
+    aside.notes
+      ul
+        li Wanted to build an agency
+        li Succeeded in a lot of ways: clients, made a living, some notoriety
+        li Failed in #[em so many] ways: bad management, debt, stress, health
+        li Ultimately ended up selling the company because I couldn’t handle it
+
+  +slide
+    h1
+      span(style="font-size: 82%") Failure teaches 
+      em(style="display: block; font-size: 132%;") resilience
+    aside.notes
+      ul
+        li Resilience is how we bounce back
+        li Jason Comely was so convinced resilience was important that he set out to get rejected
+
+  +slide(
+    data-background="url(./images/adventure/rejection-therapy.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="https://www.rejectiontherapy.com/game/"
+    ) Rejection Therapy
+    aside.notes
+      ul
+        li It worked so well he made a game out of it
+        li I did my own version of rejection therapy
+        li I sold vacuum cleaners door to door
+
+  +slide(
+    data-background="url(./images/adventure/vacuum.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="https://www.kirby.com/"
+    ) Kirby
+    aside.notes
+      ul
+        li Selling vacuum cleaners is horrible
+        li Doors get slammed in your face
+        li People yell at you
+        li I learned to toughen up
+        li (And also learned that I never wanted to work in high-pressure sales again)
+
+  +slide
+    h1 Can you #[em rely] on yourself?
+    aside.notes
+      ul
+        li Failure teaches self-reliance
+        li Self-sufficiency creates confidence
+        li “I can do this.”
+
+  +slide(
+    data-background="url(./images/adventure/into-the-woods.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="https://unsplash.com/photos/LlZ3I2srWNE"
+    ) Annie Spratt
+    aside.notes
+      ul
+        li Rite of Passage
+        li Sending a kid to the woods: “Don’t come back for two weeks. Also don’t die.”
+        li Living alone for the first time
+        li Not all rites of passage happen when we’re kids
+        li Marisa’s divorce
+        li Alaska story
+
+  +slide(
+    data-background="url(./images/adventure/alaska.jpg)"
+  )
+    strong.image-credit(
+      data-credit-type="Photo"
+    ) Rose Heider
+    aside.notes
+      ul
+        li Alaska story
+        li Literally hunted and gathered for the first time in my life
+        li Had no phone service or internet connection for 10 days
+        li I learned a lot about myself that I didn’t realize I needed to learn, which brings us to...
+
+  //- WANDERING
+  +slide(
+    data-background="url(./images/adventure/wandering.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="https://unsplash.com/photos/tNqBjuUzF9U"
+    ) Ryan Franco
+
+  +slide
+    h2
+      span(style="font-size: 150%") Wandering is
+      em(style="display: block; font-size: 175%") undirected
+      span(style="font-size: 155%")  exploration
+    aside.notes
+      ul
+        li Curiosity
+        li Continuing education
+        li Hobbies
+        li Play
+
+  +slide(
+    data-background="url(./images/adventure/more-this-way.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="https://unsplash.com/photos/LmsppeMVX2Y"
+    ) Miguel Orós
+    aside.notes
+      ul
+        li Wandering is how we realize what the possibilities are
+        li Discover entirely new concepts and ideas
+        li Learn about new paths
+
+  +slide(
+    data-background="url(./images/adventure/leisure.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="https://unsplash.com/photos/McmRfLKw8yg"
+    ) Takahiro Taguchi
+    aside.notes
+      ul
+        li We tend to see wandering as a leisure activity, like we’re just floating through life
+        li “Killing time”
+        li Not productive
+        li Distractions
+        li Procrastination
+
+  +slide(
+    data-background="url(./images/adventure/legos.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="https://unsplash.com/photos/JRVxgAkzIsM"
+    ) Kelly Sikkema
+    aside.notes
+      ul
+        li But wandering is a critical part of our development
+        li As kids, we play, follow our interests, and learn about “useless” stuff
+        li My sister learned all the words to #[em Balto]
+        li This shows us the doors we can walk through as adults
+
+  +slide(
+    data-background="url(./images/adventure/hidden-door.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="https://unsplash.com/photos/HK8IoD-5zpg"
+    ) Stefan Steinbauer
+    aside.notes
+      ul
+        li If we never wander, if we never explore, we might not even realize the doors that are available to us
+        li We _need_ to wander to know what our options are
+        li Otherwise critical decisions about our life’s path will be made by default...
+        li ...or by other people
+
+  +slide(
+    data-background="url(./images/adventure/polytopia.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="http://midjiwan.com/polytopia.html"
+    ) Midjiwan
+    aside.notes
+      ul
+        li Wandering shows us possibilities
+        li Like the map on some video games; we have to head to uknown areas to get access to more stuff
+        li Each possibility is a new area to explore
+        li If we keep exploring, we find _even more_ possibilities
+        li This is what Steven Johnson calls “the adjacent possible”
+
+  +slide(
+    data-background="url(./images/adventure/doors.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="https://unsplash.com/photos/8OECtq8rrNg"
+    ) Dil Assi
+    aside.notes
+      ul
+        li Doors analogy
+        li Each door is a thing you’re capable of doing
+        li All doors come with you
+        li Doors don’t close; you’re just finding more doors
+
+  +slide(
+    data-background="url(./images/adventure/cooking.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="https://unsplash.com/photos/ZrejNf2Ex0M"
+    ) Debashis Biswas
+    aside.notes
+      ul
+        li One of the best examples of the adjacent possible is cooking
+        li Cooking allows us to use significantly less energy to digest our food
+        li The extra energy can be used by our brains
+        li Learning to cook opened the door for humans to grow large brains
+        li Example: when we learn to stand, it’s possible to learn to walk
+        li Sometimes it creates a lot of possibilities: learning to talk means we can learn to tell stories, lies, jokes
+
+  +slide
+    h1
+      span(style="font-size: 70%") Wandering builds 
+      em(style="font-size: 115%") confidence
+    aside.notes
+      ul
+        li Small successes in lots of different places add up
+        li Bad: “I’ve been able to figure this thing out; maybe I’m only good at this thing.”
+        li Good: “I’ve been able to figure out lots of stuff; I can probably figure this out, too.”
+
+  +slide
+    h1
+      span(style="font-size: 56%") Wandering reduces 
+      span(style="display: block; font-size: 280%")
+        em risk
+    aside.notes
+      ul
+        li Many risks aren’t actually risks — unless you don’t have information
+        li Wandering helps broaden our knowledge
+        li Often that knowledge gives us confidence that a “risk” isn’t risky at all
+
+  +slide(
+    data-background="url(./images/adventure/connections.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="https://unsplash.com/photos/BW0vK-FA3eg"
+    ) Clint Adair
+    aside.notes
+      ul
+        li Wandering helps find connections
+        li Our subconscious is _really_ good at finding new connections between ideas
+        li But it only works if we shut off the conscious part of our brains
+        li Requires disconnection from devices, stimulation, etc.
+        li This is why we often solve problems in the shower or in dreams
+
+  +slide(
+    data-background="url(./images/adventure/barcelona.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="https://www.laboutiquedelaluz.com/"
+    ) La Boutique de la Luz
+    aside.notes
+      ul
+        li Wandering also gives us different perspectives
+        li Marisa and I took wandering to the extreme by spending two years living in Airbnbs around the world
+
+  +slide(
+    data-background="url(./images/adventure/selfie01.jpg)"
+  )
+
+  +slide(
+    data-background="url(./images/adventure/selfie02.jpg)"
+  )
+
+  +slide(
+    data-background="url(./images/adventure/selfie03.jpg)"
+  )
+
+  +slide(
+    data-background="url(./images/adventure/selfie04.jpg)"
+  )
+
+  +slide(
+    data-background="url(./images/adventure/selfie05.jpg)"
+  )
+
+  +slide(
+    data-background="url(./images/adventure/selfie06.jpg)"
+  )
+
+  +slide(
+    data-background="url(./images/adventure/selfie07.jpg)"
+  )
+
+  +slide(
+    data-background="url(./images/adventure/selfie08.jpg)"
+  )
+
+  +slide(
+    data-background="url(./images/adventure/barcelona.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="https://www.laboutiquedelaluz.com/"
+    ) La Boutique de la Luz
+    aside.notes
+      ul
+        li Lots of wandering here: tax code, international visa law, travel hacks, language, food
+        li I am #[em so much more] empathetic now
+
+  //- FEARS AND OBJECTIONS
+  +slide
+    blockquote
+      p “I can’t do that! It doesn’t help me reach my goals. I’m wasting my time!”
+    aside.notes
+      ul
+        li Another variation is, “I’ve wasted years in the wrong career!”
+        li Assumption: all skills are unique with non-transferable knowledge
+
+  +slide(
+    data-background="url(./images/adventure/venn-no-overlap.jpg)"
+  )
+    aside.notes
+      ul
+        li How does being a pastor prepare you for a career in web development?
+        li How does HR management prepare you for product management?
+        li There’s no overlap, right?
+        li Clearly all that time was wasted, right?
+
+  +slide(
+    data-background="url(./images/adventure/venn-overlap.jpg)"
+  )
+    aside.notes
+      ul
+        li As a pastor, Kyle Shevlin learned how to sell ideas, listen, empathize, persuade, and disagree respectfully
+        li (If you don’t believe that’s 90% of development, come see me after this talk)
+        li In HR, Marisa Morby learned how to understand complex human systems, align seemingly unrelated motivations, and keep a team moving smoothly
+
+  +slide
+    blockquote
+      p “I’m not like that; I don’t have natural talent.”
+    aside.notes
+      ul
+        li Talent is a muscle — we weren’t born knowing how to write code or build houses or speak 3 languages
+        li We’re not even born with the “talent” of knowing not to touch a hot burner
+
+  +slide(
+    data-background="url(./images/adventure/stove.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="http://freefoodphotos.com/imagelibrary/cooking/slides/electric_stove.html"
+    ) freefoodphotos.com
+    aside.notes
+      ul
+        li We have to learn through experience, and — in my case, at least — lots of practice
+        li László Polgár set a goal to prove that practice, not talent, makes experts
+        li Had three daughters: Susan, Sofia, and Judit
+
+  +slide(
+    data-background="url(./images/adventure/chess.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="https://unsplash.com/photos/fzOITuS1DIQ"
+    ) jeshoots.com
+    aside.notes
+      ul
+        li Taught chess starting at age 5
+        li Laszlo: only a hobbyist chess player
+        li Susan: top-rated female chess player in the world by 14
+        li Sofia: fifth-greatest chess performance of all time
+        li Judit: youngest-ever grandmaster, male or female
+  
+  +slide
+    blockquote.photo-quote
+      .photo
+        img(
+          src="./images/adventure/laszlo-polgar.jpg"
+          alt="László Polgár"
+        )
+      .quote
+        p “People, for some reason, do not want to believe it. They seem to think that excellence is only open to others, not themselves.”
+          strong László Polgár
+    aside.notes
+      ul
+        li So let’s take all that we’ve just talked about and see if we can figure out the mystery...
+
+  +slide(
+    data-background="url(./images/adventure/band-arrow.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="http://tysonvick.com"
+    ) Tyson Vick
+    aside.notes
+      ul
+        li ...of how I went from living in a van, chasing a doomed dream of becoming a rock star...
+
+  +slide(
+    data-background="url(./images/adventure/on-stage-arrow.jpg)"
+  )
+    a.image-credit(
+      data-credit-type="Photo"
+      href="https://summit.graphql.com"
+    ) GraphQL Summit
+    aside.notes
+      ul
+        li ...to having a reasonably successful career in tech.
+
+  +slide
+    h1 
+      span(style="display: block; font-size: 160%") I 
+        del failed
+      em(style="display: block; font-size: 137%") learned
+      span(style="display: block; font-size: 95%") constantly
+    aside.notes
+      ul
+        li Bad shows
+        li Bad planning
+        li Bad merch that didn’t sell
+
+  +slide
+    h1 
+      span(style="display: block; font-size: 100%") I learned to
+      em(style="display: block; font-size: 175%") depend
+      span(style="display: block; font-size: 125%") on myself
+    aside.notes
+      ul
+        li I learned to depend on myself
+        li There was no one to design the merch, build the website, send the newsletter, book our tour, etc., etc., etc.
+        li I had no source of income, and my parents certainly weren’t going to support whatever the hell it was I was doing
+
+  +slide
+    h1 
+      span(style="display: block; font-size: 130%") I learned
+      em(style="display: block; font-size: 122%") resilience
+    aside.notes
+      ul
+        li I learned resilience
+        li We took video of every show and watched it afterward to find places to improve
+        li Cold calling venues to book shows, often turned down or ignored
+        li Asking strangers to buy merch and/or if we could sleep on their floor
+
+  +slide
+    h1 
+      span(style="display: block; font-size: 100%") I got lots of
+      em(style="display: block; font-size: 142%") practice
+    aside.notes
+      ul
+        li I learned Photoshop and design
+        li I learned HTML, CSS, Flash, and some JavaScript
+        li I learned PHP
+        li I learned management: getting the band places on time, keeping track of our finances, ordering/selling merch, running social media campaigns, organizing street teams
+        li I worked on our designs constantly
+        li I rebuilt our web properties over and over again
+
+  +slide
+    h1 
+      span(style="display: block; font-size: 100%") I learned my
+      em(style="display: block; font-size: 160%") options
+    aside.notes
+      ul
+        li I realized what was possible
+        li I realized what I enjoyed — and what I didn’t
+        li When it all blew up, I already knew what I was interested in doing next
+
+  +slide
+    h1 
+      span(style="display: block; font-size: 74%") The overlap was
+      em(style="display: block; font-size: 260%") huge
+    aside.notes
+      ul
+        li Pretty much the skills I had built for the band overlapped with freelance web design
+        li The only parts that didn’t were actually playing music and my Top Chef Ramen championship
+
+  //- PUTTING IT ALL TOGETHER
+  +slide
+    h1
+      span(style="font-size: 90%") We need both 
+      span(style="font-size: 130%")
+        em seeking
+        span  & 
+      em(style="font-size: 107%") wandering
+
+  +slide
+    h1
+      span(style="font-size: 105%") Always seek 
+      span(style="font-size: 94%")
+        em intelligently
+    aside.notes
+      ul
+        li If we seek too long, it feels hopeless
+        li No rewards; everything is “in the future”
+        li Target feels impossible
+        li Set realistic goals, and break them up if necessary
+
+  +slide.u--align-left
+    h2(style="max-width: 590px; margin: 0 auto")
+      em A
+      | ctionable
+      br
+      em T
+      | imely
+      br
+      em O
+      | wnable
+      br
+      em M
+      | easurable
+    aside.notes
+      ul
+        li Actionable — it can be worked on now
+        li Time-Restricted — it has a short duration
+        li Ownable — it has a single owner (you!)
+        li Measurable — it has a clear definition of done
+
+  +slide
+    h1
+      span(style="font-size: 91%") Wander often
+      span(style="display: block; font-size: 81%") but 
+        em take action
+    aside.notes
+      ul
+        li Set aside time to explore new ideas
+        li Make sure to actually follow through and do the work
+        li This will create small successes that build momentum
+
+  +slide(
+    data-background="url(./images/adventure/cooking-day.jpg)"
+  )
+    .image-credit(
+      data-credit-type="Photo"
+    )
+      strong Lengstorf Family Archive
+    aside.notes
+      ul
+        li Low risk, low time commitment
+        li Something you don’t normally do
+        li Bake a cheesecake
+        li Go snorkeling
+        li Read about physics
+        li Take a dance class
+
+  +slide(
+    data-background="url(./images/adventure/picnic.jpg)"
+  )
+    .image-credit(
+      data-credit-type="Photo"
+    )
+      strong Richelle DeVoe
+    aside.notes
+      ul
+        li Let your subconscious work
+        li Spend time in nature
+        li Take walks
+        li Be bored sometimes (e.g. no screens, no work)
+
+  +slide
+    h1 Be 
+      em Curious
+
+  //- Thanks & Resources
+  +slide
+    h1.no-margin Thanks!
+    img(
+      src="./images/work-life-balance/jason-lengstorf.jpg"
+      alt="Jason Lengstorf"
+      style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;"
+    )
+    p(style="margin-top: 0.25rem;")= config.author.name
+      br
+      small
+        | Follow me on Twitter: 
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+
+  +slide.u--align-left.resourcetext
+    h4 Resources
+    ol
+      li
+        a(href="https://n.pr/2MbXfvT").
+          By Making A Game Out Of Rejection, A Man Conquers Fear
+      li
+        a(href="https://www.rejectiontherapy.com/").
+          Rejection Therapy
+      li
+        a(href="https://amzn.to/2nfb6TV")
+          em Bounce
+          |  by Matthew Syed
+      li
+        a(href="http://bit.ly/2vMGz3F").
+          The Role of Deliberate Practice in the Acquisition of Expert Performance
+      li
+        a(href="https://amzn.to/2OfORbV")
+          em Mindset: The New Psychology of Success
+          |  by Carol Dweck
+      li
+        a(href="https://amzn.to/2KvE23i")
+          em Where Good Ideas Come From
+          |  by Steven Johnson
+      li
+        a(href="https://amzn.to/2nkdpVE")
+          em Cooked
+          |  by Michael Pollan
+      li
+        a(href="https://amzn.to/2M2rRQQ")
+          em Bored and Brilliant
+          |  by Manoush Zomorodi
+
+block styles
+  link(
+    rel="stylesheet"
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+  )
+  script.
+    (function(d) {
+      var config = {
+        kitId: 'fnr1orp',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+
+block extras
+  -
+    const relatedAccounts = [config.author.twitter];
+    
+    if (config.conference.twitter) {
+      relatedAccounts.push(config.conference.twitter);
+    }
+
+    // See https://dev.twitter.com/web/tweet-button/web-intent for parameters.
+    const tweetObj = {
+      text: `${config.title} by @${config.author.twitter}`,
+      hashtags: config.conference.hashtag || '',
+      related: relatedAccounts.join(','),
+      url: config.slides.link,
+    };
+
+    // 
+    const e = encodeURIComponent;
+    const args = Object.keys(tweetObj).map(key => `${key}=${e(tweetObj[key])}`);
+    const tweetUrl = `https://twitter.com/intent/tweet?${args.join('&')}`;
+  -
+  footer.v2
+    ul.inline
+      li
+        a(
+          href= config.slides.link
+          title="View the slides online."
+        )= config.slides.link.replace('https://', '')
+      li
+        a(
+          href="https://twitter.com/"+config.author.twitter
+          title="Find Jason on Twitter"
+        ).
+          @#{config.author.twitter}
+      li
+        a.no-icon(
+          href=tweetUrl
+        ) #{config.conference.hashtag ? `#${config.conference.hashtag}` : ''}
+        
