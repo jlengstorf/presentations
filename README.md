@@ -4,11 +4,11 @@ I have too many repos that aren't actually useful on their own because they're d
 
 ## What’s In This Repo?
 
-*   [Bio and details](#about-jason)
-*   [Keynote slides, details, and videos (when available)](#keynotes)
-*   [Workshop slides and details](#workshops)
-*   [Technical session slides, details, and videos (when available)](#talks)
-*   [Videos of previous talks](#videos-of-previous-presentations)
+-   [Bio and details](#about-jason)
+-   [Keynote slides, details, and videos (when available)](#keynotes)
+-   [Workshop slides and details](#workshops)
+-   [Technical session slides, details, and videos (when available)](#talks)
+-   [Videos of previous talks](#videos-of-previous-presentations)
 
 ## About Jason
 
@@ -16,7 +16,7 @@ I have too many repos that aren't actually useful on their own because they're d
 
 ### Short version
 
-> Jason Lengstorf is a developer, architect, occasional designer, and frequent speaker. He’s passionate about building tools, systems, and training materials to create high-performance teams and apps. He later encourages those teams to use their newfound free time to go outside and be people and stuff. He lives in Portland, Oregon.
+> Jason Lengstorf is a developer advocate, senior engineer, and occasional designer at [Gatsby](https://gatsbyjs.org). He’s an advocate for building highly productive teams through better communication, well designed systems and processes, and healthy work-life balance, and [he blogs about that sometimes](https://lengstorf.com/blog/). He lives in Portland, Oregon.
 
 ### Long version
 
@@ -32,62 +32,62 @@ I have too many repos that aren't actually useful on their own because they're d
 
 ### How I Cut My Working Hours in Half and Somehow Managed to Get More Done
 
-*   [Slides](./work-life-balance/slides/)
-*   [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/work-life-balance)
+-   [Slides](./work-life-balance/slides/)
+-   [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/work-life-balance)
 
 ## Workshops
 
 ### Functional Programming Without the Math
 
-*   [Slides](./fp-workshop/slides/)
-*   [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/fp-workshop)
+-   [Slides](./fp-workshop/slides/)
+-   [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/fp-workshop)
 
 ### Progressive Web Apps from Scratch
 
-*   [Slides](./progressive-web-apps/slides/)
-*   [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/progressive-web-apps)
-*   [Simple Demo](https://code.lengstorf.com/pwa-simple/)
-*   [sw-precache Demo](https://code.lengstorf.com/pwa-workshop-starter/)
+-   [Slides](./progressive-web-apps/slides/)
+-   [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/progressive-web-apps)
+-   [Simple Demo](https://code.lengstorf.com/pwa-simple/)
+-   [sw-precache Demo](https://code.lengstorf.com/pwa-workshop-starter/)
 
 ## Talks
 
 ### GraphQL @ Massive Scale: Using GraphQL as the Glue in a µ-Service Architecture
 
-*   [Slides](./graphql-microservices/slides/)
-*   [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/graphql-microservices)
-*   [Video][graphql-scale]
+-   [Slides](./graphql-microservices/slides/)
+-   [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/graphql-microservices)
+-   [Video][graphql-scale]
 
 ### Do monads matter? Functional programming for people who hate math.
 
-*   [Slides](./functional-programming/slides/)
-*   [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/functional-programming)
-*   [Video][monad]
+-   [Slides](./functional-programming/slides/)
+-   [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/functional-programming)
+-   [Video][monad]
 
 ### “But Testing Sucks!” How IBM is building a quality-driven culture.
 
-*   [Slides](https://git.io/test-culture)
-*   [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/building-quality-driven-culture)
-*   [Video][testing-culture]
+-   [Slides](https://git.io/test-culture)
+-   [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/building-quality-driven-culture)
+-   [Video][testing-culture]
 
 ### How to give presentations that aren't horrible and boring.
 
-*   [Slides](./conference-talk-tips/slides/)
-*   [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/conference-talk-tips)
+-   [Slides](./conference-talk-tips/slides/)
+-   [Session abstract and additional information](https://github.com/jlengstorf/presentations/tree/master/conference-talk-tips)
 
 ## Videos of Previous Presentations
 
-*   [Building a Testing- and Quality-Driven Culture at IBM][testing-culture]
-*   [GraphQL at Massive Scale: Using GraphQL as the glue in a microservice architecture][graphql-scale] — GraphQL Summit 2017
-*   [How I cut my working hours in half and somehow managed to get more done][work-life] — Connect.Tech 2017
-*   [Functional Programming for People Who Hate Math][monad] — Web Rebels 2017 (FYI, lots of profanity in this one)
-*   [WordPress Deployment for Professionals – How to Solve the Problem of Multiple WordPress Installs in 30 Minutes or Less][trellis] — WordCamp Atlanta 2017
-*   [Happy People Do It Better][happy] — given via web conference
+-   [Building a Testing- and Quality-Driven Culture at IBM][testing-culture]
+-   [GraphQL at Massive Scale: Using GraphQL as the glue in a microservice architecture][graphql-scale] — GraphQL Summit 2017
+-   [How I cut my working hours in half and somehow managed to get more done][work-life] — Connect.Tech 2017
+-   [Functional Programming for People Who Hate Math][monad] — Web Rebels 2017 (FYI, lots of profanity in this one)
+-   [WordPress Deployment for Professionals – How to Solve the Problem of Multiple WordPress Installs in 30 Minutes or Less][trellis] — WordCamp Atlanta 2017
+-   [Happy People Do It Better][happy] — given via web conference
 
 These talks are behind the Treehouse paywall, but you can watch a short excerpt for free.
 
-*   [How to Create Designs That Developers Understand][devdesign]
-*   [You Need a Development Process (Yes, You.)][devprocess]
-*   [CSS Pseudo-Element Master Class][pseudoelement]
+-   [How to Create Designs That Developers Understand][devdesign]
+-   [You Need a Development Process (Yes, You.)][devprocess]
+-   [CSS Pseudo-Element Master Class][pseudoelement]
 
 [testing-culture]: https://youtu.be/zqdCM8zR6Mc
 [graphql-scale]: https://www.youtube.com/watch?v=T3FbZsYXi50
