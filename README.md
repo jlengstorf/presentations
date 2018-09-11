@@ -20,7 +20,7 @@ I have too many repos that aren't actually useful on their own because they're d
 
 ### Long version
 
-> Jason Lengstorf is a developer, software architect, occasional designer, and frequent speaker. In the span of his career, he’s filled every role from development to design, DevOps to sales, and management to customer service. He uses his eclectic 15+ years of experience to offer a unique, cross-functional approach to solving complex problems.
+> Jason Lengstorf is a developer advocate, senior engineer, and occasional designer at [Gatsby](https://gatsbyjs.org). In the span of his career, he’s filled every role from development to design, DevOps to sales, and management to customer service. He uses his eclectic 15+ years of experience to offer a unique, cross-functional approach to solving complex problems.
 >
 > Jason has worked as a software architect at IBM, as a consultant for companies including PlayStation and Intel, and as an entrepreneur who grew and sold a design agency. Along the way, he’s written several books and dozens of tutorials about development, process and system design, and work-life balance.
 >
