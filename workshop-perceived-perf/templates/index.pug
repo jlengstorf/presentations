@@ -1,0 +1,216 @@
+//- Use the presentation layout so we can keep this clean
+extends layouts/presentation
+
+block append config
+  -
+    config.theme = 'lengstorf';
+    config.title = 'Perceived Performance';
+    config.description = 'A Workshop';
+
+    config.author = {
+      name: 'Jason Lengstorf',
+      email: 'jason@lengstorf.com',
+      link: 'https://lengstorf.com/',
+      twitter: 'jlengstorf',
+      github: 'jlengstorf',
+    };
+    
+    config.slides = {
+      link: '',
+    };
+
+    config.conference = {
+      hashtag: 'generateconf',
+      twitter: '',
+    };
+  -
+
+//- Add your slides here. See templates/includes/_mixins.pug for information 
+//- on how `+slide` works.
+block slides
+  +slide
+    h1(style="font-size: 80px; width: 110%; margin-left: -5%; margin-top: 80px;")= config.title
+    h3(style="font-size: 40px; width: 110%; margin-left: -5%;")= config.description
+    
+    p by 
+      a(href= config.author.link)= config.author.name
+      br
+      small
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        | &nbsp; · &nbsp;
+        a(href= `mailto:${config.author.email}`)= config.author.email
+    
+    //- p
+      small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
+
+  +slide
+    h2 Hi!
+
+  +slide
+    h3 Let’s introduce ourselves
+    ol
+      li  What’s your name?
+      li  Where are you from?
+      li  What are you working on (or planning to work on) 
+        | that will benefit from perceived performance?
+  
+  +slide
+    h3 Why does perceived performance matter?
+  
+  +slide
+    p [Shamelessly <del>steal</del> <ins>borrow</ins> from Eli Fitch.]
+
+  +slide
+    h1 Schedule
+    ul
+      li Now until 12pm: Roll our own image lazy loader
+      li 12–1pm: Lunch
+      li 1pm–3pm: Build a skeleton loading component from scratch
+      li 3–3:30pm: Break
+      li 3:30–5pm: Hand-code a Service Worker
+
+  +slide
+    h1 Setup
+    pre
+      code.bash.
+        # Clone the repo to your machine.
+        git clone git@github.com:jlengstorf/perceived-perf.git
+
+        # Move into the code.
+        cd perceived-perf/
+
+        # Install dependencies.
+        yarn install # or npm install
+
+  +slide
+    h1 Lazy Loading
+
+  +slide
+    h2 First: Plan It
+
+  +slide
+    h2 Now: Build It!
+
+  +slide
+    h1 🍎 🥐 🥕
+      br
+      | Lunch
+  
+  +slide
+    h1 Skeleton Components
+
+  +slide
+    h2 First: Plan It
+
+  +slide
+    h2 Now: Build It!
+
+  +slide
+    h1 ☕️ ☕️ ️☕️
+      br
+      | Break
+  
+  +slide
+    h1 Service Workers
+
+  +slide
+    h2 First: Plan It
+
+  +slide
+    h2 Now: Build It!
+
+  //- Q&A
+  +slide
+    h1.no-margin Thanks!
+    img(
+      src="./images/work-life-balance/jason-lengstorf.jpg"
+      alt="Jason Lengstorf"
+      style="display: block; border-radius: 50%; width: 240px; min-width: 0; margin: 0 auto"
+    )
+    p(style="margin-top: 0.25rem;")= config.author.name
+      br
+      small
+        | Follow me on Twitter: 
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+
+  //- Resources
+  +slide.u--align-left.resourcetext
+    h4 Resources
+    ol
+      li
+        a(href="https://youtu.be/zqdCM8zR6Mc").
+          “But Testing Sucks!” — How to Build a Testing- and Quality-Driven Culture
+      li
+        a(href="http://heathbrothers.com/books/switch/").
+          Switch by Chip and Dan Heath
+      li
+        a(href="https://bit.ly/script-toolboxes").
+          Kent C. Dodds on Script Toolboxes
+      li
+        a(href="https://twitter.com/marisamorby").
+          Marisa Morby on Twitter
+      li
+        a(href="https://twitter.com/JemYoung").
+          Jem Young on Twitter
+      li
+        a(href="https://twitter.com/chrisbiscardi").
+          Chris Biscardi on Twitter
+
+block styles
+  link(
+    rel="stylesheet"
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  )
+  script.
+    (function(d) {
+      var config = {
+        kitId: 'fnr1orp',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+
+block extras
+  -
+    const relatedAccounts = [config.author.twitter];
+    
+    if (config.conference.twitter) {
+      relatedAccounts.push(config.conference.twitter);
+    }
+
+    // See https://dev.twitter.com/web/tweet-button/web-intent for parameters.
+    const tweetObj = {
+      text: `${config.title} by @${config.author.twitter}`,
+      hashtags: config.conference.hashtag || '',
+      related: relatedAccounts.join(','),
+      url: config.slides.link,
+    };
+
+    // 
+    const e = encodeURIComponent;
+    const args = Object.keys(tweetObj).map(key => `${key}=${e(tweetObj[key])}`);
+    const tweetUrl = `https://twitter.com/intent/tweet?${args.join('&')}`;
+  -
+  .hashtag
+    p
+      | Tweet: 
+      a(
+        href=tweetUrl
+        target="_blank"
+      ) @#{config.author.twitter} 
+        | #{config.conference.hashtag ? `#${config.conference.hashtag}` : ''}
+  footer
+    ul.inline
+      li
+        | “#{config.title}” by 
+        a(href= config.author.link)= config.author.name
+        |  (slides: 
+        a(href= config.slides.link)= config.slides.link.replace('https://', '')
+        | )
+      li
+        a(href="https://twitter.com/"+config.author.twitter).
+          @#{config.author.twitter}
+      li
+        a(href="https://github.com/"+config.author.github).
+          github.com/#{config.author.github}
