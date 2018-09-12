@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/reveal.css">
     <link id="theme" rel="stylesheet" href="css/theme/lengstorf.css">
     <link rel="stylesheet" href="lib/css/github.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script>
       (function(d) {
         var config = {
@@ -158,7 +158,7 @@
           <h3>In some ways it was <em>great</em>:</h3>
           <ul>
             <li class="fragment">Can run full-on apps only in JavaScript</li>
-            <li class="fragment">Interactivity is incredibly simple</li>
+            <li class="fragment">Interactivity is incredibly approachable</li>
             <li class="fragment">The community and ecosystem is extensive</li>
             <li class="fragment">The developer experience is much better</li>
           </ul>
@@ -185,7 +185,7 @@
           </aside>
         </section>
         <section>
-          <h3>This is where we are today</h3>
+          <h3>Where we are today</h3>
           <aside class="notes">
             <ul>
               <li>The modern web is being built on JavaScript</li>
@@ -217,22 +217,6 @@
           <h2>So how do we <em>fix it</em>?</h2>
         </section>
         <section>
-          <h3 class="no-margin">Service Worker</h3><img class="no-margin no-border" src="./images/the-future-is-fast/service-worker.png" alt="Service Worker code.">
-          <p class="no-margin"><small><a href="https://bit.ly/offline-cookbook">bit.ly/offline-cookbook</a></small></p>
-        </section>
-        <section>
-          <h3>What <em>Service Workers</em> do:</h3>
-          <ul>
-            <li class="fragment">Cache critical assets when first installed</li>
-            <li class="fragment">Precache non-critical assets in the background</li>
-            <li class="fragment">Act as a proxy for all outgoing requests</li>
-            <li class="fragment">Skip server &amp; provide cached assets if possible</li>
-          </ul>
-        </section>
-        <section>
-          <h4>This allows Progressive Web Apps to<br><em>load offline</em> on subsequent visits</h4>
-        </section>
-        <section>
           <h3>To make JS-powered apps <em>really fast</em>, we should:</h3>
           <ul>
             <li class="fragment">Implement route-based code splitting</li>
@@ -262,12 +246,29 @@
             <li>Use HTTP/2 to serve assets</li>
             <li>Set up background prefetching</li>
             <li>Lazy load any non-critical assets</li>
+            <li class="fragment">Add a Service Worker</li>
             <li class="fragment">Eliminate all unused code</li>
             <li class="fragment">Use server-side rendering to generate static files</li>
           </ul>
         </section>
         <section>
           <h3>That’s a lot of things.</h3><img class="no-margin" src="./images/pwa-perf/kanye.webp" alt="Kanye WTF." style="width: 800px">
+        </section>
+        <section>
+          <h3 class="no-margin">Service Worker</h3><img class="no-margin no-border" src="./images/the-future-is-fast/service-worker.png" alt="Service Worker code.">
+          <p class="no-margin"><small><a href="https://bit.ly/offline-cookbook">bit.ly/offline-cookbook</a></small></p>
+        </section>
+        <section>
+          <h3>What <em>Service Workers</em> do:</h3>
+          <ul>
+            <li class="fragment">Cache critical assets when first installed</li>
+            <li class="fragment">Precache non-critical assets in the background</li>
+            <li class="fragment">Act as a proxy for all outgoing requests</li>
+            <li class="fragment">Skip server &amp; provide cached assets if possible</li>
+          </ul>
+        </section>
+        <section>
+          <h4>This allows Progressive Web Apps to<br><em>load offline</em> on subsequent visits</h4>
         </section>
         <section>
           <h3>Route-based <em>code splitting</em>:</h3>
@@ -389,7 +390,7 @@
         <section>
           <h4>How to <em>remove unused code</em>:</h4>
           <ul>
-            <li class="fragment">Use Uglify.js to remove dead code</li>
+            <li class="fragment">Use Terser (or Uglify.js) to remove dead code</li>
             <li class="fragment">Enable tree-shaking with ES modules</li>
             <li class="fragment">Analyze your bundle output</li>
           </ul>
@@ -483,7 +484,7 @@
         </section>
         <section>
           <h2><em>PWA Performance</em> <span class="hugify">Checklist:</span></h2>
-          <p style="width: 480px; margin-left: auto; margin-right: auto; text-align: left;"><span class="fragment">✅ Add a Service Worker</span><br><span class="fragment">✅ Create a Web Manifest</span><br><span class="fragment">✅ Follow the PRPL Pattern</span><br><span class="fragment">✅ Remove unused code</span><br><span class="fragment">✅ Generate static files</span></p>
+          <p style="width: 480px; margin-left: auto; margin-right: auto; text-align: left;"><span class="fragment">✅ Follow the PRPL Pattern</span><br><span class="fragment">✅ Add a Service Worker</span><br><span class="fragment">✅ Remove unused code</span><br><span class="fragment">✅ Generate static files</span></p>
         </section>
         <section>
           <h2 class="no-margin">Use Gatsby.js to <em class="hugify">automate</em> perf best practices</h2>

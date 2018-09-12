@@ -187,7 +187,7 @@ block slides
     h3 In some ways it was #[em great]:
     ul
       li.fragment Can run full-on apps only in JavaScript
-      li.fragment Interactivity is incredibly simple
+      li.fragment Interactivity is incredibly approachable
       li.fragment The community and ecosystem is extensive
       li.fragment The developer experience is much better
     aside.notes
@@ -213,7 +213,7 @@ block slides
         li We may have celebrated a bit prematurely.
 
   +slide
-    h3 This is where we are today
+    h3 Where we are today
     aside.notes
       ul
         li The modern web is being built on JavaScript
@@ -248,28 +248,6 @@ block slides
   +slide
     h2 So how do we #[em fix it]?
   
-  +slide
-    h3.no-margin Service Worker
-    img.no-margin.no-border(
-      src="./images/the-future-is-fast/service-worker.png"
-      alt="Service Worker code."
-    )
-    p.no-margin
-      small
-        a(href="https://bit.ly/offline-cookbook") bit.ly/offline-cookbook
-      
-
-  +slide
-    h3 What #[em Service Workers] do:
-    ul
-      li.fragment Cache critical assets when first installed
-      li.fragment Precache non-critical assets in the background
-      li.fragment Act as a proxy for all outgoing requests
-      li.fragment Skip server &amp; provide cached assets if possible
-
-  +slide
-    h4 This allows Progressive Web Apps to#[br]#[em load offline] on subsequent visits
-
   +slide
     h3 To make JS-powered apps #[em really fast], we should:
     ul
@@ -307,6 +285,7 @@ block slides
       li Use HTTP/2 to serve assets
       li Set up background prefetching
       li Lazy load any non-critical assets
+      li.fragment Add a Service Worker
       li.fragment Eliminate all unused code
       li.fragment Use server-side rendering to generate static files
   
@@ -317,6 +296,27 @@ block slides
       alt="Kanye WTF."
       style="width: 800px"
     )
+
+  +slide
+    h3.no-margin Service Worker
+    img.no-margin.no-border(
+      src="./images/the-future-is-fast/service-worker.png"
+      alt="Service Worker code."
+    )
+    p.no-margin
+      small
+        a(href="https://bit.ly/offline-cookbook") bit.ly/offline-cookbook
+
+  +slide
+    h3 What #[em Service Workers] do:
+    ul
+      li.fragment Cache critical assets when first installed
+      li.fragment Precache non-critical assets in the background
+      li.fragment Act as a proxy for all outgoing requests
+      li.fragment Skip server &amp; provide cached assets if possible
+
+  +slide
+    h4 This allows Progressive Web Apps to#[br]#[em load offline] on subsequent visits
 
   +slide
     h3 Route-based #[em code splitting]:
@@ -478,7 +478,7 @@ block slides
   +slide
     h4 How to #[em remove unused code]:
     ul
-      li.fragment Use Uglify.js to remove dead code
+      li.fragment Use Terser (or Uglify.js) to remove dead code
       li.fragment Enable tree-shaking with ES modules
       li.fragment Analyze your bundle output
 
@@ -580,11 +580,9 @@ block slides
   +slide
     h2 #[em PWA Performance] #[span.hugify Checklist:]
     p(style="width: 480px; margin-left: auto; margin-right: auto; text-align: left;")
-      span.fragment ✅ Add a Service Worker
-      br
-      span.fragment ✅ Create a Web Manifest
-      br
       span.fragment ✅ Follow the PRPL Pattern
+      br
+      span.fragment ✅ Add a Service Worker
       br
       span.fragment ✅ Remove unused code
       br
@@ -625,7 +623,7 @@ block slides
 block styles
   link(
     rel="stylesheet"
-    href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
   )
   script.
     (function(d) {
