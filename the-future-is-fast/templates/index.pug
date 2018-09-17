@@ -298,27 +298,6 @@ block slides
     )
 
   +slide
-    h3.no-margin Service Worker
-    img.no-margin.no-border(
-      src="./images/the-future-is-fast/service-worker.png"
-      alt="Service Worker code."
-    )
-    p.no-margin
-      small
-        a(href="https://bit.ly/offline-cookbook") bit.ly/offline-cookbook
-
-  +slide
-    h3 What #[em Service Workers] do:
-    ul
-      li.fragment Cache critical assets when first installed
-      li.fragment Precache non-critical assets in the background
-      li.fragment Act as a proxy for all outgoing requests
-      li.fragment Skip server &amp; provide cached assets if possible
-
-  +slide
-    h4 This allows Progressive Web Apps to#[br]#[em load offline] on subsequent visits
-
-  +slide
     h3 Route-based #[em code splitting]:
     ul
       li.fragment Creates smaller bundles for specific routes
@@ -460,6 +439,27 @@ block slides
     p.no-margin
       small Source: 
         a(href="https://bit.ly/2G92KJf") Gatsby.js
+
+    +slide
+    h3.no-margin Service Worker
+    img.no-margin.no-border(
+      src="./images/the-future-is-fast/service-worker.png"
+      alt="Service Worker code."
+    )
+    p.no-margin
+      small
+        a(href="https://bit.ly/offline-cookbook") bit.ly/offline-cookbook
+
+  +slide
+    h3 #[em Service Workers]:
+    ul
+      li.fragment Cache critical assets when first installed
+      li.fragment Precache non-critical assets in the background
+      li.fragment Act as a proxy for all outgoing requests
+      li.fragment Skip server &amp; provide cached assets if possible
+
+  +slide
+    h4 This allows Progressive Web Apps to#[br]#[em load offline] on subsequent visits
 
   +slide
     h3 Eliminating #[em unused code]:
