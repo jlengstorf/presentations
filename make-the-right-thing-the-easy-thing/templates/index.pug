@@ -20,8 +20,8 @@ block append config
     };
 
     config.conference = {
-      hashtag: 'LeadDevNewYork',
-      twitter: 'theleaddev',
+      hashtag: '',
+      twitter: '',
     };
   -
 
@@ -48,7 +48,8 @@ block slides
       span.hugify Team work
   
   +slide
-    h2 As lead developers, 
+    h2
+      //- As lead developers, 
       span.hugify.alright-calm-down-a-little it’s our job
       span(style="display: block; font-size: 113%") to keep our team 
       em(style="font-size: 237%") running
@@ -56,7 +57,7 @@ block slides
     aside.notes.
       As lead developers, we’re the glue holding our teams together. We provide
       support, leadership, and mentoring to our team members. Our managers and
-      other non-technical leadership relies on us to keep the wheels on.
+      other non-technical leadership rely on us to keep the wheels on.
 
 
   +slide
@@ -126,14 +127,20 @@ block slides
       If you’re the only reason your team hits its deadlines, that makes it
       pretty tough to take a vacation.
   
-  +slide.light-text.dim(data-background-image="./images/make-the-right-thing-the-easy-thing/bus.webp")
+  +slide.light-text.dim(
+    data-background-image="./images/make-the-right-thing-the-easy-thing/bus.gif"
+  )
     h2 What is your code’s
       span(style="display: block; font-size: 170%") bus factor?
 
     aside.notes.
-      It’s common to hear developers talk about the “bus factor” — also called the “truck number” or “lottery number” — of a given codebase. It’s intended to point out the fragility of a project: how many people have to get hit by a bus before no one is left that knows how it works?
+      It’s common to hear developers talk about the “bus factor” — also called
+      the “truck number” or “lottery number” — of a given codebase. It’s 
+      intended to point out the fragility of a project: how many people have to
+      get hit by a bus before no one is left that knows how it works?
       #[br]#[br]
-      That feels a little too negative and alarmist to me, though. So what about a more positive (and realistic) term for it?
+      That feels a little too negative and alarmist to me, though. So what about
+      a more positive (and realistic) term for it?
 
   +slide.light-text.dim(data-background-image="./images/make-the-right-thing-the-easy-thing/vacation.webp")
     h2 What is your code’s
@@ -141,7 +148,11 @@ block slides
       span(style="display: block; font-size: 170%") tolerance?
 
     aside.notes.
-      On any team, we need everyone to have the ability to take time off. So instead of talking about the bus factor, talk about how easily any given person can go on vacation. Could two people go on vacation without stalling the rest of the team? Ideally, every team member should be pretty effective even if the entire team took time off.
+      On any team, we need everyone to have the ability to take time off. So
+      instead of talking about the bus factor, talk about how easily any given
+      person can go on vacation. Could two people go on vacation without
+      stalling the rest of the team? Ideally, every team member should be pretty
+      effective even if the entire team took time off.
 
   +slide
     h2 The problem with
@@ -153,7 +164,15 @@ block slides
       li.fragment They eventually leave
     
     aside.notes.
-      If the rockstar is carrying most of the weight for a team, that means that work bottlenecks around the rockstar. Typically, teams start to automatically defer to the rockstar, which means there are fewer people taking initiative; instead, they respond to pretty much everything with, “You’d have to check with _________.” And because of that dependency, team members allow the rockstar to become the team’s source of truth — that’s a huge problem, because when the rockstar eventually burns out and quits (or retires, or gets transferred or promoted), all of that knowledge goes with them.
+      If the rockstar is carrying most of the weight for a team, that means
+      that work bottlenecks around the rockstar. Typically, teams start to
+      automatically defer to the rockstar, which means there are fewer people
+      taking initiative; instead, they respond to pretty much everything with,
+      “You’d have to check with _________.” And because of that dependency, team
+      members allow the rockstar to become the team’s source of truth — that’s a
+      huge problem, because when the rockstar eventually burns out and quits (or
+      retires, or gets transferred or promoted), all of that knowledge goes
+      with them.
 
   +slide
     h2(style="font-size: 6.5rem") We need to do
@@ -166,7 +185,9 @@ block slides
       em.hugify(style="margin-top: 0.05em; line-height: 0.7") real
       | problem
     aside.notes.
-      Yes, it’s not all that glamorous, but if we really want to create teams that run well, we need to fix the underlying problems that created a need for a rockstar in the first place.
+      Yes, it’s not all that glamorous, but if we really want to create teams
+      that run well, we need to fix the underlying problems that created a need
+      for a rockstar in the first place.
 
   +slide
     h1
@@ -185,7 +206,13 @@ block slides
       li.fragment Lack of clarity about the goal of a given project
 
     aside.notes.
-      When teams run poorly, in my experience that largely comes from people either lacking confidence — they’re not confident they know how to do the thing, they’re not confident they’re allowed to do the thing without sign-off, they’re not confident that someone else on the team won’t go in and rewrite their code later — or lacking clarity: they’re not clear on what’s expected of them; they’re not clear on who the stakeholders are; they’re not clear on what “done” looks like.
+      When teams run poorly, in my experience that largely comes from people
+      either lacking confidence — they’re not confident they know how to do the
+      thing, they’re not confident they’re allowed to do the thing without
+      sign-off, they’re not confident that someone else on the team won’t go in
+      and rewrite their code later — or lacking clarity: they’re not clear on
+      what’s expected of them; they’re not clear on who the stakeholders are;
+      they’re not clear on what “done” looks like.
 
   +slide
     h3(style="margin-bottom: 0; font-size: 180%") A good process creates
@@ -202,7 +229,19 @@ block slides
       span.fragment + other buzzwords meaning “happy team”
     
     aside.notes.
-      When a team feels confident, they can act without feeling like they need to seek approval — and that’s a good thing, because the parameters for what someone can do without approval are clearly defined in the process. Since the goals and accountability chains are crystal clear, no one needs to wonder where to start or what to work on next. This leads to a team of people who trust each other because the proper guard rails are in place. And because there’s trust, team members feel real ownership in the projects and process: they have a voice, and that voice is being heard. And because the process defines what is and isn’t acceptable, the whole team can feel safe to bring up potential issues. Usually, though, a good process means the issues get caught #[em way] earlier, before they become huge problems. All of this leads to the kind of high-collaboration, high-functioning environment every management consultant dreams about.
+      When a team feels confident, they can act without feeling like they need
+      to seek approval — and that’s a good thing, because the parameters for
+      what someone can do without approval are clearly defined in the process.
+      Since the goals and accountability chains are crystal clear, no one needs
+      to wonder where to start or what to work on next. This leads to a team of
+      people who trust each other because the proper guard rails are in place.
+      And because there’s trust, team members feel real ownership in the
+      projects and process: they have a voice, and that voice is being heard.
+      And because the process defines what is and isn’t acceptable, the whole
+      team can feel safe to bring up potential issues. Usually, though, a good
+      process means the issues get caught #[em way] earlier, before they become
+      huge problems. All of this leads to the kind of high-collaboration,
+      high-functioning environment every management consultant dreams about.
 
   +slide
     h3(style="font-size: 180%") A good process creates
@@ -229,7 +268,14 @@ block slides
       li.fragment Internally consistent style and quality guidelines
 
     aside.notes.
-      A high-functioning team’s process will be so solid that new team members are basically painting by numbers to get started. A good measuring stick for this is whether or not you can get a new hire up and running fast enough to have them commit non-trivial code to production on the first day. The team should be documenting any repeatable process so it can be quickly referenced by everyone else. This gets driven home by solid coaching, and the best practices are enforced by comprehensive test suites and a set of guidelines for code style and quality.
+      A high-functioning team’s process will be so solid that new team members
+      are basically painting by numbers to get started. A good measuring stick
+      for this is whether or not you can get a new hire up and running fast
+      enough to have them commit non-trivial code to production on the first
+      day. The team should be documenting any repeatable process so it can be
+      quickly referenced by everyone else. This gets driven home by solid
+      coaching, and the best practices are enforced by comprehensive test suites
+      and a set of guidelines for code style and quality.
 
   +slide
     h1(style="font-size: 290%") “I’ve tried this!
@@ -237,7 +283,11 @@ block slides
       span(style="font-size: 120%") will listen!”
 
     aside.notes.
-      I know, I just said all of the worst things. Even the most well-intentioned teams typically try and fail to adopt things like documentation. It might work for a while, but then it gets busy, or people get comfortable and forget, and ultimately the team’s best practices become more theoretical than practical.
+      I know, I just said all of the worst things. Even the most
+      well-intentioned teams typically try and fail to adopt things like
+      documentation. It might work for a while, but then it gets busy, or people
+      get comfortable and forget, and ultimately the team’s best practices
+      become more theoretical than practical.
 
   +slide
     h2(style="font-size: 300%") Why processes
@@ -259,7 +309,12 @@ block slides
         a(href="https://www.etsy.com/shop/SacredLoom") Kristin Noelle
 
     aside.notes.
-      Chip and Dan Heath have written extensively about behavioral change, and a concept they use frequently is “the elephant and the rider”. We’re all pretty rational and capable of thinking through long-term benefits — that’s the rider. But there’s this other set of urges that frequently overpower our rationality in favor of instant gratification — that’s the elephant.
+      Chip and Dan Heath have written extensively about behavioral change, and a
+      concept they use frequently is “the elephant and the rider”. We’re all
+      pretty rational and capable of thinking through long-term benefits —
+      that’s the rider. But there’s this other set of urges that frequently
+      overpower our rationality in favor of instant gratification — that’s
+      the elephant.
   
   +slide
     img.no-border(
@@ -268,7 +323,8 @@ block slides
     )
 
     aside.notes.
-      This is a concept that’s explored deeply in their book, #[em Switch], which I’d highly recommend reading.
+      This is a concept that’s explored deeply in their book, #[em Switch],
+      which I’d highly recommend reading.
   
   +slide
     h2(style="font-size: 204%") Make the Right Thing
@@ -286,7 +342,11 @@ block slides
         em Yak Shaving
 
     aside.notes.
-      Being right isn’t enough. If we could solve human problems with logic, there wouldn’t be any problems. The rider can only take us so far; if we want to make real, lasting change, we need to appeal to the elephant. This means that we need to make any new processes more emotionally rewarding than the old way of doing things.
+      Being right isn’t enough. If we could solve human problems with logic,
+      there wouldn’t be any problems. The rider can only take us so far; if we
+      want to make real, lasting change, we need to appeal to the elephant. This
+      means that we need to make any new processes more emotionally rewarding
+      than the old way of doing things.
   
   +slide
     h3(style="font-size: 200%; text-align: left")
@@ -316,7 +376,16 @@ block slides
       li.fragment Public recognition and gratitude
     
     aside.notes.
-      One of the most rewarding things is to make people more efficient — it feels really good to do great work ahead of schedule, so we should try to make sure that every process we introduce feels like an upgrade. Some processes require extra work, though, so we should make sure to frequently and immediately praise great work from the team. When someone follows the process, reinforce that behavior by thanking them personally. Remember, it never sucks to hear you’re doing a good job, and usually we have to live with “no news is good news”; offer positive feedback early and often. When there’s a team meeting or a company all-hands, recognize the team publicly for doing good work. It’s a small effort, but it goes a long way.
+      One of the most rewarding things is to make people more efficient — it
+      feels really good to do great work ahead of schedule, so we should try to
+      make sure that every process we introduce feels like an upgrade. Some
+      processes require extra work, though, so we should make sure to frequently
+      and immediately praise great work from the team. When someone follows the
+      process, reinforce that behavior by thanking them personally. Remember, it
+      never sucks to hear you’re doing a good job, and usually we have to live
+      with “no news is good news”; offer positive feedback early and often. When
+      there’s a team meeting or a company all-hands, recognize the team publicly
+      for doing good work. It’s a small effort, but it goes a long way.
   
   +slide
     blockquote.photo-quote
@@ -328,10 +397,15 @@ block slides
       .quote
         p “Very few things at work feel better than the validation of other people praising your contributions in public.”
           strong Marisa Morby
-            small Head of Research, Clearhead
+            small Product Manager, Gatsby
     
     aside.notes.
-      We often don’t give people praise because it feels weird to compliment people. And maybe we’re more intrinsically motivated and don’t place the same importance on validation, but here’s the thing: telling someone they did a good job when you see good work #[em never] hurts; #[em not] telling someone they did a good job can potentially lead to them feeling like they’re doing poorly. [Tell Marisa and Mike story.]
+      We often don’t give people praise because it feels weird to compliment
+      people. And maybe we’re more intrinsically motivated and don’t place the
+      same importance on validation, but here’s the thing: telling someone they
+      did a good job when you see good work #[em never] hurts; #[em not] telling
+      someone they did a good job can potentially lead to them feeling like
+      they’re doing poorly. [Tell Marisa and Mike story.]
 
   +slide
     blockquote.photo-quote
@@ -358,7 +432,13 @@ block slides
       li.fragment Use semantic-release for versioning and releases
     
     aside.notes.
-      Automation is a great way to hit that efficiency emotional reward. Take something that sucks (like deploying and testing changes) and automate it. Once the automation is in place, it’s relatively easy to extend the automation to do more things, like automatically fix style issues, check for known anti-patterns with ESLint, check for internal issues using something like Danger.js, enforce code coverage standards, or even automatically deploy new versions of your app.
+      Automation is a great way to hit that efficiency emotional reward. Take
+      something that sucks (like deploying and testing changes) and automate it.
+      Once the automation is in place, it’s relatively easy to extend the
+      automation to do more things, like automatically fix style issues, check
+      for known anti-patterns with ESLint, check for internal issues using
+      something like Danger.js, enforce code coverage standards, or even
+      automatically deploy new versions of your app.
   
   +slide
     h2(style="font-size: 250%")
@@ -367,7 +447,11 @@ block slides
       span.fragment Just #[span.underlined use Prettier]
     
     aside.notes.
-      A surefire way to undermine any automated process is to make it nitpicky. Don’t fail a PR on something like missing semicolons or formatting; just run Prettier and autocommit the result to the PR. If team members have to jump through annoying hoops to appease the automations, they WILL find a way to work around them (like prettierignore).
+      A surefire way to undermine any automated process is to make it nitpicky.
+      Don’t fail a PR on something like missing semicolons or formatting; just
+      run Prettier and autocommit the result to the PR. If team members have to
+      jump through annoying hoops to appease the automations, they WILL find a
+      way to work around them (like prettierignore).
 
   +slide
     h4.no-margin Tired:
@@ -376,7 +460,12 @@ block slides
     h1 👮‍♀️ 👮🏽‍♂️
     
     aside.notes.
-      Earlier, I talked about how it’s not glamorous to be the team’s auditor. Most of that comes from the fact that it sucks to have to follow people around and hassle them about things like code style, test coverage, and other things that we all know we should be doing, but often get lazy about. Being the team’s code cop starts to feel a lot like being a parent nagging your kids to clean their rooms.
+      Earlier, I talked about how it’s not glamorous to be the team’s auditor.
+      Most of that comes from the fact that it sucks to have to follow people
+      around and hassle them about things like code style, test coverage, and
+      other things that we all know we should be doing, but often get lazy
+      about. Being the team’s code cop starts to feel a lot like being a parent
+      nagging your kids to clean their rooms.
   
   +slide
     h4.no-margin Wired:
@@ -385,7 +474,13 @@ block slides
     h1 🤖 🤖
 
     aside.notes.
-      However, if we can get a robot in there to do the nagging, it gets a lot easier. There’s nothing emotional or judgmental about an automated process — no one’s code gets preferential treatment, and the rules are exactly the same for everyone, regardless of experience or title. Plus, no one needs to be the auditor; the things the team decides are important get checked consistently and automatically every single time someone opens a PR. This practice alone will avoid mountains of technical debt.
+      However, if we can get a robot in there to do the nagging, it gets a lot
+      easier. There’s nothing emotional or judgmental about an automated
+      process — no one’s code gets preferential treatment, and the rules are
+      exactly the same for everyone, regardless of experience or title. Plus, no
+      one needs to be the auditor; the things the team decides are important get
+      checked consistently and automatically every single time someone opens a
+      PR. This practice alone will avoid mountains of technical debt.
 
   +slide
     h4(style="margin-bottom: 0.125em") Make the Right Thing the Easy Thing: part 3
@@ -398,7 +493,17 @@ block slides
       li.fragment Build for now, not 5 years into the future
   
     aside.notes.
-      It can be tempting to build a project in, say, React, and then start adding tools: Redux, Thunk, Sagas, Recompose, and so on. But each of those tools adds extra complexity and cognitive overhead for the team. Don’t add a tool until you’ve got a real reason. If you definitely need a tool, look for a well-documented, stable, open source tool first; building stuff in-house means someone internal is on the hook to document, maintain, and support it, and that’s rarely a sustainable option for utilities. And don’t try to predict the future; code is a relatively short-lived product, so trying to build something “future-proof” is a bit of a fool’s errand. Code with deletion and replacement in mind, not infinite flexibility and scalability.
+      It can be tempting to build a project in, say, React, and then start
+      adding tools: Redux, Thunk, Sagas, Recompose, and so on. But each of those
+      tools adds extra complexity and cognitive overhead for the team. Don’t add
+      a tool until you’ve got a real reason. If you definitely need a tool, look
+      for a well-documented, stable, open source tool first; building stuff
+      in-house means someone internal is on the hook to document, maintain, and
+      support it, and that’s rarely a sustainable option for utilities. And
+      don’t try to predict the future; code is a relatively short-lived product,
+      so trying to build something “future-proof” is a bit of a fool’s errand.
+      Code with deletion and replacement in mind, not infinite flexibility
+      and scalability.
 
   +slide
     blockquote.photo-quote
@@ -413,7 +518,10 @@ block slides
           small Senior Software Engineer, Netflix
 
     aside.notes.
-      Everything we do in our codebase has trade-offs. Jem recommends basing each decision on what will make the team most productive, even if that means skipping a tool that might logically be “more correct” because it’s too complicated to easily train the rest of the team.
+      Everything we do in our codebase has trade-offs. Jem recommends basing
+      each decision on what will make the team most productive, even if that
+      means skipping a tool that might logically be “more correct” because it’s
+      too complicated to easily train the rest of the team.
 
   +slide
     blockquote.photo-quote
@@ -428,7 +536,14 @@ block slides
           small Software Engineer, Honeycomb
     
     aside.notes.
-      In the spirit of trade-offs, “future-proofing” an app is making a trade-off. Adding a ton of “maybe we’ll need this someday” options is extra complexity now that may never actually be useful. But we also shouldn’t completely ignore the future when designing our projects — our job as lead developers is to find the right balance of keeping people productive now without ending up with tomorrow’s legacy nightmare. One way to do this is to emphasize writing easy-to-delete code: few dependencies, small size, and no side-effects.
+      In the spirit of trade-offs, “future-proofing” an app is making a
+      trade-off. Adding a ton of “maybe we’ll need this someday” options is
+      extra complexity now that may never actually be useful. But we also
+      shouldn’t completely ignore the future when designing our projects — our
+      job as lead developers is to find the right balance of keeping people
+      productive now without ending up with tomorrow’s legacy nightmare. One way
+      to do this is to emphasize writing easy-to-delete code: few dependencies,
+      small size, and no side-effects.
 
   +slide
     h4(style="margin-bottom: 0.125em") Make the Right Thing the Easy Thing: part 4
@@ -440,32 +555,40 @@ block slides
       li.fragment Create zero- or low-config dev environments
     
     aside.notes.
-      Probably the most important point, in my humble opinion, is to limit your team’s exposure to yak-shaving, which is all the terrible busywork we have to do #[em before] we can do our actual work. This means investing in our tech foundation to create solid dev environments and tooling to eliminate the need to do a ton of work just so they can start working.
+      Probably the most important point, in my humble opinion, is to limit your
+      team’s exposure to yak-shaving, which is all the terrible busywork we have
+      to do #[em before] we can do our actual work. This means investing in our
+      tech foundation to create solid dev environments and tooling to eliminate
+      the need to do a ton of work just so they can start working.
 
   +slide
     h3 Don’t make people do a bunch of work before they can start working
-    //- blockquote.photo-quote
-      .photo
-        img(
-          src="./images/jason-lengstorf.jpg"
-          alt="Jason Lengstorf."
-        )
-      .quote
-        p(style="font-size: 88%") “Don’t make people do a ton of work before they can start working.”
-        strong Also me, just now
-    
+
     aside.notes.
-      I can’t stress enough how important it is to invest in your team’s technical foundation. [Straw poll: how many of you lose at least an hour a week to fighting your dev environment (e.g. build tools, local envs, containers, deployment)?] [Tell IBM NGINX story.]
+      Yak shaving means all the work you have to do before you can start
+      actually working. For example, if you need to mow the lawn, but you
+      realize the lawn mower is out of gas, then discover that your gas can has
+      a hole in it, you now have to go to the hardware store, then the gas
+      station, all before you can even #[em begin] doing the original task.
+      I can’t stress enough how important it is to invest in your team’s
+      technical foundation. [Straw poll: how many of you lose at least an hour a
+      week to fighting your dev environment (e.g. build tools, local envs,
+      containers, deployment)?] [Tell IBM NGINX story.]
   
   +slide
-    h3(style="font-size: 144%") 1 hr/week 
-      span.fragment &times; 10 devs 
-      span.fragment &times; $70k/year
-      strong.fragment(style="display: block; font-size: 509%; line-height: 1") $16,153
+    h3(style="font-size: 139%") 2 hrs/week 
+      span.fragment &times; 20 devs 
+      span.fragment &times; $75k/year
+      strong.fragment(style="display: block; font-size: 455%; line-height: 1") $75,000
       span.fragment(style="font-size: 133%") burned on yak shaving
     
     aside.notes.
-      If anyone tries to argue that working on the foundation doesn’t have anything to do with business needs, show them this math. Assuming a dev team of 10 people and using Glassdoor info for a salary baseline, just #[em one hour] of time spent on yak shaving costs over $16,000 dollars. And if my experience is any indicator, it’s probably safe to say that the average dev is losing #[em way more] than one hour each week to non-core work.
+      If anyone tries to argue that working on the foundation doesn’t have
+      anything to do with business needs, show them this math. Assuming a dev
+      team of 20 people and using Glassdoor info for a salary baseline, just
+      #[em two hours a week] of time spent on yak shaving costs $75,000 dollars.
+      That’s an entire additional salary wasted on tasks that aren’t actually
+      related to the company’s goals.
 
   +slide.light-text.dim(
     data-background-image="./images/make-the-right-thing-the-easy-thing/dumpster-fire.gif"
@@ -474,7 +597,12 @@ block slides
       span.underlined(style="display: block; font-size: 204%; line-height: 0.9") fix a mess
     
     aside.notes.
-      Another reason to focus on the foundation is that we can enforce cultural norms through our boilerplates. If we provide a boilerplate with all the best practices baked into it, we’re changing the psychology of how our team interacts with our codebase. Instead of handing our team a blank slate (or worse, a pile of spaghetti code) and then asking them to fix it so it follows our team standards...
+      Another reason to focus on the foundation is that we can enforce cultural
+      norms through our boilerplates. If we provide a boilerplate with all the
+      best practices baked into it, we’re changing the psychology of how our
+      team interacts with our codebase. Instead of handing our team a blank
+      slate (or worse, a pile of spaghetti code) and then asking them to fix it
+      so it follows our team standards...
 
   +slide.light-text.dim(
     data-background-image="./images/make-the-right-thing-the-easy-thing/alley-oop.gif"
@@ -483,7 +611,13 @@ block slides
       span.underlined(style="display: block; font-size: 187%; line-height: 0.9") succeed
     
     aside.notes.
-      ...we should work to hand them well-built, thoroughly tested starters and boilerplates that already meet our standards. That way, all they have to do is keep it healthy and worry about #[em new] code. This appeals to our subconscious desire to keep nice things nice, and it helps steer the elephant in the direction of doing things The Right Way. We’re giving them the best possible chance of doing something awesome, demonstrated on this slide by these gentlemen playing sportsball.
+      ...we should work to hand them well-built, thoroughly tested starters and
+      boilerplates that already meet our standards. That way, all they have to
+      do is keep it healthy and worry about #[em new] code. This appeals to our
+      subconscious desire to keep nice things nice, and it helps steer the
+      elephant in the direction of doing things The Right Way. We’re giving them
+      the best possible chance of doing something awesome, demonstrated on this
+      slide by these gentlemen playing sportsball.
 
   +slide
     h1(style="font-size: 470%") What is a 
@@ -527,27 +661,27 @@ block slides
       span.underlined Prevent yak shaving
 
   +slide
-    h2.no-margin Teams we build
+    h2.no-margin Healthy Teams
     h3.no-margin Maintain a reasonable 
       span.underlined vacation tolerance
 
   +slide
-    h2.no-margin Teams we build
+    h2.no-margin Healthy Teams
     h3.no-margin Operate with high levels of 
       span.underlined confidence &amp; clarity
 
   +slide
-    h2.no-margin Teams we build
+    h2.no-margin Healthy Teams
     h3.no-margin Know their work is both 
       span.underlined recognized &amp; valued
 
   +slide
-    h2.no-margin Teams we build
+    h2.no-margin Healthy Teams
     h3.no-margin Feel confident in their 
       span.underlined autonomy &amp; safety
 
   +slide
-    h2.no-margin Teams we build
+    h2.no-margin Healthy Teams
     h3.no-margin Are not dependent on 
       span.underlined rockstar developers
 
@@ -557,7 +691,7 @@ block slides
     img(
       src="./images/work-life-balance/jason-lengstorf.jpg"
       alt="Jason Lengstorf"
-      style="display: block; border-radius: 50%; width: 240px; min-width: 0; margin: 0 auto"
+      style="display: block; background: #56453b; border-radius: 50%; width: 240px; min-width: 0; margin: 0 auto"
     )
     p(style="margin-top: 0.25rem;")= config.author.name
       br
@@ -591,7 +725,7 @@ block slides
 block styles
   link(
     rel="stylesheet"
-    href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
   )
   script.
     (function(d) {
