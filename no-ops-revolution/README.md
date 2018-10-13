@@ -38,6 +38,12 @@ This talk will be most relevant to teams that are struggling with cumbersome, ex
 
 The goal will be to leave the audience with new knowledge about their options, hope for a world where they don't spend hours and piles of money wrestling with servers, and action steps to start experimenting with a LowOps/NoOps workflow in their own projects and companies.
 
+## Key Takeaways
+
+- Complex DevOps is not a necessary evil for building modern UIs
+- Tools exist to eliminate the vast majority of the cost and complexity of hosting web apps and sites
+- Leveraging these tools allows the team to focus on _building_ apps, rather than wasting time _deploying_ and _managing_ apps.
+
 ## Why I’m Qualified to Give This Talk
 
 Up until recently, I worked as a front-end architect on IBM Cloud (formerly Bluemix), where I helped design workflows and processes to keep a team of ~700 developers productive and engaged. We implemented a React + GraphQL workflow with a mostly automated deployment process that saved _hours_ of frustration for developers each month, boosted the overall quality of our product (in some extreme cases we saw pages get over 30x faster), and increased the happiness and confidence of our team.
