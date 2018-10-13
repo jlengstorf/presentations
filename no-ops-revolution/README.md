@@ -22,11 +22,7 @@ In this talk, learn how improving your modern, low-effort DevOps workflows can g
 
 ### < 600 characters version:
 
-Deploying modern web apps is _hard_. A high-performance app means CDNs, global load balancing, continuous deployment/integration, and _so much more_. The complexity merits a dedicated team, and for companies struggling to grow that’s not possible. So what can we do?
-
-A new generation of tools completely removes many DevOps challenges. Leveraging these tools, we get back thousands of hours and millions of dollars — while avoiding many pitfalls and frustrations — so we can focus on building great products.
-
-In this talk, learn how companies of any size can leverage these tools starting today.
+Deploying modern, high-performance web apps is _hard_: we need CDNs, global load balancing, continuous deployment/integration, and _so much more_. Much of this complexity comes from orchestrating and managing servers and their surrounding services and tools. But what if we didn’t _need_ servers to deliver dynamic, performant UIs? In this talk, learn how teams of all sizes can leverage the JAMstack to create dynamic web experiences using entirely static assets, reducing your DevOps complexity (and infrastructure costs) to almost zero.
 
 ## Details and Goals
 
