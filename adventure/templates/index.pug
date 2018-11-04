@@ -20,8 +20,8 @@ block append config
     };
 
     config.conference = {
-      hashtag: 'ThatConference',
-      twitter: 'ThatConference',
+      hashtag: 'ConnectTech',
+      twitter: 'ConnectTech',
     };
   -
 
@@ -128,6 +128,20 @@ block slides
 
   +slide(
     data-background="url(./images/adventure/harvard.jpg)"
+  )
+    .image-credit(
+      data-credit-type="Photo"
+    )
+      a.image-credit__link(
+        href="https://commons.wikimedia.org/wiki/File:Elizabeth_Cary_Agassiz_House_-_Radcliffe_Yard,_Harvard_University,_Cambridge,_Massachusetts,_USA_-_IMG_6597.JPG"
+      ) Daderot
+    aside.notes
+      ul
+        li Next step on the Right Path™: go to college
+        li ...I did not go to college
+
+  +slide(
+    data-background="url(./images/adventure/harvard-nope.jpg)"
   )
     .image-credit(
       data-credit-type="Photo"
