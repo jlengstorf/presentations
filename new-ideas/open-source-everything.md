@@ -1,4 +1,4 @@
-# Open Source Everything
+# Open Source Everything: More Customers, Better Code, Stronger Community, Built-In Recruiting
 
 The vast majority of companies should open source all of their code, because the code itself isn’t their competitive advantage.
 

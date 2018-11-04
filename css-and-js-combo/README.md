@@ -1,3 +1,0 @@
-# Choosing the Right Tool: Combining CSS and JS for High-Performance, Super Polished UIs
-
-Many a Twitter argument has been started over whether or not we should be using JavaScript to build our UI effects and animations, or pure CSS. And there are good arguments for both: the decision we make will impact performance, maintainability, ease of implementation, and many other factors. In this talk, Jason Lengstorf will try to convince you that there’s a gray area and we should maybe use both. You’ll see real-world examples and results to show the trade-offs of JS-only, CSS-only, and hybrid solutions — so you can make the decision that’s right for the task at hand, not the one dictated by dogma.

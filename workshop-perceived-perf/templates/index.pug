@@ -46,7 +46,7 @@ block slides
   +slide
     h2 Hi!
 
-  +slide
+  //- +slide
     h3 Let’s introduce ourselves
     ol
       li  What’s your name?
@@ -59,15 +59,21 @@ block slides
   
   +slide
     p [Shamelessly <del>steal</del> <ins>borrow</ins> from Eli Fitch.]
+      br
+      i.fa.fa-link
+      |  
+      a(href="http://assets.eli.wtf/talks/perceived-perf-talk/") Eli’s presentation
 
   +slide
     h1 Schedule
     ul
-      li Now until 12pm: Roll our own image lazy loader
-      li 12–1pm: Lunch
-      li 1pm–3pm: Build a skeleton loading component from scratch
-      li 3–3:30pm: Break
-      li 3:30–5pm: Hand-code a Service Worker
+      li 9–10:30 — Roll our own lazy loader
+      li 10:30–10:45 — BREAK
+      li 10:45–12pm — Continue with the lazy loader
+      li 12–1pm — LUNCH
+      li 1–2:30pm: Build a skeleton loading component from scratch
+      li 2:30–3pm: BREAK
+      li 3–5pm: Hand-code a Service Worker
 
   +slide
     h1 Setup
@@ -159,7 +165,7 @@ block slides
 block styles
   link(
     rel="stylesheet"
-    href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
   )
   script.
     (function(d) {
