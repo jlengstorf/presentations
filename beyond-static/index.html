@@ -35,21 +35,232 @@
         <section>
           <h1 style="font-size: 110px; margin-bottom: 0">Beyond Static</h1>
           <h4>Gatsby + Apollo for Fully Dynamic Apps</h4>
-          <p>by <a href="https://lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a>&nbsp; · &nbsp;<a href="mailto:jason@lengstorf.com">jason@lengstorf.com</a></small></p>
-          <p><small>Slides: <a href="https://git.io/adv-career">git.io/adv-career</a></small></p>
+          <p>by <a href="https://lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a>&nbsp; · &nbsp;<a href="mailto:jason@gatsbyjs.com">jason@gatsbyjs.com</a></small></p>
+          <p><small>Slides: <a href="https://git.io/beyond-static">git.io/beyond-static</a></small></p>
         </section>
         <section>
-          <h2>TKTK</h2>
+          <blockquote class="photo-quote">
+            <div class="photo"><img src="./images/jason-lengstorf.jpg" alt="Jason Lengstorf"></div>
+            <div class="quote">
+              <ul style="list-style: none;">
+                <li>Developer 🥑</li>
+                <li>Currently: Gatsby</li>
+                <li>Formerly: IBM</li>
+                <li>Portland, OR</li>
+              </ul>
+            </div>
+          </blockquote>
         </section>
         <section>
-          <h1 class="no-margin">Thanks!</h1><img src="./images/work-life-balance/jason-lengstorf.jpg" alt="Jason Lengstorf" style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;">
+          <h3>You should use <em>GraphQL</em> for everything <span class="fragment">and serve your entire app as <em>static assets</em></span></h3>
+        </section>
+        <section>
+          <h3>Development today is<em style="display: block;font-size: 230%">different</em></h3>
+        </section>
+        <section>
+          <h3>The monolithic CMS is <strong style="display: block; font-size: 400%">dying</strong></h3>
+          <aside class="notes">
+            <ul>
+              <li>I know there are still a lot of companies using monolithic CMSs</li>
+              <li>The trend is clear though: most CMSs are going headless</li>
+              <li>WordPress, Drupal, Ghost — even Magento!</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h2>The future is the<em style="display: block; font-size: 121%">content mesh</em></h2>
+        </section>
+        <section><img class="no-border" src="./images/beyond-static/content-mesh.png" alt="The content mesh.">
+        </section>
+        <section><img class="no-border" src="./images/beyond-static/content-mesh-labeled.png" alt="The content mesh.">
+          <aside class="notes">
+            <ul>
+              <li>Specialized SaaS providers exist for pretty much every use case</li>
+              <li>Stripe, Shopify, Airtable, Contentful</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h3>This is <em>amazing</em></h3>
+          <ul>
+            <li class="fragment">Manage data using purpose-built tools</li>
+            <li class="fragment">Load data from anywhere using APIs</li>
+            <li class="fragment">Build custom UIs that combine multiple data sources</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>This has been popularized as the JAMstack</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h3>This is <strong>terrible</strong></h3>
+          <ul>
+            <li class="fragment">Atrocious performance pitfalls</li>
+            <li class="fragment">Complex business logic to combine data sources</li>
+            <li class="fragment">UIs can become tightly coupled to back-ends</li>
+            <li class="fragment">State management leads to nightmarish complexity</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>Tons of requests, some slow, reflows, jank, FOUC, font jumping</li>
+              <li>Front-end teams can end up managing a ton of business logic to parse data</li>
+              <li>Not the best use of their time or the best skill match</li>
+              <li>Even trivial back-end changes can force front-end rewrites</li>
+              <li>Redux, etc. can add high complexity & make it hard to onboard devs</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h3>Also: async is <strong>hard</strong></h3><img src="./images/beyond-static/load-jank.gif" alt="Page jumping during load." style="width: 300px; min-width: 0">
+          <aside class="notes">
+            <ul>
+              <li>Getting async loading right is difficult, which is why we still deal with junky layouts like this regularly</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h2>How to <em>tame</em> the Content Mesh</h2>
+          <ul>
+            <li class="fragment">Centralize data access with GraphQL</li>
+            <li class="fragment">Serve only optimized static assets</li>
+          </ul>
+        </section>
+        <section>
+          <h3><em style="display:block; font-size: 175%">Centralize</em> data with GraphQL</h3>
+          <ul>
+            <li class="fragment">Better explorability</li>
+            <li class="fragment">Single source of truth</li>
+            <li class="fragment">More scalable & team-friendly</li>
+            <li class="fragment">Consistent, shareable dev workflow</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>Self-documenting and browser-based explorability</li>
+              <li>All content sources end up in the same GraphQL endpoint</li>
+              <li>Dev can use the same tools for UI even if the data source are different</li>
+              <li>Agencies: imagine not having to convince your clients to migrate but still being able to use your preferred stack</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h3><em style="display: block; font-size: 170%">Go Static</em> for everything</h3>
+          <ul>
+            <li class="fragment">Blazing fast performance</li>
+            <li class="fragment">Simpler deployment flow</li>
+            <li class="fragment">Reduced DevOps overhead</li>
+          </ul>
+        </section>
+        <section>
+          <h2>How this works in <em style="display: block; font-size: 270%">Gatsby</em></h2>
+          <ul>
+            <li class="fragment">Node APIs to load any data source into GraphQL</li>
+            <li class="fragment">“Early bind” data at build time</li>
+            <li class="fragment">Generate static assets</li>
+            <li class="fragment">Automate performance tuning</li>
+            <li class="fragment">Deploy to a CDN (e.g. Netlify)</li>
+            <li class="fragment">Rehydrate to a React app in the browser</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>PRPL, image optimization, Service Worker</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h3 style="font-size: 4.5rem">Make the <em>Right</em> Thing<span style="display: block; font-size: 147%">the <em>Easy</em> Thing</span></h3>
+          <p class="fragment">Design your tools so the laziest, shortcuttiest,<br>
+            under-the-gunniest decisions a developer can make<br>
+            will still result in an excellent user experience.
+            
+          </p>
+        </section>
+        <section>
+          <h3 style="margin-bottom: 0.5rem;">But...</h3>
+          <p style="margin-top: 0;">“Isn’t Gatsby a <strong>static</strong> site generator?<br>
+            My site has <strong>dynamic</strong> data!”
+            
+          </p>
+        </section>
+        <section>
+          <h3>static assets !== static apps</h3>
+        </section>
+        <section>
+          <h3 style="font-size: 4rem;">React apps are <em>dynamic</em><span class="fragment" style="display: block; font-size: 88%"><em>Gatsby sites</em> are React apps</span></h3>
+        </section>
+        <section>
+          <h4 style="font-size: 2rem">Something something transitive property...<span class="fragment" style="display: block; font-size: 180%"><em>Gatsby sites</em> <span class="underlined">are</span> <em>dynamic</em></span></h4>
+        </section>
+        <section><img class="no-border" src="./images/beyond-static/cm1.png" alt="The Content Mesh with Gatsby.">
+        </section>
+        <section><img class="no-border" src="./images/beyond-static/cm2.png" alt="The Content Mesh with Gatsby.">
+        </section>
+        <section><img class="no-border" src="./images/beyond-static/cm3.png" alt="The Content Mesh with Gatsby.">
+        </section>
+        <section><img class="no-border" src="./images/beyond-static/cm4.png" alt="The Content Mesh with Gatsby.">
+        </section>
+        <section><img class="no-border" src="./images/beyond-static/cm5.png" alt="The Content Mesh with Gatsby.">
+        </section>
+        <section><img class="no-border" src="./images/beyond-static/cm6.png" alt="The Content Mesh with Gatsby.">
+        </section>
+        <section>
+          <h3 style="font-size: 2.875rem">Example: Gatsby’s <em>Swag Store</em></h3><img class="no-border no-margin" src="./images/beyond-static/store.jpg" alt="The Gatsby Store."><a href="https://store.gatsbyjs.org">store.gatsbyjs.org</a>
+        </section>
+        <section>
+          <h3 style="font-size: 2.875rem">Static Data Loaded at <em>Build</em> Time</h3><img class="no-border no-margin" src="./images/beyond-static/store-static-data.jpg" alt="The Gatsby Store."><a href="https://store.gatsbyjs.org">store.gatsbyjs.org</a>
+        </section>
+        <section>
+          <h3 style="font-size: 2.875rem">Dynamic Data Loaded at <em>Run</em> Time</h3><img class="no-border no-margin" src="./images/beyond-static/store-dynamic-data.jpg" alt="The Gatsby Store."><a href="https://store.gatsbyjs.org">store.gatsbyjs.org</a>
+        </section>
+        <section>
+          <h3 style="font-size: 2.875rem"><em>Client-Only</em> Routes for User Pages</h3><img class="no-border no-margin" src="./images/beyond-static/store-dashboard.jpg" alt="The Gatsby Store."><a href="https://store.gatsbyjs.org">store.gatsbyjs.org</a>
+        </section>
+        <section>
+          <h3 style="font-size: 2.875rem">Data Loads <em>Asynchronously</em></h3><img class="no-border no-margin" src="./images/beyond-static/store-dashboard-data.jpg" alt="The Gatsby Store."><a href="https://store.gatsbyjs.org">store.gatsbyjs.org</a>
+        </section>
+        <section>
+          <blockquote class="twitter-tweet" data-lang="en">
+            <p lang="en" dir="ltr">
+              🤔 How easy is it to set up a 
+              <a href="https://twitter.com/gatsbyjs?ref_src=twsrc%5Etfw">@gatsbyjs</a>
+              app with GraphQL for data on the back-end +
+              <a href="https://twitter.com/apollographql?ref_src=twsrc%5Etfw">@apollographql</a>
+              for GraphQL client-side?<br>
+              <br>
+              ✅ 5 files<br>
+              ✅ 88 lines of code<br>
+              ✅ Use both build-time and runtime GraphQL queries in the same component<br><br>
+              😎 Repo: <a href="https://t.co/lrEg41iGgx">https://t.co/lrEg41iGgx</a> <a href="https://t.co/OuKChDpIFN">pic.twitter.com/OuKChDpIFN</a>
+              &mdash; Jason Lengstorf @ #GraphQLSummit (@jlengstorf) <a href="https://twitter.com/jlengstorf/status/1059834786703785985?ref_src=twsrc%5Etfw">November 6, 2018</a>
+            </p>
+          </blockquote>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </section>
+        <section>
+          <h1>💻 Live Demo</h1>
+          <h4 style="font-size: 2.45rem">Let’s build a <em>dynamic app</em> in Gatsby.</h4><a href="https://github.com/jlengstorf/gatsby-with-apollo">github.com/jlengstorf/gatsby-with-apollo</a>
+        </section>
+        <section>
+          <h3>Try it yourself:<br><a href="https://gatsbyjs.org">gatsbyjs.org</a></h3>
+        </section>
+        <section>
+          <h3>You should use <em>GraphQL</em> for everything <span>and serve your entire app as <em>static assets</em></span></h3>
+        </section>
+        <section>
+          <h1 class="no-margin">Thanks!</h1><img src="./images/jason-lengstorf.jpg" alt="Jason Lengstorf" style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;">
           <p style="margin-top: 0.25rem;">Jason Lengstorf<br><small>Follow me on Twitter: <a href="https://twitter.com/jlengstorf">@jlengstorf</a></small></p>
         </section>
         <section class="u--align-left resourcetext">
           <h4>Resources</h4>
           <ol>
-            <li><a href="https://example.com">
-                This is a reference link
+            <li><a href="https://gatsby.app/content-mesh"><em>The Journey to a Content Mesh</em></a></li>
+            <li><a href="https://gatsbyjs.org">Gatsby</a></li>
+            <li><a href="https://apollographql.com">Apollo</a></li>
+            <li><a href="https://github.com/jlengstorf/gatsby-with-apollo">Gatsby with Apollo Demo</a></li>
+            <li><a href="https://store.gatsbyjs.org">Gatsby’s Swag Store</a></li>
+            <li><a href="https://github.com/gatsbyjs/store.gatsbyjs.org">Swag Store Source Code</a></li>
+            <li><a href="https://github.com/gatsbyjs/api.gatsbyjs.org">
+                Store API Source Code
                 </a></li>
           </ol>
         </section>
@@ -57,9 +268,9 @@
     </div>
     <footer class="v2">
       <ul class="inline">
-        <li><a href="https://git.io/adv-career" title="View the slides online.">git.io/adv-career</a></li>
+        <li><a href="https://git.io/beyond-static" title="View the slides online.">git.io/beyond-static</a></li>
         <li><a href="https://twitter.com/jlengstorf" title="Find Jason on Twitter">@jlengstorf</a></li>
-        <li><a class="no-icon" href="https://twitter.com/intent/tweet?text=Beyond%20Static%20by%20%40jlengstorf&amp;hashtags=graphqlsummit&amp;related=jlengstorf%2Cgraphqlsummit&amp;url=https%3A%2F%2Fgit.io%2Fadv-career">#graphqlsummit</a></li>
+        <li><a class="no-icon" href="https://twitter.com/intent/tweet?text=Beyond%20Static%20by%20%40jlengstorf&amp;hashtags=graphqlsummit&amp;related=jlengstorf%2Cgraphqlsummit&amp;url=https%3A%2F%2Fgit.io%2Fbeyond-static">#graphqlsummit</a></li>
       </ul>
     </footer>
     <script src="lib/js/head.min.js"></script>
@@ -103,5 +314,6 @@
       });
       
     </script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   </body>
 </html>
