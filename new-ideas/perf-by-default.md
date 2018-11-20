@@ -1,0 +1,3 @@
+# Performance By Default: Make the Right Thing the Easy Thing
+
+If we want to make our app performance a first-class consideration, we need to treat performance as a core part of our tools’ designs. In this talk, you’ll learn how to bake performance into the core of your teams, products, and tools, including how to design software that ensures that — even under tight deadlines; even when the dev doesn’t know or care about performance — the end result is a high-performance app. These techniques have been learned and validated at enterprise scale and in huge open source projects, and you’ll be able to use them _today_ to improve your own team’s projects.
