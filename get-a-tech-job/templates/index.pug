@@ -1,0 +1,316 @@
+//- Use the presentation layout so we can keep this clean
+extends layouts/presentation
+
+block append config
+  -
+    config.theme = 'lengstorf';
+    config.title = 'Breaking In';
+    config.description = 'How to Land Your Dream Job in Tech';
+
+    config.author = {
+      name: 'Jason Lengstorf',
+      email: 'jason@gatsbyjs.com',
+      link: 'https://lengstorf.com/',
+      twitter: 'jlengstorf',
+      github: 'jlengstorf',
+    };
+    
+    config.slides = {
+      link: 'https://git.io/get-a-tech-job',
+    };
+
+    config.conference = {
+      hashtag: 'pdxFLiT',
+      twitter: 'pdxFLiT',
+    };
+  -
+
+//- Add your slides here. See templates/includes/_mixins.pug for information 
+//- on how `+slide` works.
+block slides
+  +slide
+    h1(style="font-size: 110px; margin-bottom: 0")= config.title
+    h4= config.description
+    
+    p by 
+      a(href= config.author.link)= config.author.name
+      br
+      small
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        | &nbsp; · &nbsp;
+        a(href= `mailto:${config.author.email}`)= config.author.email
+    
+    p
+      small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
+
+  +slide
+    blockquote.photo-quote
+      .photo
+        img(
+          src="./images/jason-lengstorf.jpg"
+          alt="Jason Lengstorf"
+        )
+      .quote
+        ul(style="list-style: none;")
+          li Human Duct Tape @ Gatsby
+          li Formerly: IBM
+          li Portland, OR
+  
+  +slide
+    h2 Hiring in tech is 
+      span.underlined(style="font-size: 216%") broken
+  
+  +slide
+    h3 We #[em should] hire based on:
+    ul
+      li.fragment Potential for learning and growth
+      li.fragment Compatible core values
+      li.fragment Demonstrated ability to do the job
+      li.fragment Core personality traits (e.g. grit)
+
+  +slide
+    h3 Instead, we hire based on the #[strong wrong] signals:
+    ul
+      li.fragment Ability to answer computer science trivia questions
+      li.fragment Whether or not we’ve heard of you
+      li.fragment Which of our friends referred you
+
+  +slide
+    h2.no-margin This is 
+      strong no good
+    h4.no-margin.fragment ...but don’t lose hope just yet
+
+  +slide
+    h4 If you know #[span.underlined how] the system is broken
+    h4.no-margin.fragment you can leverage it to land your 
+      em dream job
+
+  +slide
+    h3 3 steps to land your dream job in tech
+    ol
+      li.fragment Show up.
+      li.fragment Show love.
+      li.fragment Share.
+
+  +slide
+    h1.no-margin 1. Show up
+    blockquote.no-margin
+      p.
+        You keep showing up, and you keep showing up, and, eventually, 
+        somebody notices.
+      p.no-margin
+        small – Joey Diaz
+
+  +slide
+    h2 Do something small 
+      span.underlined every day
+    ul
+      li.fragment Learn one thing every day and share it on Twitter. 
+      li.fragment Reach out to one person in the tech community. 
+      li.fragment Write for 10 minutes about what you learned the day before and publish on your blog. 
+   
+  +slide
+    figure
+      img(
+        src="images/get-a-tech-job/marginal-gains-graph.jpg"
+        alt="Comparison of 1% better and 1% worse every day."
+        style="max-width: 600px"
+      )
+      figcaption Image credit: 
+        a(href="https://jamesclear.com/marginal-gains") James Clear
+    aside.notes.
+      Taken in isolation, any one small action won’t feel like much. But
+      in aggregate, one small action every day makes an enormous difference
+      over time.
+
+  +slide
+    h3 How this helps you:
+    ul
+      li.fragment Creates a body of public work
+      li.fragment Helps you show up in discussions & on newsfeeds
+      li.fragment Grows your network
+      li.fragment Starts real conversations with industry peers
+  
+  +slide
+    h2 Don’t forget about 
+      span(style="font-size: 134%") cognitive bias:
+    p The #[a(href="https://en.wikipedia.org/wiki/Mere-exposure_effect") mere-exposure effect] means you’re more likely to get a chance if people have heard of you before.
+  
+
+  +slide
+    h3.no-margin Doing it right:
+    figure.no-margin
+      img(
+        src="images/get-a-tech-job/katieofcode.png"
+        alt="Katie Fujihara’s Twitter profile."
+        style="max-width: 600px"
+      )
+      figcaption
+        a(href="https://twitter.com/katieofcode") Katie Fujihara on Twitter
+    aside.notes.
+      Katie has consistently put the work into local events, meeting local 
+      and online peers, and growing her network. She’s slowly, methodically 
+      created a public body of work, made contacts in the industry, and — 
+      recently — landed her first job!
+
+  +slide
+    h1.no-margin 2. Show love
+    blockquote.no-margin
+      p Work hard, be kind, and amazing things will happen.
+      p.no-margin
+        small – Conan O'Brien
+
+  +slide
+    h3 Kindness is a career 
+      span(style="font-size:142%").underlined supercharger
+    ul
+      li.fragment Be helpful whenever you have the chance.
+      li.fragment Never cut people down or talk trash.
+      li.fragment Assume the best intentions and treat people accordingly.
+
+  +slide
+    h4 When you’re unkind, we notice
+    blockquote.twitter-tweet(data-conversation="none")
+      p(lang="en" dir="ltr") It’s easy to teach someone to code. It’s really hard to teach someone not to be an asshole.
+      | &mdash; Jason Lengstorf (@jlengstorf)
+      a(href="https://twitter.com/jlengstorf/status/1068968037523443712?ref_src=twsrc%5Etfw") December 1, 2018
+    aside.notes.
+      I know a lot of extremely smart people that I would never hire or 
+      recommend after seeing the way they treat other people on the internet.
+
+  +slide
+    h3 How this helps you:
+    ul
+      li.fragment The best teams place high value on team members who make the people around them better
+      li.fragment The community notices and builds up kind people
+      li.fragment In tech — unfortunately — “not being a dick” can be a differentiator 😔
+
+  +slide
+    h2 Don’t forget about 
+      span(style="font-size: 134%") cognitive bias:
+    p The #[a(href="https://en.wikipedia.org/wiki/Reciprocity_(social_psychology)") reciprocity bias] means people are more likely to help you if you’ve helped them before.
+
+
+  +slide
+    h1.no-margin 3. Share
+    blockquote.no-margin
+      p Generosity is the best investment.
+      p.no-margin
+        small – Diane Con Furstenberg
+
+  +slide
+    h3 Work and learn in public whenever possible
+    ul
+      li.fragment Open source your personal sites and projects.
+      li.fragment Take notes in a public place, like your blog or Medium.
+      li.fragment Contribute to open source projects, even if it’s “just” docs improvements.
+    aside.notes.
+      Correct or not, employers will give a lot of weight to an active 
+      GitHub profile. By doing anything that can be done on GitHub on GitHub,
+      it creates an image that employer’s value: an active developer, engaged
+      in the community, working on popular open source projects, etc.
+  
+  +slide
+    h3 If you want to get started, start here:
+    figure
+      img(
+        src="images/get-a-tech-job/gatsby.png"
+        alt="Gatsby’s first-time contributor message on GitHub."
+      )
+
+  +slide
+    h2 Don’t forget about 
+      span(style="font-size: 134%") cognitive bias:
+    p The #[a(href="https://en.wikipedia.org/wiki/Halo_effect") halo effect] means people will judge you more favorably if you’re associated with things they value (like popular OSS projects).
+
+  +slide
+    h2 But what about coding interviews?
+    p.fragment You can #[a(href="https://blog.usejournal.com/i-interviewed-at-six-top-companies-in-silicon-valley-in-six-days-and-stumbled-into-six-job-offers-fe9cc7bbc996") study for coding interviews] and ace them.
+
+  +slide
+    h2 Recap
+    ul
+      li.fragment The hiring process in tech is broken
+      li.fragment If you learn #[em how] it’s broken, you can use it to your advantage
+      li.fragment Frequently and consistently post work and learn in public to build your network and a body of work
+      li.fragment Be kind and helpful to everyone — you never know who’s hiring
+      li.fragment Don’t give up and don’t stop learning
+
+  //- Thanks & Resources
+  +slide
+    h1.no-margin Thanks!
+    img(
+      src="./images/jason-lengstorf.jpg"
+      alt="Jason Lengstorf"
+      style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;"
+    )
+    p(style="margin-top: 0.25rem;")= config.author.name
+      br
+      small
+        | Follow me on Twitter: 
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+
+  //- +slide.u--align-left.resourcetext
+    h4 Resources
+    ol
+      li
+        a(href="https://gatsby.app/content-mesh").
+          The Journey to a Content Mesh
+
+block styles
+  link(
+    rel="stylesheet"
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+  )
+  script.
+    (function(d) {
+      var config = {
+        kitId: 'fnr1orp',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+
+block scripts
+  script(async src="https://platform.twitter.com/widgets.js" charset="utf-8")
+
+block extras
+  -
+    const relatedAccounts = [config.author.twitter];
+    
+    if (config.conference.twitter) {
+      relatedAccounts.push(config.conference.twitter);
+    }
+
+    // See https://dev.twitter.com/web/tweet-button/web-intent for parameters.
+    const tweetObj = {
+      text: `${config.title} by @${config.author.twitter}`,
+      hashtags: config.conference.hashtag || '',
+      related: relatedAccounts.join(','),
+      url: config.slides.link,
+    };
+
+    // 
+    const e = encodeURIComponent;
+    const args = Object.keys(tweetObj).map(key => `${key}=${e(tweetObj[key])}`);
+    const tweetUrl = `https://twitter.com/intent/tweet?${args.join('&')}`;
+  -
+  footer.v2
+    ul.inline
+      li
+        a(
+          href= config.slides.link
+          title="View the slides online."
+        )= config.slides.link.replace('https://', '')
+      li
+        a(
+          href="https://twitter.com/"+config.author.twitter
+          title="Find Jason on Twitter"
+        ).
+          @#{config.author.twitter}
+      li
+        a.no-icon(
+          href=tweetUrl
+        ) #{config.conference.hashtag ? `#${config.conference.hashtag}` : ''}
+        
