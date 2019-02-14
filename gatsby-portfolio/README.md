@@ -11,6 +11,30 @@ In this session, you’ll learn how you can create a high-performance portfolio 
 -   Pull portfolio data from a headless CMS
 -   Optimize image performance for blazing fast load times
 
-## Outline
+## Code
 
--   tktk
+-   Create a new Gatsby site from the hello-world starter
+
+    ```sh
+    npx gatsby new gatsby-portfolio gatsbyjs/gatsby-starter-hello-world
+    ```
+
+-   Add the JSON transformer to make portfolio data available in queries.
+
+-   Add the Sharp plugins to load optimized images from JSON.
+
+-   Install gatsby-image.
+
+-   Create a layout component.
+
+-   Create a ProjectPreview component.
+
+-   Build the home page.
+
+-   Build a Project component.
+
+-   Build a project template.
+
+-   Write the gatsby-node.js setup to create the project pages.
+
+-   Switch over to Sanity
