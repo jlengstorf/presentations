@@ -51,7 +51,52 @@
           </blockquote>
         </section>
         <section>
-          <h3>TKTK</h3>
+          <h2>Even “simple” data has complex relationships</h2>
+        </section>
+        <section><img class="no-border" src="./images/why-gatsby-uses-graphql/blog-post.png" alt="A blog post on lengstorf.com.">
+        </section>
+        <section><img class="no-border" src="./images/why-gatsby-uses-graphql/blog-post-1.png" alt="A blog post on lengstorf.com with the image labeled.">
+        </section>
+        <section><img class="no-border" src="./images/why-gatsby-uses-graphql/blog-post-2.png" alt="A blog post on lengstorf.com with the image and category labeled.">
+        </section>
+        <section><img class="no-border" src="./images/why-gatsby-uses-graphql/blog-post-3.png" alt="A blog post on lengstorf.com with the image, category, and tags labeled.">
+        </section>
+        <section><img class="no-border" src="./images/why-gatsby-uses-graphql/data-complexity.png" alt="Map of data relationships for an average blog." style="max-height: 600px">
+        </section>
+        <section>
+          <h4 class="no-margin">Many CMS options use relational databases to manage data</h4><img class="no-margin no-border" src="./images/why-gatsby-uses-graphql/mock-db.png" alt="Mock relational DB tables for normalized data." style="max-height: 600px">
+        </section>
+        <section>
+          <h4 class="no-margin">Multiple requests required to load data</h4><img class="no-margin no-border" src="./images/why-gatsby-uses-graphql/load-post-data.png" alt="Pseudo-code to load post data, author data, and comment data."><small class="no-margin">(plus categories, tags, related posts, etc.)</small>
+        </section>
+        <section>
+          <h4 class="no-margin">GraphQL tames this complexity</h4><img class="no-margin no-border" src="./images/why-gatsby-uses-graphql/graphql.png" alt="Loading all post data with related posts in a single query." style="max-height: 600px">
+        </section>
+        <section>
+          <h2>Gatsby takes this a step further</h2>
+        </section>
+        <section>
+          <h4>In Gatsby, you can use GraphQL to query:</h4>
+          <ul>
+            <li class="fragment">Site metadata and page information</li>
+            <li class="fragment">The file system (<code>gatsby-source-filesystem</code>)</li>
+            <li class="fragment">Third party data (via source plugins)</li>
+            <li class="fragment">Relationships between data from multiple sources</li>
+          </ul>
+        </section>
+        <section><img class="no-border" src="./images/beyond-static/cm1.png" alt="The Content Mesh with Gatsby.">
+        </section>
+        <section><img class="no-border" src="./images/beyond-static/cm2.png" alt="The Content Mesh with Gatsby.">
+        </section>
+        <section><img class="no-border" src="./images/beyond-static/cm3.png" alt="The Content Mesh with Gatsby.">
+        </section>
+        <section><img class="no-border" src="./images/beyond-static/cm4.png" alt="The Content Mesh with Gatsby.">
+        </section>
+        <section>
+          <h1>🛠 Demo 🛠</h1>
+          <p><a href="https://github.com/jlengstorf/why-gatsby-uses-graphql">
+              github.com/jlengstorf/why-gatsby-uses-graphql
+              </a></p>
         </section>
         <section>
           <h1 class="no-margin">Thanks!</h1><img src="./images/jason-lengstorf.jpg" alt="Jason Lengstorf" style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;">
@@ -60,8 +105,9 @@
         <section class="u--align-left resourcetext">
           <h4>Resources</h4>
           <ol>
-            <li><a href="https://gatsbyjs.org">
-                Gatsby
+            <li><a href="https://gatsbyjs.org">Gatsby</a></li>
+            <li><a href="https://github.com/jlengstorf/why-gatsby-uses-graphql">
+                Demo code
                 </a></li>
           </ol>
         </section>

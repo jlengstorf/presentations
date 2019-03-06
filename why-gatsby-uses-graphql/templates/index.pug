@@ -56,8 +56,93 @@ block slides
           li Formerly: IBM
           li Portland, OR
   
+  //- Main content
   +slide
-    h3 TKTK
+    h2 Even “simple” data has complex relationships
+
+  +slide
+    img.no-border(
+      src="./images/why-gatsby-uses-graphql/blog-post.png"
+      alt="A blog post on lengstorf.com."
+    )
+
+  +slide
+    img.no-border(
+      src="./images/why-gatsby-uses-graphql/blog-post-1.png"
+      alt="A blog post on lengstorf.com with the image labeled."
+    )
+
+  +slide
+    img.no-border(
+      src="./images/why-gatsby-uses-graphql/blog-post-2.png"
+      alt="A blog post on lengstorf.com with the image and category labeled."
+    )
+
+  +slide
+    img.no-border(
+      src="./images/why-gatsby-uses-graphql/blog-post-3.png"
+      alt="A blog post on lengstorf.com with the image, category, and tags labeled."
+    )
+
+  +slide
+    img.no-border(
+      src="./images/why-gatsby-uses-graphql/data-complexity.png"
+      alt="Map of data relationships for an average blog."
+      style="max-height: 600px"
+    )
+
+  +slide
+    h4.no-margin Many CMS options use relational databases to manage data
+    img.no-margin.no-border(
+      src="./images/why-gatsby-uses-graphql/mock-db.png"
+      alt="Mock relational DB tables for normalized data."
+      style="max-height: 600px"
+    )
+  
+  +slide
+    h4.no-margin Multiple requests required to load data
+    img.no-margin.no-border(
+      src="./images/why-gatsby-uses-graphql/load-post-data.png"
+      alt="Pseudo-code to load post data, author data, and comment data."
+    )
+    small.no-margin (plus categories, tags, related posts, etc.)
+
+  +slide
+    h4.no-margin GraphQL tames this complexity
+    img.no-margin.no-border(
+      src="./images/why-gatsby-uses-graphql/graphql.png"
+      alt="Loading all post data with related posts in a single query."
+      style="max-height: 600px"
+    )
+  
+  +slide
+    h2 Gatsby takes this a step further
+  
+  +slide
+    h4 In Gatsby, you can use GraphQL to query:
+    ul
+      li.fragment Site metadata and page information
+      li.fragment The file system (#[code gatsby-source-filesystem])
+      li.fragment Third party data (via source plugins)
+      li.fragment Relationships between data from multiple sources
+
+  +slide
+    img.no-border(src="./images/beyond-static/cm1.png" alt="The Content Mesh with Gatsby.")
+
+  +slide
+    img.no-border(src="./images/beyond-static/cm2.png" alt="The Content Mesh with Gatsby.")
+
+  +slide
+    img.no-border(src="./images/beyond-static/cm3.png" alt="The Content Mesh with Gatsby.")
+
+  +slide
+    img.no-border(src="./images/beyond-static/cm4.png" alt="The Content Mesh with Gatsby.")
+
+  +slide
+    h1 🛠 Demo 🛠
+    p
+      a(href="https://github.com/jlengstorf/why-gatsby-uses-graphql").
+        github.com/jlengstorf/why-gatsby-uses-graphql
 
   //- Thanks & Resources
   +slide
@@ -79,6 +164,9 @@ block slides
       li
         a(href="https://gatsbyjs.org").
           Gatsby
+      li
+        a(href="https://github.com/jlengstorf/why-gatsby-uses-graphql").
+          Demo code
 
 block styles
   link(
