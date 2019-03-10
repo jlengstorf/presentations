@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Work Smarter</title>
+    <meta name="description" content="Strategies for Remote Productivity and Efficiency">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link id="theme" rel="stylesheet" href="css/theme/lengstorf.css">
+    <link rel="stylesheet" href="lib/css/github.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script>
+      (function(d) {
+        var config = {
+          kitId: 'fnr1orp',
+          scriptTimeout: 3000,
+          async: true
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+      
+    </script>
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+      
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1 style="font-size: 102px; margin-bottom: 0">Work Smarter</h1>
+          <h5 style="font-size: 30px">Strategies for Remote Productivity and Efficiency</h5>
+          <p>by <a href="https://lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a>&nbsp; · &nbsp;<a href="mailto:jason@gatsbyjs.com">jason@gatsbyjs.com</a></small></p>
+          <p><small>Slides: <a href="https://git.io/why-gatsby-uses-graphql">git.io/why-gatsby-uses-graphql</a></small></p>
+        </section>
+        <section>
+          <h1 style="font-size: 100px">👋 Hi! I’m Jason.</h1>
+          <blockquote class="photo-quote">
+            <div class="photo"><img src="./images/jason-lengstorf.jpg" alt="Jason Lengstorf"></div>
+            <div class="quote">
+              <ul style="list-style: none;">
+                <li>Human Duct Tape at Gatsby</li>
+                <li>Formerly: IBM</li>
+                <li>Portland, OR</li>
+              </ul>
+            </div>
+          </blockquote>
+        </section>
+        <section class="u--align-left u--text-light u--text-shadow" data-background="url(./images/jason-lengstorf-slide-bg@2x.jpg)">
+          <h2><br><br><br><br><br>Look at this beard<em class="hugify fragment">Glorious!</em></h2>
+        </section>
+        <section>
+          <h2>I nearly robbed<br>the world of its <em class="hugify">majesty</em></h2>
+        </section>
+        <section class="u--text-light u--text-shadow" data-background="url(./images/work-life-balance/mustache.jpg)">
+          <h3 class="fragment dim-the-lights">This was not a choice</h3>
+        </section>
+        <section>
+          <h2>I was a <strong>workaholic</strong></h2>
+        </section>
+        <section>
+          <h2>In 2012 I averaged <strong class="hugify">70 hours per week</strong> on the computer</h2>
+          <p class="fragment">And it wasn’t unusual to pass 90.</p>
+          <aside class="notes">
+            I woke up checking email. I worked through all of my meals. I ordered in 
+            the vast majority of my lunches and dinners. I rarely hung out with 
+            friends, and when I did, I’d often end up ducking out to take a phone call
+            or deal with some issue.
+            
+          </aside>
+        </section>
+        <section>
+          <h2>My long hours were a point of pride for me</h2>
+        </section>
+        <section>
+          <h3>But then...</h3>
+        </section>
+        <section>
+          <h1><span class="hugify">Black Friday</span></h1>
+        </section>
+        <section>
+          <h3>I landed a <em>huge</em> contract:</h3>
+          <p>A high-profile, Black Friday marketing site for a Fortune 500 company <span class="fragment">— charging agency rates and rush fees.</span></p>
+        </section>
+        <section>
+          <h3>We planned it all out...</h3><img class="no-border" src="images/work-life-balance/project-plan.svg" alt="project plan">
+        </section>
+        <section>
+          <h3>...then reality happened</h3><img class="no-border" src="images/work-life-balance/project-reality.svg" alt="project plan">
+        </section>
+        <section>
+          <h1>But I’m no<br><strong style="font-size:130%">quitter</strong></h1>
+        </section>
+        <section>
+          <h2>I worked over <strong class="hugify">100 hours</strong> that week</h2>
+        </section>
+        <section>
+          <h2>The Business Result:</h2>
+          <ul>
+            <li class="fragment">The client loved it</li>
+            <li class="fragment">The project made the client a bunch of money</li>
+            <li class="fragment">I got paid a bunch of money</li>
+            <li class="fragment">The project won an Addy Award</li>
+          </ul>
+        </section>
+        <section>
+          <h2>The Personal Cost:</h2>
+          <ul>
+            <li class="fragment">I missed Thanksgiving with my family</li>
+            <li class="fragment">I slept less than 4 hours a night</li>
+            <li class="fragment">I ate fast food delivery for every. single. meal.</li>
+            <li class="fragment">MY FRIGGIN’ BEARD FELL OUT</li>
+          </ul>
+        </section>
+        <section class="u--text-light u--text-shadow" data-background="url(./images/work-life-balance/patchy-beard.jpg)">
+          <aside class="notes">I believe I had something called <em>alopecia barbae</em>, which causes
+            unexplained loss of whiskers in beards. There’s no proven cause, but some
+            research suggests stress can create symptoms. I’m an n=1 study, but I am
+            now extremely convinced that this is true.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>I was already burning out.</h3>
+        </section>
+        <section class="u--text-light u--text-shadow" data-background="url(./images/work-life-balance/rage-quit.gif)">
+          <h3 class="fragment dim-the-lights">Losing my beard<br>was the final straw.</h3>
+        </section>
+        <section>
+          <h2>Poor &amp; <em>healthy</em><br>is better than successful &amp; <strong>sick</strong></h2>
+        </section>
+        <section>
+          <h3>I cut back on everything:</h3>
+          <ul>
+            <li class="fragment">I only accepted calls during business hours</li>
+            <li class="fragment">I turned off <strong>ALL</strong> notifications</li>
+            <li class="fragment">I turned on Do Not Disturb mode from 6pm to 8am</li>
+            <li class="fragment">I only checked email twice a day</li>
+            <li class="fragment">I set up activities with my friends...</li>
+            <li class="fragment">...and left my phone in the car while I was there</li>
+          </ul>
+        </section>
+        <section>
+          <h2 style="font-size: 230%">I was ready to lose business if I could have my life back</h2>
+        </section>
+        <section>
+          <h4>&hellip;but that’s <em>not</em> what happened</h4>
+        </section>
+        <section>
+          <h2>What I expected:</h2>
+          <h4 class="fragment">my clients would leave</h4>
+          <h4 class="fragment">I’d miss big opportunities</h4>
+          <h4 class="fragment">I’d accomplish less</h4>
+          <aside class="notes">my clients would leave because I wasn’t available at all hours of the day<br>
+            I’d miss big opportunities by turning off notifications<br>
+            I’d accomplish less by “wasting time” on non-business activities like hobbies and friendship
+            
+          </aside>
+        </section>
+        <section>
+          <h2>What happened:</h2>
+          <h4 class="fragment">no one noticed</h4>
+          <h4 class="fragment">my business grew</h4>
+          <h4 class="fragment">I got <em>more</em> done</h4>
+          <aside class="notes">my clients didn’t notice because I still got back to them within 24 hours<br>
+            no opportunities were lost<br>
+            I was getting <em>significantly more</em> work done
+            
+          </aside>
+        </section>
+        <section>
+          <h3>“How is it possible that you got <em>more</em> done by working fewer hours?”</h3>
+        </section>
+        <section>
+          <h2>First: the <em>science</em></h2>
+        </section>
+        <section>
+          <h3>Working 60+ hours per week makes us <strong>less</strong> productive than working 40 hours<sup>1</sup></h3>
+        </section>
+        <section>
+          <h3>Long hours <strong>destroy</strong> passion and engagement<sup>2</sup></h3>
+        </section>
+        <section>
+          <h3>Overworking increases employee <strong>turnover</strong><sup>3</sup></h3>
+        </section>
+        <section>
+          <h3>Creativity <strong>suffers</strong> if we don’t take time to go outside and be people<sup>4</sup></h3>
+        </section>
+        <section>
+          <h3>Lack of downtime<br><strong>hurts</strong> productivity<br>and creativity<sup>5</sup></h3>
+        </section>
+        <section>
+          <h3>We <strong>lose 20% of our time per task</strong> while multitasking<sup>6</sup></h3>
+        </section>
+        <section>
+          <h3>Sleeping less than 7 hours<br>a night is <strong>worse</strong> than being too drunk to drive<sup>7</sup></h3>
+        </section>
+        <section>
+          <h1>🤨</h1>
+          <h3>“You haven’t answered the question, nerd.”</h3>
+        </section>
+        <section>
+          <h2 style="width: 120%; margin-left: -10%;">5 Strategies to<br><em class="hugify alright-calm-down-a-little">Turbocharge</em>Your Productivity</h2>
+          <ol>
+            <li class="fragment">Track your time</li>
+            <li class="fragment">Time-box tasks</li>
+            <li class="fragment">Front-load important work</li>
+            <li class="fragment">Prioritize aggressively</li>
+            <li class="fragment">DO NOT multitask</li>
+          </ol>
+        </section>
+        <section>
+          <h4>Strategy #1:</h4>
+          <h2><em>Track</em> Your Time</h2>
+          <p>The simple act of <em>acknowledging</em> how we spend our time encourages us
+            to use it more wisely.
+            
+          </p>
+        </section>
+        <section>
+          <h3>If I have a <strong>long</strong> day...</h3><img src="images/work-life-balance/rescuetime-long-day.png" alt="a long day in RescueTime">
+        </section>
+        <section>
+          <h3>...I know to <em>take a day off</em></h3><img src="images/work-life-balance/rescuetime-day-off.png" alt="a day off in RescueTime">
+        </section>
+        <section>
+          <h4>Strategy #2:</h4>
+          <h2><em>Time-Box</em> Tasks</h2>
+          <p>
+            You’re never more productive than when you’re up against a deadline with 
+            13% battery left.
+            
+          </p>
+        </section>
+        <section>
+          <h3>Find your rhythm.</h3>
+          <ul>
+            <li class="fragment">Decide how long you want to focus for</li>
+            <li class="fragment">Close and turn off <em>everything</em> unrelated</li>
+            <li class="fragment">Start a timer</li>
+            <li class="fragment">Unleash your brilliance upon the world</li>
+            <li class="fragment">When the timer goes off, take a break</li>
+            <li class="fragment">Repeat</li>
+          </ul>
+          <aside class="notes">
+            Experiment with different periods of time to figure out what’s best for 
+            your attention span and comfort. I find that 90 minutes works well, but my
+            partner does best with 60-minute blocks. Others swear by the 25-minute 
+            Pomodoro method — everyone will have their own ideal focus period.
+            <br><br>
+            After you’ve experimented with this for a while, you’ll likely notice that
+            you’ve finished your todo list in six hours or less.
+            
+          </aside>
+        </section>
+        <section>
+          <h2>Why This Works</h2>
+        </section>
+        <section>
+          <h3>1. We’re <em>not distracted</em></h3>
+          <aside class="notes">
+            Interruptions are expensive — writing code requires creating complex
+            mental models, and if we’re interrupted or distracted, we lose a lot of
+            time rebuilding them to remember what we were trying to accomplish.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>2. We get into a <em>flow state</em></h3>
+          <aside class="notes">
+            Without interruptions, we can get into what Mihaly Cziksentmihalyi calls
+            a “flow state” — being “in the zone” — which is where we’re deeply
+            engaged in the task at hand. This is where our best (and most satisfying)
+            work happens.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>3. We’re <em>taking breaks</em></h3>
+          <aside class="notes">
+            However, if we‘re working in a flow state and not taking regular breaks,
+            we hit what I like to call the “code zombie” state: after a few hours, we
+            hit the wall and get into that foggy, not-quite-human state where we
+            can’t really do useful work anymore, but we’re also too mentally fried to
+            go out and interact with other humans. (Marisa calls this “forgetting how
+            to be a person”.)
+            
+          </aside>
+        </section>
+        <section>
+          <h3>4. We’re <em>still available</em></h3>
+          <aside class="notes">
+            Another critical point here is that by time-boxing, we’re not sacrificing
+            availability for focus. We can check in on our colleagues, clients, and
+            other communication channels every 90 minutes or so, allowing us to stay
+            available without multitasking or waiting until the middle of the night
+            to get “real work” done.
+            
+          </aside>
+        </section>
+        <section>
+          <h2>Also: <em>science</em><sup>*</sup></h2>
+          <p>
+            We all have something called an “ultradian rhythm”, which regulates our 
+            energy in 90-minute-ish intervals.<sup>8</sup>
+          </p>
+          <p class="fragment"><small><sup>*</sup> May not be <em>actual</em> science.</small></p>
+        </section>
+        <section>
+          <h4>Strategy #3:</h4>
+          <h2><em>Front-Load</em> Important Work</h2>
+          <p>
+            Motivation and self-control are resources that deplete as the day goes on.
+            Don’t waste them.
+            
+          </p>
+        </section>
+        <section>
+          <h3>We’re the <em>best</em> versions of ourselves early in our day</h3>
+          <ul>
+            <li class="fragment">energy is higher</li>
+            <li class="fragment">focus is improved</li>
+            <li class="fragment">self-control is at its peak</li>
+          </ul>
+          <aside class="notes">
+            This is NOT me saying you should wake up early. Wake up whenever you want;
+            just do the important shit before you do anything else.
+            
+          </aside>
+        </section>
+        <section>
+          <h3>Morning Me</h3><img src="images/work-life-balance/fist-pump.gif" alt="fist pumping" style="width: 640px;">
+        </section>
+        <section>
+          <h3>Evening Me</h3><img src="images/work-life-balance/motivation-late.gif" alt="so lazy" style="width: 100%;">
+        </section>
+        <section>
+          <h4>Strategy #4:</h4>
+          <h2><em>Prioritize</em> Aggressively</h2>
+          <p>
+            If everything is The Most Important Thing™, nothing is.
+            
+          </p>
+        </section>
+        <section>
+          <h4>Use the Highlander Technique</h4><img src="images/work-life-balance/highlander.jpg" alt="highlander">
+        </section>
+        <section>
+          <h3>Put tasks into a tournament bracket...</h3><img class="no-border" src="images/work-life-balance/bracket.png" alt="highlander" style="max-height: 400px;">
+          <p style="margin: 0">...and then start choosing.</p>
+        </section>
+        <section>
+          <h4>Strategy #5:</h4>
+          <h2><em>DO NOT</em> Multitask</h2>
+          <p>
+            Ever. Just stop it.
+            
+          </p>
+        </section>
+        <section>
+          <h3>Context Switching is<br><strong>fatal</strong> to productivity</h3><img src="images/work-life-balance/context-switching-costs.png" alt="context switching penalty" style="margin: 0;">
+          <p style="margin: 0;"><small>Source: <a href="https://blog.codinghorror.com/the-multi-tasking-myth/">Coding Horror</a></small></p>
+        </section>
+        <section>
+          <h3>Multitasking makes<br>us <strong>feel</strong> productive.</h3>
+          <h3 class="fragment">Single-tasking makes us <em>actually</em> productive.</h3>
+        </section>
+        <section>
+          <h2>But what about <span style="font-size: 230%"><strong>teams</strong>?</span></h2>
+        </section>
+        <section>
+          <h2 style="width: 120%; margin-left: -10%;">3 Strategies to<br><em class="hugify alright-calm-down-a-little">Maximize</em>Team Efficiency</h2>
+          <ol>
+            <li class="fragment">Make every meeting matter</li>
+            <li class="fragment">Measure outcomes, not output</li>
+            <li class="fragment">Check assumptions regularly</li>
+          </ol>
+        </section>
+        <section>
+          <h4>Team Strategy #1:</h4>
+          <h2>Make Every Meeting <em>Matter</em></h2>
+          <p>“Is there a reason this meeting can’t be an email?”</p>
+        </section>
+        <section>
+          <h3>Meetings <em>must</em> include:</h3>
+          <ol>
+            <li class="fragment">A clear objective: what needs to be true by the end of the meeting?</li>
+            <li class="fragment">Concrete action steps: what happens now that this meeting has been held?</li>
+            <li class="fragment">Notes of what was decided and what next steps are.</li>
+          </ol>
+        </section>
+        <section>
+          <h4>Without an objective, next steps, and notes, you’re not having a meeting — you’re just hanging out and having a chat.</h4>
+        </section>
+        <section>
+          <h4>Team Strategy #2:</h4>
+          <h2>Measure <em>outcomes</em> — not output</h2>
+          <p>There’s a difference between “motion” &amp; “progress”.</p>
+        </section>
+        <section>
+          <h3><strong>Output</strong> is solution-based</h3>
+          <p>“We’re going to build this new feature.”</p>
+        </section>
+        <section>
+          <h3><em>Outcomes</em> focus on actual problems and needs</h3>
+          <p>“We need to solve this problem for our customers.”</p>
+        </section>
+        <section>
+          <h3>Solutions are only helpful if they’re solving <em>real problems</em> for <em>real people</em></h3>
+          <aside class="notes">
+            At IBM, we spent months working on a new feature. Toward the end of the
+            project, we realized that the original goal of the feature wasn’t possible
+            with the approach we’d taken — but management decided to ship it anyways
+            “because we committed to deliver this”. So we effectively made our product
+            worse because we were focused on output instead of outcome.
+            
+          </aside>
+        </section>
+        <section>
+          <h4>Team Strategy #3:</h4>
+          <h2>Check assumptions <em>frequently</em></h2>
+          <p>“Is what was true last month still true today?”</p>
+        </section>
+        <section>
+          <h3>Hold regular <em>retrospectives</em></h3>
+          <ul>
+            <li class="fragment">What went well that we should keep doing?</li>
+            <li class="fragment">What could have gone better?</li>
+            <li class="fragment">What will we change going forward?</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Don’t skip these</h3>
+          <p>Retros can be useful as often as every two weeks. They should be held <em>at least</em> once per quarter.</p>
+        </section>
+        <section>
+          <h1>RECAP</h1>
+        </section>
+        <section>
+          <h2 style="width: 120%; margin-left: -10%;">5 Strategies to<br><em class="hugify alright-calm-down-a-little">Turbocharge</em>Your Productivity</h2>
+          <ol>
+            <li class="fragment">Track your time</li>
+            <li class="fragment">Time-box tasks</li>
+            <li class="fragment">Front-load important work</li>
+            <li class="fragment">Prioritize aggressively</li>
+            <li class="fragment">DO NOT multitask</li>
+          </ol>
+        </section>
+        <section>
+          <h2 style="width: 120%; margin-left: -10%;">3 Strategies to<br><em class="hugify alright-calm-down-a-little">Maximize</em>Team Efficiency</h2>
+          <ol>
+            <li class="fragment">Make every meeting matter</li>
+            <li class="fragment">Measure outcomes, not output</li>
+            <li class="fragment">Check assumptions regularly</li>
+          </ol>
+        </section>
+        <section>
+          <h1 class="no-margin">Thanks!</h1><img src="./images/jason-lengstorf.jpg" alt="Jason Lengstorf" style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;">
+          <p style="margin-top: 0.25rem;">Jason Lengstorf<br><small>Follow me on Twitter: <a href="https://twitter.com/jlengstorf">@jlengstorf</a></small></p>
+        </section>
+        <section class="u--align-left resourcetext">
+          <h4>Resources</h4>
+          <ol>
+            <li><a href="http://www.enginesofmischief.com/makers/evan/pubs/crunch.html">Why Crunch Mode Doesn’t Work: 6 Lessons</a></li>
+            <li><a href="http://www.employment-studies.co.uk/report-summary-working-long-hours-review-evidence-volume-1-%E2%80%93-main-report">Working Long Hours: a Review of the Evidence</a></li>
+            <li><a href="http://www.nytimes.com/2014/06/01/opinion/sunday/why-you-hate-work.html?_r=0">Why You Hate Work</a></li>
+            <li><a href="http://archive.news.ku.edu/2012/april/23/outdoors.shtml">Researchers find time in wild boosts creativity, insight, and problem solving</a></li>
+            <li><a href="https://hbr.org/2012/12/the-upside-of-downtime">The Upside of Downtime</a></li>
+            <li><a href="https://blog.codinghorror.com/the-multi-tasking-myth/">The Multitasking Myth</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1739867/pdf/v057p00649.pdf">Moderate sleep deprivation produces impairments in cognitive and motor performance equivalent to legally prescribed levels of alcohol intoxication</a></li>
+            <li><a href="http://blog.idonethis.com/science-of-better-energy-management/">The Science Behind Why Better Energy Management is the Key to Peak Productivity</a></li>
+            <li><a href="https://medium.com/@marisamorby/output-vs-outcome-8a82a51c467f">
+                Output vs. Outcome
+                </a></li>
+          </ol>
+        </section>
+      </div>
+    </div>
+    <footer class="v2">
+      <ul class="inline">
+        <li><a href="https://git.io/why-gatsby-uses-graphql" title="View the slides online.">git.io/why-gatsby-uses-graphql</a></li>
+        <li><a href="https://twitter.com/jlengstorf" title="Find Jason on Twitter">@jlengstorf</a></li>
+        <li><a class="no-icon" href="https://twitter.com/intent/tweet?text=Work%20Smarter%20by%20%40jlengstorf&amp;hashtags=&amp;related=jlengstorf&amp;url=https%3A%2F%2Fgit.io%2Fwhy-gatsby-uses-graphql"></a></li>
+      </ul>
+    </footer>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+      // We'll reference this element several times
+      var htmlElement = document.querySelector('html');
+      
+      // Bind a function to the `fragmentshown` event so we can do some custom bits
+      Reveal.addEventListener('fragmentshown', function (event) {
+        var fragment = event.fragment;
+      
+        // For fragments with a `dim-the-lights` class, we dim the lights
+        if (fragment.classList && fragment.classList.contains('dim-the-lights')) {
+          htmlElement.classList.add('blackout');
+        }
+      });
+      
+      // Define a quick function to remove the blackout class from the document
+      var removeBlackout = function removeBlackout() {
+        return htmlElement.classList.remove('blackout');
+      };
+      
+      // Bind the function to Reveal actions so we get the desired effect
+      Reveal.addEventListener('fragmenthidden', removeBlackout);
+      Reveal.addEventListener('slidechanged', removeBlackout);
+      
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+        transition: 'none',
+        backgroundTransition: 'none',
+      
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+      
+    </script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </body>
+</html>
