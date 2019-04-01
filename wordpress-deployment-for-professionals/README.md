@@ -1,6 +1,8 @@
 # WordPress Deployment for Professionals
 ### How to Solve the Problem of Multiple WordPress Installs in 30 Minutes or Less
 
+This repo is the source code for the Presentation [How to Solve the Problem of Multiple WordPress Installs in 30 Minutes or Less](https://jlengstorf.github.io/presentations/wordpress-deployment-for-professionals/slides/#/)
+
 ## tl;dr
 
 For most developers, managing the local, staging, and production instances of a website is a pain. WordPress is a special kind of awful due to the hassle of moving themes, plugins, media, and the database. But it doesn't have to be this way; using free and open-source tools, we can fully automate WordPress deployment on local and remote servers to get up and running in minutes with one click. In this talk, you'll learn how to spend less time setting up websites — so you can spend more time making them awesome.
