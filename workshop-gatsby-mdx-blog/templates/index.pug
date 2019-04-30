@@ -3,9 +3,9 @@ extends layouts/presentation
 
 block append config
   -
-    config.theme = 'lengstorf';
-    config.title = 'Gatsby Workshop';
-    config.description = 'Build a Blog With MDX';
+    config.theme = 'gatsby';
+    config.title = 'Intro to Gatsby';
+    config.description = 'Workshop for Frontend Masters';
 
     config.author = {
       name: 'Jason Lengstorf',
@@ -28,7 +28,7 @@ block append config
 //- Add your slides here. See templates/includes/_mixins.pug for information 
 //- on how `+slide` works.
 block slides
-  +slide
+  +slide.dark
     h1(style="font-size: 90px; margin-bottom: 0")= config.title
     h3(style="font-size: 43px; margin-bottom: 0")= config.description
     
@@ -44,7 +44,7 @@ block slides
       small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
 
   +slide
-    h1(style="font-size: 100px") 👋 #[em Hi!] I’m Jason.
+    h1(style="font-size: 100px") 👋 #[em.brand Hi!] I’m Jason.
     blockquote.photo-quote
       .photo
         img(
@@ -58,8 +58,234 @@ block slides
           li Portland, OR
   
   //- Main content
+  
   +slide
-    h2 TKTK
+    h2(style="font-size: 200%;") What we’ll learn today:
+    ul
+      li.fragment What Gatsby is and why it matters
+      li.fragment Gatsby fundamentals
+      li.fragment What GraphQL is and how to use it
+      li.fragment What MDX is and what it means for our content
+      li.fragment Programmatic page creation
+      li.fragment Image optimization &amp; other performance strategies
+      li.fragment How to use third-party data in Gatsby sites
+      li.fragment How to build and deploy a Gatsby site
+
+  +slide.dark
+    h2.no-margin(style="font-size: 240%;") What is Gatsby?
+
+  +slide
+    h3 What are the #[strong challenges] of modern web development?
+    ul
+      li.fragment Getting started is overwhelming
+      li.fragment The way we manage data is evolving
+      li.fragment Getting it right is #[em hard]
+
+  +slide.dark
+    h2.no-margin(style="font-size: 240%;") What is Gatsby?
+    h4.fragment Gatsby is a #[span.underlined shortcut] to allow developers to quickly build excellent apps and sites.
+  
+  +slide
+    h3 Most workflows involve a lot of #[strong boilerplate] to get started.
+
+  //- BEGIN BOILERPLATE IMAGE SEQUENCE
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate01.png"
+      alt="Visualization of the pipeline to get code from an editor to the browser."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate02.png"
+      alt="Same pipeline, but now Webpack is included."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate03.png"
+      alt="Previous image + Babel."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate04.png"
+      alt="Previous image + PostCSS."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate05.png"
+      alt="Previous image + Node.JS."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate06.png"
+      alt="Previous image + Kubernetes."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate07.png"
+      alt="Previous image + NGINX."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate08.png"
+      alt="Previous image + Fastly."
+    )
+  //- END BOILERPLATE IMAGE SEQUENCE
+
+  +slide
+    h3 Gatsby #[em removes the boilerplate] for getting started &amp; deploying apps to production.
+
+  +slide
+    img.no-border(
+      src="./images/gatsby/no-boilerplate.png"
+      alt="Simplified workflow with Gatsby + Netlify."
+    )
+
+  +slide
+    img.no-border(
+      src="./images/gatsby/no-boilerplate-tools.png"
+      alt="Simplified workflow with Gatsby + Netlify showing React and GraphQL as tools."
+    )
+
+  //- The way we manage data is evolving
+  +slide.dark
+    h2.no-margin(style="font-size: 240%;") What is Gatsby?
+    h4.fragment Gatsby is an #[em.underlined orchestration layer] for taming the Content Mesh and its many sources of data.
+
+  +slide
+    h3 The monolithic CMS is 
+      strong dying
+      | .
+    aside.notes
+      ul
+        li I know there are still a lot of companies using monolithic CMSs
+        li The trend is clear though: most CMSs are going headless
+        li WordPress, Drupal, Ghost — even Magento!
+
+  +slide
+    h3 The future of web development is the 
+      em content mesh
+  
+  +slide
+    img.no-border(src="./images/beyond-static/content-mesh.png" alt="The content mesh.")
+  
+  +slide
+    img.no-border(src="./images/beyond-static/content-mesh-labeled.png" alt="The content mesh.")
+    aside.notes
+      ul
+        li Specialized SaaS providers exist for pretty much every use case
+        li Stripe, Shopify, Airtable, Contentful
+
+  +slide
+    img.no-border(src="./images/beyond-static/cm1.png" alt="The Content Mesh with Gatsby.")
+
+  +slide
+    img.no-border(src="./images/beyond-static/cm2.png" alt="The Content Mesh with Gatsby.")
+
+  +slide
+    img.no-border(src="./images/beyond-static/cm3.png" alt="The Content Mesh with Gatsby.")
+
+  +slide
+    img.no-border(src="./images/beyond-static/cm4.png" alt="The Content Mesh with Gatsby.")
+
+  +slide
+    h3(style="font-size: 2.875rem") Example: Gatsby’s #[em Swag Store]
+    img.no-border.no-margin(src="./images/beyond-static/store.jpg" alt="The Gatsby Store.")
+    a(href="https://store.gatsbyjs.org") store.gatsbyjs.org
+
+  +slide
+    h3(style="font-size: 2.875rem") Static Data Loaded at #[em Build] Time
+    img.no-border.no-margin(src="./images/beyond-static/store-static-data.jpg" alt="The Gatsby Store.")
+    a(href="https://store.gatsbyjs.org") store.gatsbyjs.org
+
+  +slide
+    h3(style="font-size: 2.875rem") Dynamic Data Loaded at #[em Run] Time
+    img.no-border.no-margin(src="./images/beyond-static/store-dynamic-data.jpg" alt="The Gatsby Store.")
+    a(href="https://store.gatsbyjs.org") store.gatsbyjs.org
+
+  +slide
+    h3(style="font-size: 2.875rem") #[em Client-Only] Routes for User Pages
+    img.no-border.no-margin(src="./images/beyond-static/store-dashboard.jpg" alt="The Gatsby Store.")
+    a(href="https://store.gatsbyjs.org") store.gatsbyjs.org
+
+  +slide
+    h3(style="font-size: 2.875rem") Data Loads #[em Asynchronously]
+    img.no-border.no-margin(src="./images/beyond-static/store-dashboard-data.jpg" alt="The Gatsby Store.")
+    a(href="https://store.gatsbyjs.org") store.gatsbyjs.org
+
+  //- Getting it right is hard
+  +slide.dark
+    h2.no-margin(style="font-size: 240%;") What is Gatsby?
+    h4.fragment Gatsby is a #[span.underlined Progressive Web App generator] designed to make the right thing the easy thing.
+
+  +slide
+    h3(style="font-size: 130%") Make the #[em right thing] the #[em easy thing].
+    p.fragment.
+      Design your tools so the laziest, shortcuttiest,#[br]
+      under-the-gunniest decisions a developer can make#[br]
+      will still result in an excellent user experience.
+
+  +slide
+    h3 Gatsby sets #[em the right defaults] under the hood...
+    ul
+      li.fragment Follows the PRPL pattern and other performance best practices
+      li.fragment Generates only static assets (no server required)
+      li.fragment Optimizes and lazy-loads assets
+      li.fragment Normalizes third-party data
+
+  +slide
+    h3 ...but developers keep control.
+    ul
+      li.fragment Webpack and Babel are fully customizable through Gatsby APIs
+      li.fragment Customize only what you need — no ejection required
+
+  +slide.dark
+    h2 Let’s Build a Blog!
+    pre
+      code.shell.
+        git clone git@github.com:frontendmasters/gatsby-intro.git
+    p Code: 
+      a(href="https://git.io/gatsby-intro") git.io/gatsby-intro
+
+  //- 
+    What we’re going to learn today
+    1. What is Gatsby, and why does it matter?
+    2. How to create a Gatsby site from scratch
+    3. How the Gatsby CLI and starters work
+    4. How to create pages and link between them
+    5. What GraphQL is and how Gatsby uses it
+    6. What MDX is and how to use it with Gatsby
+    7. How to programmatically create pages in Gatsby
+    8. How to add images and optimize them
+    9. How to use Gatsby source plugins to load third-party data
+    10. How to build a static version of a Gatsby site
+    11. How to analyze the bundle to avoid unnecessary size
+    12. How to deploy a Gatsby site using Netlify
+
+    What is Gatsby, and why does it matter?
+    =>
+      Gatsby is a PWA generator
+      Our goal is the make the right thing the easy thing
+      We want to reduce friction throughout the development process
+        => have to stop what you’re doing to wrestle with your tools? that’s friction
+        => have to wait 10 seconds for a page to load? that’s friction
+        => have to study for a second career devops before you can deploy a simple blog? that’s friction
+        => Gatsby removes friction points for developers _and_ the people using the sites we build
+      Boilerplate is a huge problem in modern web dev
+        => babel, webpack, CSS preprocessors
+        => Node servers, containers/k8s, nginx
+        => (Still haven’t started working on the actual app yet)
+      Gatsby removes the boilerplate _without removing control_
+        => strong, performance-focused defaults for webpack and babel are already in place
+        => we do all the perf tuning for you: code splitting, prefetching, compression/minification, image optimization, inlining critical CSS, lazy loading assets, etc.
+        => if you want to modify the babel or webpack config, you can (for example: there are TypeScript and Reason plugins for Gatsby)
+        => progressive disclosure of complexity means you can control whatever you want, but aren’t required to control anything
+      The way we store and access data has changed
+        => used to be monolithic CMSs where everything lived in one place
+        => APIs started to change that — it got easier to pull data from multiple sources
+        => instead of one-size-fits-all CMSs, we now have purpose-built SaaS solutions with good APIs
+        => modern JS makes it easier to weave together multiple data sources into a unified web experience — Sam Bhagwat calls this the “Content Mesh”
+        => Gatsby is built to give devs more power over the Content Mesh without adding complexity
+      
 
   //- Thanks & Resources
   +slide
@@ -139,4 +365,3 @@ block extras
         a.no-icon(
           href=tweetUrl
         ) #{config.conference.hashtag ? `#${config.conference.hashtag}` : ''}
-        
