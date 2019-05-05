@@ -1,0 +1,325 @@
+//- Use the presentation layout so we can keep this clean
+extends layouts/presentation
+
+block append config
+  -
+    config.theme = 'gatsby';
+    config.title = 'What Is Gatsby?';
+    config.description = 'An overview of what Gatsby is, how it works, and why it matters.';
+
+    config.author = {
+      name: 'Jason Lengstorf',
+      email: 'jason@gatsbyjs.com',
+      link: 'https://lengstorf.com/',
+      twitter: 'jlengstorf',
+      github: 'jlengstorf',
+    };
+    
+    config.slides = {
+      link: 'https://git.io/what-is-gatsby',
+    };
+
+    config.conference = {
+      hashtag: '',
+      twitter: '',
+    };
+  -
+
+//- Add your slides here. See templates/includes/_mixins.pug for information 
+//- on how `+slide` works.
+block slides
+  +slide.dark
+    h1(style="font-size: 90px; margin-bottom: 0")= config.title
+    h3(style="font-size: 43px; margin-bottom: 0").
+      An overview of what Gatsby is,#[br]how it works, and why it matters.
+    
+    p by 
+      a(href= config.author.link)= config.author.name
+      br
+      small
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        | &nbsp; · &nbsp;
+        a(href= `mailto:${config.author.email}`)= config.author.email
+    
+    p
+      small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
+
+  +slide
+    h1(style="font-size: 100px") 👋 #[em.brand Hi!] I’m Jason.
+    blockquote.photo-quote
+      .photo
+        img(
+          src="./images/jason-lengstorf.jpg"
+          alt="Jason Lengstorf"
+        )
+      .quote
+        ul(style="font-size: 80%; list-style: none")
+          li.fragment Human Duct Tape @ Gatsby
+          li.fragment Formerly: front-end architect @ IBM
+          li.fragment Failed musician
+          li.fragment Amateur bartender
+          li.fragment Living in Portland, OR
+  
+  //- Main content
+  +slide
+    h3 What are the #[strong challenges] of modern web development?
+    ul
+      li.fragment Getting started is overwhelming
+      li.fragment The way we manage data is evolving
+      li.fragment Getting it right is #[em hard]
+
+  +slide.dark
+    h2.no-margin(style="font-size: 240%;") What is Gatsby?
+    h4.fragment Gatsby is a #[span.underlined shortcut] to allow developers to quickly build excellent apps and sites.
+  
+  +slide
+    h3 Most workflows involve a lot of #[strong boilerplate] to get started.
+
+  //- BEGIN BOILERPLATE IMAGE SEQUENCE
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate01.png"
+      alt="Visualization of the pipeline to get code from an editor to the browser."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate02.png"
+      alt="Same pipeline, but now Webpack is included."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate03.png"
+      alt="Previous image + Babel."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate04.png"
+      alt="Previous image + PostCSS."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate05.png"
+      alt="Previous image + Node.JS."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate06.png"
+      alt="Previous image + Kubernetes."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate07.png"
+      alt="Previous image + NGINX."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate08.png"
+      alt="Previous image + Fastly."
+    )
+  //- END BOILERPLATE IMAGE SEQUENCE
+
+  +slide
+    h3 Gatsby #[em removes the boilerplate] for getting started &amp; deploying apps to production.
+
+  +slide
+    img.no-border(
+      src="./images/gatsby/no-boilerplate.png"
+      alt="Simplified workflow with Gatsby + Netlify."
+    )
+
+  +slide
+    img.no-border(
+      src="./images/gatsby/no-boilerplate-tools.png"
+      alt="Simplified workflow with Gatsby + Netlify showing React and GraphQL as tools."
+    )
+
+  //- The way we manage data is evolving
+  +slide.dark
+    h2.no-margin(style="font-size: 240%;") What is Gatsby?
+    h4.fragment Gatsby is an #[em.underlined orchestration layer] for taming the Content Mesh and its many sources of data.
+
+  +slide
+    h3 The monolithic CMS is 
+      strong dying
+      | .
+    aside.notes
+      ul
+        li I know there are still a lot of companies using monolithic CMSs
+        li The trend is clear though: most CMSs are going headless
+        li WordPress, Drupal, Ghost — even Magento!
+
+  +slide
+    h3 The future of web development is the 
+      em content mesh
+    p
+      small Learn more: 
+        a(href="https://gatsby.dev/content-mesh") gatsby.dev/content-mesh
+  
+  +slide
+    img.no-border(src="./images/beyond-static/content-mesh.png" alt="The content mesh.")
+  
+  +slide
+    img.no-border(src="./images/beyond-static/content-mesh-labeled.png" alt="The content mesh.")
+    aside.notes
+      ul
+        li Specialized SaaS providers exist for pretty much every use case
+        li Stripe, Shopify, Airtable, Contentful
+
+  +slide
+    img.no-border(src="./images/beyond-static/cm1.png" alt="The Content Mesh with Gatsby.")
+
+  +slide
+    img.no-border(src="./images/beyond-static/cm2.png" alt="The Content Mesh with Gatsby.")
+
+  +slide
+    img.no-border(src="./images/beyond-static/cm3.png" alt="The Content Mesh with Gatsby.")
+
+  +slide
+    img.no-border(src="./images/beyond-static/cm4.png" alt="The Content Mesh with Gatsby.")
+
+  +slide
+    h3(style="font-size: 2.875rem") Example: Gatsby’s #[em Swag Store]
+    img.no-border.no-margin(src="./images/beyond-static/store.jpg" alt="The Gatsby Store.")
+    a(href="https://store.gatsbyjs.org") store.gatsbyjs.org
+
+  +slide
+    h3(style="font-size: 2.875rem") Static Data Loaded at #[em Build] Time
+    img.no-border.no-margin(src="./images/beyond-static/store-static-data.jpg" alt="The Gatsby Store.")
+    a(href="https://store.gatsbyjs.org") store.gatsbyjs.org
+
+  +slide
+    h3(style="font-size: 2.875rem") Dynamic Data Loaded at #[em Run] Time
+    img.no-border.no-margin(src="./images/beyond-static/store-dynamic-data.jpg" alt="The Gatsby Store.")
+    a(href="https://store.gatsbyjs.org") store.gatsbyjs.org
+
+  +slide
+    h3(style="font-size: 2.875rem") #[em Client-Only] Routes for User Pages
+    img.no-border.no-margin(src="./images/beyond-static/store-dashboard.jpg" alt="The Gatsby Store.")
+    a(href="https://store.gatsbyjs.org") store.gatsbyjs.org
+
+  +slide
+    h3(style="font-size: 2.875rem") Data Loads #[em Asynchronously]
+    img.no-border.no-margin(src="./images/beyond-static/store-dashboard-data.jpg" alt="The Gatsby Store.")
+    a(href="https://store.gatsbyjs.org") store.gatsbyjs.org
+
+  //- Getting it right is hard
+  +slide.dark
+    h2.no-margin(style="font-size: 240%;") What is Gatsby?
+    h4.fragment Gatsby is a #[span.underlined Progressive Web App generator] designed to make the right thing the easy thing.
+
+  +slide
+    h3(style="font-size: 130%") Make the #[em right thing] the #[em easy thing].
+    p.fragment.
+      Design your tools so the laziest, shortcuttiest,#[br]
+      under-the-gunniest decisions a developer can make#[br]
+      will still result in an excellent user experience.
+
+  +slide
+    h3 Gatsby sets #[em the right defaults] under the hood...
+    ul
+      li.fragment Follows the PRPL pattern and other performance best practices
+      li.fragment Generates only static assets (no server required)
+      li.fragment Optimizes and lazy-loads assets
+      li.fragment Normalizes third-party data
+
+  +slide
+    h3 ...but developers keep control.
+    ul
+      li.fragment Webpack and Babel are fully customizable through Gatsby APIs
+      li.fragment Customize only what you need — no ejection required
+
+  //- Recap
+  +slide.dark
+    h2 So what is Gatsby?
+    h4.fragment Gatsby is #[em.underlined fast in all the ways that matter].
+
+  +slide.dark
+    h2 So what is Gatsby?
+    h4 Gatsby lets you #[em.underlined bring data from anywhere].
+
+  +slide.dark
+    h2 So what is Gatsby?
+    h4 Gatsby does the #[em.underlined right thing] by default.
+
+  +slide.dark
+    h2 So what is Gatsby?
+    h4 Gatsby makes developing for the web #[em.underlined fun].
+
+  //- Thanks & Resources
+  +slide
+    h1.no-margin Thanks!
+    img(
+      src="./images/jason-lengstorf.jpg"
+      alt="Jason Lengstorf"
+      style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;"
+    )
+    p(style="margin-top: 0.25rem;")= config.author.name
+      br
+      small
+        | Follow me on Twitter: 
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+
+//- 
+  +slide.u--align-left.resourcetext
+    h4 Resources
+    ol
+      li
+        a(href="https://gatsbyjs.org").
+          Gatsby
+
+block styles
+  link(
+    rel="stylesheet"
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+  )
+  script.
+    (function(d) {
+      var config = {
+        kitId: 'fnr1orp',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+
+block scripts
+  script(async src="https://platform.twitter.com/widgets.js" charset="utf-8")
+
+block extras
+  -
+    const relatedAccounts = [config.author.twitter];
+    
+    if (config.conference.twitter) {
+      relatedAccounts.push(config.conference.twitter);
+    }
+
+    // See https://dev.twitter.com/web/tweet-button/web-intent for parameters.
+    const tweetObj = {
+      text: `${config.title} by @${config.author.twitter}`,
+      hashtags: config.conference.hashtag || '',
+      related: relatedAccounts.join(','),
+      url: config.slides.link,
+    };
+
+    // 
+    const e = encodeURIComponent;
+    const args = Object.keys(tweetObj).map(key => `${key}=${e(tweetObj[key])}`);
+    const tweetUrl = `https://twitter.com/intent/tweet?${args.join('&')}`;
+  -
+  footer.v2
+    ul.inline
+      li
+        a(
+          href= config.slides.link
+          title="View the slides online."
+        )= config.slides.link.replace('https://', '')
+      li
+        a(
+          href="https://twitter.com/"+config.author.twitter
+          title="Find Jason on Twitter"
+        ).
+          @#{config.author.twitter}
+      li
+        a.no-icon(
+          href=tweetUrl
+        ) #{config.conference.hashtag ? `#${config.conference.hashtag}` : ''}
