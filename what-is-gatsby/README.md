@@ -1,3 +1,3 @@
-# Workshop: Build a Gatsby Blog With MDX
+# What is Gatsby?
 
-These are the slides for a Frontend Masters workshop. The code is in another repo, and these slides are mostly introducing Gatsby and other core concepts.
+This is a quick overview of what Gatsby is, what problems it’s designed to solve, and why it’s exciting.
