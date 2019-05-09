@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>What’s new in Gatsby?</title>
+    <meta name="description" content="Themes, schema customization, and more!">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link id="theme" rel="stylesheet" href="css/theme/gatsby.css">
+    <link rel="stylesheet" href="lib/css/github.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script>
+      (function(d) {
+        var config = {
+          kitId: 'fnr1orp',
+          scriptTimeout: 3000,
+          async: true
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+      
+    </script>
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+      
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="dark">
+          <h1 style="font-size: 70px; margin-bottom: 0">What’s new in Gatsby?</h1>
+          <h3 style="font-size: 38px; margin-bottom: 0">Themes, schema customization, and more!</h3>
+          <p>by <a href="https://lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a>&nbsp; · &nbsp;<a href="mailto:jason@gatsbyjs.com">jason@gatsbyjs.com</a></small></p>
+          <p><small>Slides: <a href="https://git.io/new-in-gatsby">git.io/new-in-gatsby</a></small></p>
+        </section>
+        <section>
+          <h1 style="font-size: 100px">👋 <em class="brand">Hi!</em> I’m Jason.</h1>
+          <blockquote class="photo-quote">
+            <div class="photo"><img src="./images/jason-lengstorf.jpg" alt="Jason Lengstorf"></div>
+            <div class="quote">
+              <ul style="margin: 0; font-size: 80%; list-style: none">
+                <li class="fragment">🙃 Human Duct Tape @ Gatsby 💜</li>
+                <li class="fragment">🏗 Formerly: front-end architect @ IBM 💙</li>
+                <li class="fragment">🎸 Failed musician 🚫</li>
+                <li class="fragment">🍸 Amateur bartender 🥃</li>
+                <li class="fragment">🚲 Living in Portland, OR ☕️</li>
+              </ul>
+            </div>
+          </blockquote>
+        </section>
+        <section>
+          <h2>Lots of <em>exciting</em> things are happening.</h2>
+        </section>
+        <section class="dark">
+          <h1>Themes</h1>
+        </section>
+        <section>
+          <h3>Gatsby sites are made up of config, data, assets, plugins, components, and more.</h3>
+        </section>
+        <section><img class="no-border" src="../images/gatsby/gatsby-site.png"><small class="no-margin">Image credit: Kyle Gill</small>
+        </section>
+        <section>
+          <h3>...and this is pretty badass.</h3><img src="../images/gatsby/voltron01.gif" alt="Voltron lion bots.">
+        </section>
+        <section>
+          <h3>Gatsby themes allow us to combine all this into a single, composable package.</h3>
+        </section>
+        <section><img class="no-border" src="../images/gatsby/gatsby-themes-site.png"><small class="no-margin">Image credit: Kyle Gill</small>
+        </section>
+        <section>
+          <h3>...and this is <span class="underlined">extremely</span> badass.</h3><img src="../images/gatsby/voltron02.gif" alt="Voltron lion bots.">
+        </section>
+        <section>
+          <h3>Gatsby themes are <em>powerful</em></h3>
+          <ul>
+            <li class="fragment">Themes are fully functioning websites on their own</li>
+            <li class="fragment">Multiple themes can be installed at once</li>
+            <li class="fragment">Themes are composable</li>
+          </ul>
+        </section>
+        <section class="dark">
+          <h1>Schema Customization</h1>
+        </section>
+        <section>
+          <h2>We can now create <em>custom</em> types and resolvers for your Gatsby sites.</h2>
+        </section>
+        <section>
+          <h3>Custom types (<code>gatsby-node.js</code>)</h3>
+          <pre><code>exports.sourceNodes = ({ actions }) => {
+  actions.createTypes(`
+    type MyCustomNode implements Node {
+      name: String!
+    }
+  `);
+};
+</code></pre>
+        </section>
+        <section>
+          <h3>Custom resolvers</h3>
+          <pre><code>exports.createResolvers = ({ createResolvers }) => {
+  createResolvers({
+    Query: {
+      getGoodStuff: {
+        resolve: () => {
+          return ['whiskey', 'puppies', 'dessert']
+        }
+      }
+    }
+  })
+};
+</code></pre>
+        </section>
+        <section>
+          <h3>This solves some old gotchas</h3>
+          <ul>
+            <li class="fragment">Starting a site with no content doesn’t error output</li>
+            <li class="fragment">Field types are guaranteed predictable</li>
+          </ul>
+        </section>
+        <section>
+          <h3>And opens new possibilities</h3>
+          <ul>
+            <li class="fragment">Generic data types</li>
+            <li class="fragment">Multi-source data types</li>
+            <li class="fragment">So many things the community hasn’t shown us yet</li>
+          </ul>
+        </section>
+        <section class="dark">
+          <h1>Asset Prefixes</h1>
+        </section>
+        <section>
+          <h2>We can serve assets from a <span class="underlined">different CDN</span>.</h2>
+        </section>
+        <section>
+          <h3>1. Update <code>gatsby-config.js</code></h3>
+          <pre><code>module.exports = {
+  assetPrefix: `https://cdn.example.com`,
+}
+</code></pre>
+        </section>
+        <section>
+          <h3>2. Add the flag during builds</h3>
+          <pre><code>gatsby build --prefix-paths
+</code></pre>
+        </section>
+        <section>
+          <h3>3. There is no step 3</h3>
+          <pre><code>&lt;script src="https://cdn.example.com/common-123.js">&lt;/script>
+</code></pre>
+        </section>
+        <section>
+          <h3>This unblocks a lot of large team’s workflows.</h3>
+        </section>
+        <section>
+          <h1 class="no-margin">Thanks!</h1><img src="./images/jason-lengstorf.jpg" alt="Jason Lengstorf" style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;">
+          <p style="margin-top: 0.25rem;">Jason Lengstorf<br><small>Follow me on Twitter: <a href="https://twitter.com/jlengstorf">@jlengstorf</a></small></p>
+        </section>
+      </div>
+    </div>
+    <footer class="v2">
+      <ul class="inline">
+        <li><a href="https://git.io/new-in-gatsby" title="View the slides online.">git.io/new-in-gatsby</a></li>
+        <li><a href="https://twitter.com/jlengstorf" title="Find Jason on Twitter">@jlengstorf</a></li>
+        <li><a class="no-icon" href="https://twitter.com/intent/tweet?text=What%E2%80%99s%20new%20in%20Gatsby%3F%20by%20%40jlengstorf&amp;hashtags=&amp;related=jlengstorf&amp;url=https%3A%2F%2Fgit.io%2Fnew-in-gatsby"></a></li>
+      </ul>
+    </footer>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+      // We'll reference this element several times
+      var htmlElement = document.querySelector('html');
+      
+      // Bind a function to the `fragmentshown` event so we can do some custom bits
+      Reveal.addEventListener('fragmentshown', function (event) {
+        var fragment = event.fragment;
+      
+        // For fragments with a `dim-the-lights` class, we dim the lights
+        if (fragment.classList && fragment.classList.contains('dim-the-lights')) {
+          htmlElement.classList.add('blackout');
+        }
+      });
+      
+      // Define a quick function to remove the blackout class from the document
+      var removeBlackout = function removeBlackout() {
+        return htmlElement.classList.remove('blackout');
+      };
+      
+      // Bind the function to Reveal actions so we get the desired effect
+      Reveal.addEventListener('fragmenthidden', removeBlackout);
+      Reveal.addEventListener('slidechanged', removeBlackout);
+      
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+        transition: 'none',
+        backgroundTransition: 'none',
+      
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+      
+    </script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </body>
+</html>
