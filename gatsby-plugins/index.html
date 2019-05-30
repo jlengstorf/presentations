@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gatsby Plugins</title>
+    <meta name="description" content="What are Gatsby plugins? How do they work? Let’s find out!">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link id="theme" rel="stylesheet" href="css/theme/gatsby.css">
+    <link rel="stylesheet" href="lib/css/github.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script>
+      (function(d) {
+        var config = {
+          kitId: 'fnr1orp',
+          scriptTimeout: 3000,
+          async: true
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+      
+    </script>
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+      
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="dark">
+          <h1 style="font-size: 90px; margin-bottom: 0">Gatsby Plugins</h1>
+          <h3 style="font-size: 43px; margin-bottom: 0">What are Gatsby plugins? How do they work? Let’s find out!</h3>
+          <p>by <a href="https://lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a>&nbsp; · &nbsp;<a href="mailto:jason@gatsbyjs.com">jason@gatsbyjs.com</a></small></p>
+          <p><small>Slides: <a href="https://git.io/gatsby-plugins">git.io/gatsby-plugins</a></small></p>
+        </section>
+        <section>
+          <h1 style="font-size: 100px">👋 <em class="brand">Hi!</em> I’m Jason.</h1>
+          <blockquote class="photo-quote">
+            <div class="photo"><img src="./images/jason-lengstorf.jpg" alt="Jason Lengstorf"></div>
+            <div class="quote">
+              <ul style="margin: 0; font-size: 80%; list-style: none">
+                <li class="fragment">Head of Developer Relations @ Gatsby</li>
+                <li class="fragment">Formerly: front-end architect @ IBM</li>
+                <li class="fragment">Failed musician</li>
+                <li class="fragment">Amateur bartender</li>
+                <li class="fragment">Living in Portland, OR</li>
+              </ul>
+            </div>
+          </blockquote>
+        </section>
+        <section>
+          <h2>Under the hood, <em class="brand">Gatsby</em> is a collection of APIs.</h2>
+        </section>
+        <section>
+          <h3>For example:</h3>
+          <ul>
+            <li class="fragment">Pages are created with <code>createPages</code></li>
+            <li class="fragment">Data “nodes” are created using <code>sourceNodes</code></li>
+          </ul>
+          <p class="fragment"><small>For a full list of APIs, see <a href="https://gatsby.dev/api">gatsby.dev/api</a></small></p>
+        </section>
+        <section>
+          <h4>Creating pages in Gatsby</h4>
+          <pre class="js"><code>exports.createPages = ({ actions }) => {
+  actions.createPage({
+    path: '/my-page',
+    component: require.resolve('./src/templates/page.js'),
+  });
+};
+</code></pre>
+        </section>
+        <section>
+          <h4>Adding data nodes in Gatsby</h4>
+          <pre class="js"><code>exports.sourceNodes =
+  ({ actions, createNodeId, createContentDigest }) => {
+    const myData = { name: 'Jason', likes: 'snacks' };
+    actions.createNode({
+      ...myData,
+      id: createNodeId('MyData-jason'),
+      internal: {
+        type: 'MyData',
+        contentDigest: createContentDigest(myData),
+      },
+    });
+  };
+</code></pre>
+        </section>
+        <section>
+          <h3>We use these APIs to:</h3>
+          <ul>
+            <li class="fragment">Load data from third-party sources</li>
+            <li class="fragment">Create pages from files</li>
+            <li class="fragment">Convert data to another format</li>
+            <li class="fragment">And so much more!</li>
+          </ul>
+        </section>
+        <section>
+          <h2>In a lot of cases, this code is <span class="underlined">reusable</span>.</h2>
+        </section>
+        <section>
+          <h3>For example:</h3>
+          <ul>
+            <li class="fragment">Converting Markdown to HTML</li>
+            <li class="fragment">Adding TypeScript support</li>
+            <li class="fragment">Loading posts from WordPress</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Gatsby plugins are <span class="underlined">shareable collections</span> of code.</h2>
+        </section>
+        <section>
+          <h4>(Let’s build a simplified example.)</h4>
+        </section>
+        <section>
+          <h3>How to <span class="underlined">get started</span>:</h3>
+          <ul>
+            <li class="fragment">Check out our library of nearly 900 plugins at <a href="https://www.gatsbyjs.org/plugins/">gatsbyjs.org/plugins</a></li>
+            <li class="fragment">Learn to write your own plugins at <a href="https://www.gatsbyjs.org/docs/creating-plugins/">gatsbyjs.org/docs/creating-plugins</a></li>
+          </ul>
+        </section>
+        <section>
+          <h1 class="no-margin">Thanks!</h1><img src="./images/jason-lengstorf.jpg" alt="Jason Lengstorf" style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;">
+          <p style="margin-top: 0.25rem;">Jason Lengstorf<br><small>Follow me on Twitter: <a href="https://twitter.com/jlengstorf">@jlengstorf</a></small></p>
+        </section>
+      </div>
+    </div>
+    <footer class="v2">
+      <ul class="inline">
+        <li><a href="https://git.io/gatsby-plugins" title="View the slides online.">git.io/gatsby-plugins</a></li>
+        <li><a href="https://twitter.com/jlengstorf" title="Find Jason on Twitter">@jlengstorf</a></li>
+        <li><a class="no-icon" href="https://twitter.com/intent/tweet?text=Gatsby%20Plugins%20by%20%40jlengstorf&amp;hashtags=&amp;related=jlengstorf&amp;url=https%3A%2F%2Fgit.io%2Fgatsby-plugins"></a></li>
+      </ul>
+    </footer>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+      // We'll reference this element several times
+      var htmlElement = document.querySelector('html');
+      
+      // Bind a function to the `fragmentshown` event so we can do some custom bits
+      Reveal.addEventListener('fragmentshown', function (event) {
+        var fragment = event.fragment;
+      
+        // For fragments with a `dim-the-lights` class, we dim the lights
+        if (fragment.classList && fragment.classList.contains('dim-the-lights')) {
+          htmlElement.classList.add('blackout');
+        }
+      });
+      
+      // Define a quick function to remove the blackout class from the document
+      var removeBlackout = function removeBlackout() {
+        return htmlElement.classList.remove('blackout');
+      };
+      
+      // Bind the function to Reveal actions so we get the desired effect
+      Reveal.addEventListener('fragmenthidden', removeBlackout);
+      Reveal.addEventListener('slidechanged', removeBlackout);
+      
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+        transition: 'none',
+        backgroundTransition: 'none',
+      
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+      
+    </script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </body>
+</html>
