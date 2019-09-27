@@ -20,8 +20,8 @@ block append config
     };
 
     config.conference = {
-      hashtag: '',
-      twitter: '',
+      hashtag: 'ReactIndia',
+      twitter: 'react_india',
     };
   -
 
@@ -92,6 +92,9 @@ block slides
       li.fragment Create a body of work that looks great on a CV
       li.fragment Build a referral network for paid work
       li.fragment Turn it into a sustainable source of income
+    
+  +slide
+    h1 But...
   
   +slide
     h2 Open source is #[strong(style="font-size: 147%") daunting]
@@ -111,7 +114,7 @@ block slides
 
   +slide
     h3.no-margin Open Source is #[strong challenging]
-    img(
+    img.no-margin(
       src="./images/you-belong-here/dangitgit.jpg"
       alt="Dangit, git!"
     )
@@ -131,14 +134,12 @@ block slides
     h3 Not to mention the awkward #[strong social dynamics]
 
   +slide
-    h3 Imposter Syndrome
     blockquote.twitter-tweet
       p(lang="en" dir="ltr").
         Imposter syndrome: I am surrounded by beings of impossible, cosmic intelligence<br><br>Also imposter syndrome: I, an incompetent, have tricked them all
       | &mdash; Jules Glegg 🏳️‍🌈 (@riotjulesfern) #[a(href="https://twitter.com/riotjulesfern/status/1090663146988044288?ref_src=twsrc%5Etfw") January 30, 2019]
   
   +slide
-    h3 Lack of Support
     blockquote.twitter-tweet
       p(lang="en" dir="ltr").
         I have first hand experience with this. I spent a few hours working on my first PR a few years ago. The maintainer was rude while giving a short “wrong” answer with no explanation and closed it. Now, unfortunately I rarely contribute to any OSS because of that interaction.
@@ -157,57 +158,60 @@ block slides
     h2 Is open source #[span.underlined actually] open?
 
   +slide
-    h3 We need to be #[em proactive]#[br]in creating community
-    ul
-      li.fragment Actively reach out and welcome new contributors
-      li.fragment Remember how steep the learning curve can be
-      li.fragment Invest in community as a primary measure of success
-  
-  +slide
-    h3 If we don’t, #[strong we lose]
-    ul
-      li.fragment We lose so many brilliant people who have so much to contribute
-      li.fragment We lose an opportunity to add more maintainers
-      li.fragment Existing maintainers lose the opportunity to build support networks
-
-  +slide
-    h2 Fortunately, we’re seeing a #[em movement]
-
-  +slide
-    h3 #[em Welcoming communities] are popping up all over the web
-  
-  +slide
-    img.no-border(
-      src="./images/you-belong-here/saronyitbarek.jpg"
-      alt="Saron Yitbarek."
-      style="max-width: 320px;"
-    )
-    p.no-margin Saron Yitbarek started #[a(href="https://twitter.com/CodeNewbies") Code Newbies], a space for people learning to code to share and learn together.
-  
-  +slide
-    img.no-border(
-      src="./images/you-belong-here/devto.jpg"
-      alt="DEV home page."
-    )
-    p.no-margin #[a(href="https://dev.to/") DEV] is an online resource and community to help people learn code. 
-  
-  +slide
-    <blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/100DaysOfCode?src=hash&amp;ref_src=twsrc%5Etfw">#100DaysOfCode</a> r3 d19:<br>Spent much of the day shopping <a href="https://twitter.com/hashtag/Gatsbyjs?src=hash&amp;ref_src=twsrc%5Etfw">#Gatsbyjs</a> videos on youtube. Interested in using it with <a href="https://twitter.com/hashtag/WordPress?src=hash&amp;ref_src=twsrc%5Etfw">#WordPress</a>, <a href="https://twitter.com/hashtag/Drupal?src=hash&amp;ref_src=twsrc%5Etfw">#Drupal</a> backends. Did a tiny bit of work on my <a href="https://twitter.com/hashtag/react?src=hash&amp;ref_src=twsrc%5Etfw">#react</a> drum machine project ; best thing I can do for it now is get a good 🌃 of 💤.</p>&mdash; Stephen P (@BxBytesSteph) <a href="https://twitter.com/BxBytesSteph/status/1105679520806383616?ref_src=twsrc%5Etfw">March 13, 2019</a></blockquote>
-    p.no-margin #[a(href="https://www.100daysofcode.com/") #100DaysOfCode] is a thriving community of coders learning in public together.
-  
-  +slide
-    img.no-border(
-      src="./images/you-belong-here/hacktoberfest.png"
-      alt="Hacktoberfest."
-    )
-    p.no-margin #[a(href="https://hacktoberfest.digitalocean.com/") Hacktoberfest] is an annual event designed to encourage more people to contribute to open source.
-
-  +slide
     h3 The open source community 
       span(style="font-size: 208%") is 
         span.underlined everything
-    p.fragment.
-      A healthy open source community needs to be welcoming, inclusive, open, and supportive.
+      span.fragment(style="display: block; font-size: 82%; margin-top: 1rem;").
+        We need to make sure it’s healthy
+
+  +slide
+    h3(style="font-size: 182%;") We need to be #[em proactive]
+      span(style="display: block; font-size: 103%") in creating community
+    ul
+      li.fragment Actively reach out and welcome new contributors
+      li.fragment Remember how steep the learning curve can be
+      li.fragment Invest in community as a primary success metric
+  
+  +slide
+    h3(style="font-size: 225%") If we don’t, #[strong we lose]
+    ul
+      li.fragment We lose so many brilliant people who have so much to contribute
+      li.fragment We lose an opportunity to spread out the maintenance burden
+      li.fragment We lose the opportunity to build support networks
+
+  //-
+
+    +slide
+      h2 Fortunately, we’re seeing a #[em movement]
+
+    +slide
+      h3 #[em Welcoming communities] are popping up all over the web
+    
+    +slide
+      img.no-border(
+        src="./images/you-belong-here/saronyitbarek.jpg"
+        alt="Saron Yitbarek."
+        style="max-width: 320px;"
+      )
+      p.no-margin Saron Yitbarek started #[a(href="https://twitter.com/CodeNewbies") Code Newbies], a space for people learning to code to share and learn together.
+    
+    +slide
+      img.no-border(
+        src="./images/you-belong-here/devto.jpg"
+        alt="DEV home page."
+      )
+      p.no-margin #[a(href="https://dev.to/") DEV] is an online resource and community to help people learn code. 
+    
+    +slide
+      <blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/100DaysOfCode?src=hash&amp;ref_src=twsrc%5Etfw">#100DaysOfCode</a> r3 d19:<br>Spent much of the day shopping <a href="https://twitter.com/hashtag/Gatsbyjs?src=hash&amp;ref_src=twsrc%5Etfw">#Gatsbyjs</a> videos on youtube. Interested in using it with <a href="https://twitter.com/hashtag/WordPress?src=hash&amp;ref_src=twsrc%5Etfw">#WordPress</a>, <a href="https://twitter.com/hashtag/Drupal?src=hash&amp;ref_src=twsrc%5Etfw">#Drupal</a> backends. Did a tiny bit of work on my <a href="https://twitter.com/hashtag/react?src=hash&amp;ref_src=twsrc%5Etfw">#react</a> drum machine project ; best thing I can do for it now is get a good 🌃 of 💤.</p>&mdash; Stephen P (@BxBytesSteph) <a href="https://twitter.com/BxBytesSteph/status/1105679520806383616?ref_src=twsrc%5Etfw">March 13, 2019</a></blockquote>
+      p.no-margin #[a(href="https://www.100daysofcode.com/") #100DaysOfCode] is a thriving community of coders learning in public together.
+    
+    +slide
+      img.no-border(
+        src="./images/you-belong-here/hacktoberfest.png"
+        alt="Hacktoberfest."
+      )
+      p.no-margin #[a(href="https://hacktoberfest.digitalocean.com/") Hacktoberfest] is an annual event designed to encourage more people to contribute to open source.
 
   +slide
     h2 #[span.underlined You] Belong Here
@@ -236,68 +240,81 @@ block slides
         href="https://unsplash.com/@ryoji__iwata"
       ) Ryoji Iwata
     aside.notes
-      p In tech we tend to look at problems as puzzles: we solve them once and then they stay solved forever.
+      p In tech we tend to look at problems as static puzzles: we solve them once and then they stay solved forever.
 
-  +slide(
-    data-background="url(./images/you-belong-here/campfire.jpg)"
-  )
-    .image-credit(
-      data-credit-type="Photo"
-    )
-      a.image-credit__link(
-        href="https://unsplash.com/@kimsondoan"
-      ) Kimson Doan
+
+  +slide
+    h3 
+      span Community is like a 
+      em(style="display: block; font-size: 219%") campfire 
+      span.fragment
+        span(style="display: block; font-size: 160%; line-height: 0.75;") keep it alive 
+        span(style="display: block; font-size: 89%;") and it will keep us all 
+        span(style="display: block; font-size: 115%;") 
+          span.underlined warm
+          |  & 
+          span.underlined welcome
     aside.notes
       p But communities are more like campfires. They take some initial effort to get started, and then require tending. The work doesn’t have to be hard, but it *does* have to be ongoing.
       p The benefit of doing this work is that a well-tended campfire can keep everyone warm and dry, and everyone can chip in to tend the fire. That’s how healthy communities thrive.
 
   +slide
-    h3 We can’t just say our community is welcoming
-    h3.fragment We have to #[em welcome people]
-  
+    h3(style="font-size: 197%;") It’s #[span.underlined not enough] to say
+      span(style="display: block; font-size: 71%") “Our community is welcoming.”
+      span.fragment(style="display: block; font-size: 43%; margin-top: 1rem;") We need to actively welcome people into the group
+
   +slide
-    h1 Community 
-      em in practice
-  
-  +slide
-    h2 Onboarding
+    h3(style="font-size: 127%") Actively welcoming people means:
     ul
-      li.fragment Write great docs for first-time contributors
-      li.fragment Label issues to signify a starting point
+      li.fragment Investing in onboarding for new contributors
+      li.fragment Putting your money where your mouth is with representation and inclusion
+      li.fragment Showing gratitude in meaningful ways
+      li.fragment Building trust and safety 
+  
+  +slide
+    h3 Invest in #[em onboarding] for 
+      span(style="display: block; font-size: 136%;") new contributors
+    ul
+      li.fragment Write docs for first-time contributors
+      li.fragment Label issues that are beginner-friendly
       li.fragment Offer pair programming and/or mentorship
+
+  //-
+    +slide
+      img.no-border.no-margin(
+        src="./images/you-belong-here/good-first-issue.jpg"
+        alt="GitHub issues labeled with “good first issue”."
+      )
+      p.no-margin #[a(href="https://github.com/search?q=label%3A%22good+first+issue%22") Add “good first issue” labels] to support newcomers.
+    
+    +slide
+      img.no-border.no-margin(
+        src="./images/you-belong-here/coding-coach.jpg"
+        alt="Coding Coach homepage."
+      )
+      p.no-margin #[a(href="https://codingcoach.io/") Coding Coach] pairs developers with mentors.
   
   +slide
-    img.no-border.no-margin(
-      src="./images/you-belong-here/good-first-issue.jpg"
-      alt="GitHub issues labeled with “good first issue”."
-    )
-    p.no-margin #[a(href="https://github.com/search?q=label%3A%22good+first+issue%22") Add “good first issue” labels] to support newcomers.
-  
-  +slide
-    img.no-border.no-margin(
-      src="./images/you-belong-here/coding-coach.jpg"
-      alt="Coding Coach homepage."
-    )
-    p.no-margin #[a(href="https://codingcoach.io/") Coding Coach] pairs developers with mentors.
-  
-  +slide
-    h2 Inclusion
+    h3(style="font-size: 156%") Put your money where your 
+      span(style="display: block; font-size: 93%") mouth is with #[em representation]
     ul
-      li.fragment Build a leadership team that looks like your community
-      li.fragment Make public commitments to the people you want to see represented in your community
+      li.fragment Appoint leadership that looks like your community
+      li.fragment Hold yourself publicly accountable to the groups that need representation
       li.fragment
         em Actually do the work
-        |  to meet those commitments
+        |  to meet these commitments
+
+  //-
+    +slide
+      img.no-border.no-margin(
+        src="./images/you-belong-here/gatsby-a11y.png"
+        alt="Gatsby’s accessibility statement."
+      )
+      p.no-margin Marcy Sutton’s work on the #[a(href="https://www.gatsbyjs.org/accessibility-statement/") Gatsby accessibility statement] sends a strong message.
 
   +slide
-    img.no-border.no-margin(
-      src="./images/you-belong-here/gatsby-a11y.png"
-      alt="Gatsby’s accessibility statement."
-    )
-    p.no-margin Marcy Sutton’s work on the #[a(href="https://www.gatsbyjs.org/accessibility-statement/") Gatsby accessibility statement] sends a strong message.
-
-  +slide
-    h2 Gratitude
+    h3(style="font-size: 239%;") #[em Show gratitude] in 
+      span(style="font-size: 106%") meaningful ways
     ul
       li.fragment Every contributor is noticed and thanked
       li.fragment Businesses: send swag and/or donate in each contributor’s name
@@ -310,32 +327,28 @@ block slides
     p.no-margin #[a(href="https://store.gatsbyjs.org/") Gatsby’s swag store] gives free swag to contributors.
 
   +slide
-    h2 Trust
+    h3(style="font-size: 215%;") Build #[em trust] & #[em safety]
     ul
       li.fragment Invite contributors to your GitHub organization
-      li.fragment Discuss everything in the open — no secret discussions
-
-  +slide
-    h2 Safety
-    ul
-      li.fragment Create clear guidelines for handling problems
-      li.fragment Foster transparency
+      li.fragment Default to transparency
+      li.fragment Create clear channels for feedback
+      li.fragment Define clear processes for handling problems
       li.fragment Make space for quiet voices
 
   +slide
-    img.no-border.no-margin(
+    p.no-margin Read #[em #[a(href="http://danielcoyle.com/the-culture-code/") The Culture Code]].
+    img.no-border(
       src="./images/you-belong-here/culture-code-3d.png"
       alt="The Culture Code."
       style="max-width: 300px"
     )
-    p.no-margin Read #[em #[a(href="http://danielcoyle.com/the-culture-code/") The Culture Code]].
 
   +slide
-    img.no-border.no-margin(
+    p.no-margin Read April Wensel’s work on #[a(href="https://compassionatecoding.com/") Compassionate Coding].
+    img.no-border(
       src="./images/you-belong-here/compassionate-coding.jpg"
       alt="Compassionate Coding."
     )
-    p.no-margin Read April Wensel’s work on #[a(href="https://compassionatecoding.com/") Compassionate Coding].
 
   //-
     For “you belong here” to work, communities need to be:
@@ -383,16 +396,26 @@ block slides
     
     Leaders have to live their values if they hope to see them adopted by others.
 
+  +slide
+    h2 
+      span(style="font-size: 156%;") Remember:
+      span.fragment(style="display: block;") #[span.underlined You] Belong Here
 
   +slide
     h3(style="width: 110%; margin-left: -5%")
       span(style="display: block;") Let’s Make Open Source 
       span(style="display: block; font-size: 223%") More Open 
       em.fragment(style="display: block; font-size: 243%") Together
-    ul
-      li.fragment It’s not enough to say people are welcome #[span.fragment — we have to actively welcome them]
-      li.fragment The way we treat people is the example our communities will follow
-      li.fragment Remember: you belong here
+
+  +slide(
+    data-background="url(./images/you-belong-here/campfire.jpg)"
+  )
+    .image-credit(
+      data-credit-type="Photo"
+    )
+      a.image-credit__link(
+        href="https://unsplash.com/@kimsondoan"
+      ) Kimson Doan
 
   //- Thanks & Resources
   +slide
@@ -402,11 +425,14 @@ block slides
       alt="Jason Lengstorf"
       style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;"
     )
-    p(style="margin-top: 0.25rem;")= config.author.name
+    p(style="margin-top: 0.25rem; margin-bottom: 0;")= config.author.name
+    p(style="font-size: 75%; margin-top: 0;")
+      | Follow me on Twitter: 
+      a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
       br
-      small
-        | Follow me on Twitter: 
-        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+      a(href= `https://lengstorf.com`) lengstorf.com
+      |  · 
+      a(href= `https://learnwithjason.dev`) learnwithjason.dev
 
 //- 
   +slide.u--align-left.resourcetext
