@@ -1,0 +1,413 @@
+//- Use the presentation layout so we can keep this clean
+extends layouts/presentation
+
+block append config
+  -
+    config.theme = 'lengstorf';
+    config.title = 'Intermediate Gatsby';
+    config.description = 'A Frontend Masters Workshop';
+
+    config.author = {
+      name: 'Jason Lengstorf',
+      email: 'jason@lengstorf.com',
+      link: 'https://lengstorf.com/',
+      twitter: 'jlengstorf',
+      github: 'jlengstorf',
+    };
+    
+    config.slides = {
+      link: 'https://git.io/fem-gatsby-intermediate',
+    };
+
+    config.conference = {
+      hashtag: '',
+      twitter: '',
+    };
+  -
+
+//- Add your slides here. See templates/includes/_mixins.pug for information 
+//- on how `+slide` works.
+block slides
+  +slide
+    h1(style="font-size: 76px; margin-bottom: 0")= config.title
+    h4(style="font-size: 28px")= config.description
+    
+    p by 
+      a(href= config.author.link)= config.author.name
+      br
+      small
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        | &nbsp; · &nbsp;
+        a(href= `mailto:${config.author.email}`)= config.author.email
+    
+    p
+      small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
+
+  +slide
+    h1(style="font-size: 100px") 👋 Hi! I’m Jason.
+    blockquote.photo-quote
+      .photo
+        img(
+          src="./images/jason-lengstorf.jpg"
+          alt="Jason Lengstorf"
+        )
+      .quote
+        ul(style="list-style: none;")
+          li I like to learn
+          li I like to teach
+          li Currently: Netlify
+          li Formerly: Gatsby, IBM
+          li Portland, OR
+  
+  +slide(
+    data-background="url(./images/learnwithjason.jpg)"
+  )
+
+
+  //- Main content
+  +slide
+    h3 What are the #[strong challenges] of modern web development?
+    ul
+      li.fragment Getting started is overwhelming
+      li.fragment The way we manage data is evolving
+      li.fragment Getting it right is #[em hard]
+
+  +slide.dark
+    h2.no-margin(style="font-size: 240%;") What is Gatsby?
+    p.fragment Gatsby is a #[span.underlined shortcut] to allow developers to quickly build excellent apps and sites.
+  
+  +slide
+    h4 Most workflows involve a lot of #[strong boilerplate] to get started.
+
+  //- BEGIN BOILERPLATE IMAGE SEQUENCE
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate01.png"
+      alt="Visualization of the pipeline to get code from an editor to the browser."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate02.png"
+      alt="Same pipeline, but now Webpack is included."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate03.png"
+      alt="Previous image + Babel."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate04.png"
+      alt="Previous image + PostCSS."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate05.png"
+      alt="Previous image + Node.JS."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate06.png"
+      alt="Previous image + Kubernetes."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate07.png"
+      alt="Previous image + NGINX."
+    )
+  +slide
+    img.no-border(
+      src="./images/gatsby/boilerplate08.png"
+      alt="Previous image + Fastly."
+    )
+  //- END BOILERPLATE IMAGE SEQUENCE
+
+  +slide
+    h4 Gatsby #[em removes the boilerplate] for getting started &amp; deploying apps to production.
+
+  +slide
+    img.no-border(
+      src="./images/gatsby/no-boilerplate.png"
+      alt="Simplified workflow with Gatsby + Netlify."
+    )
+
+  +slide
+    img.no-border(
+      src="./images/gatsby/no-boilerplate-tools.png"
+      alt="Simplified workflow with Gatsby + Netlify showing React and GraphQL as tools."
+    )
+
+  //- The way we manage data is evolving
+  +slide.dark
+    h2.no-margin(style="font-size: 240%;") What is Gatsby?
+    p.fragment Gatsby is an #[span.underlined orchestration layer] for taming the Content Mesh and its many sources of data.
+
+  +slide
+    h3 The monolithic CMS is 
+      strong dying
+      | .
+    aside.notes
+      ul
+        li I know there are still a lot of companies using monolithic CMSs
+        li The trend is clear though: most CMSs are going headless
+        li WordPress, Drupal, Ghost — even Magento!
+
+  +slide
+    h4 The future of web development is the 
+      em(style="display: block; font-size: 270%") content mesh
+    p
+      small Learn more: 
+        a(href="https://gatsby.dev/content-mesh") gatsby.dev/content-mesh
+  
+  +slide
+    img.no-border(src="./images/beyond-static/content-mesh.png" alt="The content mesh.")
+  
+  +slide
+    img.no-border(src="./images/beyond-static/content-mesh-labeled.png" alt="The content mesh.")
+    aside.notes
+      ul
+        li Specialized SaaS providers exist for pretty much every use case
+        li Stripe, Shopify, Airtable, Contentful
+
+  +slide
+    img.no-border(src="./images/beyond-static/cm1.png" alt="The Content Mesh with Gatsby.")
+
+  +slide
+    img.no-border(src="./images/beyond-static/cm2.png" alt="The Content Mesh with Gatsby.")
+
+  +slide
+    img.no-border(src="./images/beyond-static/cm3.png" alt="The Content Mesh with Gatsby.")
+
+  +slide
+    img.no-border(src="./images/beyond-static/cm4.png" alt="The Content Mesh with Gatsby.")
+
+  +slide
+    h3(style="font-size: 2.875rem") Example: Gatsby’s #[em Swag Store]
+    img.no-border.no-margin(src="./images/beyond-static/store.jpg" alt="The Gatsby Store.")
+    a(href="https://store.gatsbyjs.org") store.gatsbyjs.org
+
+  +slide
+    h3(style="font-size: 2.875rem") Static Data Loaded at #[em Build] Time
+    img.no-border.no-margin(src="./images/beyond-static/store-static-data.jpg" alt="The Gatsby Store.")
+    a(href="https://store.gatsbyjs.org") store.gatsbyjs.org
+
+  +slide
+    h3(style="font-size: 2.875rem") Dynamic Data Loaded at #[em Run] Time
+    img.no-border.no-margin(src="./images/beyond-static/store-dynamic-data.jpg" alt="The Gatsby Store.")
+    a(href="https://store.gatsbyjs.org") store.gatsbyjs.org
+
+  +slide
+    h3(style="font-size: 2.875rem") #[em Client-Only] Routes for User Pages
+    img.no-border.no-margin(src="./images/beyond-static/store-dashboard.jpg" alt="The Gatsby Store.")
+    a(href="https://store.gatsbyjs.org") store.gatsbyjs.org
+
+  +slide
+    h3(style="font-size: 2.875rem") Data Loads #[em Asynchronously]
+    img.no-border.no-margin(src="./images/beyond-static/store-dashboard-data.jpg" alt="The Gatsby Store.")
+    a(href="https://store.gatsbyjs.org") store.gatsbyjs.org
+
+  //- Getting it right is hard
+  +slide.dark
+    h2.no-margin(style="font-size: 240%;") What is Gatsby?
+    p.fragment Gatsby is a #[span.underlined Progressive Web App generator] designed to make the right thing the easy thing.
+
+  +slide
+    h3(style="font-size: 110%") Make the #[em right thing] the #[em easy thing].
+    p.fragment.
+      Design your tools so the laziest, shortcuttiest,#[br]
+      under-the-gunniest decisions a developer can make#[br]
+      will still result in an excellent user experience.
+
+  +slide
+    h3 Gatsby sets #[em the right defaults] under the hood...
+    ul
+      li.fragment Follows the PRPL pattern and other performance best practices
+      li.fragment Generates only static assets (no server required)
+      li.fragment Optimizes and lazy-loads assets
+      li.fragment Normalizes third-party data
+
+  +slide
+    h3(style="font-size: 142%;") ...but developers keep control.
+    ul
+      li.fragment Webpack and Babel are fully customizable through Gatsby APIs
+      li.fragment Customize only what you need — no ejection required
+
+  //- Recap of Overview
+  +slide.dark
+    h2 So what is Gatsby?
+    p.fragment Gatsby is #[span.underlined fast in all the ways that matter].
+
+  +slide.dark
+    h2 So what is Gatsby?
+    p Gatsby lets you #[span.underlined bring data from anywhere].
+
+  +slide.dark
+    h2 So what is Gatsby?
+    p Gatsby does the #[span.underlined right thing] by default.
+
+  +slide.dark
+    h2 So what is Gatsby?
+    p Gatsby makes developing for the web #[span.underlined fun].
+
+  //- WORKSHOP OVERVIEW
+  +slide
+    h2 The Rabbit Hole Goes Deeper...
+  
+  +slide
+    h3 Gatsby has a huge number of advanced features
+    ul
+      li.fragment Theming and theme composition
+      li.fragment Custom data sources
+      li.fragment Combining build-time and run-time data
+      li.fragment Schema customization and custom data types
+      li.fragment Essentially anything React can do, Gatsby can handle
+  
+  +slide
+    h3 Today, we’re diving into some of Gatsby’s more advanced use cases
+  
+  +slide
+    h3 Today’s agenda, Part 1:
+    ol
+      li.fragment Create a custom Gatsby theme for documentation
+      li.fragment Use MDX for powerful content authoring
+      li.fragment Define custom data types
+      li.fragment Use Theme UI to define a custom theme
+      li.fragment Add support for live-editing example code
+  
+  +slide
+    h3 Today’s agenda, Part 2:
+    ol
+      li.fragment Install our custom theme on an existing site
+      li.fragment Customize the theme using options
+      li.fragment Use component shadowing to extend Theme UI
+  
+  +slide
+    h3 Today’s agenda, Part 3:
+    ol
+      li.fragment Create a Negroni fan site using the docs theme
+      li.fragment Extend Theme UI to customize the theme
+      li.fragment Use Cloudinary to manage images
+      li.fragment Use component shadowing to customize components
+      li.fragment Compose two themes together in a single site
+  
+  +slide
+    h3 Today’s agenda, Part 4:
+    ol
+      li.fragment Set up a dynamic app with client-side GraphQL using Apollo
+      li.fragment Configure client-only routes in Gatsby
+      li.fragment Create redirects in Netlify
+      li.fragment Create a search form using React hooks
+      li.fragment Create linkable search results pages
+  
+  +slide
+    h2 Let’s Get Started!
+    pre
+      code.
+        # Clone the repo
+        git clone git@github.com:jlengstorf/gatsby-intermediate.git
+
+        # Make sure you’re on the `start` branch
+        git checkout start
+
+  //- Thanks & Resources
+  +slide
+    h1.no-margin Thanks!
+    img(
+      src="./images/jason-lengstorf.jpg"
+      alt="Jason Lengstorf"
+      style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;"
+    )
+    p(style="margin-top: 0.25rem;")= config.author.name
+      br
+      small
+        | Follow me on Twitter: 
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+
+  +slide.u--align-left.resourcetext
+    h4 Resources
+    ol
+      li
+        a(href="https://github.com/jlengstorf/gatsby-intermediate").
+          Source Code
+      li
+        a(href="https://gatsbyjs.org").
+          Gatsby
+      li
+        a(href="https://netlify.com").
+          Netlify
+      li
+        a(href="https://theme-ui.com").
+          Theme UI
+      li
+        a(href="https://frontendmasters.com/courses/gatsby/").
+          Intro to Gatsby Workshop
+      li
+        a(href="https://egghead.io/courses/gatsby-theme-authoring").
+          Authoring Gatsby Themes Course
+      li
+        a(href="https://cloudinary.com").
+          Cloudinary
+      li
+        a(href="https://github.com/FormidableLabs/prism-react-renderer").
+          Prism React Renderer
+      li
+        a(href="https://github.com/FormidableLabs/react-live").
+          React Live
+
+block styles
+  link(
+    rel="stylesheet"
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+  )
+  script.
+    (function(d) {
+      var config = {
+        kitId: 'fnr1orp',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+
+block scripts
+  script(async src="https://platform.twitter.com/widgets.js" charset="utf-8")
+
+block extras
+  -
+    const relatedAccounts = [config.author.twitter];
+    
+    if (config.conference.twitter) {
+      relatedAccounts.push(config.conference.twitter);
+    }
+
+    // See https://dev.twitter.com/web/tweet-button/web-intent for parameters.
+    const tweetObj = {
+      text: `${config.title} by @${config.author.twitter}`,
+      hashtags: config.conference.hashtag || '',
+      related: relatedAccounts.join(','),
+      url: config.slides.link,
+    };
+
+    // 
+    const e = encodeURIComponent;
+    const args = Object.keys(tweetObj).map(key => `${key}=${e(tweetObj[key])}`);
+    const tweetUrl = `https://twitter.com/intent/tweet?${args.join('&')}`;
+  -
+  footer.v2
+    ul.inline
+      li
+        a(
+          href= config.slides.link
+          title="View the slides online."
+        )= config.slides.link.replace('https://', '')
+      li
+        a(
+          href="https://twitter.com/"+config.author.twitter
+          title="Find Jason on Twitter"
+        ).
+          @#{config.author.twitter}
+      li
+        a.no-icon(
+          href=tweetUrl
+        ) #{config.conference.hashtag ? `#${config.conference.hashtag}` : ''}
+        

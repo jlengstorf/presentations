@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Intermediate Gatsby</title>
+    <meta name="description" content="A Frontend Masters Workshop">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link id="theme" rel="stylesheet" href="css/theme/lengstorf.css">
+    <link rel="stylesheet" href="lib/css/github.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script>
+      (function(d) {
+        var config = {
+          kitId: 'fnr1orp',
+          scriptTimeout: 3000,
+          async: true
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+      
+    </script>
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+      
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1 style="font-size: 76px; margin-bottom: 0">Intermediate Gatsby</h1>
+          <h4 style="font-size: 28px">A Frontend Masters Workshop</h4>
+          <p>by <a href="https://lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a>&nbsp; · &nbsp;<a href="mailto:jason@lengstorf.com">jason@lengstorf.com</a></small></p>
+          <p><small>Slides: <a href="https://git.io/fem-gatsby-intermediate">git.io/fem-gatsby-intermediate</a></small></p>
+        </section>
+        <section>
+          <h1 style="font-size: 100px">👋 Hi! I’m Jason.</h1>
+          <blockquote class="photo-quote">
+            <div class="photo"><img src="./images/jason-lengstorf.jpg" alt="Jason Lengstorf"></div>
+            <div class="quote">
+              <ul style="list-style: none;">
+                <li>I like to learn</li>
+                <li>I like to teach</li>
+                <li>Currently: Netlify</li>
+                <li>Formerly: Gatsby, IBM</li>
+                <li>Portland, OR</li>
+              </ul>
+            </div>
+          </blockquote>
+        </section>
+        <section data-background="url(./images/learnwithjason.jpg)">
+        </section>
+        <section>
+          <h3>What are the <strong>challenges</strong> of modern web development?</h3>
+          <ul>
+            <li class="fragment">Getting started is overwhelming</li>
+            <li class="fragment">The way we manage data is evolving</li>
+            <li class="fragment">Getting it right is <em>hard</em></li>
+          </ul>
+        </section>
+        <section class="dark">
+          <h2 class="no-margin" style="font-size: 240%;">What is Gatsby?</h2>
+          <p class="fragment">Gatsby is a <span class="underlined">shortcut</span> to allow developers to quickly build excellent apps and sites.</p>
+        </section>
+        <section>
+          <h4>Most workflows involve a lot of <strong>boilerplate</strong> to get started.</h4>
+        </section>
+        <section><img class="no-border" src="./images/gatsby/boilerplate01.png" alt="Visualization of the pipeline to get code from an editor to the browser.">
+        </section>
+        <section><img class="no-border" src="./images/gatsby/boilerplate02.png" alt="Same pipeline, but now Webpack is included.">
+        </section>
+        <section><img class="no-border" src="./images/gatsby/boilerplate03.png" alt="Previous image + Babel.">
+        </section>
+        <section><img class="no-border" src="./images/gatsby/boilerplate04.png" alt="Previous image + PostCSS.">
+        </section>
+        <section><img class="no-border" src="./images/gatsby/boilerplate05.png" alt="Previous image + Node.JS.">
+        </section>
+        <section><img class="no-border" src="./images/gatsby/boilerplate06.png" alt="Previous image + Kubernetes.">
+        </section>
+        <section><img class="no-border" src="./images/gatsby/boilerplate07.png" alt="Previous image + NGINX.">
+        </section>
+        <section><img class="no-border" src="./images/gatsby/boilerplate08.png" alt="Previous image + Fastly.">
+        </section>
+        <section>
+          <h4>Gatsby <em>removes the boilerplate</em> for getting started &amp; deploying apps to production.</h4>
+        </section>
+        <section><img class="no-border" src="./images/gatsby/no-boilerplate.png" alt="Simplified workflow with Gatsby + Netlify.">
+        </section>
+        <section><img class="no-border" src="./images/gatsby/no-boilerplate-tools.png" alt="Simplified workflow with Gatsby + Netlify showing React and GraphQL as tools.">
+        </section>
+        <section class="dark">
+          <h2 class="no-margin" style="font-size: 240%;">What is Gatsby?</h2>
+          <p class="fragment">Gatsby is an <span class="underlined">orchestration layer</span> for taming the Content Mesh and its many sources of data.</p>
+        </section>
+        <section>
+          <h3>The monolithic CMS is <strong>dying</strong>.</h3>
+          <aside class="notes">
+            <ul>
+              <li>I know there are still a lot of companies using monolithic CMSs</li>
+              <li>The trend is clear though: most CMSs are going headless</li>
+              <li>WordPress, Drupal, Ghost — even Magento!</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h4>The future of web development is the <em style="display: block; font-size: 270%">content mesh</em></h4>
+          <p><small>Learn more: <a href="https://gatsby.dev/content-mesh">gatsby.dev/content-mesh</a></small></p>
+        </section>
+        <section><img class="no-border" src="./images/beyond-static/content-mesh.png" alt="The content mesh.">
+        </section>
+        <section><img class="no-border" src="./images/beyond-static/content-mesh-labeled.png" alt="The content mesh.">
+          <aside class="notes">
+            <ul>
+              <li>Specialized SaaS providers exist for pretty much every use case</li>
+              <li>Stripe, Shopify, Airtable, Contentful</li>
+            </ul>
+          </aside>
+        </section>
+        <section><img class="no-border" src="./images/beyond-static/cm1.png" alt="The Content Mesh with Gatsby.">
+        </section>
+        <section><img class="no-border" src="./images/beyond-static/cm2.png" alt="The Content Mesh with Gatsby.">
+        </section>
+        <section><img class="no-border" src="./images/beyond-static/cm3.png" alt="The Content Mesh with Gatsby.">
+        </section>
+        <section><img class="no-border" src="./images/beyond-static/cm4.png" alt="The Content Mesh with Gatsby.">
+        </section>
+        <section>
+          <h3 style="font-size: 2.875rem">Example: Gatsby’s <em>Swag Store</em></h3><img class="no-border no-margin" src="./images/beyond-static/store.jpg" alt="The Gatsby Store."><a href="https://store.gatsbyjs.org">store.gatsbyjs.org</a>
+        </section>
+        <section>
+          <h3 style="font-size: 2.875rem">Static Data Loaded at <em>Build</em> Time</h3><img class="no-border no-margin" src="./images/beyond-static/store-static-data.jpg" alt="The Gatsby Store."><a href="https://store.gatsbyjs.org">store.gatsbyjs.org</a>
+        </section>
+        <section>
+          <h3 style="font-size: 2.875rem">Dynamic Data Loaded at <em>Run</em> Time</h3><img class="no-border no-margin" src="./images/beyond-static/store-dynamic-data.jpg" alt="The Gatsby Store."><a href="https://store.gatsbyjs.org">store.gatsbyjs.org</a>
+        </section>
+        <section>
+          <h3 style="font-size: 2.875rem"><em>Client-Only</em> Routes for User Pages</h3><img class="no-border no-margin" src="./images/beyond-static/store-dashboard.jpg" alt="The Gatsby Store."><a href="https://store.gatsbyjs.org">store.gatsbyjs.org</a>
+        </section>
+        <section>
+          <h3 style="font-size: 2.875rem">Data Loads <em>Asynchronously</em></h3><img class="no-border no-margin" src="./images/beyond-static/store-dashboard-data.jpg" alt="The Gatsby Store."><a href="https://store.gatsbyjs.org">store.gatsbyjs.org</a>
+        </section>
+        <section class="dark">
+          <h2 class="no-margin" style="font-size: 240%;">What is Gatsby?</h2>
+          <p class="fragment">Gatsby is a <span class="underlined">Progressive Web App generator</span> designed to make the right thing the easy thing.</p>
+        </section>
+        <section>
+          <h3 style="font-size: 110%">Make the <em>right thing</em> the <em>easy thing</em>.</h3>
+          <p class="fragment">Design your tools so the laziest, shortcuttiest,<br>
+            under-the-gunniest decisions a developer can make<br>
+            will still result in an excellent user experience.
+            
+          </p>
+        </section>
+        <section>
+          <h3>Gatsby sets <em>the right defaults</em> under the hood...</h3>
+          <ul>
+            <li class="fragment">Follows the PRPL pattern and other performance best practices</li>
+            <li class="fragment">Generates only static assets (no server required)</li>
+            <li class="fragment">Optimizes and lazy-loads assets</li>
+            <li class="fragment">Normalizes third-party data</li>
+          </ul>
+        </section>
+        <section>
+          <h3 style="font-size: 142%;">...but developers keep control.</h3>
+          <ul>
+            <li class="fragment">Webpack and Babel are fully customizable through Gatsby APIs</li>
+            <li class="fragment">Customize only what you need — no ejection required</li>
+          </ul>
+        </section>
+        <section class="dark">
+          <h2>So what is Gatsby?</h2>
+          <p class="fragment">Gatsby is <span class="underlined">fast in all the ways that matter</span>.</p>
+        </section>
+        <section class="dark">
+          <h2>So what is Gatsby?</h2>
+          <p>Gatsby lets you <span class="underlined">bring data from anywhere</span>.</p>
+        </section>
+        <section class="dark">
+          <h2>So what is Gatsby?</h2>
+          <p>Gatsby does the <span class="underlined">right thing</span> by default.</p>
+        </section>
+        <section class="dark">
+          <h2>So what is Gatsby?</h2>
+          <p>Gatsby makes developing for the web <span class="underlined">fun</span>.</p>
+        </section>
+        <section>
+          <h2>The Rabbit Hole Goes Deeper...</h2>
+        </section>
+        <section>
+          <h3>Gatsby has a huge number of advanced features</h3>
+          <ul>
+            <li class="fragment">Theming and theme composition</li>
+            <li class="fragment">Custom data sources</li>
+            <li class="fragment">Combining build-time and run-time data</li>
+            <li class="fragment">Schema customization and custom data types</li>
+            <li class="fragment">Essentially anything React can do, Gatsby can handle</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Today, we’re diving into some of Gatsby’s more advanced use cases</h3>
+        </section>
+        <section>
+          <h3>Today’s agenda, Part 1:</h3>
+          <ol>
+            <li class="fragment">Create a custom Gatsby theme for documentation</li>
+            <li class="fragment">Use MDX for powerful content authoring</li>
+            <li class="fragment">Define custom data types</li>
+            <li class="fragment">Use Theme UI to define a custom theme</li>
+            <li class="fragment">Add support for live-editing example code</li>
+          </ol>
+        </section>
+        <section>
+          <h3>Today’s agenda, Part 2:</h3>
+          <ol>
+            <li class="fragment">Install our custom theme on an existing site</li>
+            <li class="fragment">Customize the theme using options</li>
+            <li class="fragment">Use component shadowing to extend Theme UI</li>
+          </ol>
+        </section>
+        <section>
+          <h3>Today’s agenda, Part 3:</h3>
+          <ol>
+            <li class="fragment">Create a Negroni fan site using the docs theme</li>
+            <li class="fragment">Extend Theme UI to customize the theme</li>
+            <li class="fragment">Use Cloudinary to manage images</li>
+            <li class="fragment">Use component shadowing to customize components</li>
+            <li class="fragment">Compose two themes together in a single site</li>
+          </ol>
+        </section>
+        <section>
+          <h3>Today’s agenda, Part 4:</h3>
+          <ol>
+            <li class="fragment">Set up a dynamic app with client-side GraphQL using Apollo</li>
+            <li class="fragment">Configure client-only routes in Gatsby</li>
+            <li class="fragment">Create redirects in Netlify</li>
+            <li class="fragment">Create a search form using React hooks</li>
+            <li class="fragment">Create linkable search results pages</li>
+          </ol>
+        </section>
+        <section>
+          <h2>Let’s Get Started!</h2>
+          <pre><code># Clone the repo
+git clone git@github.com:jlengstorf/gatsby-intermediate.git
+
+# Make sure you’re on the `start` branch
+git checkout start
+</code></pre>
+        </section>
+        <section>
+          <h1 class="no-margin">Thanks!</h1><img src="./images/jason-lengstorf.jpg" alt="Jason Lengstorf" style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;">
+          <p style="margin-top: 0.25rem;">Jason Lengstorf<br><small>Follow me on Twitter: <a href="https://twitter.com/jlengstorf">@jlengstorf</a></small></p>
+        </section>
+        <section class="u--align-left resourcetext">
+          <h4>Resources</h4>
+          <ol>
+            <li><a href="https://github.com/jlengstorf/gatsby-intermediate">Source Code</a></li>
+            <li><a href="https://gatsbyjs.org">Gatsby</a></li>
+            <li><a href="https://netlify.com">Netlify</a></li>
+            <li><a href="https://theme-ui.com">Theme UI</a></li>
+            <li><a href="https://frontendmasters.com/courses/gatsby/">Intro to Gatsby Workshop</a></li>
+            <li><a href="https://egghead.io/courses/gatsby-theme-authoring">Authoring Gatsby Themes Course</a></li>
+            <li><a href="https://cloudinary.com">Cloudinary</a></li>
+            <li><a href="https://github.com/FormidableLabs/prism-react-renderer">Prism React Renderer</a></li>
+            <li><a href="https://github.com/FormidableLabs/react-live">
+                React Live
+                </a></li>
+          </ol>
+        </section>
+      </div>
+    </div>
+    <footer class="v2">
+      <ul class="inline">
+        <li><a href="https://git.io/fem-gatsby-intermediate" title="View the slides online.">git.io/fem-gatsby-intermediate</a></li>
+        <li><a href="https://twitter.com/jlengstorf" title="Find Jason on Twitter">@jlengstorf</a></li>
+        <li><a class="no-icon" href="https://twitter.com/intent/tweet?text=Intermediate%20Gatsby%20by%20%40jlengstorf&amp;hashtags=&amp;related=jlengstorf&amp;url=https%3A%2F%2Fgit.io%2Ffem-gatsby-intermediate"></a></li>
+      </ul>
+    </footer>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+      // We'll reference this element several times
+      var htmlElement = document.querySelector('html');
+      
+      // Bind a function to the `fragmentshown` event so we can do some custom bits
+      Reveal.addEventListener('fragmentshown', function (event) {
+        var fragment = event.fragment;
+      
+        // For fragments with a `dim-the-lights` class, we dim the lights
+        if (fragment.classList && fragment.classList.contains('dim-the-lights')) {
+          htmlElement.classList.add('blackout');
+        }
+      });
+      
+      // Define a quick function to remove the blackout class from the document
+      var removeBlackout = function removeBlackout() {
+        return htmlElement.classList.remove('blackout');
+      };
+      
+      // Bind the function to Reveal actions so we get the desired effect
+      Reveal.addEventListener('fragmenthidden', removeBlackout);
+      Reveal.addEventListener('slidechanged', removeBlackout);
+      
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+        transition: 'none',
+        backgroundTransition: 'none',
+      
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+      
+    </script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </body>
+</html>

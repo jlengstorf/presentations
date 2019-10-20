@@ -860,6 +860,11 @@ section .right {
   width: 0;
 }
 
+p .underlined::after {
+  height: 4px;
+  top: 1em;
+}
+
 .hashtag {
   position: absolute;
   top: 6px;
