@@ -16,17 +16,17 @@ I have too many repos that aren't actually useful on their own because they're d
 
 ### Short version
 
-> Jason Lengstorf is a developer advocate, senior engineer, and occasional designer at [Gatsby](https://gatsbyjs.org). He’s an advocate for building highly productive teams through better communication, well designed systems and processes, and healthy work-life balance, and [he blogs about that sometimes](https://lengstorf.com/blog/). He lives in Portland, Oregon.
+> Jason Lengstorf is a principal developer experience engineer at [Netlify](https://netlify.com) and the host of [_Learn With Jason_](https://learnwithjason.dev), a live-streamed video show where he pairs with people in the community to learn something new. He’s passionate about building healthy, efficient teams and systems, and he’s done his best to positively influence the community, leadership, and technical health of open source and companies including Gatsby and IBM. He lives in Portland, Oregon and writes at [lengstorf.com](https://lengstorf.com).
 
 ### Long version
 
-> Jason Lengstorf is a developer advocate, senior engineer, and occasional designer at [Gatsby](https://gatsbyjs.org). In the span of his career, he’s filled every role from development to design, DevOps to sales, and management to customer service. He uses his eclectic 15+ years of experience to offer a unique, cross-functional approach to solving complex problems.
+> Jason Lengstorf is a principal developer experience engineer at [Netlify](https://netlify.com) and the host of [_Learn With Jason_](https://learnwithjason.dev), a live-streamed video show where he pairs with people in the community to learn something new.
 >
-> Jason has worked as a software architect at IBM, as a consultant for companies including PlayStation and Intel, and as an entrepreneur who grew and sold a design agency. Along the way, he’s written several books and dozens of tutorials about development, process and system design, and work-life balance.
+> Jason has worked as the head of developer relations at Gatsby, a software architect at IBM, as a consultant for companies including PlayStation and Intel, and as an entrepreneur who grew and sold a design agency. Along the way, he’s written several books and dozens of tutorials about development, process and system design, and work-life balance. He uses his eclectic 15+ years of experience to offer a unique, cross-functional approach to solving complex problems.
 >
-> Building better careers by first focusing on building better lives is one of Jason’s driving principles. He focuses on work-life balance, efficiency, processes, and productivity to help people get more done in less time — so they can spend more time on the things that matter most.
+> Building better careers by first focusing on building better lives is one of Jason’s driving principles, which he writes about at [lengstorf.com](https://lengstorf.com). He focuses on work-life balance, efficiency, processes, and productivity to help people get more done in less time — so they can spend more time on the things that matter most.
 >
-> He lives in Portland, Oregon, where he spends most of his disposable income on food and travel.
+> He lives in Portland, Oregon, where he experiments on human test subjects with his smash burger and cocktail recipes.
 
 ## Keynotes
 
