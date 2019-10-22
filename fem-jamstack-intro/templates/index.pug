@@ -1,0 +1,230 @@
+//- Use the presentation layout so we can keep this clean
+extends layouts/presentation
+
+block append config
+  -
+    config.theme = 'lengstorf';
+    config.title = 'Intro to the JAMstack';
+    config.description = 'A Frontend Masters Workshop';
+
+    config.author = {
+      name: 'Jason Lengstorf',
+      email: 'jason@lengstorf.com',
+      link: 'https://lengstorf.com/',
+      twitter: 'jlengstorf',
+      github: 'jlengstorf',
+    };
+    
+    config.slides = {
+      link: 'https://git.io/fem-jamstack-intro',
+    };
+
+    config.conference = {
+      hashtag: '',
+      twitter: '',
+    };
+  -
+
+//- Add your slides here. See templates/includes/_mixins.pug for information 
+//- on how `+slide` works.
+block slides
+  +slide
+    h1(style="font-size: 76px; margin-bottom: 0")= config.title
+    h4(style="font-size: 28px")= config.description
+    
+    p by 
+      a(href= config.author.link)= config.author.name
+      br
+      small
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+        | &nbsp; · &nbsp;
+        a(href= `mailto:${config.author.email}`)= config.author.email
+    
+    p
+      small Slides: #[a(href= config.slides.link)= config.slides.link.replace('https://', '')]
+
+  +slide
+    h1(style="font-size: 100px") 👋 Hi! I’m Jason.
+    blockquote.photo-quote
+      .photo
+        img(
+          src="./images/jason-lengstorf.jpg"
+          alt="Jason Lengstorf"
+        )
+      .quote
+        ul(style="list-style: none;")
+          li I like to learn
+          li I like to teach
+          li Currently: Netlify
+          li Formerly: Gatsby, IBM
+          li Portland, OR
+  
+  +slide(
+    data-background="url(./images/learnwithjason.jpg)"
+  )
+
+
+  //- Main content
+  +slide
+    h2 What is the JAMstack?
+  
+  +slide
+    h1.no-margin(style="text-align: left")
+      span(style="position:relative; left: 0.2em;") #[em J]avaScript
+      br
+      span(style="position:relative; left: 0.075em;").fragment #[em A]PIs
+      br
+      span.fragment #[em M]arkup
+    
+  +slide
+    h3 Put another way:
+    p The JAMstack is an approach to web design that emphasizes shipping only static assets.
+  
+  +slide
+    h2 Why is this important?
+
+  +slide
+    h3 Benefits of the JAMstack
+    ul
+      li.fragment Reduced complexity
+      li.fragment Lower costs
+      li.fragment Faster shipping
+      li.fragment Increased autonomy
+
+  +slide
+    h3 Reduced Complexity
+    p JAMstack apps allow us to use only a CDN, which lets us skip servers, databases, load balancers, etc.
+
+  +slide
+    h3 Lower Costs
+    p CDNs are cheap — or even free.
+    p On top of that, the lowered complexity requires less time and effort spent on devops.
+
+  +slide
+    h3 Faster Shipping
+    p Fewer moving parts makes it easier to ship quickly and with confidence.
+
+  +slide
+    h3 Increased Autonomy
+    p A simplified stack means a single developer is able to take projects from an idea all the way to deployment.
+
+  +slide
+    h2 And that’s not all
+  
+  +slide
+    h3 Additional benefits:
+    ul
+      li.fragment Better security
+      li.fragment Better performance
+      li.fragment Better reliability
+      li.fragment Better scalability
+
+  +slide
+    h3 Today’s agenda:
+    ul
+      li.fragment Section 1: Create a basic JAMstack site
+      li.fragment Section 2: Deploy a JAMstack site
+      li.fragment Section 3: Learn how to use serverless functions
+      li.fragment Section 4: Protect content with authentication
+      li.fragment Section 5: Handle reading and writing persisted data
+
+  +slide
+    h2 Let’s Get Started!
+    pre
+      code.
+        # Clone the repo
+        git clone git@github.com:jlengstorf/jamstack-intro.git
+
+        # Make sure you’re on the `start` branch
+        git checkout start
+
+  //- Thanks & Resources
+  +slide
+    h1.no-margin Thanks!
+    img(
+      src="./images/jason-lengstorf.jpg"
+      alt="Jason Lengstorf"
+      style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;"
+    )
+    p(style="margin-top: 0.25rem;")= config.author.name
+      br
+      small
+        | Follow me on Twitter: 
+        a(href= `https://twitter.com/${config.author.twitter}`)= `@${config.author.twitter}`
+
+  +slide.u--align-left.resourcetext
+    h4 Resources
+    ol
+      li
+        a(href="https://github.com/jlengstorf/jamstack-intro").
+          Source Code
+      li
+        a(href="https://netlify.com").
+          Netlify
+      li
+        a(href="https://gatsbyjs.org").
+          Gatsby
+      li
+        a(href="https://mailgun.com").
+          Mailgun
+      li
+        a(href="https://fauna.com").
+          Fauna
+
+block styles
+  link(
+    rel="stylesheet"
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+  )
+  script.
+    (function(d) {
+      var config = {
+        kitId: 'fnr1orp',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+
+block scripts
+  script(async src="https://platform.twitter.com/widgets.js" charset="utf-8")
+
+block extras
+  -
+    const relatedAccounts = [config.author.twitter];
+    
+    if (config.conference.twitter) {
+      relatedAccounts.push(config.conference.twitter);
+    }
+
+    // See https://dev.twitter.com/web/tweet-button/web-intent for parameters.
+    const tweetObj = {
+      text: `${config.title} by @${config.author.twitter}`,
+      hashtags: config.conference.hashtag || '',
+      related: relatedAccounts.join(','),
+      url: config.slides.link,
+    };
+
+    // 
+    const e = encodeURIComponent;
+    const args = Object.keys(tweetObj).map(key => `${key}=${e(tweetObj[key])}`);
+    const tweetUrl = `https://twitter.com/intent/tweet?${args.join('&')}`;
+  -
+  footer.v2
+    ul.inline
+      li
+        a(
+          href= config.slides.link
+          title="View the slides online."
+        )= config.slides.link.replace('https://', '')
+      li
+        a(
+          href="https://twitter.com/"+config.author.twitter
+          title="Find Jason on Twitter"
+        ).
+          @#{config.author.twitter}
+      li
+        a.no-icon(
+          href=tweetUrl
+        ) #{config.conference.hashtag ? `#${config.conference.hashtag}` : ''}
+        
