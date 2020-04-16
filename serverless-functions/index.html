@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Create Dynamic Web Apps </title>
+    <meta name="description" content="With Serverless and the Jamstack">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link id="theme" rel="stylesheet" href="css/theme/lengstorf.css">
+    <link rel="stylesheet" href="lib/css/github.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script>
+      (function(d) {
+        var config = {
+          kitId: 'fnr1orp',
+          scriptTimeout: 3000,
+          async: true
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+      
+    </script>
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+      
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1 style="font-size: 90px; margin-bottom: 0">Create Dynamic Web Apps </h1>
+          <h3 style="font-size: 43px; margin-bottom: 0">With Serverless and the Jamstack</h3>
+          <p>by <a href="https://lengstorf.com/">Jason Lengstorf</a><br><small><a href="https://twitter.com/jlengstorf">@jlengstorf</a>&nbsp; · &nbsp;<a href="mailto:jason@lengstorf.com">jason@lengstorf.com</a></small></p>
+          <p><small>Slides: <a href="https://git.io/serverless">git.io/serverless</a></small></p>
+        </section>
+        <section>
+          <h1 style="font-size: 100px">👋 Hi! I’m Jason.</h1>
+          <blockquote class="photo-quote">
+            <div class="photo"><img src="./images/jason-lengstorf.jpg" alt="Jason Lengstorf"></div>
+            <div class="quote">
+              <ul style="list-style: none;">
+                <li>I like to learn</li>
+                <li>I like to teach</li>
+                <li>Dev Experience at Netlify</li>
+                <li>Formerly: Gatsby, IBM</li>
+                <li>Portland, OR</li>
+              </ul>
+            </div>
+          </blockquote>
+        </section>
+        <section data-background="url(./images/lwj-16x9.jpg)">
+          <p>&nbsp;   </p>
+        </section>
+        <section>
+          <h2>Why do we need servers?</h2>
+          <ul>
+            <li class="fragment">load data asynchronously</li>
+            <li class="fragment">process user input</li>
+            <li class="fragment">read and write to a database</li>
+            <li class="fragment">control access to content</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Does serverless mean we can’t do any of that stuff?</h3>
+          <h3 class="fragment"><em>We can do all that stuff</em></h3>
+        </section>
+        <section>
+          <h2>Serverless lets us focus on <em>logic</em>, not <strong>infrastructure</strong></h2>
+        </section>
+        <section>
+          <h4 class="no-margin">Important note:</h4>
+          <h3 class="no-margin">Serverless <strong>does not</strong> mean</h3>
+          <h2>“no servers”</h2>
+        </section>
+        <section>
+          <h4 class="no-margin">Important note:</h4>
+          <h3 class="no-margin">Serverless <em>does</em> mean</h3>
+          <h2>“no servers I have to manage”</h2>
+        </section>
+        <section>
+          <h2>Let’s Build Serverless Functions!</h2>
+        </section>
+        <section>
+          <h1 class="no-margin">Thanks!</h1><img src="./images/jason-lengstorf.jpg" alt="Jason Lengstorf" style="border-radius: 50%; width: 240px; min-width: 0; margin-bottom: 0;">
+          <p style="margin-top: 0.25rem; margin-bottom: 0;">Jason Lengstorf</p>
+          <p style="font-size: 75%; margin-top: 0;">Follow me on Twitter: <a href="https://twitter.com/jlengstorf">@jlengstorf</a><br><a href="https://lengstorf.com">lengstorf.com</a> · <a href="https://learnwithjason.dev">learnwithjason.dev</a></p>
+        </section>
+      </div>
+    </div>
+    <footer class="v2">
+      <ul class="inline">
+        <li><a href="https://git.io/serverless" title="View the slides online.">git.io/serverless</a></li>
+        <li><a href="https://twitter.com/jlengstorf" title="Find Jason on Twitter">@jlengstorf</a></li>
+        <li><a class="no-icon" href="https://twitter.com/intent/tweet?text=Create%20Dynamic%20Web%20Apps%20%20by%20%40jlengstorf&amp;hashtags=MagnoliaJS&amp;related=jlengstorf%2CMagnoliaJSconf&amp;url=https%3A%2F%2Fgit.io%2Fserverless">#MagnoliaJS</a></li>
+      </ul>
+    </footer>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+      // We'll reference this element several times
+      var htmlElement = document.querySelector('html');
+      
+      // Bind a function to the `fragmentshown` event so we can do some custom bits
+      Reveal.addEventListener('fragmentshown', function (event) {
+        var fragment = event.fragment;
+      
+        // For fragments with a `dim-the-lights` class, we dim the lights
+        if (fragment.classList && fragment.classList.contains('dim-the-lights')) {
+          htmlElement.classList.add('blackout');
+        }
+      });
+      
+      // Define a quick function to remove the blackout class from the document
+      var removeBlackout = function removeBlackout() {
+        return htmlElement.classList.remove('blackout');
+      };
+      
+      // Bind the function to Reveal actions so we get the desired effect
+      Reveal.addEventListener('fragmenthidden', removeBlackout);
+      Reveal.addEventListener('slidechanged', removeBlackout);
+      
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+        transition: 'none',
+        backgroundTransition: 'none',
+      
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+      
+    </script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </body>
+</html>
